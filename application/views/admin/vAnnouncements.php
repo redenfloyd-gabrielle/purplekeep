@@ -1,7 +1,7 @@
 <div id="main">
 
     <ol class="breadcrumb">
-        <li><a href="<?php echo site_url();?>/admin/cAdmin">Home</a></li>
+        <li><a href="<?php echo site_url();?>/admin/CAdmin">Home</a></li>
         <li class="active">Admin Account Management</li>
     </ol>
       <!-- //breadcrumb-->
@@ -63,7 +63,7 @@
                                     <button  type='button' class='btn btn-primary'>Update Status</button></a>";
                                 }*/
                                 
-                                  echo "<a  href='".site_url()."/admin/cAdmin/deleteAnnouncement/".$announcement->announcementID."'>
+                                  echo "<a  href='".site_url()."/admin/CAdmin/deleteAnnouncement/".$announcement->announcementID."'>
                                   <button  type='button' class='btn btn-danger'>Delete Announcement</button></a>";
                                 }
                             }
@@ -92,7 +92,7 @@
             <div class="panel-body">
 
       <!-- Modal content-->
-          <form class="form-horizontal" method="POST" action="<?php echo site_url()?>/admin/cAdmin/createAnnouncement">
+          <form class="form-horizontal" method="POST" action="<?php echo site_url()?>/admin/CAdmin/createAnnouncement">
 
                 <div class="form-group" >
                   <label for="" class="col-8 control-label">Announcement:</label>
@@ -126,7 +126,7 @@
         <div class="modal-dialog modal-lg">
 
           <!-- Modal content-->
-          <form class="form-horizontal" method="POST" action="<?php echo site_url()?>/admin/cAdmin/createAnnouncement">
+          <form class="form-horizontal" method="POST" action="<?php echo site_url()?>/admin/CAdmin/createAnnouncement">
             <div class="modal-content">
               <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" style="color:#ffffff;">&times;</button>

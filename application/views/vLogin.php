@@ -35,7 +35,7 @@
             <span class="eventSystem">
               <img src="<?php echo base_url(CustomizationManager::$images->LOGO_LIGHT) ?>" class="eventLogo">
             </span>
-            <form  method="POST" action="<?php echo site_url()?>/cLogin/userLogin">
+            <form  method="POST" action="<?php echo site_url()?>/CLogin/userLogin">
               <div>
                 <input type="text" id="#{label}" name="Username" placeholder="Username" required/>
                 <!-- <span class="fa fa-user" aria-hidden="true"></span> -->
@@ -45,7 +45,7 @@
                 <!-- <span class="fa fa-lock" aria-hidden="true"></span> -->
               </div>
                 <input type="submit" name="" value=<?php echo CustomizationManager::$strings->LOGIN_PAGE_LOGIN_BUTTON ?>>
-                  <a href="<?php echo base_url('index.php/cLogin/forgotPassword'); ?>"><?php echo CustomizationManager::$strings->LOGIN_PAGE_FORGOT_PASSWORD ?></a>
+                  <a href="<?php echo base_url('index.php/CLogin/forgotPassword'); ?>"><?php echo CustomizationManager::$strings->LOGIN_PAGE_FORGOT_PASSWORD ?></a>
                   <br><?php echo CustomizationManager::$strings->LOGIN_PAGE_DONT_HAVE_AN_ACCOUNT ?> <a href="<?php echo site_url();?>/user/cUser/viewSignUp"><?php echo CustomizationManager::$strings->LOGIN_PAGE_SIGNUP_HERE ?></a>
             </form>
           </center>
@@ -92,5 +92,5 @@
 </body>
 </html>
 <?php }else{
-  redirect('cLogin/viewDashboard');
+  redirect('CLogin/viewDashboard');
   }?>
