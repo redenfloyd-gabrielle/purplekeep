@@ -152,6 +152,6 @@
 </head>
 
 <?php } else {
-        redirect('cLogin/login');
+        redirect('CLogin/login');
     }
 ?>

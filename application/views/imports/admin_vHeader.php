@@ -65,9 +65,9 @@
                     </a>
                     <ul class="dropdown-menu pull-right icon-right arrow">
                         <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
-                        <li><a href="<?php echo site_url();?>/admin/cAdmin/adminSettings"><i class="fa fa-cog"></i> Settings </a></li>
+                        <li><a href="<?php echo site_url();?>/admin/CAdmin/adminSettings"><i class="fa fa-cog"></i> Settings </a></li>
                         <li class="divider"></li>
-                        <li><a href="<?php echo site_url();?>/cLogin/userLogout"><i class="fa fa-sign-out"></i> Signout </a></li>
+                        <li><a href="<?php echo site_url();?>/CLogin/userLogout"><i class="fa fa-sign-out"></i> Signout </a></li>
                     </ul>
                     <!-- //dropdown-menu-->
                 </li>
@@ -106,25 +106,25 @@
 
     <nav id="menu"  >
         <ul>
-            <li><a href="<?php echo site_url();?>/admin/cAdmin"><i class="icon  fa fa-laptop"></i> Dashboard </a></li>
+            <li><a href="<?php echo site_url();?>/admin/CAdmin"><i class="icon  fa fa-laptop"></i> Dashboard </a></li>
 
-            <li><a href="<?php echo site_url();?>/admin/cAdmin/viewAllEvents"><i class="icon  fa fa-bullhorn"></i>  Events </a></li>
+            <li><a href="<?php echo site_url();?>/admin/CAdmin/viewAllEvents"><i class="icon  fa fa-bullhorn"></i>  Events </a></li>
 
-            <li><a href="<?php echo site_url();?>/admin/cAdmin/viewUserAccountMgt"><i class="icon  fa fa-users"></i>  User Account </a></li>
+            <li><a href="<?php echo site_url();?>/admin/CAdmin/viewUserAccountMgt"><i class="icon  fa fa-users"></i>  User Account </a></li>
 
-            <li><a href="<?php echo site_url();?>/admin/cAdmin/viewAdminAccountMgt"><i class="icon  fa fa-user"></i>  Admin Account </a></li>
+            <li><a href="<?php echo site_url();?>/admin/CAdmin/viewAdminAccountMgt"><i class="icon  fa fa-user"></i>  Admin Account </a></li>
 
-            <li><a href="<?php echo site_url();?>/admin/cAdmin/viewAnnouncements"><i class="icon  fa fa-user"></i>  Announcements </a></li>
+            <li><a href="<?php echo site_url();?>/admin/CAdmin/viewAnnouncements"><i class="icon  fa fa-user"></i>  Announcements </a></li>
 
-            <li><a href="<?php echo site_url();?>/admin/cAdmin/viewFinance"><i class="icon  fa fa-money"></i> Finance </a></li>
+            <li><a href="<?php echo site_url();?>/admin/CAdmin/viewFinance"><i class="icon  fa fa-money"></i> Finance </a></li>
 
-            <li><a href ="<?php echo site_url();?>/admin/cAdmin/generateCard" data-wow-delay="0.1s"><i class="icon  fa fa-credit-card"></i> Cards </a></li>
+            <li><a href ="<?php echo site_url();?>/admin/CAdmin/generateCard" data-wow-delay="0.1s"><i class="icon  fa fa-credit-card"></i> Cards </a></li>
 
-            <li><a href ="<?php echo site_url();?>/admin/cAdmin/updateAccount" data-wow-delay="0.1s"><i class="icon  fa fa-credit-card"></i> Update Account </a></li>
+            <li><a href ="<?php echo site_url();?>/admin/CAdmin/updateAccount" data-wow-delay="0.1s"><i class="icon  fa fa-credit-card"></i> Update Account </a></li>
 
         </ul>
     </nav>
     <!-- //nav left menu-->
     <?php }else{
-        redirect("cLogin/login");
+        redirect("CLogin/login");
         }?>
