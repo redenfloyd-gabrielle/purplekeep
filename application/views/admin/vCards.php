@@ -1,7 +1,7 @@
 <div id="main">
 
     <ol class="breadcrumb">
-        <li><a href="<?php echo site_url();?>/admin/cAdmin">Home</a></li>
+        <li><a href="<?php echo site_url();?>/admin/CAdmin">Home</a></li>
         <li class="active">Generate Card</li>
     </ol>
       <!-- //breadcrumb-->
@@ -15,7 +15,7 @@
                     </header>
                     <div class="panel-body">
 
-                    <form id="gForm" class="form inline" method="POST" action="<?php echo site_url('finance/cCard/card'); ?>">
+                    <form id="gForm" class="form inline" method="POST" action="<?php echo site_url('finance/CCard/card'); ?>">
                         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover" data-provide="data-table" id="toggle-column table-example">
                             <thead>
                                 <tr>
