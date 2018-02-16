@@ -226,67 +226,80 @@ class CAdmin extends CI_Controller {
 
 	public function addAdmin()
 	{
-		$user = new MUserInfo();
+		$rules = "strip_tags|trim|xss_clean";
+		$this->form_validation->set_rules('uname','first name',$rules.'|required|min_length[6]|max_length[50]');
+		$this->form_validation->set_rules('password','Password','required|min_length[8]');
+		
+		$this->form_validation->set_rules('fname','First Name',$rules.'|required|max_length[50]');
+		$this->form_validation->set_rules('lname','Last Name',$rules.'|required|min_length[2]|max_length[50]');
+		$this->form_validation->set_rules('miname','Middle initial',$rules.'|required|min_length[1]');
+		$this->form_validation->set_rules('email','email',$rules.'|required|min_length[2]|max_length[50]|valid_email');
+		$this->form_validation->set_rules('bdate','birthday',$rules.'|required');
+		if ($this->form_validation->run() != FALSE )
+		{
+			$user = new MUserInfo();
 
-		$now = NEW DateTime(NULL, new DateTimeZone('UTC'));
+			$now = NEW DateTime(NULL, new DateTimeZone('UTC'));
 
-		if($this->input->post('userType')=="Superadmin") {
-			$data = array('user_name' => $this->input->post('uname'),
-					  'password' => hash('sha512',$this->input->post('password')),
-					  'first_name' => $this->input->post('fname'),
-					  'last_name' => $this->input->post('lname'),
-					  'middle_initial' => $this->input->post('miname'),
-					  'email' => $this->input->post('email'),
-					  'birthdate' => $this->input->post('bdate'),
-					  'gender' => $this->input->post('gender'),
-					  'contact_no' => $this->input->post('contact'),
-					  'user_type' =>  $this->input->post('userType'),
-					  'upgradedBy' => $this->session->userdata['adminSession']->userID,
-					  'addedAt	' => $now->format('Y-m-d H:i:s')
-					);
-		} else {
-			$data = array('user_name' => $this->input->post('uname'),
-					  'password' => hash('sha512',$this->input->post('password')),
-					  'first_name' => $this->input->post('fname'),
-					  'last_name' => $this->input->post('lname'),
-					  'middle_initial' => $this->input->post('miname'),
-					  'email' => $this->input->post('email'),
-					  'birthdate' => $this->input->post('bdate'),
-					  'gender' => $this->input->post('gender'),
-					  'contact_no' => $this->input->post('contact'),
-					  'user_type' =>  $this->input->post('userType'),
-					  'addedAt	' => $now->format('Y-m-d H:i:s')
-					);
-		}
-
-
-
-		$res = $this->MUser->read_where(array('user_name' => $data['user_name']));
-		$res1 = $this->MUser->read_where(array('email' => $data['email']));
-
-    	if($res){
-    			$this->session->set_flashdata('error_msg','Username taken');
-    			$this->viewAdminAccountMgt();
-    			// redirect('user/cUser/viewSignUp',"refresh");
-				//echo "INVALID, EXISTING USERNAME, PLS TRY AGAIN";
-
-		}else if($res1){
-			$this->session->set_flashdata('error_msg','Email taken');
-				$this->viewAdminAccountMgt();
-				//echo "INVALID, EXISTING EMAIL, PLS TRY AGAIN";
-
-		}else{
-
-			$result = $user->insert($data);
-
-
-			if($result){
-				//$this->index();
-				redirect('admin/CAdmin/viewAdminAccountMgt');
+			if($this->input->post('userType')=="Superadmin") {
+				$data = array('user_name' => $this->input->post('uname'),
+						  'password' => hash('sha512',$this->input->post('password')),
+						  'first_name' => $this->input->post('fname'),
+						  'last_name' => $this->input->post('lname'),
+						  'middle_initial' => $this->input->post('miname'),
+						  'email' => $this->input->post('email'),
+						  'birthdate' => $this->input->post('bdate'),
+						  'gender' => $this->input->post('gender'),
+						  'contact_no' => $this->input->post('contact'),
+						  'user_type' =>  $this->input->post('userType'),
+						  'upgradedBy' => $this->session->userdata['adminSession']->userID,
+						  'addedAt	' => $now->format('Y-m-d H:i:s')
+						);
+			} else {
+				$data = array('user_name' => $this->input->post('uname'),
+						  'password' => hash('sha512',$this->input->post('password')),
+						  'first_name' => $this->input->post('fname'),
+						  'last_name' => $this->input->post('lname'),
+						  'middle_initial' => $this->input->post('miname'),
+						  'email' => $this->input->post('email'),
+						  'birthdate' => $this->input->post('bdate'),
+						  'gender' => $this->input->post('gender'),
+						  'contact_no' => $this->input->post('contact'),
+						  'user_type' =>  $this->input->post('userType'),
+						  'addedAt	' => $now->format('Y-m-d H:i:s')
+						);
 			}
-		}
 
-		# code...
+
+
+			$res = $this->MUser->read_where(array('user_name' => $data['user_name']));
+			$res1 = $this->MUser->read_where(array('email' => $data['email']));
+
+	    	if($res){
+	    			$this->session->set_flashdata('error_msg','Username taken');
+	    			redirect("admin/CAdmin/viewAdminAccountMgt");
+	    			// redirect('user/cUser/viewSignUp',"refresh");
+					//echo "INVALID, EXISTING USERNAME, PLS TRY AGAIN";
+
+			}else if($res1){
+				$this->session->set_flashdata('error_msg','Email taken');
+					redirect("admin/CAdmin/viewAdminAccountMgt");
+					//echo "INVALID, EXISTING EMAIL, PLS TRY AGAIN";
+
+			}else{
+
+				$result = $user->insert($data);
+
+
+				if($result){
+					//$this->index();
+					redirect('admin/CAdmin/viewAdminAccountMgt');
+				}
+			}
+		}else{
+			$this->session->set_flashdata('error_msg',validation_errors());
+	    	redirect("admin/CAdmin/viewAdminAccountMgt");
+		}
 	}
 
 	public function viewUserAccountMgt() {
