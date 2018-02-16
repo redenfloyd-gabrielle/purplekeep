@@ -573,7 +573,6 @@ class CAdmin extends CI_Controller {
 
 	//ANNOUNCEMENT FUNCTIONALITY - also added MAnnouncement in models/admin and autoload.php (12/04/17)
 	public function viewAnnouncements() {
-		$this->load->library('form_validation');
 		//////////////////////////////////////////////////////////////////////////////
 		//================Sprint 3 INTERFACE MODULE - DATA-LAYOUT FILTERING CODE============//
 		/////////////////////////////////////////////////////////////////////////////
@@ -620,11 +619,12 @@ class CAdmin extends CI_Controller {
 
 					$result = $notif->insert($data);	
 				}
-				
+				$this->session->set_flashdata('success_msg',"Announcement posted!");
 				redirect('admin/CAdmin/viewAnnouncements');
 			}
 		}else{
-			$this->viewAnnouncements();
+			$this->session->set_flashdata('error_msg',validation_errors());
+			redirect('admin/CAdmin/viewAnnouncements');
 		}
 	}
 

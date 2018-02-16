@@ -20,18 +20,18 @@
                     </header>
 
                     <div class="panel-body">
-                      <?php if (validation_errors()): ?>
-                        <div class="alert alert-danger">
-                            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                            <?php echo validation_errors(); ?>
-                        </div>
-                    <?php endif ?>
-                        <?php if ($this->session->flashdata('error_msg')): ?>
-                                <div class="alert alert-danger" style="margin-top: 15px;">
-                                    <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                                    <?php echo $this->session->flashdata('error_msg'); ?>
-                                </div>
-                            <?php endif ?>
+                      <?php if ($this->session->flashdata('success_msg')): ?>
+                          <div class="alert alert-success">
+                              <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                              <?php echo $this->session->flashdata('success_msg') ?>
+                          </div>
+                      <?php endif ?>
+                      <?php if ($this->session->flashdata('error_msg')): ?>
+                              <div class="alert alert-danger" style="margin-top: 15px;">
+                                  <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                                  <?php echo $this->session->flashdata('error_msg'); ?>
+                              </div>
+                      <?php endif ?>
                         
 
                          <button class="btn btn-outline-primary" style="margin-bottom:25px;" type="button" name="button" data-toggle="modal" data-target="#createAnnouncement" data-backdrop="static" data-keyboard="false">Create Announcement</button>
