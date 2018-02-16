@@ -13,6 +13,8 @@ class CAdmin extends CI_Controller {
 		$this->load->model('MUser');
 		$this->load->model('MAnnouncement');
 		$this->load->model('MCardLoad');
+		$this->load->library('form_validation');
+		$this->load->helper('security');
 		// $this->load->model('MUserInfo');
 	}
 
@@ -571,6 +573,7 @@ class CAdmin extends CI_Controller {
 
 	//ANNOUNCEMENT FUNCTIONALITY - also added MAnnouncement in models/admin and autoload.php (12/04/17)
 	public function viewAnnouncements() {
+		$this->load->library('form_validation');
 		//////////////////////////////////////////////////////////////////////////////
 		//================Sprint 3 INTERFACE MODULE - DATA-LAYOUT FILTERING CODE============//
 		/////////////////////////////////////////////////////////////////////////////
@@ -587,32 +590,41 @@ class CAdmin extends CI_Controller {
 	}
 
 	public function createAnnouncement() {
-		$announcement = new MAnnouncement();
+		
+		$rules = "strip_tags|trim|xss_clean";
+		$this->form_validation->set_rules('announcementDetails','announcementDetails',$rules.'|required');
+        
+		if ($this->form_validation->run() != FALSE )
+		{
+			$announcement = new MAnnouncement();
 
-		// $now = NEW DateTime(NULL, new DateTimeZone('UTC'));
+			// $now = NEW DateTime(NULL, new DateTimeZone('UTC'));
 
-		$data = array('announcementDetails' => $this->input->post('announcementDetails'),
-					  'announcementStatus' => 'OnGoing',
-					  'addedBy' => $this->input->post('postedBy'),
-					  // 'addedAt' => $now->format('Y-m-d H:i:s')
-					);
+			$data = array('announcementDetails' => $this->input->post('announcementDetails'),
+						  'announcementStatus' => 'OnGoing',
+						  'addedBy' => $this->input->post('postedBy'),
+						  // 'addedAt' => $now->format('Y-m-d H:i:s')
+						);
 
-		$result = $announcement->insert($data);
-		 $id= $announcement->db->insert_id();
-		if($result){
-			//$this->index();
-			//$this->index();
-			$notif = new MNotificationItem();
-			$user = $this->MUser->getAllUsers();
-			foreach ($user as $key) {
-				$data = array('user' => $key->account_id,
-							  'announcement' => $id
-							);
+			$result = $announcement->insert($data);
+			 $id= $announcement->db->insert_id();
+			if($result){
+				//$this->index();
+				//$this->index();
+				$notif = new MNotificationItem();
+				$user = $this->MUser->getAllUsers();
+				foreach ($user as $key) {
+					$data = array('user' => $key->account_id,
+								  'announcement' => $id
+								);
 
-				$result = $notif->insert($data);	
+					$result = $notif->insert($data);	
+				}
+				
+				redirect('admin/CAdmin/viewAnnouncements');
 			}
-			
-			redirect('admin/CAdmin/viewAnnouncements');
+		}else{
+			$this->viewAnnouncements();
 		}
 	}
 

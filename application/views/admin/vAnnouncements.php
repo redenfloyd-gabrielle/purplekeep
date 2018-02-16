@@ -20,7 +20,12 @@
                     </header>
 
                     <div class="panel-body">
-                      
+                      <?php if (validation_errors()): ?>
+                        <div class="alert alert-danger">
+                            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                            <?php echo validation_errors(); ?>
+                        </div>
+                    <?php endif ?>
                         <?php if ($this->session->flashdata('error_msg')): ?>
                                 <div class="alert alert-danger" style="margin-top: 15px;">
                                     <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -92,7 +97,8 @@
             <div class="panel-body">
 
       <!-- Modal content-->
-          <form class="form-horizontal" method="POST" action="<?php echo site_url()?>/admin/cAdmin/createAnnouncement">
+       <?php echo form_open(site_url()."/admin/cAdmin/createAnnouncement", 'class="form-horizontal"'); ?>
+          <!-- <form class="form-horizontal" method="POST" action="<?php echo site_url()?>/admin/cAdmin/createAnnouncement"> -->
 
                 <div class="form-group" >
                   <label for="" class="col-8 control-label">Announcement:</label>
@@ -112,7 +118,8 @@
                         <button id="closeEditAccount" type="button" class="btn btn-danger" data-dismiss="modal" >Close</button>
                         <input id="" class="btn btn-primary" type="submit"  name="action" value="Announce">
                     </div>
-                </form>
+                <!-- </form> -->
+                <?php echo form_close(); ?>
             </div>
         </div>
     </div>
