@@ -97,12 +97,9 @@
             <div class="panel-body">
 
       <!-- Modal content-->
-<<<<<<< HEAD
-       <?php echo form_open(site_url()."/admin/cAdmin/createAnnouncement", 'class="form-horizontal"'); ?>
+      <?php echo form_open(site_url()."/admin/cAdmin/createAnnouncement", 'class="form-horizontal"'); ?>
           <!-- <form class="form-horizontal" method="POST" action="<?php echo site_url()?>/admin/cAdmin/createAnnouncement"> -->
-=======
-          <form class="form-horizontal" method="POST" action="<?php echo site_url()?>/admin/CAdmin/createAnnouncement">
->>>>>>> ce50ee65a4534a9d00cac533f8e85460eb285554
+
 
                 <div class="form-group" >
                   <label for="" class="col-8 control-label">Announcement:</label>
