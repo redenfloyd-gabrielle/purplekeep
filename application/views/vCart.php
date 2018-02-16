@@ -21,24 +21,24 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<?php echo site_url();?>/cLogin/viewDashBoard"><img src="<?php echo base_url('assets/dianeAssets/img/logoBlack.png')?>"></a>
+                    <a class="navbar-brand" href="<?php echo site_url();?>/CLogin/viewDashBoard"><img src="<?php echo base_url('assets/dianeAssets/img/logoBlack.png')?>"></a>
                 </div>
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                        <a href ="<?php echo site_url();?>/cLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a>
+                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a>
                     </div>
 
                     <div class="button navbar-right">
-                        <a href ="<?php echo site_url();?>/event/cEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a>
+                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a>
                     </div>
 
 
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cLogin/viewDashBoard"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_HOME ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/cEvent/viewEvents"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_PROFILE ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/cEvent/viewPreferenceEvents">Interested Events</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/cCart/viewCart"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_VIEW_CART ?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_HOME ?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_PROFILE ?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents">Interested Events</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_VIEW_CART ?></a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -99,7 +99,7 @@
                                                     </form>
                                                   </td>
                                                   <td> 
-                                                    <form  method="POST" action="<?php echo site_url(); ?>/finance/cCart/deleteCartItem">
+                                                    <form  method="POST" action="<?php echo site_url(); ?>/finance/CCart/deleteCartItem">
                                                       <input name="id" class="hidden" value="<?php echo $cart->cart_id;?>">
                                                       <button type="submit" class="btn btn-primary pull-right" type="button">
                                                       <span class="glyphicon glyphicon-trash delete"></span>
@@ -175,7 +175,7 @@
                         </div>
                         <div class="bottom-menu pull-right">
                             <ul>
-                                <li><a class="wow fadeInUp animated" href="<?php echo site_url();?>/cLogin/viewDashBoard" data-wow-delay="0.2s">Home</a></li>
+                                <li><a class="wow fadeInUp animated" href="<?php echo site_url();?>/CLogin/viewDashBoard" data-wow-delay="0.2s">Home</a></li>
                             </ul>
                         </div>
                     </div>
@@ -193,7 +193,7 @@
       //   var id = panel.find("input.cartID").val();
       //   $(this).attr("disabled",true);
       //   $.ajax({
-      //           url: "<?php echo site_url()?>/finance/cCart/deleteCartItem",
+      //           url: "<?php echo site_url()?>/finance/CCart/deleteCartItem",
       //           data: { "id":id},
       //           type: "POST",
       //           success: function(e){
@@ -273,9 +273,9 @@
       function updateTicketCount(type,id,quantity){
         var link ="";
         if(type == "plus"){
-          var link =  "<?php echo site_url()?>/finance/cCart/addQty";
+          var link =  "<?php echo site_url()?>/finance/CCart/addQty";
         }else{
-          var link = "<?php echo site_url()?>/finance/cCart/minusQty";
+          var link = "<?php echo site_url()?>/finance/CCart/minusQty";
         }
         $(document).find(".plus").attr("disabled", true);
         $(document).find(".minus").attr("disabled", true);
@@ -296,7 +296,7 @@
         $(document).on('click', '#aDropdown', function(){
             var id = $(this).data('id');
             $.ajax({
-                url: "<?php echo site_url()?>/user/cUser/updateAnnounce/"+id,
+                url: "<?php echo site_url()?>/user/CUser/updateAnnounce/"+id,
                 data: { id:id },
                 type: "POST",
                 success: function(data){
@@ -319,7 +319,7 @@
              $.notify({
               title: "<?php echo '<strong>'.$key->announcementDetails.'</strong><br>';?>",              
               icon: 'glyphicon glyphicon-info-sign',
-              message: '<?php echo $key->ago." ".$key->agoU;?><a href="<?php echo site_url();?>/user/cUser/viewClickedAnnouncement/<?php echo $key->announcementID; ?>" >Click here...</a> '
+              message: '<?php echo $key->ago." ".$key->agoU;?><a href="<?php echo site_url();?>/user/CUser/viewClickedAnnouncement/<?php echo $key->announcementID; ?>" >Click here...</a> '
             },{
               type: 'info',
               animate: {

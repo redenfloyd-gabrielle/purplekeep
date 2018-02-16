@@ -5,7 +5,7 @@
      ?>
 
     <ol class="breadcrumb">
-        <li><a href="<?php echo site_url();?>/admin/cAdmin">Home</a></li>
+        <li><a href="<?php echo site_url();?>/admin/CAdmin">Home</a></li>
         <li class="active">Admin Account Management</li>
     </ol>
       <!-- //breadcrumb-->
@@ -29,7 +29,7 @@
 
                        
 
-                    <form class="form-horizontal" method="POST" action="<?php echo site_url()?>/admin/cAdmin/updateAdmin">
+                    <form class="form-horizontal" method="POST" action="<?php echo site_url()?>/admin/CAdmin/updateAdmin">
 
                     <div class="form-group" >
                       <label for="" class="col-8 control-label">First name:</label>
@@ -133,7 +133,7 @@
             <div class="panel-body">
 
             <!-- Modal content-->
-                <form class="form-horizontal" method="POST" action="<?php echo site_url()?>/admin/cAdmin/updateAdmin">
+                <form class="form-horizontal" method="POST" action="<?php echo site_url()?>/admin/CAdmin/updateAdmin">
 
                     <div class="form-group" >
                       <label for="" class="col-8 control-label">First name:</label>

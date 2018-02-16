@@ -18,7 +18,7 @@
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cInitialize">Home</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CInitialize">Home</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -49,7 +49,7 @@
                     <div class="box-for overflow">
                     <center><h2 class="page-title"> Your registration is complete. </h2></center> <br>
                     <center><h3> Your account has been successfully registered and can now be used to access the website. </h3></center> <br>
-                    <center><button type="submit" class="btn btn-default"><a href="<?php echo site_url();?>/cLogin"> CLICK HERE TO LOGIN </a></button></center>
+                    <center><button type="submit" class="btn btn-default"><a href="<?php echo site_url();?>/CLogin"> CLICK HERE TO LOGIN </a></button></center>
                     </div>
                 </div>
                 <div class="col-md-3">

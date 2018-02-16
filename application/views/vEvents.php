@@ -22,25 +22,25 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<?php echo site_url();?>/cLogin/viewDashBoard"><img src="<?php echo base_url(CustomizationManager::$images->LOGO_DARK)?>"></a>
+                    <a class="navbar-brand" href="<?php echo site_url();?>/CLogin/viewDashBoard"><img src="<?php echo base_url(CustomizationManager::$images->LOGO_DARK)?>"></a>
                 </div>
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                        <!-- <a href ="<?php echo site_url();?>/cLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a> -->
-                        <a href ="<?php echo site_url();?>/cLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->PROFILE_PAGE_LOGOUT_BUTTON ?> </button></a>
+                        <!-- <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a> -->
+                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->PROFILE_PAGE_LOGOUT_BUTTON ?> </button></a>
                     </div>
                     <div class="button navbar-right">
-                        <!-- <a href ="<?php echo site_url();?>/event/cEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a> -->
-                        <a href ="<?php echo site_url();?>/event/cEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->PROFILE_PAGE_CREATE_EVENT_BUTTON ?> </button></a>
+                        <!-- <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a> -->
+                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->PROFILE_PAGE_CREATE_EVENT_BUTTON ?> </button></a>
                     </div>
 
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cLogin/viewDashBoard"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_HOME ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/cEvent/viewEvents"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_PROFILE ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/user/cUser/viewAnnouncements">Announcements</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/cEvent/viewPreferenceEvents">Interested Events</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/cCart/viewCart">View Cart</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_HOME ?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_PROFILE ?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements">Announcements</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents">Interested Events</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/CCart/viewCart">View Cart</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -95,7 +95,7 @@
                                         <div class="row">
 
                                                 <div class="col-xs-12" id="some" hidden="">
-                                                    <form action="<?php echo site_url(); ?>/user/cUser/redeemCode" method="post">
+                                                    <form action="<?php echo site_url(); ?>/user/CUser/redeemCode" method="post">
                                                         <input type="text" class="form-control" name="ccode" placeholder="Enter code">
                                                         <!-- <button type="submit" class="navbar-btn nav-button pull-right"   >Redeem Code</button> -->
                                                         <button type="submit" class="navbar-btn nav-button pull-right"   ><?php echo CustomizationManager::$strings->PROFILE_PAGE_REDEEM_CODE ?></button>
@@ -277,10 +277,10 @@
                             <div class="col-sm-6 col-md-4 p0">
                                 <div class="box-two proerty-item">
                                     <div class="item-thumb">
-                                        <a href="<?php echo site_url();?>/event/cEvent/displayEventDetails/<?php echo $event->event_id;?>"><img  style="max-height: 50px;" src="<?php echo base_url();?><?php echo $event->event_picture; ?>"></a>
+                                        <a href="<?php echo site_url();?>/event/CEvent/displayEventDetails/<?php echo $event->event_id;?>"><img  style="max-height: 50px;" src="<?php echo base_url();?><?php echo $event->event_picture; ?>"></a>
                                     </div>
                                        <div class="item-entry overflow">
-                                        <h5><a href="<?php echo site_url();?>/event/cEvent/displayEventDetails/<?php echo $event->event_id;?>"> <?php
+                                        <h5><a href="<?php echo site_url();?>/event/CEvent/displayEventDetails/<?php echo $event->event_id;?>"> <?php
                                                 if(strlen($event->event_name)>=26){
                                                     echo substr($event->event_name,0,23)."...";
                                                 }else{
@@ -498,7 +498,7 @@
      <div role="tabpanel" class="tab-pane" id="editprofile">
         <h2>Edit Profile</h2>
         <?php foreach($info as $in){ ?>
-            <form  method="POST" action="<?php echo site_url()?>/cEvent/updateProfile">
+            <form  method="POST" action="<?php echo site_url()?>/CEvent/updateProfile">
             <div class="col-md-8">
                 <div class="form-group">
                     <label for="first name">First Name</label>
@@ -547,7 +547,7 @@
                     <input type="password" <?php  echo 'value="'.$in->password.'"';?> class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="password" id="password">
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-default"><!-- <a href="<?php echo site_url();?>/cEvent/updateProfile"> -->Edit Profile</button>
+                    <button type="submit" class="btn btn-default"><!-- <a href="<?php echo site_url();?>/CEvent/updateProfile"> -->Edit Profile</button>
                 </div>
 
 
@@ -646,7 +646,7 @@
                         </div>
                         <div class="bottom-menu pull-right">
                          <ul>
-                            <li><a class="wow fadeInUp animated" href="<?php echo site_url();?>/cLogin/viewDashBoard" data-wow-delay="0.2s"><?php echo CustomizationManager::$strings->FOOTER_NAV_HOME ?></a></li>
+                            <li><a class="wow fadeInUp animated" href="<?php echo site_url();?>/CLogin/viewDashBoard" data-wow-delay="0.2s"><?php echo CustomizationManager::$strings->FOOTER_NAV_HOME ?></a></li>
                           </ul>
                         </div>
                     </div>

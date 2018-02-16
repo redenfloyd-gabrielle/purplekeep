@@ -21,24 +21,24 @@
                         <span class="icon-bar"></span>
 
                     </button>    
-                    <a class="navbar-brand" href="<?php echo site_url();?>/cLogin/viewDashBoard"><img src="<?php echo base_url(CustomizationManager::$images->LOGO_DARK)?>"></a>
+                    <a class="navbar-brand" href="<?php echo site_url();?>/CLogin/viewDashBoard"><img src="<?php echo base_url(CustomizationManager::$images->LOGO_DARK)?>"></a>
                 </div>
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                        <!-- <a href ="<?php echo site_url();?>/cLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a> -->
-                        <a href ="<?php echo site_url();?>/cLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->LANDING_PAGE_LOGOUT_BUTTON ?> </button></a>
+                        <!-- <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a> -->
+                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->LANDING_PAGE_LOGOUT_BUTTON ?> </button></a>
                     </div>
                     <div class="button navbar-right">
-                        <!-- <a href ="<?php echo site_url();?>/event/cEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a> -->
-                        <a href ="<?php echo site_url();?>/event/cEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->LANDING_PAGE_CREATE_EVENT_BUTTON ?> </button></a>
+                        <!-- <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a> -->
+                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->LANDING_PAGE_CREATE_EVENT_BUTTON ?> </button></a>
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cLogin/viewDashBoard"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_HOME ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/cEvent/viewEvents"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_PROFILE ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>'><a href="<?php echo site_url();?>/user/cUser/viewAnnouncements"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_ANNOUNCEMENTS ?><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/cEvent/viewPreferenceEvents">Interested Events</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/cCart/viewCart"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_VIEW_CART ?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_HOME ?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_PROFILE ?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>'><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_ANNOUNCEMENTS ?><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents">Interested Events</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_VIEW_CART ?></a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -65,7 +65,7 @@
                         <h2><?php echo CustomizationManager::$strings->LANDING_PAGE_CAROUSEL_MESSAGE ?></h2>
                         <div class="search-form wow pulse" data-wow-delay="0.8s">
 
-                            <form action="<?php echo site_url();?>/user/cEvent/searchEvent" class=" form-inline" method="POST">
+                            <form action="<?php echo site_url();?>/user/CEvent/searchEvent" class=" form-inline" method="POST">
                                 <span style="color: gray;"><?php echo CustomizationManager::$strings->LANDING_PAGE_SEARCH_BOX_LABEL ?>
                                 <div class="form-group">
                                     <?php
@@ -197,7 +197,7 @@
                                                                     }
                                                                 }   
 
-                                                                echo '<h3 class="text-center"><a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"> ';
+                                                                echo '<h3 class="text-center"><a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"> ';
 
                                                                 if(strlen($event->event_name)>=42){
                                                                     echo substr($event->event_name,0,39)."...";
@@ -208,7 +208,7 @@
                                                                 echo '</a></h3>';
 
                                                                 echo '<div class="item-thumb">
-                                                                <a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
+                                                                <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
 
                                                                 echo '<h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
 
@@ -235,7 +235,7 @@
                                                                 echo '<div class="corner-ribbon top-right sticky red">Happening now!</div>';
                                                                     
 
-                                                                echo '<h3 class="text-center"><a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"> ';
+                                                                echo '<h3 class="text-center"><a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"> ';
 
                                                                 if(strlen($event->event_name)>=42){
                                                                     echo substr($event->event_name,0,39)."...";
@@ -246,7 +246,7 @@
                                                                 echo '</a></h3>';
 
                                                                 echo '<div class="item-thumb">
-                                                                <a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
+                                                                <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
 
                                                                 echo '<h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
 
@@ -331,7 +331,7 @@
         $(document).on('click', '#aDropdown', function(){
             var id = $(this).data('id');
             $.ajax({
-                url: "<?php echo site_url()?>/user/cUser/updateAnnounce/"+id,
+                url: "<?php echo site_url()?>/user/CUser/updateAnnounce/"+id,
                 data: { id:id },
                 type: "POST",
                 success: function(data){
@@ -354,7 +354,7 @@
              $.notify({
               title: "<?php echo '<strong>'.substr(trim(preg_replace( "/\r|\n/", "", $key->announcementDetails )),0,25).'</strong><br>';?>",
               icon: 'glyphicon glyphicon-info-sign',
-              message: '<?php echo $key->ago." ".$key->agoU;?><a href="<?php echo site_url();?>/user/cUser/viewClickedAnnouncement/<?php echo $key->announcementID; ?>" >Click here...</a> '
+              message: '<?php echo $key->ago." ".$key->agoU;?><a href="<?php echo site_url();?>/user/CUser/viewClickedAnnouncement/<?php echo $key->announcementID; ?>" >Click here...</a> '
             },{
               type: 'info',
               animate: {

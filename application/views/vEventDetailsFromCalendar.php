@@ -32,27 +32,27 @@ foreach($going as $g){
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<?php echo site_url();?>/cLogin/viewDashBoard"><img src="<?php echo base_url('assets/dianeAssets/img/logoBlack.png')?>"></a>
+                    <a class="navbar-brand" href="<?php echo site_url();?>/CLogin/viewDashBoard"><img src="<?php echo base_url('assets/dianeAssets/img/logoBlack.png')?>"></a>
                 </div>
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                        <button class="navbar-btn nav-button wow bounceInRight login"> <a href ="<?php echo site_url();?>/cLogin/userLogout" data-wow-delay="0.1s">Logout </a></button>
+                        <button class="navbar-btn nav-button wow bounceInRight login"> <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s">Logout </a></button>
                     </div>
 
                     <div class="button navbar-right">
-                        <button class="navbar-btn nav-button wow bounceInRight login"> <a href ="<?php echo site_url();?>/event/cEvent/viewCreateEvent" data-wow-delay="0.4s">Create Event </a></button>
+                        <button class="navbar-btn nav-button wow bounceInRight login"> <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s">Create Event </a></button>
                     </div>
 
 
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cLogin/viewDashBoard">Home</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewDashBoard">Home</a></li>
 
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/cEvent/viewEvents">Profile</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/user/cUser/viewAnnouncements">Announcements</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/cCart/viewCart">View Cart</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents">Profile</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements">Announcements</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/CCart/viewCart">View Cart</a></li>
                         <!--
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href ="<?php echo site_url();?>/event/cEvent/viewCreateEvent" >Contact</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" >Contact</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href ="#" >Profile</a></li> -->
                     </ul>
                 </div><!-- /.navbar-collapse -->
@@ -196,7 +196,7 @@ foreach($going as $g){
                             if($x->event_status == "Approved"){
                                 echo'
                                 <div class="button navbar-right">
-                                    <button class="navbar-btn nav-button login"> <a href ="'.site_url("/event/cEvent/editEvent/$e->event_id").'">Edit Event </a></button>
+                                    <button class="navbar-btn nav-button login"> <a href ="'.site_url("/event/CEvent/editEvent/$e->event_id").'">Edit Event </a></button>
                                 </div>';
                             }else if($x->event_status == "Pending"){
                                 echo'
@@ -205,7 +205,7 @@ foreach($going as $g){
                                 </div>
 
                                 <div class="button navbar-right">
-                                    <button class="navbar-btn nav-button login"> <a href ="'.site_url("/event/cEvent/editEvent/$e->event_id").'">Edit Event </a></button>
+                                    <button class="navbar-btn nav-button login"> <a href ="'.site_url("/event/CEvent/editEvent/$e->event_id").'">Edit Event </a></button>
                                 </div>';
                             }
                         }} ?>
@@ -223,7 +223,7 @@ foreach($going as $g){
                           </div>
                           <div class="modal-footer">
                             <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary" style="background-color: gray;"><a href ="<?php echo site_url('event/cEvent/deleteEvent/'.$e->event_id);?>">Delete</a></button>
+                            <button type="button" class="btn btn-primary" style="background-color: gray;"><a href ="<?php echo site_url('event/CEvent/deleteEvent/'.$e->event_id);?>">Delete</a></button>
                           </div>
                         </div>
                       </div>
@@ -278,7 +278,7 @@ foreach($going as $g){
                                             <div class="text-center">
                                             <?php if($e->event_status == "Approved"){?>
                                                 <button class="navbar-btn nav-button wow bounceInRight login animated" onclick="#" data-wow-delay="0.4s" style="visibility: visible; animation-delay: 0.4s; animation-name: bounceInRight;">Intrested</button>
-                                                <!-- <a href="<?php echo site_url();?>/event/cEvent/going/<?php echo $e->event_id;?>"><button class="navbar-btn nav-button wow bounceInRight login animated" >Going</button></a> -->                                            <?php }?>
+                                                <!-- <a href="<?php echo site_url();?>/event/CEvent/going/<?php echo $e->event_id;?>"><button class="navbar-btn nav-button wow bounceInRight login animated" >Going</button></a> -->                                            <?php }?>
                                             </div>
 
                                         </div>
@@ -305,14 +305,14 @@ foreach($going as $g){
                                                 <span class="property-price"><?php echo "P"." ".$t->price.".00";?></span>
                                                  <?php if($e->event_status == "Approved"){?>
                                                  <!-- <span>&nbsp; &nbsp; &nbsp;
-                                                 <form method="post" action="<?php echo site_url();?>/event/cEvent/buyTicket">
+                                                 <form method="post" action="<?php echo site_url();?>/event/CEvent/buyTicket">
                                                      <input type="text" name="eId" value="<?php echo $e->event_id;?>">
                                                      <input type="text" name="tId" value="<?php echo $t->ticket_type_id;?>">
 
                                                  </form> -->
 
                                                  <?php if(!$bought){?>
-                                                   <a href="<?php echo site_url();?>/event/cEvent/buyTicket/<?php echo $t->ticket_type_id;?>/<?php echo $e->event_id;?>"><input hidden class="val" value="<?php echo $t->price;?>">
+                                                   <a href="<?php echo site_url();?>/event/CEvent/buyTicket/<?php echo $t->ticket_type_id;?>/<?php echo $e->event_id;?>"><input hidden class="val" value="<?php echo $t->price;?>">
                                                 <button   class="buy navbar-btn nav-button wow bounceInRight login animated" >Buy</button></a>
                                                 <?php }?>
 
