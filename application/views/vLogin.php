@@ -1,4 +1,5 @@
-<?php if (!$this->session->userdata('userSession')) { ?>
+<?php 
+if (!isset($this->session->userdata['userSession']) && !isset($this->session->userdata['adminSession'])) { ?>
 <!-- Add these lines below to pages with customizable elements -->
 <?php
   require('assets/CustomizationManager.php');

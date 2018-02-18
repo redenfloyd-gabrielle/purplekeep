@@ -1,5 +1,4 @@
 <?php if(isset($this->session->userdata['adminSession'])){
-    echo"asdAS";
     ?>
 <!DOCTYPE html>
 <html>
