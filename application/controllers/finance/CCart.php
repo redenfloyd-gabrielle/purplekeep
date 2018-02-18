@@ -158,51 +158,63 @@ class CCart extends CI_Controller {
 	}
 	public function checkout(){
 		$checked = $this->input->post('ticket');
-		
+		$cnt = 0;
 		$retval =0;
-		foreach ($checked as $key) {
-			$query = $this->MCart->read_where(array('cart_id' => $key));
-			$retval += $query[0]->total_price; 
-		}
-		
-		$user = $this->MUser->read($this->session->userdata['userSession']->userID);
-		
-		if($user[0]->load_amt >= $retval){
+		if($checked){
 			foreach ($checked as $key) {
 				$query = $this->MCart->read_where(array('cart_id' => $key));
-				for ($i=0; $i < $query[0]->quantity; $i++) { 
-						$now = NEW DateTime(NULL, new DateTimeZone('UTC'));
-						$data = array('date_sold' => $now->format('Y-m-d H:i:s'),
-								  'user_id' => $this->session->userdata['userSession']->userID ,
-								  'ticket_type_id' => $query[0]->ticket_id
-	 				  				);
-						$res = $this->MTicket->insert($data);
-
-				}
-				$this->MCart->update($key,array("status"=>"deleted"));
+				$retval += $query[0]->total_price; 
 			}
-			$newLoad = $user[0]->load_amt - $retval;
-			$result = $this->MUser->update($this->session->userdata['userSession']->userID,array("load_amt"=>$newLoad));
-			$this->session->set_flashdata('success_msg',"Successfully Checkedout!");
-			redirect("finance/CCart/viewCart");
+			
+			$user = $this->MUser->read($this->session->userdata['userSession']->userID);
+			
+			if($user[0]->load_amt >= $retval){
+				foreach ($checked as $key) {
+					$query = $this->MCart->read_where(array('cart_id' => $key));
+					for ($i=0; $i < $query[0]->quantity; $i++) { 
+							$now = NEW DateTime(NULL, new DateTimeZone('UTC'));
+							$data = array('date_sold' => $now->format('Y-m-d H:i:s'),
+									  'user_id' => $this->session->userdata['userSession']->userID ,
+									  'ticket_type_id' => $query[0]->ticket_id
+		 				  				);
+							$res = $this->MTicket->insert($data);
+
+					}
+					$this->MCart->update($key,array("status"=>"deleted"));
+				}
+				$newLoad = $user[0]->load_amt - $retval;
+				$result = $this->MUser->update($this->session->userdata['userSession']->userID,array("load_amt"=>$newLoad));
+				$this->session->set_flashdata('success_msg',"Successfully Checkedout!");
+				redirect("finance/CCart/viewCart");
+			}else{
+				$this->session->set_flashdata('error_msg',"Insufficient balance!");
+				redirect("finance/CCart/viewCart");
+			}
 		}else{
-			$this->session->set_flashdata('error_msg',"Insufficient balance!");
+			$this->session->set_flashdata('error_msg',"No Cart item selected!");
 			redirect("finance/CCart/viewCart");
+		
 		}
 
 	}
 	public function checkBalance(){
 		$checked = $this->input->post('ticket');
-		
+		$cnt =0 ;
 		$retval =0;
-		foreach ($checked as $key) {
-			$query = $this->MCart->read_where(array('cart_id' => $key));
-			$retval += $query[0]->total_price; 
+		if($checked){
+			foreach ($checked as $key) {
+				$query = $this->MCart->read_where(array('cart_id' => $key));
+				$retval += $query[0]->total_price; 
+			}
+			$user = $this->MUser->read($this->session->userdata['userSession']->userID);
+			
+			if($user[0]->load_amt >= $retval){
+				echo "sufficient";
+			}			
+		}else{
+			echo "No Cart item selected!";
 		}
-		$user = $this->MUser->read($this->session->userdata['userSession']->userID);
-		if($user[0]->load_amt >= $retval){
-			echo "sufficient";
-		}
+		
 		// echo $retval;
 	}
 }

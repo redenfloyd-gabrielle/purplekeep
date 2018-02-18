@@ -220,6 +220,8 @@
                             $(document).find("#myform").submit();
                           }
 
+                        }else if(e.match('No Cart item selected!')){
+                          alert(e);
                         }else{
                           alert("Load Balance Insufficient");
                         }
