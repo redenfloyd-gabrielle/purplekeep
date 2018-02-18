@@ -7,6 +7,9 @@ class CCart extends CI_Controller {
 		parent::__construct();
 	 	$this->load->model('MCart');
 	 	$this->load->model('MTicket');
+	 	$this->load->model('MTicketType');
+	 	$this->load->library('form_validation');
+		$this->load->helper('security');
 	}
 
 	public function index() {
@@ -37,9 +40,13 @@ class CCart extends CI_Controller {
 			echo $cart_id;
 			$this->addToExisting($cart_id, $qty);
 		} else { //add new cart item
+
+			
+			$ticketPrice = $this->MTicketType->getTicketPrice($id);
 			$data = array ('cart_id'=>null,
 				'ticket_id'=>$id,
 				'quantity'=>$qty,
+				'total_price'=>$ticketPrice[0]->price * $qty,
 				"account_id"=>$this->session->userdata['userSession']->userID);
 
 			if ($cart->insert($data) > 0) {
@@ -58,14 +65,21 @@ class CCart extends CI_Controller {
 
 		//get the current ticket qty
 		$data = $this->MCart->read($id);
+		$ticket_id = 0;
 		foreach ($data as $datum) {
 			$qty = $datum->quantity;
+			$ticket_id = $datum->ticket_id;
 		}
 		$qty += $qty1;
 
-		$affectedFields = array ('quantity'=>$qty);
+		$ticketPrice = $this->MTicketType->getTicketPrice($ticket_id);
+
+		$affectedFields = array ('quantity'=>$qty,
+								'total_price'=>$qty * $ticketPrice[0]->price);
 		$where = array ('cart_id'=>$id);
 
+		
+		
 		if ($this->MCart->update1($where, $affectedFields) > 0) {
 			redirect("finance/CCart/viewCart");
 		} else {
@@ -90,9 +104,13 @@ class CCart extends CI_Controller {
 		
 		$affectedFields = array ('quantity'=>$qty);
 		$where = array ('cart_id'=>$id);
-
+		$cartDetails = $this->MCart->read_where($where);
+		
+		$ticketPrice = $this->MTicketType->getTicketPrice($cartDetails[0]->ticket_id);
+		// echo $cartDetails[0]->total_price +$ticketPrice[0]->price;
+		$affectedFields['total_price'] = $cartDetails[0]->total_price +$ticketPrice[0]->price;
 		if ($cart->update1($where, $affectedFields) > 0) {
-			echo 'Sucess!';
+			echo $cartDetails[0]->total_price +$ticketPrice[0]->price."||".$id;
 		} else {
 			echo 'Failed!';
 		}
@@ -131,5 +149,20 @@ class CCart extends CI_Controller {
 			echo 'Failed!';
 		}
 
+	}
+	public function checkout(){
+
+	}
+	public function checkBalance(){
+		$checked = $this->input->post('ticket');
+		// var_dump($checked);
+		$ret='';
+		$retval =0;
+		foreach ($checked as $key) {
+			$query = $this->MCart->read_where(array('cart_id' => $key));
+			$retval += $query[0]->total_price; 
+			$ret += $key;
+		}
+		echo $retval;
 	}
 }
