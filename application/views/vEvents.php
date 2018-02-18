@@ -95,10 +95,10 @@
                                         <div class="row">
 
                                                 <div class="col-xs-12" id="some" hidden="">
-                                                    <form action="<?php echo site_url(); ?>/user/CUser/redeemCode" method="post">
-                                                        <input type="text" class="form-control" name="ccode" placeholder="Enter code">
+                                                    <form onsubmit="return redeemCodeValidate()" name="form_redeem_code" id="form_redeem_code" action="<?php echo site_url(); ?>/user/CUser/redeemCode" method="post">
+                                                        <input type="text" class="form-control" id="ccode" name="ccode" placeholder="Enter code">
                                                         <!-- <button type="submit" class="navbar-btn nav-button pull-right"   >Redeem Code</button> -->
-                                                        <button type="submit" class="navbar-btn nav-button pull-right"   ><?php echo CustomizationManager::$strings->PROFILE_PAGE_REDEEM_CODE ?></button>
+                                                        <button onclick="return redeemCodeValidate()" type="submit" class="navbar-btn nav-button pull-right"   ><?php echo CustomizationManager::$strings->PROFILE_PAGE_REDEEM_CODE ?></button>
                                                     </form>
                                                 </div>
 
@@ -654,3 +654,15 @@
             </div>
 
         </div>
+<script type="text/javascript">
+    function redeemCodeValidate(){
+        var form = document.forms["form_redeem_code"];
+        var code = form["ccode"].value;
+
+        if(code == "" || code.length == 0){
+            alert("Field Must Not Be Empty.");
+            return false;
+        }
+        return true;
+    }
+</script>
