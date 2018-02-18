@@ -61,8 +61,6 @@ class CEvent extends CI_Controller {
 	}
 
 	public function viewEditFromCalendar(){
-
-
 		$data1['start'] = $_POST['start'];
 		$data1['end'] = $_POST['end'];
 		$data1['title'] = $_POST['title'];

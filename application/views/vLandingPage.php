@@ -134,7 +134,7 @@
                                     if(!isset($_POST['searchDateYear'])){
                                         echo '<div class="col-md-3"><input name="searchDateYear" type="text" class="form-control" placeholder="Year"></div>';
                                     } else {
-                                        echo '<div class="col-md-3"><input name="searchDateYear" type="text" class="form-control" placeholder="Key word" value="'.$_POST['searchDateYear'].'"></div>';
+                                        echo '<div class="col-md-3"><input name="searchDateYear" type="text" class="form-control" placeholder="Year" value="'.$_POST['searchDateYear'].'"></div>';
                                     }
                                     ?>
 
@@ -145,7 +145,6 @@
                                         echo '<div class="col-md-3"><input name="searchWord" type="text" class="form-control" placeholder="Key word" value="'.$_POST['searchWord'].'" pattern="[\sa-zA-z0-9]+"></div>';
                                     }
 
-                                    if(!isset($_POST['searchDateMonth'])){
                                         echo'<div class="col-md-3"><select Class="form-control" id="region_code" name="region_code" required>
                                             <option style="color: gray;">Region</option>
                                             <option>NCR</option>
@@ -166,30 +165,7 @@
                                             <option>Region XII</option>
                                             <option>Region XIII</option>
                                         </select></div>';
-                                    } else {
-                                        echo '<div class="col-md-3">
-                                            <select Class="form-control" id="region_code" name="region_code" required>
-                                            <option style="color: gray;">Region</option>
-                                            <option>NCR</option>
-                                            <option>CAR</option>
-                                            <option>MIMAROPA</option>
-                                            <option>ARMM</option>
-                                            <option>Region I</option>
-                                            <option>Region II</option>
-                                            <option>Region III</option>
-                                            <option>Region IV-A</option>
-                                            <option>Region V</option>
-                                            <option>Region VI</option>
-                                            <option>Region VII</option>
-                                            <option>Region VIII</option>
-                                            <option>Region IX</option>
-                                            <option>Region X</option>
-                                            <option>Region XI</option>
-                                            <option>Region XII</option>
-                                            <option>Region XIII</option>
-                                        </select>
-                                        </div>';
-                                    }
+                                    
                                     ?>
                                     ?>
                                 </div>
