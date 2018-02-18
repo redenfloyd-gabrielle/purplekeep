@@ -134,6 +134,11 @@
                    <input type="checkbox" checked="">
                    <span class="h4"><strong>SELECT ALL</strong><span style="margin: 10px;" class="badge badge-light h5">4</span> </span>
                   <button class="btn btn-default pull-right" id="chkout" type="button">CHECKOUT</button>
+                  <?php 
+                      $attr = array('class' => 'form_horizontal',
+                            'id' => 'myform1');
+                            echo form_open(site_url()."/finance/CCart/checkout", $attr); ?>
+                   <?php echo form_close(); ?>
              </div>
          </div>
      <!--- END OF CONTENT AREA-->
@@ -198,8 +203,18 @@
                           type:"POST",
                     data: data,
                     success: function(e){
-                      alert(e);
-                    }
+                        if(e.match('sufficient')){
+                          var res = confirm("Are you sure you want to Chekout?");
+
+                          if(res == true) {
+                            $(document).find("#myform1").submit();
+                          }
+
+                        }else{
+                          alert("Load Balance Insufficient");
+                        }
+                      }
+                    
                  });
                  
                 return false;

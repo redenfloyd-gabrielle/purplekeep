@@ -8,6 +8,7 @@ class CCart extends CI_Controller {
 	 	$this->load->model('MCart');
 	 	$this->load->model('MTicket');
 	 	$this->load->model('MTicketType');
+	 	$this->load->model('MUser');
 	 	$this->load->library('form_validation');
 		$this->load->helper('security');
 	}
@@ -127,9 +128,14 @@ class CCart extends CI_Controller {
 		} else {
 			$affectedFields = array ('quantity'=>$qty);
 			$where = array ('cart_id'=>$id);
-
+		$cartDetails = $this->MCart->read_where($where);
+		
+		$ticketPrice = $this->MTicketType->getTicketPrice($cartDetails[0]->ticket_id);
+		
+		$affectedFields['total_price'] = $cartDetails[0]->total_price -$ticketPrice[0]->price;
+		
 			if ($cart->update1($where, $affectedFields) > 0) {
-				echo 'Sucess!';
+				echo $cartDetails[0]->total_price -$ticketPrice[0]->price."||".$id;
 			} else {
 				echo 'Failed!';
 			}
@@ -155,14 +161,16 @@ class CCart extends CI_Controller {
 	}
 	public function checkBalance(){
 		$checked = $this->input->post('ticket');
-		// var_dump($checked);
-		$ret='';
+		
 		$retval =0;
 		foreach ($checked as $key) {
 			$query = $this->MCart->read_where(array('cart_id' => $key));
 			$retval += $query[0]->total_price; 
-			$ret += $key;
 		}
-		echo $retval;
+		$user = $this->MUser->read($this->session->userdata['userSession']->userID);
+		if($user[0]->load_amt >= $retval){
+			echo "sufficient";
+		}
+		// echo $retval;
 	}
 }
