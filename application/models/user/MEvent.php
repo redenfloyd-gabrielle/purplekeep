@@ -120,6 +120,40 @@
 			return $query->result();
 		}
 
+		public function getAllApprovedEventsAndByLocation($location_id){
+			$this->db->select("*");
+			$this->db->select("DATE_FORMAT(event_info.event_date_start,'%d-%b-%y %H:%m') as dateStart");
+			$this->db->select("DATE_FORMAT(event_info.event_date_end,'%d-%b-%y %H:%m') as dateEnd");
+			$this->db->from("event_info");
+			$this->db->join("location", "event_info.location_id = location.location_id");
+			$this->db->where("event_info.event_status = 'Approved'");
+			$this->db->where("event_info.location_id", $location_id);
+			$query = $this->db->get();
+			$result_data = $query->result();
+
+			$array = array();
+			if($result_data){
+				foreach ($result_data as $value) {
+						$arrObj = new stdClass;
+						$arrObj->event_id = $value->event_id;
+						$arrObj->event_name = $value->event_name;
+						$arrObj->event_picture = $value->event_picture;
+						$arrObj->dateStart = $value->dateStart;
+						$arrObj->dateEnd = $value->event_date_end;
+						$arrObj->event_category = $value->event_category;
+						$arrObj->event_venue = $value->event_venue;
+						//Location
+						$arrObj->location_name =$value->location_name;
+						$arrObj->region_code = $value->region_code;
+						
+						$arrObj->tix = $this->MEvent->getTicketsOfEvent($value->event_id);
+						$array[] = $arrObj;
+				}
+			}
+
+			return $array;
+		}
+
 
 		public function loadEventDetails($id)
 		{
