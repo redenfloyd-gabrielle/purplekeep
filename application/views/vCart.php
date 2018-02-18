@@ -61,6 +61,19 @@
          <div class="container">
              <div class="row">
                 <div class="col-md-12 ">
+                  <?php if ($this->session->flashdata('error_msg')): ?>
+                      <div class="alert alert-danger" style="margin-top: 15px;">
+                          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                          <?php echo $this->session->flashdata('error_msg'); ?>
+                      </div>
+                  <?php endif ?>
+                  <?php if ($this->session->flashdata('success_msg')): ?>
+                      <div class="alert alert-success" style="margin-top: 15px;">
+                          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                          <?php echo $this->session->flashdata('success_msg'); ?>
+                      </div>
+                  <?php endif ?>
+
                     <div id="list-type" class="proerty-th">
                       <?php 
                       $attr = array('class' => 'form_horizontal',
@@ -134,11 +147,6 @@
                    <input type="checkbox" checked="">
                    <span class="h4"><strong>SELECT ALL</strong><span style="margin: 10px;" class="badge badge-light h5">4</span> </span>
                   <button class="btn btn-default pull-right" id="chkout" type="button">CHECKOUT</button>
-                  <?php 
-                      $attr = array('class' => 'form_horizontal',
-                            'id' => 'myform1');
-                            echo form_open(site_url()."/finance/CCart/checkout", $attr); ?>
-                   <?php echo form_close(); ?>
              </div>
          </div>
      <!--- END OF CONTENT AREA-->
@@ -207,7 +215,7 @@
                           var res = confirm("Are you sure you want to Chekout?");
 
                           if(res == true) {
-                            $(document).find("#myform1").submit();
+                            $(document).find("#myform").submit();
                           }
 
                         }else{
