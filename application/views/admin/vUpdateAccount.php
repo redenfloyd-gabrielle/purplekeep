@@ -29,7 +29,7 @@
 
                        
 
-                    <form class="form-horizontal" method="POST" action="<?php echo site_url()?>/admin/CAdmin/updateAdmin">
+                    <form onsubmit="return formValidate()" name="updateAccountForm" id="updateAccountForm" class="form-horizontal" method="POST" action="<?php echo site_url()?>/admin/CAdmin/updateAdmin">
 
                     <div class="form-group" >
                       <label for="" class="col-8 control-label">First name:</label>
@@ -108,7 +108,7 @@
 
                     <div class="modal-footer">
                         <button id="closeEditAccount" type="button" class="btn btn-danger" data-dismiss="modal" >Close</button>
-                        <input id="" class="btn btn-primary" type="submit"  name="action" value="Update">
+                        <input onclick="return formValidate()" id="" class="btn btn-primary" type="submit"  name="action" value="Updatse">
                     </div>
                 </form>
                                     </div>
@@ -211,8 +211,8 @@
                     </div>
 
                     <div class="modal-footer">
-                        <button id="closeEditAccount" type="button" class="btn btn-danger" data-dismiss="modal" >Close</button>
-                        <input id="" class="btn btn-primary" type="submit"  name="action" value="Update">
+                        <button id="closeEditAccount" type="button" class="btn btn-danger" data-dismiss="modal" >Closes</button>
+                        <input id="update" class="btn btn-primary" type="submit"  name="action" value="Upsdate">
                     </div>
                 </form>
             </div>
@@ -220,3 +220,18 @@
     </div>
 
 </div>
+<script type="text/javascript">
+  function formValidate(){
+    var form = document.forms["updateAccountForm"];
+    var fname = form["ufname"].value;
+    var mname = form["uminame"].value;
+    var lname = form["ulname"].value;
+    var regex = /\d/;
+
+    if(regex.test(fname) || regex.test(mname) || regex.test(lname)){
+      alert("Invalid Input.");
+      return false;
+    }
+    return true;
+  }
+</script>
