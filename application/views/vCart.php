@@ -142,12 +142,13 @@
                     </div>
                 </div>
              </div><!-- END OF ROW-->
-
+<?php if(isset($events) && count($events)>0){?>
              <div class="checkoutContainer" style="margin-left:3%;">
                    <input type="checkbox" checked="">
                    <span class="h4"><strong>SELECT ALL</strong><span style="margin: 10px;" class="badge badge-light h5">4</span> </span>
                   <button class="btn btn-default pull-right" id="chkout" type="button">CHECKOUT</button>
              </div>
+             <?php } ?>
          </div>
      <!--- END OF CONTENT AREA-->
       
