@@ -11,14 +11,16 @@
     <link href="<?php echo base_url('assets/dianeAssets/css/font-awesome.min.css')?>" rel="stylesheet" />
     <!-- <link href="<?php echo base_url('assets/dianeAssets/css/style1.css')?>" rel="stylesheet" /> -->
 		<link href="<?php echo base_url('assets/dianeAssets/css/style1.php')?>" rel="stylesheet" />
+
 </head>
+
 <body>
 	<div class = "outer-header">
 	    <div class = "top"></div>
 	   	<div class = "row ">
 	 		<div class = "col-sm-10 div-content">
 				<div class = "col-sm-2"><a href = "<?php echo site_url();?>/CInitialize"><?php echo CustomizationManager::$strings->WELCOME_PAGE_NAV_HOME ?></a></div>
-				<div class = "col-sm-2"><a href = "#"><?php echo CustomizationManager::$strings->WELCOME_PAGE_NAV_EVENTS ?></a> </div>
+				<div class = "col-sm-2"><a href = "#eventsList"><?php echo CustomizationManager::$strings->WELCOME_PAGE_NAV_EVENTS ?></a> </div>
 				<div class = "col-sm-2"><a href = "<?php echo site_url();?>/CInitialize/viewAboutUs"><?php echo CustomizationManager::$strings->WELCOME_PAGE_NAV_ABOUT ?></a></div>
 				<?php if (!$this->session->userdata('userSession')) { ?>
 				<div class = "col-sm-2"><a href = "<?php echo site_url();?>/CLogin"><?php echo CustomizationManager::$strings->WELCOME_PAGE_NAV_LOGIN ?></a> </div><?php }?>
