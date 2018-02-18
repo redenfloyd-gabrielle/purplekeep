@@ -104,7 +104,7 @@
                 <div class="form-group" >
                   <label for="" class="col-8 control-label">Announcement:</label>
                   <div class="col-8">
-                    <textarea class="form-control" type="text" name="announcementDetails" required="" style="min-height: 300px; max-height: 300px;"></textarea> 
+                    <textarea class="form-control" type="text" name="announcementDetails" required="" style="resize:none; overflow:hidden; min-height: 300px; max-height: 300px;"></textarea> 
                   </div>
                 </div>
 
