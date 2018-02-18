@@ -146,6 +146,33 @@
                                     <?php echo CustomizationManager::$strings->LANDING_PAGE_SORT_BY_PRICE ?> <i class="fa fa-sort-numeric-desc"></i>
                                 </a>
                             </li>
+                            <li>
+                                <!-- Sort by Location -->
+                                <select id="region_code" name="region_code" required>
+                                    <option></option>
+                                    <option>NCR</option>
+                                    <option>CAR</option>
+                                    <option>MIMAROPA</option>
+                                    <option>ARMM</option>
+                                    <option>Region I</option>
+                                    <option>Region II</option>
+                                    <option>Region III</option>
+                                    <option>Region IV-A</option>
+                                    <option>Region V</option>
+                                    <option>Region VI</option>
+                                    <option>Region VII</option>
+                                    <option>Region VIII</option>
+                                    <option>Region IX</option>
+                                    <option>Region X</option>
+                                    <option>Region XI</option>
+                                    <option>Region XII</option>
+                                    <option>Region XIII</option>
+                                </select>
+
+                                <!-- Municipal -->
+                                <select id="municipal-name" name="municipal-name" required>
+                                </select>
+                            </li>
                         </ul> <!-- END OF SORT BY LIST-->
 
                         <!--  <div class="items-per-page">
@@ -376,4 +403,67 @@
     }?>
 <?php ?>
     });
-</script> <!--END OF  SCRIPT-->
+</script> 
+<script>
+    $(document).ready(function(){
+        $('#region_code').on('change', function(){
+          $('#municipal-name').empty().append('<option></option>');
+            if(this.value != ""){
+                // alert(this.value);
+                var code = this.value;
+                var dataSet = "region_code="+code;
+                    $.ajax({
+                        type: "POST",
+                        url: '<?php echo site_url()?>/event/cEvent/displayMunicipal',
+                        data: dataSet,
+                        cache: true,
+                        success: function(result){
+                            if(result){
+                            //    $('body').html(result);
+                                var output = $.parseJSON(result);
+                                $.each(output, function(i, d) {
+                                    // You will need to alter the below to get the right values from your json object.  Guessing that d.id / d.modelName are columns in your carModels data
+                                    $('#municipal-name').append('<option value="' + d.location_id+ '">' + d.location_name + '</option>');
+
+                                });
+                            }else{
+                                alert("Error");
+                            }
+                        },
+                        error: function(jqXHR, errorThrown){
+                            console.log(errorThrown);
+                        }
+                    });
+            }
+        });
+
+        $('#municipal-name').on('change', function(){
+            if(this.value != ""){
+                // alert(this.value);
+                var code = this.value;
+                var dataSet = "region_code="+code;
+                    $.ajax({
+                        type: "POST",
+                        url: '<?php echo site_url()?>/event/cEvent/sortByLocation',
+                        data: dataSet,
+                        cache: true,
+                        success: function(result){
+                            if(result){
+                                $('#list-type').html(result);
+                            }else{
+                                alert("Error");
+                            }
+                        },
+                        error: function(jqXHR, errorThrown){
+                            console.log(errorThrown);
+                        }
+                    });
+            }
+        });
+
+
+    });
+</script>
+
+
+<!--END OF  SCRIPT-->
