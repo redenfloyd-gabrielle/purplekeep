@@ -97,13 +97,14 @@
 
                                                 <input type="checkbox" name="ticket[]" value="<?php echo $cart->cart_id;?>" class="<?php echo 'tix'.key($events);?> indi" id="<?php echo $cart->ticket_type_id;?>" checked="checked">
                                                 <span> Ticket Name:<strong><?php echo $cart->ticket_name;?></strong></span>
-                                                <span class="pull-right"> Price:<?php echo $cart->price;?> </span>                       
+                                                
+                                                <span class="pull-right h5">Total Price:<span id="label<?php echo $cart->cart_id;?>"><b><?php echo $cart->total_price;?></b></span></span>                       
                                           </div>
                                          <div class="panel-body">
                                             <table class="table table-sm table-borderless">
                                                 <tbody>
                                                   <tr>
-                                                    <th scope="row"> Total Price:<div id="label<?php echo $cart->cart_id;?>"><?php echo $cart->total_price;?></div></th>
+                                                    <th scope="row"> Price:<?php echo $cart->price;?> </th>
                                                     <td class="pull-right">
                                                       <form class="offset-md-3">
                                                           <div class="form-group row">
