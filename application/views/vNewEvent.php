@@ -132,13 +132,6 @@
                                     <script>
                                         $("#datetimepicker1").datetimepicker();
                                     </script>
-
-                                    <!-- <div class="timeContainer">
-                                        <input type="text" id="date1" name="event_date_start" placeholder="Date Start">
-                                    </div>
-                                    <div class="timeContainer">
-                                        <input type="text" id="time1" name="event_time_start" placeholder="Event starts">
-                                    </div> -->
                                 </div>
 
                                 <div class="form-group">
