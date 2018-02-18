@@ -59,7 +59,12 @@
                     <div class="box-for overflow">
                         <div class="col-md-12 col-xs-12 register-blocks">
                             <h2><?php echo CustomizationManager::$strings->SIGNUP_PAGE_NEW_ACCOUNT ?></h2>
-
+                            <?php if ($this->session->flashdata('success_msg')): ?>
+                                <div class="alert alert-success" style="margin-top: 15px;">
+                                    <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                                    <?php echo $this->session->flashdata('success_msg'); ?>
+                                </div>
+                            <?php endif ?>
                             <?php if ($this->session->flashdata('error_msg')): ?>
                                 <div class="alert alert-danger" style="margin-top: 15px;">
                                     <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
