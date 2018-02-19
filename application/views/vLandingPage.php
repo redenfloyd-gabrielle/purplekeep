@@ -92,7 +92,8 @@
                                                   <option value="12">Dec</option>
                                                 </select></div>';
                                     } else {
-                                        echo '<div class="col-md-2"><select name="searchDateMonth" class="form-control">
+                                        echo '<div class="col-md-2">
+                                                <select name="searchDateMonth" class="form-control">
                                                   <option value="0">Month</option>
                                                   <option value="1">Jan</option>
                                                   <option value="2">Feb</option>
@@ -147,7 +148,7 @@
                                         </select></div>';
 
                                         echo '<div class="col-md-3">
-                                        <select class="form-control" id="municipal-name" name="municipal-name">
+                                        <select class="form-control" id="municipal-name" name="municipal_name">
                                             <option style="color: gray;">Municipal</option>
                                         </select></div>';
                                     

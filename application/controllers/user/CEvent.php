@@ -47,7 +47,7 @@ class CEvent extends CI_Controller {
 	public function searchEvent()
 	{
 		$data['users'] = $this->MUser->getAllUsers();
-		$result_data = $this->MEvent->getSearchEvents($_POST['searchWord']);
+		$result_data = $this->MEvent->getSearchEvents($_POST['searchWord'], $_POST['searchDateMonth'], $_POST['searchDateYear'],$_POST['region_code'],$_POST['municipal_name']);
 		//////////////////////////////////////////////////////////////////////////////
 		//================INTERFACE MODULE - DATA-LAYOUT FILTERING CODE============//
 		/////////////////////////////////////////////////////////////////////////////
