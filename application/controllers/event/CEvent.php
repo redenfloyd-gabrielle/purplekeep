@@ -34,7 +34,90 @@ class CEvent extends CI_Controller {
 			// 	var_dump($muni->location_name);
 			// }
 			echo json_encode($result);
-			die();
+		}else{
+			echo false;
+		}
+	}
+
+	// query to sort by location
+	public function sortByLocation(){
+		if(isset($_POST['region_code'])){
+			$location_id = $_POST['region_code'];
+			$result = $this->MEvent->getAllApprovedEventsAndByLocation($location_id);
+			$ht = '';
+			foreach ($result as $event) {
+				date_default_timezone_set('Asia/Manila');
+                $now = new DateTime("now");
+                $end = new DateTime($event->dateEnd);
+                $start = new DateTime($event->dateStart);
+                $interval = date_diff($now, $start);
+                $dateS = date_create($event->dateStart);
+                $dateE = date_create($event->dateEnd);
+
+                $mintix = $event->tix;
+                foreach ($event->tix as $key) {
+                    $mintix = ($key->price <= $mintix)? $key->price : $mintix;
+                }
+
+                $title = "";
+                if(strlen($event->event_name)>=42){
+                    $title = substr($event->event_name,0,39)."...";
+                }else{
+                    $title = $event->event_name;
+                }
+
+                if($now < $start){
+                	$ht .= '<div class="col-sm-6 col-md-4 p0">
+								<div class="box-two proerty-item">
+									<div class="item-entry overflow">
+									'.($now < $start?($interval->days == 0? "<div class='corner-ribbon top-right sticky red'>Less than a day!</div>": "<div class='corner-ribbon top-right sticky red'>".$interval->days." day/s left!"):"").'
+									</div>
+									<h3 class="text-center"><a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"> 
+										'.$title.'
+									</a></h3>
+									<div class="item-thumb">
+										<a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'">
+										</a>
+									</div>
+									<h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>
+									<h5>When: '.date_format($dateS, 'M d Y').' - '.date_format($dateE, 'M d Y').'
+                                        </h5>
+									<h5>Event Tickets as low as Php '.$mintix.'!!!</h5>
+									<div class="dot-hr"></div>
+								</div>
+							</div>
+						</div>
+					';
+                }else if($now >= $start && $now <= $end){
+                	$ht .= '<div class="col-sm-6 col-md-4 p0">
+								<div class="box-two proerty-item">
+									<div class="item-entry overflow">
+										<div class="corner-ribbon top-right sticky red">Happening now!</div>
+										
+										<h3 class="text-center">
+										<a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'">
+										'.$title.'
+										</a>
+										</h3>
+
+										<div class="item-thumb">
+		                                    <a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'">
+		                                    </a>
+                                        </div>
+                                        <h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'
+                                        </h5>
+                                        <h5>When: '.date_format($dateS, 'M d Y').' - '.date_format($dateE, 'M d Y').'
+                                        </h5>
+                                        <h5>Event Tickets as low as Php '.$mintix.'!!!</h5>
+                                        <div class="dot-hr"></div>
+									</div>
+								</div>
+							</div>
+					';
+                }
+				
+			}
+			echo $ht;
 		}else{
 			echo false;
 		}
