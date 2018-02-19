@@ -232,7 +232,7 @@
                           // alert(e);
                         }else{
                           $(document).find("div#error").removeClass("hidden");
-                            $(document).find("div#errLabel").text("Load Balance Insufficient");
+                            $(document).find("div#errLabel").text("Insufficient Balance.");
                           // alert("Load Balance Insufficient");
                         }
                       }
