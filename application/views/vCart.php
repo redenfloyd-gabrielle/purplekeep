@@ -80,7 +80,19 @@
                       </div>
                   <?php endif ?>
 
-                    <div id="list-type" class="proerty-th">
+
+                  <div class="col-md-12">
+                    <div class="col-md-3 wow fadeInRight animated" style="padding:1%; margin-top: 2%;">
+                      <div class="panel panel-default" style="border-style: solid;border-color: #CB6C52;">
+                      <div class="panel-body">
+                          <h2><strong>Load Balance :</strong></h2>
+                          <span class="h4" style="color: #CB6C52;">Php <?php foreach($user as $u){echo $u->load_amt;}?>.00</span>
+                      </div>
+                    </div>
+                    </div>
+
+                    <div class="col-md-9" style="padding:1%; margin-top: 3%; border-color:  #ecf1f2; border-style: solid; border-width: 1px;">
+                      <div id="list-type" class="proerty-th">
                       <?php 
                       $attr = array('class' => 'form_horizontal',
                             'id' => 'myform');
@@ -147,21 +159,17 @@
                          <?php }?>
                        <?php echo form_close(); ?>
                     </div>
+                    </div>
+                  </div>
+                    
                 </div>
              </div><!-- END OF ROW-->
-<?php if(isset($events) && count($events)>0){?>
-             <div class="checkoutContainer" style="margin-left:3%;">
-                   <input type="checkbox" checked="">
-                   <span class="h4"><strong>SELECT ALL</strong><span style="margin: 10px;" class="badge badge-light h5">4</span> </span>
-                  <button class="btn btn-default pull-right" id="chkout" type="button">CHECKOUT</button>
-             </div>
-             <?php } ?>
+            
          </div>
      <!--- END OF CONTENT AREA-->
       
         <!-- Footer area-->
         <div class="footer-area">
-
             <div class=" footer">
                 <div class="container">
                     <div class="row">
@@ -193,6 +201,7 @@
                 </div>
             </div>
 
+
             <div class="footer-copy text-center">
                 <div class="container">
                     <div class="row">
@@ -208,6 +217,13 @@
                 </div>
             </div>
 
+            <?php if(isset($events) && count($events)>0){?>
+             <div class="checkoutContainer" style="margin-left:3%;">
+                   <input type="checkbox" checked="">
+                   <span class="h4"><strong>SELECT ALL</strong><span style="margin: 10px;" class="badge badge-light h5">4</span> </span>
+                  <button class="btn btn-default pull-right" id="chkout" type="button">CHECKOUT</button>
+             </div>
+             <?php } ?>
         </div>
 
 <script>
