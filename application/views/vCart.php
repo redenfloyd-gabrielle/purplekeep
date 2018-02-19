@@ -67,6 +67,11 @@
                           <?php echo $this->session->flashdata('error_msg'); ?>
                       </div>
                   <?php endif ?>
+                      <div class="alert alert-danger hidden" id="error" style="margin-top: 15px;">
+                          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                          <div id="errLabel"></div>
+                      </div>
+                  
                   <?php if ($this->session->flashdata('success_msg')): ?>
                       <div class="alert alert-success" style="margin-top: 15px;">
                           <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -214,6 +219,7 @@
                     data: data,
                     success: function(e){
                         if(e.match('sufficient')){
+                          $(document).find("div#error").addClass("hidden");
                           var res = confirm("Are you sure you want to Chekout?");
 
                           if(res == true) {
@@ -221,9 +227,13 @@
                           }
 
                         }else if(e.match('No Cart item selected!')){
-                          alert(e);
+                            $(document).find("div#error").removeClass("hidden");
+                            $(document).find("div#errLabel").text(e);
+                          // alert(e);
                         }else{
-                          alert("Load Balance Insufficient");
+                          $(document).find("div#error").removeClass("hidden");
+                            $(document).find("div#errLabel").text("Load Balance Insufficient");
+                          // alert("Load Balance Insufficient");
                         }
                       }
                     
