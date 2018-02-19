@@ -103,6 +103,36 @@
 			$this->db->from("event_info");
 			$this->db->join("location", "event_info.location_id = location.location_id");			
 			$this->db->where("event_name LIKE '%".$searchWord."%'");
+			// echo "Word is ".$searchWord." <br>";
+			// echo "Month is ".$_POST["searchDateMonth"]." <br>";
+			// echo "Year is ".$_POST["searchDateYear"]." <br>";
+			if(!strcmp($_POST["searchDateYear"], "") && $_POST["searchDateMonth"] != '0'){
+				//echo "1st condition";
+				$this->db->where("MONTH(event_date_start) = ".$_POST["searchDateMonth"]."");
+				$this->db->where("YEAR(event_date_start) = ".$_POST["searchDateYear"]."");
+			} else if(!strcmp($_POST["searchDateYear"], "")) {
+				//echo "2nd condition";
+				$this->db->where("YEAR(event_date_start) = ".$_POST["searchDateYear"]."");
+			} else if($_POST["searchDateMonth"] != 0){
+				//echo "3rd condition";
+				$this->db->where("MONTH(event_date_start) = ".$_POST["searchDateMonth"]."");
+			}
+
+			$query = $this->db->get();
+			return $query->result();
+		}
+
+		public function getSearchEventsWithDate($searchWord){
+			$this->db->select("*");
+			$this->db->select("DATE_FORMAT(event_info.event_date_start,'%d-%b-%y %H:%m') as dateStart");
+			$this->db->select("DATE_FORMAT(event_info.event_date_end,'%d-%b-%y %H:%m') as dateEnd");
+			$this->db->from("event_info");
+			$this->db->join("location", "event_info.location_id = location.location_id");			
+			$this->db->where("event_name LIKE '%".$searchWord."%'");
+			if(isset($_POST["searchDateYear"])){
+				$this->db->where("MONTH(event_date_start) = ".$_POST["searchDateMonth"]."");
+				$this->db->or_where("YEAR(event_date_start) = ".$_POST["searchDateYear"]."");
+			}
 			
 
 			$query = $this->db->get();
