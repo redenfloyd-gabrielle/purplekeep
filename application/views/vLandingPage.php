@@ -60,7 +60,7 @@
             </div>
             <div class="container slider-content">
                 <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2 col-md-12 col-md-offset-1 col-sm-12">
+                    <div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-1 col-sm-12">
                         <!-- <h2>See Events Near You</h2> -->
                         <h2><?php echo CustomizationManager::$strings->LANDING_PAGE_CAROUSEL_MESSAGE ?></h2>
                         <div class="search-form wow pulse" data-wow-delay="0.8s">
@@ -69,26 +69,6 @@
                                 <div class="col-md-3 pull-left" style="padding:1%; ">
                                   <span class="h6 pull-left" style="color: gray;"><?php echo CustomizationManager::$strings->LANDING_PAGE_SEARCH_BOX_LABEL ?></span>
                                 </span></div>
-                                <!-- <div class="col-md-2" style="padding:1%; margin-top: 2%;">
-                                  <input type="checkbox" checked="checked" class="evt" style="margin-bottom:2%;">
-                                  <span class="h6" style="padding:1%; margin-top: 2%; color: gray;">
-                                    <strong>Month</strong>
-                                </span></div>
-                                <div class="col-md-2" style="padding:1%; margin-top: 2%;">
-                                  <input type="checkbox" checked="checked" class="evt" style="margin-bottom:2%;">
-                                  <span class="h6" style="padding:1%; margin-top: 2%; color: gray;">
-                                    <strong>Year</strong>
-                                </span></div>
-                                <div class="col-md-2" style="padding:1%; margin-top: 2%;">
-                                  <input type="checkbox" checked="checked" class="evt" style="margin-bottom:2%;">
-                                  <span class="h6" style="padding:1%; margin-top: 2%; color: gray;">
-                                  <strong>Event Name</strong>
-                                </span></div>
-                                <div class="col-md-2" style="padding:1%; margin-top: 2%;">
-                                  <input type="checkbox" checked="checked" class="evt" style="margin-bottom:2%;">
-                                  <span class="h6" style="padding:1%; margin-top: 2%; color: gray;">
-                                  <strong>Location</strong>
-                                </span></div> -->
                             </div>
                             
                             <form action="<?php echo site_url();?>/user/CEvent/searchEvent" class="form" method="POST">
@@ -96,7 +76,7 @@
                                 <div class="form-group col-md-11">
                                     <?php
                                     if(!isset($_POST['searchDateMonth'])){
-                                        echo '<div class="col-md-3"><select name="searchDateMonth" class="form-control">
+                                        echo '<div class="col-md-2"><select name="searchDateMonth" class="form-control">
                                                   <option value="0">Month</option>
                                                   <option value="1">Jan</option>
                                                   <option value="2">Feb</option>
@@ -112,7 +92,7 @@
                                                   <option value="12">Dec</option>
                                                 </select></div>';
                                     } else {
-                                        echo '<div class="col-md-3"><select name="searchDateMonth" class="form-control">
+                                        echo '<div class="col-md-2"><select name="searchDateMonth" class="form-control">
                                                   <option value="0">Month</option>
                                                   <option value="1">Jan</option>
                                                   <option value="2">Feb</option>
@@ -132,9 +112,9 @@
 
                                     <?php
                                     if(!isset($_POST['searchDateYear'])){
-                                        echo '<div class="col-md-3"><input name="searchDateYear" type="text" class="form-control" placeholder="Year"></div>';
+                                        echo '<div class="col-md-2"><input name="searchDateYear" type="text" class="form-control" placeholder="Year"></div>';
                                     } else {
-                                        echo '<div class="col-md-3"><input name="searchDateYear" type="text" class="form-control" placeholder="Year" value="'.$_POST['searchDateYear'].'"></div>';
+                                        echo '<div class="col-md-2"><input name="searchDateYear" type="text" class="form-control" placeholder="Year" value="'.$_POST['searchDateYear'].'"></div>';
                                     }
                                     ?>
 
@@ -145,7 +125,7 @@
                                         echo '<div class="col-md-3"><input name="searchWord" type="text" class="form-control" placeholder="Key word" value="'.$_POST['searchWord'].'" pattern="[\sa-zA-z0-9]+"></div>';
                                     }
 
-                                        echo'<div class="col-md-3"><select Class="form-control" id="region_code" name="region_code" required>
+                                        echo'<div class="col-md-2"><select Class="form-control" id="region_code" name="region_code" required>
                                             <option style="color: gray;">Region</option>
                                             <option>NCR</option>
                                             <option>CAR</option>
@@ -164,6 +144,11 @@
                                             <option>Region XI</option>
                                             <option>Region XII</option>
                                             <option>Region XIII</option>
+                                        </select></div>';
+
+                                        echo '<div class="col-md-3">
+                                        <select class="form-control" id="municipal-name" name="municipal-name">
+                                            <option style="color: gray;">Municipal</option>
                                         </select></div>';
                                     
                                     ?>
