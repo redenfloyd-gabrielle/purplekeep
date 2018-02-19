@@ -66,7 +66,7 @@
                     <div class="box-for overflow">
                         <div class="col-md-12 col-xs-12 register-blocks">
                             <h2><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_DETAILS ?></h2>
-                            <form action="<?php echo site_url();?>/event/CEvent/createEvent " method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                            <form name="createEventForm" id="createEventForm" action="<?php echo site_url();?>/event/CEvent/createEvent " method="post" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return checkLocation()">
                                 <div class="form-group">
                                     <!-- <label for="name">Event Picture</label> -->
                                     <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_PICTURE ?></label>
@@ -264,7 +264,7 @@
 
                                 <div class="text-center">
                                     <!-- <button type="submit" class="btn btn-default" value="Create Event"> <a href="<?php echo site_url();?>/CLogin/viewEvents"> Register</button> -->
-                                    <button type="submit" class="btn btn-default" value="Create Event"><!-- <a href="<?php echo site_url();?>/CLogin/viewEvents"> --><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_SUBMIT_BUTTON ?></button>
+                                    <button type="submit" class="btn btn-default" value="Create Event" onclick="return checkLocation()"><!-- <a href="<?php echo site_url();?>/CLogin/viewEvents"> --><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_SUBMIT_BUTTON ?></button>
                                 </div>
 
                                 <br><br>
@@ -392,4 +392,15 @@
             //         alert(city);
             //     }
             // });
+            function checkLocation(){
+              var form = document.forms["createEventForm"];
+              var location = form["event_venue"].value;
+
+              if(!location.match(/[a-z]/i)){
+                alert("Invalid Input!" + location.length);
+                return false;
+              }
+              return true;
+            }
+
         </script>
