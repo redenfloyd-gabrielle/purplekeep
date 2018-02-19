@@ -75,7 +75,7 @@
                                 <div class="form-group">
                                     <!-- <label for="name">First Name</label> -->
                                     <label for="name"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_FIRST_NAME ?></label>
-                                    <input type="text" <?php  if(isset($first_name)){echo 'value="'.$first_name.'"';}?> class="form-control" pattern="[a-zA-Z]+" name="fname" id="name" required="">
+                                    <input type="text" <?php  if(isset($first_name)){echo 'value="'.$first_name.'"';}?> class="form-control" pattern="([A-zA-Z\s]){2,}+" name="fname" id="name" required="">
                                 </div>
                                 <div class="form-group">
                                     <!-- <label for="name">Middle Initial</label> -->
@@ -85,7 +85,7 @@
                                 <div class="form-group">
                                     <!-- <label for="name">Last Name</label> -->
                                     <label for="name"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_LAST_NAME ?></label>
-                                    <input type="text"  <?php  if(isset($last_name)){echo 'value="'.$last_name.'"';}?> class="form-control" pattern="[a-zA-Z]+" name="lname" id="name" required="">
+                                    <input type="text"  <?php  if(isset($last_name)){echo 'value="'.$last_name.'"';}?> class="form-control" pattern="([A-zA-Z\s]){2,}+" name="lname" id="name" required="">
                                 </div>
                                 <div class="form-group">
                                     <!-- <label for="email">Email</label> -->
