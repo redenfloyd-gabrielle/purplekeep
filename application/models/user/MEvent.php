@@ -198,6 +198,33 @@
 				$this->db->where("EXTRACT(MONTH FROM `event_date_start`) LIKE '%".$searchDateMonth."%'");
 				$this->db->where("event_name LIKE '%".trim($searchWord)."%'");
 				$this->db->where("EXTRACT(YEAR FROM `event_date_start`) LIKE '%".trim($searchDateYear)."%'");
+			}else if ($searchDateMonth>0 && $searchWord!=null && $searchDateYear ==null && $region_code != '0'){
+				$this->db->select("*");
+				$this->db->select("DATE_FORMAT(event_info.event_date_start,'%d-%b-%y %H:%m') as dateStart");
+				$this->db->select("DATE_FORMAT(event_info.event_date_end,'%d-%b-%y %H:%m') as dateEnd");
+				$this->db->from("event_info");
+				$this->db->join("location", "event_info.location_id = location.location_id");
+				$this->db->where("location.region_code LIKE '%".trim($region_code)."%'");										
+				$this->db->where("EXTRACT(MONTH FROM `event_date_start`) LIKE '%".$searchDateMonth."%'");
+				$this->db->where("event_name LIKE '%".trim($searchWord)."%'");
+			}else if ($searchDateMonth>0 && $searchWord==null && $searchDateYear !=null && $region_code != '0'){
+				$this->db->select("*");
+				$this->db->select("DATE_FORMAT(event_info.event_date_start,'%d-%b-%y %H:%m') as dateStart");
+				$this->db->select("DATE_FORMAT(event_info.event_date_end,'%d-%b-%y %H:%m') as dateEnd");
+				$this->db->from("event_info");
+				$this->db->join("location", "event_info.location_id = location.location_id");
+				$this->db->where("location.region_code LIKE '%".trim($region_code)."%'");										
+				$this->db->where("EXTRACT(MONTH FROM `event_date_start`) LIKE '%".$searchDateMonth."%'");
+				$this->db->where("EXTRACT(YEAR FROM `event_date_start`) LIKE '%".trim($searchDateYear)."%'");
+			}else if ($searchDateMonth<=0 && $searchWord!=null && $searchDateYear !=null && $region_code != '0'){
+				$this->db->select("*");
+				$this->db->select("DATE_FORMAT(event_info.event_date_start,'%d-%b-%y %H:%m') as dateStart");
+				$this->db->select("DATE_FORMAT(event_info.event_date_end,'%d-%b-%y %H:%m') as dateEnd");
+				$this->db->from("event_info");
+				$this->db->join("location", "event_info.location_id = location.location_id");
+				$this->db->where("location.region_code LIKE '%".trim($region_code)."%'");
+				$this->db->where("event_name LIKE '%".trim($searchWord)."%'");
+				$this->db->where("EXTRACT(YEAR FROM `event_date_start`) LIKE '%".trim($searchDateYear)."%'");
 			}
 				
 				
