@@ -93,7 +93,7 @@
                                                 </select></div>';
                                     } else {
                                         echo '<div class="col-md-2">
-                                                <select name="searchDateMonth" class="form-control">
+                                              <select name="searchDateMonth" class="form-control">
                                                   <option value="0">Month</option>
                                                   <option value="1">Jan</option>
                                                   <option value="2">Feb</option>
@@ -115,7 +115,7 @@
                                     if(!isset($_POST['searchDateYear'])){
                                         echo '<div class="col-md-2"><input name="searchDateYear" type="text" class="form-control" placeholder="Year"></div>';
                                     } else {
-                                        echo '<div class="col-md-2"><input name="searchDateYear" type="text" class="form-control" placeholder="Year" value="'.$_POST['searchDateYear'].'"></div>';
+                                        echo '<div class="col-md-2"><input name="searchDateYear" type="text" class="form-control" placeholder="Year"></div>';
                                     }
                                     ?>
 
