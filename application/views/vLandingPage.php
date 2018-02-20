@@ -93,7 +93,7 @@
                                                 </select></div>';
                                     } else {
                                         echo '<div class="col-md-2">
-                                                <select name="searchDateMonth" class="form-control">
+                                              <select name="searchDateMonth" class="form-control">
                                                   <option value="0">Month</option>
                                                   <option value="1">Jan</option>
                                                   <option value="2">Feb</option>
@@ -115,7 +115,7 @@
                                     if(!isset($_POST['searchDateYear'])){
                                         echo '<div class="col-md-2"><input name="searchDateYear" type="text" class="form-control" placeholder="Year"></div>';
                                     } else {
-                                        echo '<div class="col-md-2"><input name="searchDateYear" type="text" class="form-control" placeholder="Year" value="'.$_POST['searchDateYear'].'"></div>';
+                                        echo '<div class="col-md-2"><input name="searchDateYear" type="text" class="form-control" placeholder="Year"></div>';
                                     }
                                     ?>
 
@@ -125,26 +125,25 @@
                                     } else {
                                         echo '<div class="col-md-3"><input name="searchWord" type="text" class="form-control" placeholder="Key word" value="'.$_POST['searchWord'].'" pattern="[\sa-zA-z0-9]+"></div>';
                                     }
-
-                                        echo'<div class="col-md-2"><select Class="form-control" id="region_code" name="region_code" required>
-                                            <option style="color: gray;">Region</option>
-                                            <option>NCR</option>
-                                            <option>CAR</option>
-                                            <option>MIMAROPA</option>
-                                            <option>ARMM</option>
-                                            <option>Region I</option>
-                                            <option>Region II</option>
-                                            <option>Region III</option>
-                                            <option>Region IV-A</option>
-                                            <option>Region V</option>
-                                            <option>Region VI</option>
-                                            <option>Region VII</option>
-                                            <option>Region VIII</option>
-                                            <option>Region IX</option>
-                                            <option>Region X</option>
-                                            <option>Region XI</option>
-                                            <option>Region XII</option>
-                                            <option>Region XIII</option>
+                                        echo'<div class="col-md-2"><select Class="form-control" id="region_code" name="region_code" >
+                                            <option style="color: gray;" value="0">Region</option>
+                                            <option value="NCR">NCR</option>
+                                            <option value="CAR">CAR</option>
+                                            <option value="MIMAROPA">MIMAROPA</option>
+                                            <option value="ARMM">ARMM</option>
+                                            <option value="Region I">Region I</option>
+                                            <option value="Region II">Region II</option>
+                                            <option value="Region III">Region III</option>
+                                            <option value="Region IV">Region IV-A</option>
+                                            <option value="Region V">Region V</option>
+                                            <option value="Region VI">Region VI</option>
+                                            <option value="Region VII">Region VII</option>
+                                            <option value="Region VIII">Region VIII</option>
+                                            <option value="Region IX">Region IX</option>
+                                            <option value="Region X">Region X</option>
+                                            <option value="Region XI">Region XI</option>
+                                            <option value="Region XII">Region XII</option>
+                                            <option value="Region XIII">Region XIII</option>
                                         </select></div>';
 
                                         echo '<div class="col-md-3">
