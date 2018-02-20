@@ -274,8 +274,8 @@
                                 $cnt =1;
                                 foreach ($events as $event) {
                                    ?>
-                            <div class="col-sm-6 col-md-4 p0">
-                                <div class="box-two proerty-item">
+                            <div class="col-sm-6 col-md-4 p0" >
+                                <div class="box-two proerty-item" style="height:530px;">
                                     <div class="item-thumb">
                                         <a href="<?php echo site_url();?>/event/CEvent/displayEventDetails/<?php echo $event->event_id;?>"><img  style="max-height: 50px;" src="<?php echo base_url();?><?php echo $event->event_picture; ?>"></a>
                                     </div>
@@ -315,10 +315,11 @@
 
 
                                                 ?>
-                                             <table class="table-condensed table-responsive">
+                                            <div style="height:170px;">
+                                             <table class="table-condensed table-responsive" >
                                                                 <thead>
-                                                                    <th>Ticket Name</th>
-                                                                    <th>Ticket Price</th>
+                                                                    <th><center>Ticket Name</center></th>
+                                                                    <th><center>Ticket Price</center></th>
                                                                 </thead>
                                                                 <tbody>
                                                                     <?php
@@ -332,14 +333,13 @@
                                                                     ?>
                                                                 </tbody>
                                                             </table>
+                                            </div>
                                             <div class="dot-hr"></div>
-                                            <span class="pull-left"><b> Date: </b> <?php echo $event->dateStart;?>  </span>
-                                            <span class="proerty-price pull-right"><?php echo $event->event_status;?> </span>
+                                            <div>
+                                                <span class="pull-left"><b> Date: </b> <?php echo $event->dateStart;?>  </span>
+                                                 <span class="proerty-price pull-right"><?php echo $event->event_status;?> </span>
+                                            </div>
                                             <br>
-                                            <!-- <p max="30" style="overflow: hidden;"><?php echo $event->event_details;?> </p> -->
-                                            <!-- <div class="property-icon pull-right">
-                                                <a>Read More</a>
-                                            </div> -->
                                         </div>
                                 </div>
                             </div>
