@@ -419,7 +419,6 @@ class CEvent extends CI_Controller {
 					// $this->displayEventDetails($eid);
 
 					$uid = $this->session->userdata['userSession']->userID;
-					$res = $this->MNotification->insertNotif($uid, $eid, NULL);
 
 					redirect('event/CEvent/displayEventDetails/'.$eid);
 				}else{
@@ -428,14 +427,6 @@ class CEvent extends CI_Controller {
 				}
 
 			}
-
-			// echo $this->MTicket->db->last_query();
-
-			// $this->load->view('imports/vHeader');
-
-			// $this->load->view('imports/vFooter');
-
-			# code...
 		}
 		public function createEvent(){
 			// $this->load->model('events/MEvent','event');

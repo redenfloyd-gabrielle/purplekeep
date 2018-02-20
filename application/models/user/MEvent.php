@@ -227,8 +227,6 @@
 				$this->db->where("EXTRACT(YEAR FROM `event_date_start`) LIKE '%".trim($searchDateYear)."%'");
 			}
 				
-				
-			
 			$query = $this->db->get();
 			return $query->result();
 		}
