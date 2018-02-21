@@ -539,9 +539,7 @@ class CEvent extends CI_Controller {
 					</div>
 				';*/
 				// header( "refresh:1; viewEvents" );
-
-				redirect("event/CEvent/viewEventConfirmation");
-				//redirect("event/CEvent/viewEvents");
+				redirect("event/CEvent/viewEvents");
 			}else{
 				$this->load->view('error_404');
 				/*
@@ -802,11 +800,5 @@ class CEvent extends CI_Controller {
 			$this->load->view('imports/vFooterLandingPage');
 			# code...
 		}
-
-		public function viewEventConfirmation() {
-		  $this->load->view('imports/vHeaderLandingPage');
-	  	$this->load->view('vEventConfirmation.php');
-  		$this->load->view('imports/vFooterLandingPage');
-	 }
 }
 ?>
