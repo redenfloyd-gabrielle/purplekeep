@@ -58,8 +58,7 @@
                 </div>
             </div>
         </div>
-
-        <!-- End page header -->
+                <!-- End page header -->
 
         <!-- property area -->
         <div class="properties-area recent-property" style="background-color: #FFF;">
@@ -250,6 +249,13 @@
             </div>
         </div>
     </div>
+    
+    <?php if ($this->session->flashdata('success_msg')): ?>
+        <div class="alert alert-success">
+              <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+              <?php echo $this->session->flashdata('success_msg') ?>
+          </div>
+      <?php endif ?>
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" id="myTabs" role="tablist">
@@ -264,8 +270,6 @@
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="home">
         <div class="col-md-12 clear">
-           
-
             <div id="list-type" class="proerty-th">
 
                         <?php
