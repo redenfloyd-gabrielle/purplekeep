@@ -189,6 +189,7 @@ class CEvent extends CI_Controller {
 
 	public function viewEvents()
 	{
+
 		$userid = $this->session->userdata['userSession']->userID;
 
 		//////////////////////////////////////////////////////////////////////////////
@@ -240,6 +241,38 @@ class CEvent extends CI_Controller {
 		////////////STOPS HERE///////////////////////////////////////////////////
 
 		$data['userid'] = $userid;
+
+		$data['announcements'] = $this->MAnnouncement->getUnviewedOfUser($this->session->userdata['userSession']->userID);
+		$data['announcementCount'] = count($data['announcements']);
+		if(count($data['announcements']) == 0){
+			$data['announcements'] = NULL;
+		}
+
+			$array1 = array();
+			if($data['announcements']){
+				foreach ($data['announcements'] as $value) {
+						$arrObj = new stdClass;
+						$arrObj->announcementID = $value->announcementID;
+						$arrObj->announcementDetails = $value->announcementDetails;
+						$arrObj->first_name = $value->first_name;
+						$arrObj->last_name = $value->last_name;
+						if($value->sec){
+							$arrObj->ago =$value->sec;
+							$arrObj->agoU ="seconds ago";
+						}else if($value->min){
+							$arrObj->ago =$value->min;
+							$arrObj->agoU ="minutes ago";
+						}else if($value->hr){
+							$arrObj->ago =$value->hr;
+							$arrObj->agoU ="hours ago";
+						}else if($value->day){
+							$arrObj->ago =$value->day;
+							$arrObj->agoU ="days ago";
+						}
+						$array1[] = $arrObj;
+				}
+			}
+			$data['announcements'] = $array1;
 
 		$this->load->view('imports/vHeaderLandingPage');
 		$this->load->view('vEvents',$data);
