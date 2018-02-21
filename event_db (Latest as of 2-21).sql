@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2018 at 01:28 PM
+-- Generation Time: Feb 21, 2018 at 02:34 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -51,7 +51,8 @@ CREATE TABLE `card` (
   `addedBy` int(11) NOT NULL,
   `updatedBy` int(11) NOT NULL,
   `addedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `cardCreatedOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -343,6 +344,13 @@ ALTER TABLE `announcement`
   ADD KEY `addedBy` (`addedBy`);
 
 --
+-- Indexes for table `card`
+--
+ALTER TABLE `card`
+  ADD PRIMARY KEY (`cardId`),
+  ADD KEY `cardId` (`cardId`);
+
+--
 -- Indexes for table `cart`
 --
 ALTER TABLE `cart`
@@ -408,6 +416,11 @@ ALTER TABLE `user_event_preference`
 --
 ALTER TABLE `announcement`
   MODIFY `announcementID` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `card`
+--
+ALTER TABLE `card`
+  MODIFY `cardId` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `cart`
 --
