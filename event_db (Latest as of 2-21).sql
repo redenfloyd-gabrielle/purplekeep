@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 21, 2018 at 02:34 PM
+-- Generation Time: Feb 21, 2018 at 02:41 PM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 7.0.8
 
@@ -98,6 +98,14 @@ CREATE TABLE `event_info` (
   `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `location_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `event_info`
+--
+
+INSERT INTO `event_info` (`event_id`, `event_date_start`, `event_date_end`, `no_tickets_total`, `total_no_addedTickets`, `total_tickets_amtSold`, `event_status`, `event_name`, `event_details`, `event_category`, `event_venue`, `event_isActive`, `event_picture`, `color`, `user_id`, `addedBy`, `updatedBy`, `addedAt`, `updatedAt`, `location_id`) VALUES
+(1, '2018-02-21 00:00:00', '2018-02-21 00:00:00', 0, 0, 0, 'Pending', 'Counting Stars', 'Let us spend the night with music and fun.', 'Attraction', 'Rooftop', 1, 'images/events/images_(1).jpg', NULL, 3, 0, 0, '2018-02-21 14:37:05', '2018-02-21 21:37:05', 19),
+(2, '2018-02-22 00:00:00', '2018-03-02 00:00:00', 0, 0, 0, 'Pending', 'Diving', 'Let us enjoy the waves with food and music! \r\n\r\nGet to meet your favorite artists, vloggers, and surfers.', '', 'Siargao Beach', 1, 'images/events/IMG_20160420_200400.jpg', NULL, 3, 0, 0, '2018-02-21 14:40:51', '2018-02-21 21:40:51', 109);
 
 -- --------------------------------------------------------
 
@@ -278,6 +286,14 @@ CREATE TABLE `ticket_type` (
   `updatedAt` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `ticket_type`
+--
+
+INSERT INTO `ticket_type` (`ticket_type_id`, `ticket_name`, `price`, `ticket_count`, `event_id`, `addedBy`, `updatedBy`, `addedAt`, `updatedAt`) VALUES
+(1, 'Gold', 500, 25, 1, 0, 0, '2018-02-21 21:37:05', '2018-02-21 21:37:05'),
+(2, 'Gold', 500, 75, 2, 0, 0, '2018-02-21 21:40:51', '2018-02-21 21:40:51');
+
 -- --------------------------------------------------------
 
 --
@@ -430,7 +446,7 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT for table `event_info`
 --
 ALTER TABLE `event_info`
-  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `location`
 --
@@ -450,7 +466,7 @@ ALTER TABLE `ticket`
 -- AUTO_INCREMENT for table `ticket_type`
 --
 ALTER TABLE `ticket_type`
-  MODIFY `ticket_type_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ticket_type_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT for table `user_account`
 --
