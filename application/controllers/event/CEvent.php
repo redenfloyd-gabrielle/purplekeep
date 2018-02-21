@@ -34,7 +34,90 @@ class CEvent extends CI_Controller {
 			// 	var_dump($muni->location_name);
 			// }
 			echo json_encode($result);
-			die();
+		}else{
+			echo false;
+		}
+	}
+
+	// query to sort by location
+	public function sortByLocation(){
+		if(isset($_POST['region_code'])){
+			$location_id = $_POST['region_code'];
+			$result = $this->MEvent->getAllApprovedEventsAndByLocation($location_id);
+			$ht = '';
+			foreach ($result as $event) {
+				date_default_timezone_set('Asia/Manila');
+                $now = new DateTime("now");
+                $end = new DateTime($event->dateEnd);
+                $start = new DateTime($event->dateStart);
+                $interval = date_diff($now, $start);
+                $dateS = date_create($event->dateStart);
+                $dateE = date_create($event->dateEnd);
+
+                $mintix = $event->tix;
+                foreach ($event->tix as $key) {
+                    $mintix = ($key->price <= $mintix)? $key->price : $mintix;
+                }
+
+                $title = "";
+                if(strlen($event->event_name)>=42){
+                    $title = substr($event->event_name,0,39)."...";
+                }else{
+                    $title = $event->event_name;
+                }
+
+                if($now < $start){
+                	$ht .= '<div class="col-sm-6 col-md-4 p0">
+								<div class="box-two proerty-item">
+									<div class="item-entry overflow">
+									'.($now < $start?($interval->days == 0? "<div class='corner-ribbon top-right sticky red'>Less than a day!</div>": "<div class='corner-ribbon top-right sticky red'>".$interval->days." day/s left!"):"").'
+									</div>
+									<h3 class="text-center"><a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"> 
+										'.$title.'
+									</a></h3>
+									<div class="item-thumb">
+										<a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'">
+										</a>
+									</div>
+									<h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>
+									<h5>When: '.date_format($dateS, 'M d Y').' - '.date_format($dateE, 'M d Y').'
+                                        </h5>
+									<h5>Event Tickets as low as Php '.$mintix.'!!!</h5>
+									<div class="dot-hr"></div>
+								</div>
+							</div>
+						</div>
+					';
+                }else if($now >= $start && $now <= $end){
+                	$ht .= '<div class="col-sm-6 col-md-4 p0">
+								<div class="box-two proerty-item">
+									<div class="item-entry overflow">
+										<div class="corner-ribbon top-right sticky red">Happening now!</div>
+										
+										<h3 class="text-center">
+										<a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'">
+										'.$title.'
+										</a>
+										</h3>
+
+										<div class="item-thumb">
+		                                    <a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'">
+		                                    </a>
+                                        </div>
+                                        <h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'
+                                        </h5>
+                                        <h5>When: '.date_format($dateS, 'M d Y').' - '.date_format($dateE, 'M d Y').'
+                                        </h5>
+                                        <h5>Event Tickets as low as Php '.$mintix.'!!!</h5>
+                                        <div class="dot-hr"></div>
+									</div>
+								</div>
+							</div>
+					';
+                }
+				
+			}
+			echo $ht;
 		}else{
 			echo false;
 		}
@@ -61,8 +144,6 @@ class CEvent extends CI_Controller {
 	}
 
 	public function viewEditFromCalendar(){
-
-
 		$data1['start'] = $_POST['start'];
 		$data1['end'] = $_POST['end'];
 		$data1['title'] = $_POST['title'];
@@ -171,70 +252,74 @@ class CEvent extends CI_Controller {
 		/////////////////////////////////////////////////////////////////////////////
 		$gID = $data1 ['events']  = $this->MEvent->read_where('event_id = '.$id.'');
 		////////////STOPS HERE///////////////////////////////////////////////////
+		if($gID){
+				foreach ($gID as $k) {
+					$eid = $k->event_id;
+					$uid = $k->user_id; //retrieve
+					$location_id = $k->location_id;
+				}
 
-		foreach ($gID as $k) {
-			$eid = $k->event_id;
-			$uid = $k->user_id; //retrieve
-			$location_id = $k->location_id;
-		}
 
 
+				//////////////////////////////////////////////////////////////////////////////
+				//================SPRINT 3 INTERFACE MODULE============//
+				/////////////////////////////////////////////////////////////////////////////
+				$data2['organizer'] = $this->MUser->read_where('account_id = '.$uid.'');
+				////////////STOPS HERE////////////////////////////////////////////////////
 
-		//////////////////////////////////////////////////////////////////////////////
-		//================SPRINT 3 INTERFACE MODULE============//
-		/////////////////////////////////////////////////////////////////////////////
-		$data2['organizer'] = $this->MUser->read_where('account_id = '.$uid.'');
-		////////////STOPS HERE////////////////////////////////////////////////////
+				$result_data = $this->MTicketType->loadType($eid);
+				//////////////////////////////////////////////////////////////////////////////
+				//================SPRINT 3 INTERFACE MODULE============//
+				/////////////////////////////////////////////////////////////////////////////
+				$data3['types'] = $this->MTicketType->read_where('event_id = '.$eid.'');
+				////////////STOPS HERE////////////////////////////////////////////////////
 
-		$result_data = $this->MTicketType->loadType($eid);
-		//////////////////////////////////////////////////////////////////////////////
-		//================SPRINT 3 INTERFACE MODULE============//
-		/////////////////////////////////////////////////////////////////////////////
-		$data3['types'] = $this->MTicketType->read_where('event_id = '.$eid.'');
-		////////////STOPS HERE////////////////////////////////////////////////////
+				// $data4['tixStat'] = $this->MTicketType->getTicketStatus($eid);
+				// if(isset($data4['tixStat'])){
+				// 	$data = array_merge($data1,$data2,$data3,$data4);
+				// }else{
 
-		// $data4['tixStat'] = $this->MTicketType->getTicketStatus($eid);
-		// if(isset($data4['tixStat'])){
-		// 	$data = array_merge($data1,$data2,$data3,$data4);
-		// }else{
+				// }
+				$data = array_merge($data1,$data2,$data3);
+				//////////////////////////////////////////////////////////////////////////////
+				//================SPRINT 3 INTERFACE MODULE============//
+				/////////////////////////////////////////////////////////////////////////////
+				$data['going'] = $this->MEvent->getGoingToEvent($id);
+				////////////STOPS HERE////////////////////////////////////////////////////
 
-		// }
-		$data = array_merge($data1,$data2,$data3);
-		//////////////////////////////////////////////////////////////////////////////
-		//================SPRINT 3 INTERFACE MODULE============//
-		/////////////////////////////////////////////////////////////////////////////
-		$data['going'] = $this->MEvent->getGoingToEvent($id);
-		////////////STOPS HERE////////////////////////////////////////////////////
+				//================SPRINT 3 INTERFACE MODULE============//
+				/////////////////////////////////////////////////////////////////////////////
+				$data['user'] = $this->MUser->read_where( array('account_id' =>$this->session->userdata['userSession']->userID));
+				$data['location'] = $this->MLocation->read_where('location_id ='.$location_id.'');
+				////////////STOPS HERE////////////////////////////////////////////////////
 
-		//================SPRINT 3 INTERFACE MODULE============//
-		/////////////////////////////////////////////////////////////////////////////
-		$data['user'] = $this->MUser->read_where( array('account_id' =>$this->session->userdata['userSession']->userID));
-		$data['location'] = $this->MLocation->read_where('location_id ='.$location_id.'');
-		////////////STOPS HERE////////////////////////////////////////////////////
+				//////////////////////////////////////////////////////////////////////////////
+				$data['id'] = $this->session->userdata['userSession']->userID;
+				if($this->error != ""){
+					$data['errorMsg']= $this->error;
+				 // print_r($data);
+				}
 
-		//////////////////////////////////////////////////////////////////////////////
-		$data['id'] = $this->session->userdata['userSession']->userID;
-		if($this->error != ""){
-			$data['errorMsg']= $this->error;
-		 // print_r($data);
-		}
+				if($this->success != ""){
+					$data['successMsg']= $this->success;
+				 // print_r($data);
+				}
+				$result = $this->MPreference->checkIfInterestedAlready($this->session->userdata['userSession']->userID,$eid);
 
-		if($this->success != ""){
-			$data['successMsg']= $this->success;
-		 // print_r($data);
-		}
-		$result = $this->MPreference->checkIfInterestedAlready($this->session->userdata['userSession']->userID,$eid);
-
-		if($result){
-			$data['interested']	= TRUE;
-			$data['user_event_preference_id'] = $result[0]->user_event_preference_id;
+				if($result){
+					$data['interested']	= TRUE;
+					$data['user_event_preference_id'] = $result[0]->user_event_preference_id;
+				}else{
+					$data['interested']	= FALSE;
+				}
+				$this->load->view('imports/vHeaderLandingPage');
+				$this->load->view('vEventDetails',$data);
+				$this->load->view('imports/vFooterLandingPage');
+	
 		}else{
-			$data['interested']	= FALSE;
+			redirect("CLogin/viewDashboard");
 		}
-		$this->load->view('imports/vHeaderLandingPage');
-		$this->load->view('vEventDetails',$data);
-		$this->load->view('imports/vFooterLandingPage');
-
+		
 
 		// $this->load->view('imports/vHeader');
 		// $this->load->view('user/vEventRegistration', $data);
@@ -338,7 +423,6 @@ class CEvent extends CI_Controller {
 					// $this->displayEventDetails($eid);
 
 					$uid = $this->session->userdata['userSession']->userID;
-					$res = $this->MNotification->insertNotif($uid, $eid, NULL);
 
 					redirect('event/CEvent/displayEventDetails/'.$eid);
 				}else{
@@ -347,14 +431,6 @@ class CEvent extends CI_Controller {
 				}
 
 			}
-
-			// echo $this->MTicket->db->last_query();
-
-			// $this->load->view('imports/vHeader');
-
-			// $this->load->view('imports/vFooter');
-
-			# code...
 		}
 		public function createEvent(){
 			// $this->load->model('events/MEvent','event');
