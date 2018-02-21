@@ -636,8 +636,8 @@ class CEvent extends CI_Controller {
 					</div>
 				';*/
 				// header( "refresh:1; viewEvents" );
-
-				redirect("event/CEvent/viewEventConfirmation");
+				$this->session->set_flashdata('success_msg',"Your event has been successfully submitted. Please wait for the confirmation.");
+				redirect("event/CEvent/viewEvents");
 				//redirect("event/CEvent/viewEvents");
 			}else{
 				$this->load->view('error_404');
