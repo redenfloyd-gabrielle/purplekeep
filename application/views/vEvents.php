@@ -650,3 +650,49 @@
             </div>
 
         </div>
+
+<div id="errorModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title" id="errorTitle"></h3>
+      </div>
+      <div class="modal-body">
+        <p id="errorMessage"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<?php
+  if(isset($dataError)){
+    if($dataError == "CodeInvalid") {
+        echo "<script type = 'text/javascript'>
+                $(document).ready(function(){
+                  $('#errorModal').modal('show');
+
+                  document.getElementById('errorTitle').innerHTML = 'CODE INVALID';
+                  document.getElementById('errorMessage').innerHTML = 'The code you entered is not found. Please make sure you entered a valid code.';
+
+                });
+              </script>";
+    } else if ($dataError == "CodeUsed") {
+        echo "<script type = 'text/javascript'>
+                $(document).ready(function(){
+                  $('#errorModal').modal('show');
+
+                  document.getElementById('errorTitle').innerHTML = 'CODE ALREADY USED';
+                  document.getElementById('errorMessage').innerHTML = 'The code you entered has already been used. Please use a new one.';
+
+                });
+              </script>";
+    }
+  }
+?>
