@@ -66,6 +66,7 @@
                     <ul class="dropdown-menu pull-right icon-right arrow">
                         <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
                         <li><a href="<?php echo site_url();?>/admin/CAdmin/adminSettings"><i class="fa fa-cog"></i> Settings </a></li>
+                        <li><a href ="<?php echo site_url();?>/admin/CAdmin/updateAccount" data-wow-delay="0.1s"><i class="icon  fa fa-cog"></i> Update Profile </a></li>
                         <li class="divider"></li>
                         <li><a href="<?php echo site_url();?>/CLogin/userLogout"><i class="fa fa-sign-out"></i> Signout </a></li>
                     </ul>
@@ -120,7 +121,7 @@
 
             <li><a href ="<?php echo site_url();?>/admin/CAdmin/generateCard" data-wow-delay="0.1s"><i class="icon  fa fa-credit-card"></i> Cards </a></li>
 
-            <li><a href ="<?php echo site_url();?>/admin/CAdmin/updateAccount" data-wow-delay="0.1s"><i class="icon  fa fa-cog"></i> Update Account </a></li>
+            
 
         </ul>
     </nav>
