@@ -73,7 +73,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="panel-heading">
-                                                <center><h1 style="font-size: 50px;" class="panel-title">P<?php foreach($user as $u){echo $u->load_amt;}?>.00</h1></center>
+                                                <center><h1 style="font-size: 50px;" class="panel-title">Php <?php foreach($user as $u){echo $u->load_amt;}?>.00</h1></center>
                                             </div>
                                         </div>
                                     </div>
@@ -256,7 +256,6 @@
     <li role="presentation" class="tab active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_EVENTS ?></a></li>
     <li role="presentation" class="tab"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_REPORTS ?></a></li>
     <li role="presentation" class="tab"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_PAYMENT_HISTORY ?></a></li>
-    <li role="presentation" class="tab"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_SETTINGS ?></a></li>
     <li role="presentation" class="tab"><a href="#editprofile" aria-controls="editprofile" role="tab" data-toggle="tab">Edit Profile</a></li>
 
   </ul>
@@ -274,8 +273,8 @@
                                 $cnt =1;
                                 foreach ($events as $event) {
                                    ?>
-                            <div class="col-sm-6 col-md-4 p0">
-                                <div class="box-two proerty-item">
+                            <div class="col-sm-6 col-md-4 p0" >
+                                <div class="box-two proerty-item" style="height:530px;">
                                     <div class="item-thumb">
                                         <a href="<?php echo site_url();?>/event/CEvent/displayEventDetails/<?php echo $event->event_id;?>"><img  style="max-height: 50px;" src="<?php echo base_url();?><?php echo $event->event_picture; ?>"></a>
                                     </div>
@@ -315,10 +314,11 @@
 
 
                                                 ?>
-                                             <table class="table-condensed table-responsive">
+                                            <div style="height:170px;">
+                                             <table class="table-condensed table-responsive" >
                                                                 <thead>
-                                                                    <th>Ticket Name</th>
-                                                                    <th>Ticket Price</th>
+                                                                    <th><center>Ticket Name</center></th>
+                                                                    <th><center>Ticket Price</center></th>
                                                                 </thead>
                                                                 <tbody>
                                                                     <?php
@@ -332,14 +332,13 @@
                                                                     ?>
                                                                 </tbody>
                                                             </table>
+                                            </div>
                                             <div class="dot-hr"></div>
-                                            <span class="pull-left"><b> Date: </b> <?php echo $event->dateStart;?>  </span>
-                                            <span class="proerty-price pull-right"><?php echo $event->event_status;?> </span>
+                                            <div>
+                                                <span class="pull-left"><b> Date: </b> <?php echo $event->dateStart;?>  </span>
+                                                 <span class="proerty-price pull-right"><?php echo $event->event_status;?> </span>
+                                            </div>
                                             <br>
-                                            <!-- <p max="30" style="overflow: hidden;"><?php echo $event->event_details;?> </p> -->
-                                            <!-- <div class="property-icon pull-right">
-                                                <a>Read More</a>
-                                            </div> -->
                                         </div>
                                 </div>
                             </div>
@@ -492,9 +491,6 @@
                         </table>
                     </div>
     </div>
-    <!-- <div role="tabpanel" class="tab-pane" id="settings">
-    </div>
- -->
      <div role="tabpanel" class="tab-pane" id="editprofile">
         <h2>Edit Profile</h2>
         <?php foreach($info as $in){ ?>
