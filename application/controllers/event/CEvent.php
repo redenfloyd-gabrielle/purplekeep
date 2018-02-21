@@ -246,6 +246,70 @@ class CEvent extends CI_Controller {
 		$this->load->view('imports/vFooterLandingPage');
 	}
 
+	//redirect View Events Page from Redeem Code error
+	public function viewEventsFromCodeError($dataError) 
+	{
+		$userid = $this->session->userdata['userSession']->userID;
+
+		//////////////////////////////////////////////////////////////////////////////
+		//================Sprint 3 SPRINT 3 INTERFACE MODULE============//
+		/////////////////////////////////////////////////////////////////////////////
+		$strEventSelect = "*, DATE_FORMAT(event_info.event_date_start,'%d-%b-%y %H:%m') as dateStart, DATE_FORMAT(event_info.event_date_end,'%d-%b-%y %H:%m') as dateEnd";
+		$strEventWhere = array("user_id" => $userid,
+													 "event_isActive" => TRUE
+													);
+		$result = $this->MEvent->select_certain_where_isDistinct_hasOrderBy_hasGroupBy_isArray($strEventSelect,
+							$strEventWhere,FALSE,FALSE,FALSE,FALSE);
+		// echo"<pre>";
+		// var_dump($result);
+		$array = array();
+		foreach ($result as $value) {
+			$arrObj = new stdClass;
+			$arrObj->data = $value;
+			$arrObj->data->tix = $this->MEvent->getTicketsOfEvent($value->event_id);
+
+			//Adding of location
+			$arrObj->data->location = $this->MLocation->read_where("location_id = ".$value->location_id."");
+
+			$array[] = $arrObj;
+		}
+
+		$val = array();
+		foreach ($array as $key) {
+			$arrObj = new stdClass;
+			$arrObj = $key->data;
+			$val[] = $arrObj;
+		}
+		$data['events']  = $val;
+		////////////STOPS HERE///////////////////////////////////////////////////
+
+
+
+		//////////////////////////////////////////////////////////////////////////////
+		//================Sprint 3 SPRINT 3 INTERFACE MODULE============//
+		/////////////////////////////////////////////////////////////////////////////
+		$data['user'] = $this->MUser->read($this->session->userdata['userSession']->userID);
+		////////////STOPS HERE///////////////////////////////////////////////////
+
+
+		$data['info'] = $this->MUser->loadUserDetails($userid);
+		//////////////////////////////////////////////////////////////////////////////
+		//================Sprint 3 SPRINT 3 INTERFACE MODULE============//
+		/////////////////////////////////////////////////////////////////////////////
+		$data['hist']   = $this->MEventInfo->getTransHistory($this->session->userdata['userSession']->userID);
+		////////////STOPS HERE///////////////////////////////////////////////////
+
+		$data['userid'] = $userid;
+
+		/*$data['dataErrorTitle'] = $dataErrorTitle;
+		$data['dataErrorMEssage'] = $dataErrorMessage;*/
+		$data['dataError'] = $dataError;
+
+		$this->load->view('imports/vHeaderLandingPage');
+		$this->load->view('vEvents',$data);
+		$this->load->view('imports/vFooterLandingPage');
+	}
+
 	public function displayEventDetails($id)
 	{
 
