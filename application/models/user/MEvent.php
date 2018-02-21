@@ -37,6 +37,7 @@
 
 			$this->db->join("user_account as ua", "ua.account_id = t.user_id");
 			$this->db->where("ei.event_id",$eId);
+			$this->db->group_by("ua.account_id");
 
 			$query = $this->db->get();
 

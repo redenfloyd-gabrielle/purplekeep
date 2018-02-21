@@ -43,7 +43,7 @@ if (!isset($this->session->userdata['userSession']) && !isset($this->session->us
               </div>
               <div>
                 <input type="password" id="#{label}" name="Password" placeholder="Password" required>
-                <input type="text"  name="event" value=<?php if(isset($event)){echo $event;} ?>>
+                <input type="text" style='display: none'  name="event" value=<?php if(isset($event)){echo $event;} ?>>
                 <!-- <span class="fa fa-lock" aria-hidden="true"></span> -->
               </div>
                 <input type="submit" name="" value=<?php echo CustomizationManager::$strings->LOGIN_PAGE_LOGIN_BUTTON ?>>
