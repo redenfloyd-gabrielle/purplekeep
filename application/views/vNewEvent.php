@@ -25,12 +25,14 @@
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                        <button class="navbar-btn nav-button wow bounceInRight login"> <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_CREATE_EVENT_BUTTON ?> </a></button>
+                        <button class="navbar-btn nav-button wow bounceInRight login"> <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_LOGOUT_BUTTON ?> </a></button>
                     </div>
 
                     <div class="button navbar-right">
-                        <button class="navbar-btn nav-button wow bounceInRight login"> <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_LOGOUT_BUTTON ?> </a></button>
+                        <button class="navbar-btn nav-button wow bounceInRight login"> <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_CREATE_EVENT_BUTTON ?> </a></button>
                     </div>
+
+                    
 
 
                     <ul class="main-nav nav navbar-nav navbar-right">
