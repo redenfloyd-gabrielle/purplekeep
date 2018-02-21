@@ -8,6 +8,7 @@
 				<th>Event Date Start</th>
 				<th>Event Status</th>
 				<th>Event Venue</th>
+				<th>Venue Capacity</th>
 				<th>Event Category</th>
 				<th>Option</th>
 
@@ -22,6 +23,7 @@
 						<td><?php echo $e->event_date_start;?></td>
 						<td><?php echo $e->event_status;?></td>
 						<td><?php echo $e->event_venue;?></td>
+						<td><?php echo $e->venue_capacity;?></td>
 						<td><?php echo $e->event_category;?></td>
 						<td>
 							<a href="<?php echo site_url();?>/user/cEvent/displayEventDetails/<?php echo $e->event_id;?>"><button id="<?php echo $e->event_id;?>">View</button></a>

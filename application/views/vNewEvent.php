@@ -84,8 +84,8 @@
                                 </div>
 
                                 <div class="form-group">
-                                    <label for="name">VENUE CAPACITY</label>
-                                    <input type="text" class="form-control" name="event_venue_capacity" required="">
+                                    <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_CAPACITY ?></label>
+                                    <input type="number" min="1" class="form-control" name="venue_capacity" required="">
                                 </div>
                                 <!-- Added a location_code -->
                                 <div class="form-group">

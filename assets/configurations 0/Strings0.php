@@ -56,6 +56,7 @@
     public $NEW_EVENT_PAGE_EVENT_PICTURE = "Event Picture";
     public $NEW_EVENT_PAGE_EVENT_TITLE = "Event Title";
     public $NEW_EVENT_PAGE_EVENT_LOCATION = "Location";
+    public $NEW_EVENT_PAGE_EVENT_CAPACITY = "Venue Capacity";
     public $NEW_EVENT_PAGE_EVENT_START = "Starts";
     public $NEW_EVENT_PAGE_EVENT_END = "Ends";
     public $NEW_EVENT_PAGE_EVENT_CATEGORY = "Category";

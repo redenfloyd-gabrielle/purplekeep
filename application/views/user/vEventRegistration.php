@@ -38,6 +38,11 @@
 						<td><?php echo $e->event_venue; ?></td>
 					</tr>
 					<tr>
+						<th>Venue Capacity</th>
+						<td><?php echo $e->venue_capacity; ?></td>
+					</tr>
+					
+					<tr>
 						<th>Event Organizer	</th>
 						<td><?php foreach ($users as $a) {
 							# code...

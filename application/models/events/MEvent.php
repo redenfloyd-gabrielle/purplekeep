@@ -9,6 +9,7 @@
 		private $event_details;
 		private $event_category;
 		private $event_venue;
+		private $venue_capacity;
 		private $date_created;
 		private $user_id;
 
@@ -109,6 +110,15 @@
 			$this->event_venue = $event_venue;
 		}
 
+		private function getVenue_capacity(){
+			return $this->venue_capacity;
+		}
+
+		private function setVenue_capacity($venue_capacity){
+			$venue_capacity = filter_var($venue_capacity, FILTER_SANITIZE_NUMBER_INT);
+			$this->venue_capacity = $venue_capacity;
+		}
+		
 		public function getDate_created(){
 			return $this->date_created;
 		}
