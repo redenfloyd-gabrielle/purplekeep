@@ -517,6 +517,7 @@ class CEvent extends CI_Controller {
 			$data['no_tickets_total'] = 0;
 			$data['event_status'] = 'pending';
 			$data['event_name'] = $this->input->post('event_name');
+			$data['user_id'] = $this->session->userdata['userSession']->userID;
 			$data['event_details'] = $this->input->post('event_details');
 			$data['event_category'] = $this->input->post('event_category');
 			// $data['event_picture'] = null;
@@ -542,7 +543,7 @@ class CEvent extends CI_Controller {
 				if(!$photo) {
 					$photo = $this->MEvent->insertPhotoEvent("events1.jpg",$evt_id);
 				}
-				var_dump($photo);
+				//var_dump($photo);
 
 					// print_r($photo);
 
@@ -584,20 +585,23 @@ class CEvent extends CI_Controller {
 					$where =  array('no_tickets_total' => $totalNumTix );
 					$res = $this->MEvent->update($evt_id,$where);
 					$flag = $res;
-				}else{
+				}/*else{
 					$this->load->view('error_404');
-				}
+				}*/
 			}
 			if($flag){
-				echo'
+				/*echo'
 					<div id="addAdmin" class="modal fade"  data-header-color="#34495e">
 						<div class="modal-header">
 								<h1 class="modal-title" align="center">Create Event Successful</h1>
 						</div>
 					</div>
-				';
-				header( "refresh:1; viewEvents" );
+				';*/
+				// header( "refresh:1; viewEvents" );
+				redirect("event/CEvent/viewEvents");
 			}else{
+				$this->load->view('error_404');
+				/*
 				echo'
 					<div id="addAdmin" class="modal fade"  data-header-color="#34495e">
 						<div class="modal-header">
@@ -605,7 +609,7 @@ class CEvent extends CI_Controller {
 						</div>
 					</div>
 				';
-				header( "refresh:1; viewCreateEvent" );
+				header( "refresh:1; viewCreateEvent" );*/
 			}
 		  }
 
