@@ -518,8 +518,8 @@
 
             <div class="form-group">
                     <label for="birthdate">Birthdate</label>
-                    <input type="date"  <?php  echo 'value="'.$in->birthdate.'"';?> name="bdate" required="">
-                </div>
+                    <input type="date"  <?php  echo 'value="'.$in->birthdate.'"';?> name="bdate" required="" id="bdate">
+            </div>
 
                 <div class="form-group">
                     <label for="gender">Gender</label>
@@ -531,8 +531,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="contact no">Contact Number (09XX-XXX-XXXX) | (XXX-XXXX) </label>
-                    <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  class="form-control" name="contact" id="email" pattern="^(09)\d{2}-\d{3}-\d{4}$|^\d{3}-\d{4}$" required="">
+                    <label for="contact no">Contact Number (09XXXXXXXXX) </label>
+                    <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{9}$" class="form-control" name="contact" id="email" required="">
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -650,3 +650,19 @@
             </div>
 
         </div>
+
+<script type="text/javascript">
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+     if(dd<10){
+            dd='0'+dd
+        } 
+        if(mm<10){
+            mm='0'+mm
+        } 
+
+    today = yyyy+'-'+mm+'-'+dd;
+    document.getElementById("bdate").setAttribute("max", today);
+</script>
