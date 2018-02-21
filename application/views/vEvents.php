@@ -524,9 +524,9 @@
                 <div class="form-group">
                     <label for="gender">Gender</label>
                     <select class="form-control" name="gender">
-                        <option value="Male" <?php  if(isset($gender) && $gender=="Male"){echo 'selected';}?>>Male</option>
-                        <option value="Female" <?php  if(isset($gender) && $gender=="Female"){echo 'selected';}?>>Female</option>
-                        <option value="Other" <?php  if(isset($gender) && $gender=="Other"){echo 'selected';}?>>Other</option>
+                        <option value="Male" <?php  if(isset($in->gender) && $in->gender=="Male"){echo 'selected';}?>>Male</option>
+                        <option value="Female" <?php  if(isset($in->gender) && $in->gender=="Female"){echo 'selected';}?>>Female</option>
+                        <option value="Other" <?php  if(isset($in->gender) && $in->gender=="Other"){echo 'selected';}?>>Other</option>
                     </select>
                 </div>
 
