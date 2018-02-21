@@ -453,6 +453,7 @@ class CEvent extends CI_Controller {
 			$data['no_tickets_total'] = 0;
 			$data['event_status'] = 'pending';
 			$data['event_name'] = $this->input->post('event_name');
+			$data['user_id'] = $this->session->userdata['userSession']->userID;
 			$data['event_details'] = $this->input->post('event_details');
 			$data['event_category'] = $this->input->post('event_category');
 			// $data['event_picture'] = null;
@@ -532,7 +533,8 @@ class CEvent extends CI_Controller {
 						</div>
 					</div>
 				';*/
-				header( "refresh:1; viewEvents" );
+				// header( "refresh:1; viewEvents" );
+				redirect("event/CEvent/viewEvents");
 			}else{
 				$this->load->view('error_404');
 				/*
