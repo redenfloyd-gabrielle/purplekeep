@@ -179,33 +179,6 @@
                                     <?php echo CustomizationManager::$strings->LANDING_PAGE_SORT_BY_PRICE ?> <i class="fa fa-sort-numeric-desc"></i>
                                 </a>
                             </li>
-                            <li>
-                                <!-- Sort by Location -->
-                                <select id="region_code" name="region_code" required>
-                                    <option></option>
-                                    <option>NCR</option>
-                                    <option>CAR</option>
-                                    <option>MIMAROPA</option>
-                                    <option>ARMM</option>
-                                    <option>Region I</option>
-                                    <option>Region II</option>
-                                    <option>Region III</option>
-                                    <option>Region IV-A</option>
-                                    <option>Region V</option>
-                                    <option>Region VI</option>
-                                    <option>Region VII</option>
-                                    <option>Region VIII</option>
-                                    <option>Region IX</option>
-                                    <option>Region X</option>
-                                    <option>Region XI</option>
-                                    <option>Region XII</option>
-                                    <option>Region XIII</option>
-                                </select>
-
-                                <!-- Municipal -->
-                                <select id="municipal-name" name="municipal-name" required>
-                                </select>
-                            </li>
                         </ul> <!-- END OF SORT BY LIST-->
 
                         <!--  <div class="items-per-page">
