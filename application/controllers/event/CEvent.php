@@ -67,26 +67,29 @@ class CEvent extends CI_Controller {
                 }
 
                 if($now < $start){
-                	$ht .= '<div class="col-sm-6 col-md-4 p0">
-								<div class="box-two proerty-item">
-									<div class="item-entry overflow">
-									'.($now < $start?($interval->days == 0? "<div class='corner-ribbon top-right sticky red'>Less than a day!</div>": "<div class='corner-ribbon top-right sticky red'>".$interval->days." day/s left!"):"").'
+                	$ht .= '<div>
+                				<div class="col-sm-6 col-md-4 p0">
+									<div class="box-two proerty-item">
+										<div class="item-entry overflow">
+										'.($now < $start?($interval->days == 0? "<div class='corner-ribbon top-right sticky red'>Less than a day!</div>": "<div class='corner-ribbon top-right sticky red'>".$interval->days." day/s left!</div>"):"").'
+										
+												<h3 class="text-center"><a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"> 
+													'.$title.'
+												</a></h3>
+												<div class="item-thumb">
+														<a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'">
+														</a>
+												</div>
+												<div style="height:130px;">
+												<h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>
+												<h5>When: '.date_format($dateS, 'M d Y').' - '.date_format($dateE, 'M d Y').'
+                                       			</h5>
+												<h5>Event Tickets as low as Php '.$mintix.'!!!</h5></div>
+											<div class="dot-hr"></div>
+										</div>
 									</div>
-									<h3 class="text-center"><a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"> 
-										'.$title.'
-									</a></h3>
-									<div class="item-thumb">
-										<a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'">
-										</a>
-									</div>
-									<h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>
-									<h5>When: '.date_format($dateS, 'M d Y').' - '.date_format($dateE, 'M d Y').'
-                                        </h5>
-									<h5>Event Tickets as low as Php '.$mintix.'!!!</h5>
-									<div class="dot-hr"></div>
 								</div>
 							</div>
-						</div>
 					';
                 }else if($now >= $start && $now <= $end){
                 	$ht .= '<div class="col-sm-6 col-md-4 p0">
@@ -104,14 +107,16 @@ class CEvent extends CI_Controller {
 		                                    <a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'">
 		                                    </a>
                                         </div>
+                                        <div style="height:130px;">
                                         <h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'
                                         </h5>
                                         <h5>When: '.date_format($dateS, 'M d Y').' - '.date_format($dateE, 'M d Y').'
                                         </h5>
-                                        <h5>Event Tickets as low as Php '.$mintix.'!!!</h5>
+                                        <h5>Event Tickets as low as Php '.$mintix.'!!!</h5></div>
                                         <div class="dot-hr"></div>
 									</div>
 								</div>
+							</div>
 							</div>
 					';
                 }
