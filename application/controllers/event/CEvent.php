@@ -89,20 +89,9 @@ class CEvent extends CI_Controller {
 
 	}
 
-	public function viewCreateEvent()
-	{
-		$this->data['custom_js']= '<script type="text/javascript">
-                              	$("#user").addClass("active");
-                        </script>';
-
-  	$this->load->view('imports/vHeaderSignUpPage');
-		$this->load->view('vNewEvent');
-		$this->load->view('imports/vFooterLandingPage');
-
-	}
-
 	public function viewEvents()
 	{
+		
 		$userid = $this->session->userdata['userSession']->userID;
 
 		//////////////////////////////////////////////////////////////////////////////
@@ -158,6 +147,18 @@ class CEvent extends CI_Controller {
 		$this->load->view('imports/vHeaderLandingPage');
 		$this->load->view('vEvents',$data);
 		$this->load->view('imports/vFooterLandingPage');
+	}
+
+	public function viewCreateEvent()
+	{
+		$this->data['custom_js']= '<script type="text/javascript">
+                              	$("#user").addClass("active");
+                        </script>';
+
+  		$this->load->view('imports/vHeaderSignUpPage');
+		$this->load->view('vNewEvent');
+		$this->load->view('imports/vFooterLandingPage');
+
 	}
 
 	public function displayEventDetails($id)
