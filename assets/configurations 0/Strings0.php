@@ -42,7 +42,7 @@
     public $LANDING_PAGE_CREATE_EVENT_BUTTON = "Create Event";
     public $LANDING_PAGE_LOGOUT_BUTTON = "Logout";
     public $LANDING_PAGE_CAROUSEL_MESSAGE = "See Events Near You";
-    public $LANDING_PAGE_SEARCH_BOX_LABEL = "Search Event";
+    public $LANDING_PAGE_SEARCH_BOX_LABEL = "Search Event By:";
     public $LANDING_PAGE_SEARCH_BOX_PLACEHOLDER = "Key word";
     public $LANDING_PAGE_SORT_BY_DATE = "Sort By Date";
     public $LANDING_PAGE_SORT_BY_PRICE = "Sort By Price";

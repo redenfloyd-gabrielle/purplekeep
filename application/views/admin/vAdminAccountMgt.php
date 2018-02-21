@@ -156,7 +156,7 @@
                     	<label for="" class="col-8 control-label">Email:</label>
                       <i>(example: johndoe@XXXX.com)</i>
                     	<div class="col-8">
-                    		<input class="form-control" type="text" name="email" required="">
+                    		<input class="form-control" type="email" name="email" required="">
                     	</div>
                     </div>
 
