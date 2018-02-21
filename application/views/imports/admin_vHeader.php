@@ -108,19 +108,19 @@
         <ul>
             <li><a href="<?php echo site_url();?>/admin/CAdmin"><i class="icon  fa fa-laptop"></i> Dashboard </a></li>
 
-            <li><a href="<?php echo site_url();?>/admin/CAdmin/viewAllEvents"><i class="icon  fa fa-bullhorn"></i>  Events </a></li>
+            <li><a href="<?php echo site_url();?>/admin/CAdmin/viewAllEvents"><i class="icon  fa fa-calendar"></i>  Events </a></li>
 
             <li><a href="<?php echo site_url();?>/admin/CAdmin/viewUserAccountMgt"><i class="icon  fa fa-users"></i>  User Account </a></li>
 
             <li><a href="<?php echo site_url();?>/admin/CAdmin/viewAdminAccountMgt"><i class="icon  fa fa-user"></i>  Admin Account </a></li>
 
-            <li><a href="<?php echo site_url();?>/admin/CAdmin/viewAnnouncements"><i class="icon  fa fa-user"></i>  Announcements </a></li>
+            <li><a href="<?php echo site_url();?>/admin/CAdmin/viewAnnouncements"><i class="icon  fa fa-bullhorn"></i>  Announcements </a></li>
 
             <li><a href="<?php echo site_url();?>/admin/CAdmin/viewFinance"><i class="icon  fa fa-money"></i> Finance </a></li>
 
             <li><a href ="<?php echo site_url();?>/admin/CAdmin/generateCard" data-wow-delay="0.1s"><i class="icon  fa fa-credit-card"></i> Cards </a></li>
 
-            <li><a href ="<?php echo site_url();?>/admin/CAdmin/updateAccount" data-wow-delay="0.1s"><i class="icon  fa fa-credit-card"></i> Update Account </a></li>
+            <li><a href ="<?php echo site_url();?>/admin/CAdmin/updateAccount" data-wow-delay="0.1s"><i class="icon  fa fa-cog"></i> Update Account </a></li>
 
         </ul>
     </nav>
