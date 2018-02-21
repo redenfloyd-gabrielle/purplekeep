@@ -83,6 +83,10 @@
                                     <input type="text" class="form-control" name="event_venue" required="">
                                 </div>
 
+                                <div class="form-group">
+                                    <label for="name">VENUE CAPACITY</label>
+                                    <input type="text" class="form-control" name="event_venue_capacity" required="">
+                                </div>
                                 <!-- Added a location_code -->
                                 <div class="form-group">
 
@@ -187,88 +191,14 @@
                                 </div>
                                 <br>
                                 <h2><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_DETAILS ?></h2>
-                                 <div class="ticketContainer">
-                                    <!-- <span>TICKET TYPE </span> <br> -->
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_TYPE ?></span> <br>
-                                    <div class="select-field">
-                                         <input type="text" class="form-control" required="" name="ticketType1" placeholder="Ticket type">
-                                       <!--  <select name="ticketType">
-                                            <option value="">Free</option>
-                                            <option value="">VIP</option>
-                                        </select> -->
-                                    </div>
+                                <div class="text-right">
+                                    <button id="openModal" type="button" class="btn btn-default" data-backdrop="false" data-keyboard="false">Add Tix</button>
                                 </div>
-                                <div class="ticketContainer">
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_QUANTITY ?></span>
-                                    <div class="select-field">
-                                        <input type="number" class="form-control" min="1" required="" name="no_tickets_total1" placeholder="Ticket count">
-                                    </div>
+                                <div style="border:1px solid #f2f2f2;margin:1.5%;height:150px;overflow-x:hidden;overflow-y:auto">
+                                   <ul style="padding:5px" id="tixContainer">
+                                       
+                                   </ul>
                                 </div>
-                                <div class="ticketContainer">
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_PRICE ?></span>
-                                    <div class="select-field">
-                                        <input type="number" class="form-control" min="0" required="" name="price_tickets_total1" placeholder="Ticket price">
-                                    </div>
-                                </div>
-
-
-                                <br><br>
-
-                                <div class="ticketContainer">
-                                    <!-- <span>TICKET TYPE </span> <br> -->
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_TYPE ?></span> <br>
-                                    <div class="select-field">
-                                         <input type="text" class="form-control" name="ticketType2" placeholder="Ticket type">
-                                       <!--  <select name="ticketType">
-                                            <option value="">Free</option>
-                                            <option value="">VIP</option>
-                                        </select> -->
-                                    </div>
-                                </div>
-                                <div class="ticketContainer">
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_QUANTITY ?></span>
-                                    <div class="select-field">
-                                        <input type="number" min="1" class="form-control" name="no_tickets_total2" placeholder="Ticket count">
-                                    </div>
-                                </div>
-                                <div class="ticketContainer">
-                                    <!-- <span>PRICE OF TICKET</span> -->
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_PRICE ?></span>
-                                    <div class="select-field">
-                                        <input type="number" min="1" class="form-control" name="price_tickets_total2" placeholder="Ticket price">
-                                    </div>
-                                </div>
-
-
-                                <br><br>
-
-                                <div class="ticketContainer">
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_TYPE ?></span> <br>
-                                    <div class="select-field">
-                                         <input type="text" class="form-control" name="ticketType3" placeholder="Ticket type">
-                                       <!--  <select name="ticketType">
-                                            <option value="">Free</option>
-                                            <option value="">VIP</option>
-                                        </select> -->
-                                    </div>
-                                </div>
-                                <div class="ticketContainer">
-
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_QUANTITY ?></span>
-                                    <div class="select-field">
-                                        <input type="number" min="1" class="form-control" name="no_tickets_total3" placeholder="Ticket count">
-                                    </div>
-                                </div>
-                                <div class="ticketContainer">
-                                    <!-- <span>PRICE OF TICKET</span> -->
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_PRICE ?></span>
-                                    <div class="select-field">
-                                        <input type="number" min="1" class="form-control" name="price_tickets_total3" placeholder="Ticket price">
-                                    </div>
-                                </div>
-
-                                <br><br>
-
                                 <div class="text-center">
                                     <!-- <button type="submit" class="btn btn-default" value="Create Event"> <a href="<?php echo site_url();?>/cLogin/viewEvents"> Register</button> -->
                                     <button type="submit" class="btn btn-default" value="Create Event"><!-- <a href="<?php echo site_url();?>/cLogin/viewEvents"> --><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_SUBMIT_BUTTON ?></button>
@@ -320,7 +250,45 @@
                      </div>
                  </div>
              </div>
-
+             <!-- Modal -->
+              <div class="modal fade" id="ticketModal" role="dialog">
+                <div class="modal-dialog modal-lg">
+                  <div class="modal-content">
+                    <div class="modal-header" style="border-bottom:1px solid #e5e5e5;background-color:#CB6C52;color:#ffff;border-top-left-radius:6px;border-top-right-radius:6px">
+                      <button type="button" class="close" data-dismiss="modal">&times;</button>
+                      <h4 class="modal-title">Add Ticket</h4>
+                    </div>
+                    <div id="ticketForm" class="modal-body">
+                      <div class="ticketContainer">
+                                    <!-- <span>TICKET TYPE </span> <br> -->
+                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_TYPE ?></span> <br>
+                                    <div class="select-field">
+                                         <input type="text" class="form-control" required="" name="ticketType" placeholder="Ticket type">
+                                       <!--  <select name="ticketType">
+                                            <option value="">Free</option>
+                                            <option value="">VIP</option>
+                                        </select> -->
+                                    </div>
+                                </div>
+                                <div class="ticketContainer">
+                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_QUANTITY ?></span>
+                                    <div class="select-field">
+                                        <input type="number" class="form-control" min="1" required="" name="no_tickets_total" placeholder="Ticket count">
+                                    </div>
+                                </div>
+                                <div class="ticketContainer">
+                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_PRICE ?></span>
+                                    <div class="select-field">
+                                        <input type="number" class="form-control" min="0" required="" name="price_tickets_total" placeholder="Ticket price">
+                                    </div>
+                                </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button id="addTicket" type="button" class="btn btn-default">Add</button>
+                    </div>
+                  </div>
+                </div>
+              </div>    
             <div class="footer-copy text-center">
                 <div class="container">
                     <div class="row">
@@ -337,7 +305,6 @@
             </div>
 
          </div>
-
         <script type="text/javascript">
             $("#datetime").datepicker();
         </script>

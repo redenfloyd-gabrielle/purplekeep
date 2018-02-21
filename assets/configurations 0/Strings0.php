@@ -60,7 +60,7 @@
     public $NEW_EVENT_PAGE_EVENT_END = "Ends";
     public $NEW_EVENT_PAGE_EVENT_CATEGORY = "Category";
     public $NEW_EVENT_PAGE_EVENT_DESCRIPTION = "Event Description";
-    public $NEW_EVENT_PAGE_TICKET_DETAILS = "Ticket Details :";
+    public $NEW_EVENT_PAGE_TICKET_DETAILS = "Tickets:";
     public $NEW_EVENT_PAGE_TICKET_TYPE = "Ticket Type";
     public $NEW_EVENT_PAGE_TICKET_QUANTITY = "Number of Tickets";
     public $NEW_EVENT_PAGE_TICKET_PRICE = "Price of Ticket";
