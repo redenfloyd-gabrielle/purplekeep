@@ -100,7 +100,7 @@
                       <label for="" class="col-8 control-label">Password:</label>
                       <i>(must contain at least 8 characters, maximum of 50 characters)</i>
                       <div class="col-8">
-                        <input class="form-control" type="password" name="upassword" required="" value="<?php echo $updateAdmin->password; ?>">
+                        <input class="form-control" type="password" name="upassword" required="" value="********">
                       </div>
                         <input class="form-control hidden" type="text" name="uuserType" required="" value="<?php echo $updateAdmin->user_type; ?>">
                       </div>
