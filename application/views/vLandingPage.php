@@ -243,7 +243,7 @@
                                                                 echo '<div class="item-thumb">
                                                                 <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
 
-                                                                echo '<h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
+                                                                echo '<div style="height:130px;"><h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
 
                                                                 $dateS = date_create($event->dateStart);
                                                                 $dateE = date_create($event->dateEnd);
@@ -255,7 +255,7 @@
                                                                 foreach ($event->tix as $key) {
                                                                     $mintix = ($key->price <= $mintix)? $key->price : $mintix;
                                                                 }
-                                                                echo '<h5>Event Tickets as low as Php '.$mintix.'!!!</h5>';          
+                                                                echo '<h5>Event Tickets as low as Php '.$mintix.'!!!</h5></div>';          
                                                                 echo '<div class="dot-hr"></div>
                                                             </div>
                                                         </div>
@@ -281,7 +281,7 @@
                                                                 echo '<div class="item-thumb">
                                                                 <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
 
-                                                                echo '<h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
+                                                                echo '<div style="height:130px;"><h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
 
                                                                 $dateS = date_create($event->dateStart);
                                                                 $dateE = date_create($event->dateEnd);
@@ -290,7 +290,7 @@
                                                                 foreach ($event->tix as $key) {
                                                                     $mintix = ($key->price <= $mintix)? $key->price : $mintix;
                                                                 }
-                                                                echo '<h5>Event Tickets as low as Php '.$mintix.'!!!</h5>';
+                                                                echo '<h5>Event Tickets as low as Php '.$mintix.'!!!</h5></div>';
                                                                 echo '<div class="dot-hr"></div>
                                                             </div>
                                                         </div>

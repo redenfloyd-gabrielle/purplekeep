@@ -80,10 +80,11 @@ class CEvent extends CI_Controller {
 														<a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'">
 														</a>
 												</div>
+												<div style="height:130px;">
 												<h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>
 												<h5>When: '.date_format($dateS, 'M d Y').' - '.date_format($dateE, 'M d Y').'
                                        			</h5>
-												<h5>Event Tickets as low as Php '.$mintix.'!!!</h5>
+												<h5>Event Tickets as low as Php '.$mintix.'!!!</h5></div>
 											<div class="dot-hr"></div>
 										</div>
 									</div>
@@ -106,11 +107,12 @@ class CEvent extends CI_Controller {
 		                                    <a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'">
 		                                    </a>
                                         </div>
+                                        <div style="height:130px;">
                                         <h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'
                                         </h5>
                                         <h5>When: '.date_format($dateS, 'M d Y').' - '.date_format($dateE, 'M d Y').'
                                         </h5>
-                                        <h5>Event Tickets as low as Php '.$mintix.'!!!</h5>
+                                        <h5>Event Tickets as low as Php '.$mintix.'!!!</h5></div>
                                         <div class="dot-hr"></div>
 									</div>
 								</div>
