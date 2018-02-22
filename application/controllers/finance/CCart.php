@@ -89,8 +89,8 @@ class CCart extends CI_Controller {
 	}
 
 	public function viewCart(){
-
-		$data['events'] = $this->MCart->getCart();
+		if(isset($this->session->userdata['userSession'])){
+			$data['events'] = $this->MCart->getCart();
 		$data['announcements'] = $this->MAnnouncement->getUnviewedOfUser($this->session->userdata['userSession']->userID);
 		$data['announcementCount'] = count($data['announcements']);
 		if(count($data['announcements']) == 0){
@@ -132,10 +132,16 @@ class CCart extends CI_Controller {
                               });
 
                         </script>';
+
+        $data['user'] = $this->MUser->read($this->session->userdata['userSession']->userID);
 		
 		$this->load->view('imports/vHeaderLandingPage');
 		$this->load->view('vCart',$data);	
 		$this->load->view('imports/vFooterLandingPage');
+		}else{
+			redirect("CLogin");
+		}
+		
 		
 	}
 	//add 1 qty to the cart

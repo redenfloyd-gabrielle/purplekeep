@@ -110,11 +110,22 @@ class cUser extends CI_Controller {
 				if($res){
 					$code = $card[0]->cardId;
 					$res1 = $this->MCardLoad->update($code, array('cardStatus'=>0));
+
+					redirect("event/cEvent/viewEvents");
 				}
+			} else {
+				$data = "CodeUsed";
+
+				redirect("event/cEvent/viewEventsFromCodeError(".$data.")");
 			}
+		} else {
+			$data = "CodeInvalid";
+
+			redirect("event/cEvent/viewEventsFromCodeError/".$data."/");
 		}
 
-		redirect("event/cEvent/viewEvents");
+		//$this->load->view('vLogin', $data);
+		//
 	}
 	
 
