@@ -1,7 +1,7 @@
 	<div class="container-box">
 		<div class="container-content"></div>
-		<div class="container">
-			<div class="col-md-12">
+		<div class="container" >
+			<div class="col-md-12" id="eventsList">
 				<div class="row">
 					<div class="list-of-events"  id="targ2">
 						<?php
@@ -52,3 +52,4 @@
 		</div>
 	</div>
 </div>
+

@@ -179,33 +179,6 @@
                                     <?php echo CustomizationManager::$strings->LANDING_PAGE_SORT_BY_PRICE ?> <i class="fa fa-sort-numeric-desc"></i>
                                 </a>
                             </li>
-                            <li>
-                                <!-- Sort by Location -->
-                                <select id="region_code" name="region_code" required>
-                                    <option></option>
-                                    <option>NCR</option>
-                                    <option>CAR</option>
-                                    <option>MIMAROPA</option>
-                                    <option>ARMM</option>
-                                    <option>Region I</option>
-                                    <option>Region II</option>
-                                    <option>Region III</option>
-                                    <option>Region IV-A</option>
-                                    <option>Region V</option>
-                                    <option>Region VI</option>
-                                    <option>Region VII</option>
-                                    <option>Region VIII</option>
-                                    <option>Region IX</option>
-                                    <option>Region X</option>
-                                    <option>Region XI</option>
-                                    <option>Region XII</option>
-                                    <option>Region XIII</option>
-                                </select>
-
-                                <!-- Municipal -->
-                                <select id="municipal-name" name="municipal-name" required>
-                                </select>
-                            </li>
                         </ul> <!-- END OF SORT BY LIST-->
 
                         <!--  <div class="items-per-page">
@@ -270,7 +243,7 @@
                                                                 echo '<div class="item-thumb">
                                                                 <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
 
-                                                                echo '<h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
+                                                                echo '<div style="height:130px;"><h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
 
                                                                 $dateS = date_create($event->dateStart);
                                                                 $dateE = date_create($event->dateEnd);
@@ -282,7 +255,7 @@
                                                                 foreach ($event->tix as $key) {
                                                                     $mintix = ($key->price <= $mintix)? $key->price : $mintix;
                                                                 }
-                                                                echo '<h5>Event Tickets as low as Php '.$mintix.'!!!</h5>';          
+                                                                echo '<h5>Event Tickets as low as Php '.$mintix.'!!!</h5></div>';          
                                                                 echo '<div class="dot-hr"></div>
                                                             </div>
                                                         </div>
@@ -308,7 +281,7 @@
                                                                 echo '<div class="item-thumb">
                                                                 <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
 
-                                                                echo '<h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
+                                                                echo '<div style="height:130px;"><h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
 
                                                                 $dateS = date_create($event->dateStart);
                                                                 $dateE = date_create($event->dateEnd);
@@ -317,7 +290,7 @@
                                                                 foreach ($event->tix as $key) {
                                                                     $mintix = ($key->price <= $mintix)? $key->price : $mintix;
                                                                 }
-                                                                echo '<h5>Event Tickets as low as Php '.$mintix.'!!!</h5>';
+                                                                echo '<h5>Event Tickets as low as Php '.$mintix.'!!!</h5></div>';
                                                                 echo '<div class="dot-hr"></div>
                                                             </div>
                                                         </div>
@@ -407,35 +380,7 @@
         });
     } );
     
-    $(document).ready(function(){
-        <?php if(isset($announcements)){
-        foreach ($announcements as $key) {
-            ?>
-             $.notify({
-              title: "<?php echo '<strong>'.substr(trim(str_replace("\"", "\'",(preg_replace( "/\r|\n/", "", $key->announcementDetails )))),0,25).'</strong><br>';?>",
-              icon: 'glyphicon glyphicon-info-sign',
-              message: '<?php echo $key->ago." ".$key->agoU;?><a href="<?php echo site_url();?>/user/CUser/viewClickedAnnouncement/<?php echo $key->announcementID; ?>" >Click here...</a> '
-            },{
-              type: 'info',
-              animate: {
-                    enter: 'animated fadeInUp',
-                exit: 'animated fadeOutDown'
-              },
-              placement: {
-                from: "bottom",
-                align: "left"
-              },
-              offset: 20,
-              spacing: 10,
-              z_index: 1031,
-            });
-            <?php
-        }
-       
-       
-    }?>
-<?php ?>
-    });
+    
 </script> 
 <script>
     $(document).ready(function(){

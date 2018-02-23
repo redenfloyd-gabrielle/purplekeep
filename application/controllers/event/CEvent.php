@@ -67,26 +67,29 @@ class CEvent extends CI_Controller {
                 }
 
                 if($now < $start){
-                	$ht .= '<div class="col-sm-6 col-md-4 p0">
-								<div class="box-two proerty-item">
-									<div class="item-entry overflow">
-									'.($now < $start?($interval->days == 0? "<div class='corner-ribbon top-right sticky red'>Less than a day!</div>": "<div class='corner-ribbon top-right sticky red'>".$interval->days." day/s left!"):"").'
+                	$ht .= '<div>
+                				<div class="col-sm-6 col-md-4 p0">
+									<div class="box-two proerty-item">
+										<div class="item-entry overflow">
+										'.($now < $start?($interval->days == 0? "<div class='corner-ribbon top-right sticky red'>Less than a day!</div>": "<div class='corner-ribbon top-right sticky red'>".$interval->days." day/s left!</div>"):"").'
+										
+												<h3 class="text-center"><a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"> 
+													'.$title.'
+												</a></h3>
+												<div class="item-thumb">
+														<a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'">
+														</a>
+												</div>
+												<div style="height:130px;">
+												<h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>
+												<h5>When: '.date_format($dateS, 'M d Y').' - '.date_format($dateE, 'M d Y').'
+                                       			</h5>
+												<h5>Event Tickets as low as Php '.$mintix.'!!!</h5></div>
+											<div class="dot-hr"></div>
+										</div>
 									</div>
-									<h3 class="text-center"><a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"> 
-										'.$title.'
-									</a></h3>
-									<div class="item-thumb">
-										<a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'">
-										</a>
-									</div>
-									<h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>
-									<h5>When: '.date_format($dateS, 'M d Y').' - '.date_format($dateE, 'M d Y').'
-                                        </h5>
-									<h5>Event Tickets as low as Php '.$mintix.'!!!</h5>
-									<div class="dot-hr"></div>
 								</div>
 							</div>
-						</div>
 					';
                 }else if($now >= $start && $now <= $end){
                 	$ht .= '<div class="col-sm-6 col-md-4 p0">
@@ -104,14 +107,16 @@ class CEvent extends CI_Controller {
 		                                    <a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'">
 		                                    </a>
                                         </div>
+                                        <div style="height:130px;">
                                         <h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'
                                         </h5>
                                         <h5>When: '.date_format($dateS, 'M d Y').' - '.date_format($dateE, 'M d Y').'
                                         </h5>
-                                        <h5>Event Tickets as low as Php '.$mintix.'!!!</h5>
+                                        <h5>Event Tickets as low as Php '.$mintix.'!!!</h5></div>
                                         <div class="dot-hr"></div>
 									</div>
 								</div>
+							</div>
 							</div>
 					';
                 }
@@ -172,17 +177,141 @@ class CEvent extends CI_Controller {
 
 	public function viewCreateEvent()
 	{
+		$data['announcements'] = $this->MAnnouncement->getUnviewedOfUser($this->session->userdata['userSession']->userID);
+		$data['announcementCount'] = count($data['announcements']);
+		if(count($data['announcements']) == 0){
+			$data['announcements'] = NULL;
+		}
+
+			$array1 = array();
+			if($data['announcements']){
+				foreach ($data['announcements'] as $value) {
+						$arrObj = new stdClass;
+						$arrObj->announcementID = $value->announcementID;
+						$arrObj->announcementDetails = $value->announcementDetails;
+						$arrObj->first_name = $value->first_name;
+						$arrObj->last_name = $value->last_name;
+						if($value->sec){
+							$arrObj->ago =$value->sec;
+							$arrObj->agoU ="seconds ago";
+						}else if($value->min){
+							$arrObj->ago =$value->min;
+							$arrObj->agoU ="minutes ago";
+						}else if($value->hr){
+							$arrObj->ago =$value->hr;
+							$arrObj->agoU ="hours ago";
+						}else if($value->day){
+							$arrObj->ago =$value->day;
+							$arrObj->agoU ="days ago";
+						}
+						$array1[] = $arrObj;
+				}
+			}
+			$data['announcements'] = $array1;
 		$this->data['custom_js']= '<script type="text/javascript">
                               	$("#user").addClass("active");
                         </script>';
 
-  	$this->load->view('imports/vHeaderSignUpPage');
-		$this->load->view('vNewEvent');
+  		$this->load->view('imports/vHeaderSignUpPage');
+		$this->load->view('vNewEvent',$data);
 		$this->load->view('imports/vFooterLandingPage');
 
 	}
 
 	public function viewEvents()
+	{
+
+		$userid = $this->session->userdata['userSession']->userID;
+
+		//////////////////////////////////////////////////////////////////////////////
+		//================Sprint 3 SPRINT 3 INTERFACE MODULE============//
+		/////////////////////////////////////////////////////////////////////////////
+		$strEventSelect = "*, DATE_FORMAT(event_info.event_date_start,'%d-%b-%y %H:%m') as dateStart, DATE_FORMAT(event_info.event_date_end,'%d-%b-%y %H:%m') as dateEnd";
+		$strEventWhere = array("user_id" => $userid,
+													 "event_isActive" => TRUE
+													);
+		$result = $this->MEvent->select_certain_where_isDistinct_hasOrderBy_hasGroupBy_isArray($strEventSelect,
+							$strEventWhere,FALSE,FALSE,FALSE,FALSE);
+		// echo"<pre>";
+		// var_dump($result);
+		$array = array();
+		foreach ($result as $value) {
+			$arrObj = new stdClass;
+			$arrObj->data = $value;
+			$arrObj->data->tix = $this->MEvent->getTicketsOfEvent($value->event_id);
+
+			//Adding of location
+			$arrObj->data->location = $this->MLocation->read_where("location_id = ".$value->location_id."");
+
+			$array[] = $arrObj;
+		}
+
+		$val = array();
+		foreach ($array as $key) {
+			$arrObj = new stdClass;
+			$arrObj = $key->data;
+			$val[] = $arrObj;
+		}
+		$data['events']  = $val;
+		////////////STOPS HERE///////////////////////////////////////////////////
+
+
+
+		//////////////////////////////////////////////////////////////////////////////
+		//================Sprint 3 SPRINT 3 INTERFACE MODULE============//
+		/////////////////////////////////////////////////////////////////////////////
+		$data['user'] = $this->MUser->read($this->session->userdata['userSession']->userID);
+		////////////STOPS HERE///////////////////////////////////////////////////
+
+
+		$data['info'] = $this->MUser->loadUserDetails($userid);
+		//////////////////////////////////////////////////////////////////////////////
+		//================Sprint 3 SPRINT 3 INTERFACE MODULE============//
+		/////////////////////////////////////////////////////////////////////////////
+		$data['hist']   = $this->MEventInfo->getTransHistory($this->session->userdata['userSession']->userID);
+		////////////STOPS HERE///////////////////////////////////////////////////
+
+		$data['userid'] = $userid;
+
+		$data['announcements'] = $this->MAnnouncement->getUnviewedOfUser($this->session->userdata['userSession']->userID);
+		$data['announcementCount'] = count($data['announcements']);
+		if(count($data['announcements']) == 0){
+			$data['announcements'] = NULL;
+		}
+
+			$array1 = array();
+			if($data['announcements']){
+				foreach ($data['announcements'] as $value) {
+						$arrObj = new stdClass;
+						$arrObj->announcementID = $value->announcementID;
+						$arrObj->announcementDetails = $value->announcementDetails;
+						$arrObj->first_name = $value->first_name;
+						$arrObj->last_name = $value->last_name;
+						if($value->sec){
+							$arrObj->ago =$value->sec;
+							$arrObj->agoU ="seconds ago";
+						}else if($value->min){
+							$arrObj->ago =$value->min;
+							$arrObj->agoU ="minutes ago";
+						}else if($value->hr){
+							$arrObj->ago =$value->hr;
+							$arrObj->agoU ="hours ago";
+						}else if($value->day){
+							$arrObj->ago =$value->day;
+							$arrObj->agoU ="days ago";
+						}
+						$array1[] = $arrObj;
+				}
+			}
+			$data['announcements'] = $array1;
+
+		$this->load->view('imports/vHeaderLandingPage');
+		$this->load->view('vEvents',$data);
+		$this->load->view('imports/vFooterLandingPage');
+	}
+
+	//redirect View Events Page from Redeem Code error
+	public function viewEventsFromCodeError($dataError) 
 	{
 		$userid = $this->session->userdata['userSession']->userID;
 
@@ -235,6 +364,10 @@ class CEvent extends CI_Controller {
 		////////////STOPS HERE///////////////////////////////////////////////////
 
 		$data['userid'] = $userid;
+
+		/*$data['dataErrorTitle'] = $dataErrorTitle;
+		$data['dataErrorMEssage'] = $dataErrorMessage;*/
+		$data['dataError'] = $dataError;
 
 		$this->load->view('imports/vHeaderLandingPage');
 		$this->load->view('vEvents',$data);
@@ -454,6 +587,7 @@ class CEvent extends CI_Controller {
 			$data['no_tickets_total'] = 0;
 			$data['event_status'] = 'pending';
 			$data['event_name'] = $this->input->post('event_name');
+			$data['user_id'] = $this->session->userdata['userSession']->userID;
 			$data['event_details'] = $this->input->post('event_details');
 			$data['event_category'] = $this->input->post('event_category');
 			// $data['event_picture'] = null;
@@ -479,7 +613,7 @@ class CEvent extends CI_Controller {
 				if(!$photo) {
 					$photo = $this->MEvent->insertPhotoEvent("events1.jpg",$evt_id);
 				}
-				var_dump($photo);
+				//var_dump($photo);
 
 					// print_r($photo);
 
@@ -521,20 +655,25 @@ class CEvent extends CI_Controller {
 					$where =  array('no_tickets_total' => $totalNumTix );
 					$res = $this->MEvent->update($evt_id,$where);
 					$flag = $res;
-				}else{
+				}/*else{
 					$this->load->view('error_404');
-				}
+				}*/
 			}
 			if($flag){
-				echo'
+				/*echo'
 					<div id="addAdmin" class="modal fade"  data-header-color="#34495e">
 						<div class="modal-header">
 								<h1 class="modal-title" align="center">Create Event Successful</h1>
 						</div>
 					</div>
-				';
-				header( "refresh:1; viewEvents" );
+				';*/
+				// header( "refresh:1; viewEvents" );
+				$this->session->set_flashdata('success_msg',"Your event has been successfully submitted. Please wait for the confirmation.");
+				redirect("event/CEvent/viewEvents");
+				//redirect("event/CEvent/viewEvents");
 			}else{
+				$this->load->view('error_404');
+				/*
 				echo'
 					<div id="addAdmin" class="modal fade"  data-header-color="#34495e">
 						<div class="modal-header">
@@ -542,7 +681,7 @@ class CEvent extends CI_Controller {
 						</div>
 					</div>
 				';
-				header( "refresh:1; viewCreateEvent" );
+				header( "refresh:1; viewCreateEvent" );*/
 			}
 		  }
 
@@ -792,5 +931,11 @@ class CEvent extends CI_Controller {
 			$this->load->view('imports/vFooterLandingPage');
 			# code...
 		}
+
+		public function viewEventConfirmation() {
+		  $this->load->view('imports/vHeaderLandingPage');
+	  	$this->load->view('vEventConfirmation.php');
+  		$this->load->view('imports/vFooterLandingPage');
+	 }
 }
 ?>

@@ -133,7 +133,39 @@ div.desc {
 
         <div class="page-head">
             <div class="container">
-                <div class="row">
+                <div class="row overflow">
+                    <?php
+                        //<div class="corner-ribbon top-right sticky red">Shibal</div>
+                        date_default_timezone_set('Asia/Manila');
+                        $now = new DateTime("now");
+                        $end = new DateTime($e->event_date_end);
+                        $start = new DateTime($e->event_date_start);
+                        $interval = date_diff($now, $start);
+                        $year = $interval->format("%y");
+                        $month = $interval->format("%m");
+                        $day = $interval->format("%d");
+                        $week = 0;
+                        if($day >= 7){
+                            $week = intval($day/7);
+                        }
+
+                        //echo "<div class='  blue'>".$year." ".$month." ".$week." ".$day." </div>";
+                        if($now < $start){
+                            if($year != 0 && ($month >= 12 || $month == 0)){
+                                echo "<div class='corner-ribbon top-left sticky blue'>".$year." Year/s Left</div>";
+                            }elseif($month != 0 && $week >=4){
+                                echo "<div class='corner-ribbon top-left sticky red'>".$month." Month/s Left</div>";
+                            }elseif($week != 0 && $month == 0){
+                                echo "<div class='corner-ribbon top-left sticky orange'>".$week." Week/s Left</div>";
+                            }elseif($day != 0 && $week == 0){
+                                echo "<div class='corner-ribbon top-left sticky yellow'>".$day." Day/s Left</div>";
+                            }
+                        }else if($now >= $start && $now <= $end){
+                            echo "<div class='corner-ribbon top-left sticky green'>  Happening now!</div>";
+                        }else{
+                            echo "<div class='corner-ribbon top-left sticky black'>Event has passed</div>";
+                        }
+                    ?>
                     <div class="page-head-content">
                         <h1 class="page-title">EVENT DETAILS</h1>
                     </div>
@@ -237,7 +269,6 @@ div.desc {
                             </div>
 
                             <!-- .property-meta -->
-
 
                         <?php if($this->session->userdata['userSession']->userID == $e->user_id){?>
                             <div class="section property-share">

@@ -604,7 +604,7 @@ class CAdmin extends CI_Controller {
 	public function createAnnouncement() {
 		
 		$rules = "strip_tags|trim|xss_clean";
-		$this->form_validation->set_rules('announcementDetails','Announcement Details',$rules.'|required|min_length[5]|max_length[50]');
+		$this->form_validation->set_rules('announcementDetails','Announcement Details',$rules.'|required|min_length[5]|max_length[150]');
         
 		if ($this->form_validation->run() != FALSE )
 		{
