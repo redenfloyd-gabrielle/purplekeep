@@ -377,6 +377,10 @@
 
     $(document).ready(function() {
 
+        $('#calendar').on("click", "td", function() {
+            $('#testmodal').modal('show');
+        });
+
         $('#calendar').fullCalendar({
             header: {
                 left: 'prev,next today',
@@ -404,7 +408,7 @@
 
                     // if(start[2] <= date[2] ){
                         if(start[2]< date[2] || start[2] == date[2] && (start[0]<date[0] || (start[0] == date[0] && start[1]< date[1]))){
-                            $('#errmodal').modal('show');
+                            //$('#errmodal').modal('show');
                             flag = false;
                         }
                     // }
@@ -555,6 +559,54 @@
       <div class="modal-body">
         <h2>Cannot add events on past dates! Please choose a different date.</h2>
       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade bd-example" id="testmodal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- <div class="modal-header" style="background-color: blue; height:50px;">
+        <h2 style="color: white;">EVENTS!</h2>
+      </div>
+      <div class="modal-body">
+        <h2>TEST</h2>
+      </div> -->
+        <div class="col-md-12">
+            <hr>
+            <center><h3>EVENT(S) CREATED</h3></center>
+            <hr>
+            <div class="text-right">
+                <button>CREATE NEW</button>
+            </div>   
+            <table style="width:100%">
+                <tr>
+                    <th>Event Name</th>
+                    <th>Time</th>
+                    <th>Action</th>
+                </tr>
+            </table>
+            <br><br>
+        </div>
+        <div class="col-md-12">
+            <hr>
+            <center><h3>EVENT(S) JOINED</h3></center>
+            <hr>
+            <div class="text-right">
+                <button>JOIN NEW</button>
+            </div>
+            <table style="width:100%">
+                <tr>
+                    <th>Event Name</th>
+                    <th>Time</th>
+                    <th>Action</th>
+                </tr>
+            </table>
+            <br><br>
+        </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
       </div>

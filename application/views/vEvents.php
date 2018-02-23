@@ -564,8 +564,6 @@
 
 
   <script type="text/javascript">
-
-    /*
     $(document).ready(function(){
         var wrap = $(this).find('.es-wrap');
         $('.tab a').on('click', function (e) {

@@ -24,7 +24,7 @@ class CCard extends CI_Controller {
 		 			   $this->input->post('qty3'),
 		 			   $this->input->post('qty4'),
 		 			 );
-		echo 'qty'.$qty[0];
+
 		for ($i = 0; $i < 4; $i++) {
 
 			$this->card1($amount[$i], $qty[$i]);
@@ -82,8 +82,11 @@ class CCard extends CI_Controller {
 		$data = array('cardId' => null,
 					'cardCode' => $random,
 					'cardAmount' => $amount,
-					'cardCreatedOn' => null,
-					'cardStatus' => 1);
+					'cardStatus' => 1,
+					'addedBy' => 0,
+					'updatedBy' => 0,
+					'addedAt' => null,
+					'updatedAt' => null);
 
 		$query = $card->insert($data);
 		///////////////////////////////////////
