@@ -237,8 +237,21 @@
 			$this->db->select("DATE_FORMAT(event_info.event_date_start,'%d-%b-%y %H:%m') as dateStart");
 			$this->db->select("DATE_FORMAT(event_info.event_date_end,'%d-%b-%y %H:%m') as dateEnd");
 			$this->db->from("event_info");
-			$this->db->join("location", "event_info.location_id = location.location_id");
+
+			$this->db->join("location", "event_info.location_id = location.location_id");			
+			$this->db->where("event_name LIKE '%".$searchWord."%'");
+			if(!strcmp($_POST["searchDateYear"], "") && $_POST["searchDateMonth"] != '0'){
+				$this->db->where("MONTH(event_date_start) = ".$_POST["searchDateMonth"]."");
+				$this->db->where("YEAR(event_date_start) = ".$_POST["searchDateYear"]."");
+			} else if(!strcmp($_POST["searchDateYear"], "")) {
+				$this->db->where("YEAR(event_date_start) = ".$_POST["searchDateYear"]."");
+			} else if($_POST["searchDateMonth"] != 0){
+				$this->db->where("MONTH(event_date_start) = ".$_POST["searchDateMonth"]."");
+			}
+      
+      $this->db->join("location", "event_info.location_id = location.location_id");
 			$this->db->where("event_info.event_status = 'Approved'");
+
 			$query = $this->db->get();
 			return $query->result();
 		}
