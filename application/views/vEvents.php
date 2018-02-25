@@ -38,7 +38,7 @@
                     <ul class="main-nav nav navbar-nav navbar-right">
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_HOME ?></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_PROFILE ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements">Announcements</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>'><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_ANNOUNCEMENTS ?><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents">Interested Events</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/CCart/viewCart">View Cart</a></li>
                     </ul>
@@ -58,8 +58,7 @@
                 </div>
             </div>
         </div>
-
-        <!-- End page header -->
+                <!-- End page header -->
 
         <!-- property area -->
         <div class="properties-area recent-property" style="background-color: #FFF;">
@@ -73,7 +72,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="panel-heading">
-                                                <center><h1 style="font-size: 50px;" class="panel-title">P<?php foreach($user as $u){echo $u->load_amt;}?>.00</h1></center>
+                                                <center><h1 style="font-size: 50px;" class="panel-title">Php <?php foreach($user as $u){echo $u->load_amt;}?>.00</h1></center>
                                             </div>
                                         </div>
                                     </div>
@@ -250,13 +249,19 @@
             </div>
         </div>
     </div>
+    
+    <?php if ($this->session->flashdata('success_msg')): ?>
+        <div class="alert alert-success">
+              <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+              <?php echo $this->session->flashdata('success_msg') ?>
+          </div>
+      <?php endif ?>
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" id="myTabs" role="tablist">
     <li role="presentation" class="tab active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_EVENTS ?></a></li>
     <li role="presentation" class="tab"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_REPORTS ?></a></li>
     <li role="presentation" class="tab"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_PAYMENT_HISTORY ?></a></li>
-    <li role="presentation" class="tab"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_SETTINGS ?></a></li>
     <li role="presentation" class="tab"><a href="#editprofile" aria-controls="editprofile" role="tab" data-toggle="tab">Edit Profile</a></li>
 
   </ul>
@@ -265,8 +270,6 @@
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="home">
         <div class="col-md-12 clear">
-           
-
             <div id="list-type" class="proerty-th">
 
                         <?php
@@ -274,8 +277,8 @@
                                 $cnt =1;
                                 foreach ($events as $event) {
                                    ?>
-                            <div class="col-sm-6 col-md-4 p0">
-                                <div class="box-two proerty-item">
+                            <div class="col-sm-6 col-md-4 p0" >
+                                <div class="box-two proerty-item" style="height:530px;">
                                     <div class="item-thumb">
                                         <a href="<?php echo site_url();?>/event/CEvent/displayEventDetails/<?php echo $event->event_id;?>"><img  style="max-height: 50px;" src="<?php echo base_url();?><?php echo $event->event_picture; ?>"></a>
                                     </div>
@@ -315,10 +318,11 @@
 
 
                                                 ?>
-                                             <table class="table-condensed table-responsive">
+                                            <div style="height:170px;">
+                                             <table class="table-condensed table-responsive" >
                                                                 <thead>
-                                                                    <th>Ticket Name</th>
-                                                                    <th>Ticket Price</th>
+                                                                    <th><center>Ticket Name</center></th>
+                                                                    <th><center>Ticket Price</center></th>
                                                                 </thead>
                                                                 <tbody>
                                                                     <?php
@@ -332,14 +336,13 @@
                                                                     ?>
                                                                 </tbody>
                                                             </table>
+                                            </div>
                                             <div class="dot-hr"></div>
-                                            <span class="pull-left"><b> Date: </b> <?php echo $event->dateStart;?>  </span>
-                                            <span class="proerty-price pull-right"><?php echo $event->event_status;?> </span>
+                                            <div>
+                                                <span class="pull-left"><b> Date: </b> <?php echo $event->dateStart;?>  </span>
+                                                 <span class="proerty-price pull-right"><?php echo $event->event_status;?> </span>
+                                            </div>
                                             <br>
-                                            <!-- <p max="30" style="overflow: hidden;"><?php echo $event->event_details;?> </p> -->
-                                            <!-- <div class="property-icon pull-right">
-                                                <a>Read More</a>
-                                            </div> -->
                                         </div>
                                 </div>
                             </div>
@@ -492,9 +495,6 @@
                         </table>
                     </div>
     </div>
-    <!-- <div role="tabpanel" class="tab-pane" id="settings">
-    </div>
- -->
      <div role="tabpanel" class="tab-pane" id="editprofile">
         <h2>Edit Profile</h2>
         <?php foreach($info as $in){ ?>
@@ -522,21 +522,21 @@
 
             <div class="form-group">
                     <label for="birthdate">Birthdate</label>
-                    <input type="date"  <?php  echo 'value="'.$in->birthdate.'"';?> name="bdate" required="">
-                </div>
+                    <input type="date"  <?php  echo 'value="'.$in->birthdate.'"';?> name="bdate" required="" id="bdate">
+            </div>
 
                 <div class="form-group">
                     <label for="gender">Gender</label>
                     <select class="form-control" name="gender">
-                        <option value="Male" <?php  if(isset($gender) && $gender=="Male"){echo 'selected';}?>>Male</option>
-                        <option value="Female" <?php  if(isset($gender) && $gender=="Female"){echo 'selected';}?>>Female</option>
-                        <option value="Other" <?php  if(isset($gender) && $gender=="Other"){echo 'selected';}?>>Other</option>
+                        <option value="Male" <?php  if(isset($in->gender) && $in->gender=="Male"){echo 'selected';}?>>Male</option>
+                        <option value="Female" <?php  if(isset($in->gender) && $in->gender=="Female"){echo 'selected';}?>>Female</option>
+                        <option value="Other" <?php  if(isset($in->gender) && $in->gender=="Other"){echo 'selected';}?>>Other</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="contact no">Contact Number (09XXXXXXXXX) </label>
-                    <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{9}$" class="form-control" name="contact" id="email" pattern="^(09)\d{9}$" required="">
+                    <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{9}$" class="form-control" name="contact" id="email" required="">
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -654,3 +654,66 @@
             </div>
 
         </div>
+
+<div id="errorModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title" id="errorTitle"></h3>
+      </div>
+      <div class="modal-body">
+        <p id="errorMessage"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<?php
+  if(isset($dataError)){
+    if($dataError == "CodeInvalid") {
+        echo "<script type = 'text/javascript'>
+                $(document).ready(function(){
+                  $('#errorModal').modal('show');
+
+                  document.getElementById('errorTitle').innerHTML = 'CODE INVALID';
+                  document.getElementById('errorMessage').innerHTML = 'The code you entered is not found. Please make sure you entered a valid code.';
+
+                });
+              </script>";
+    } else if ($dataError == "CodeUsed") {
+        echo "<script type = 'text/javascript'>
+                $(document).ready(function(){
+                  $('#errorModal').modal('show');
+
+                  document.getElementById('errorTitle').innerHTML = 'CODE ALREADY USED';
+                  document.getElementById('errorMessage').innerHTML = 'The code you entered has already been used. Please use a new one.';
+
+                });
+              </script>";
+    }
+  }
+?>
+
+<script type="text/javascript">
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+     if(dd<10){
+            dd='0'+dd
+        } 
+        if(mm<10){
+            mm='0'+mm
+        } 
+
+    today = yyyy+'-'+mm+'-'+dd;
+    document.getElementById("bdate").setAttribute("max", today);
+</script>
+

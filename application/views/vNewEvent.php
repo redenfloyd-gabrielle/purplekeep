@@ -36,7 +36,7 @@
                     <ul class="main-nav nav navbar-nav navbar-right">
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_NAV_HOME ?></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_NAV_PROFILE ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements">Announcements</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>'><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_ANNOUNCEMENTS ?><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents">Interested Events</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/CCart/viewCart">View Cart</a></li>
                     </ul>
@@ -66,7 +66,7 @@
                     <div class="box-for overflow">
                         <div class="col-md-12 col-xs-12 register-blocks">
                             <h2><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_DETAILS ?></h2>
-                            <form action="<?php echo site_url();?>/event/CEvent/createEvent " method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                            <form name="createEventForm" id="createEventForm" action="<?php echo site_url();?>/event/CEvent/createEvent " method="post" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return checkLocation()">
                                 <div class="form-group">
                                     <!-- <label for="name">Event Picture</label> -->
                                     <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_PICTURE ?></label>
@@ -132,13 +132,6 @@
                                     <script>
                                         $("#datetimepicker1").datetimepicker();
                                     </script>
-
-                                    <!-- <div class="timeContainer">
-                                        <input type="text" id="date1" name="event_date_start" placeholder="Date Start">
-                                    </div>
-                                    <div class="timeContainer">
-                                        <input type="text" id="time1" name="event_time_start" placeholder="Event starts">
-                                    </div> -->
                                 </div>
 
                                 <div class="form-group">
@@ -271,7 +264,7 @@
 
                                 <div class="text-center">
                                     <!-- <button type="submit" class="btn btn-default" value="Create Event"> <a href="<?php echo site_url();?>/CLogin/viewEvents"> Register</button> -->
-                                    <button type="submit" class="btn btn-default" value="Create Event"><!-- <a href="<?php echo site_url();?>/CLogin/viewEvents"> --><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_SUBMIT_BUTTON ?></button>
+                                    <button type="submit" class="btn btn-default" value="Create Event" onclick="return checkLocation()"><!-- <a href="<?php echo site_url();?>/CLogin/viewEvents"> --><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_SUBMIT_BUTTON ?></button>
                                 </div>
 
                                 <br><br>
@@ -399,4 +392,15 @@
             //         alert(city);
             //     }
             // });
+            function checkLocation(){
+              var form = document.forms["createEventForm"];
+              var location = form["event_venue"].value;
+
+              if(!location.match(/[a-z]/i)){
+                alert("Invalid Input!" + location.length);
+                return false;
+              }
+              return true;
+            }
+
         </script>
