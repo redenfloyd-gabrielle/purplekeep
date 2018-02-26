@@ -324,16 +324,17 @@ class cUser extends CI_Controller {
 		
 		echo $key->notifID;
   }
-  public function updateAnnounce1($id)
-	{	
+
+  	public function updateAnnounce1($id){	
 		$where = array('isViewed' => 1);
 		$query = $this->MNotificationItem->update1(array("announcement"=>$id,"user"=>$this->session->userdata['userSession']->userID), $where);
 		// echo  $this->MNotificationItem->db->last_query();
 		// die();
-  }
-  public function viewRegistrationConfirmation() {
-		  $this->load->view('imports/vHeaderSignUpPage');
+  	}
+
+  	public function viewRegistrationConfirmation() {
+		$this->load->view('imports/vHeaderSignUpPage');
 	  	$this->load->view('vRegistrationConfirmation.php');
   		$this->load->view('imports/vFooterLandingPage');
-	 }
+	}
 }
