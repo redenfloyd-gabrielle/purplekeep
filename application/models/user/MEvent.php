@@ -239,17 +239,13 @@
 			$this->db->from("event_info");
 
 			$this->db->join("location", "event_info.location_id = location.location_id");			
-			$this->db->where("event_name LIKE '%".$searchWord."%'");
-			if(!strcmp($_POST["searchDateYear"], "") && $_POST["searchDateMonth"] != '0'){
-				$this->db->where("MONTH(event_date_start) = ".$_POST["searchDateMonth"]."");
-				$this->db->where("YEAR(event_date_start) = ".$_POST["searchDateYear"]."");
-			} else if(!strcmp($_POST["searchDateYear"], "")) {
-				$this->db->where("YEAR(event_date_start) = ".$_POST["searchDateYear"]."");
-			} else if($_POST["searchDateMonth"] != 0){
-				$this->db->where("MONTH(event_date_start) = ".$_POST["searchDateMonth"]."");
-			}
-      
-      $this->db->join("location", "event_info.location_id = location.location_id");
+			
+			$current_yr = date('Y');
+			$current_mon = date('m');
+			
+			$this->db->where("MONTH(event_date_start) = ".$current_mon."");
+			$this->db->where("YEAR(event_date_start) = ".$current_yr."");
+			
 			$this->db->where("event_info.event_status = 'Approved'");
 
 			$query = $this->db->get();
