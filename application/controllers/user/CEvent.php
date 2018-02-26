@@ -66,10 +66,12 @@ class CEvent extends CI_Controller {
 					//Location
 					$arrObj->location_name =$value->location_name;
 					$arrObj->region_code = $value->region_code;
+					
 					$arrObj->tix = $this->MEvent->getTicketsOfEvent($value->event_id);
 					$array[] = $arrObj;
 			}
 		}
+		////////////STOPS HERE///////////////////////////////////////////////////
 		$data['events'] = $array;
 		$data['announcements'] = $this->MAnnouncement->getUnviewedOfUser($this->session->userdata['userSession']->userID);
 		$data['announcementCount'] = count($data['announcements']);
