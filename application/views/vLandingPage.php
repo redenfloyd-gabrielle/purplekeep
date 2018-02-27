@@ -73,39 +73,40 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12 col-lg-12" style="padding-left: 25px;align-content: center;-webkit-align-content: center;">
                                         <form action="<?php echo site_url();?>/user/CEvent/searchEvent" class="form" method="POST">
-                                            
-                                                <select name="searchDateMonth" class="form-control" style="width: 100px; float: left;">
-                                                              <option value="0" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 0 ){ echo "selected";}?>>-Month-</option>
-                                                              <option value="1" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 1 ){ echo "selected";}?>>Jan</option>
-                                                              <option value="2" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 2 ){ echo "selected";}?>>Feb</option>
-                                                              <option value="3" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 3 ){ echo "selected";}?>>Mar</option>
-                                                              <option value="4" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 4 ){ echo "selected";}?>>Apr</option>
-                                                              <option value="5" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 5 ){ echo "selected";}?>>May</option>
-                                                              <option value="6" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 6 ){ echo "selected";}?>>Jun</option>
-                                                              <option value="7" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 7 ){ echo "selected";}?>>Jul</option>
-                                                              <option value="8" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 8 ){ echo "selected";}?>>Aug</option>
-                                                              <option value="9" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 9 ){ echo "selected";}?>>Sep</option>
-                                                              <option value="10" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 10 ){ echo "selected";}?>>Oct</option>
-                                                              <option value="11" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 11 ){ echo "selected";}?>>Nov</option>
-                                                              <option value="12" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 12 ){ echo "selected";}?>>Dec</option>
+                                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                                    <select name="searchDateMonth" class="form-control">
+                                                      <option value="0" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 0 ){ echo "selected";}?>>-Month-</option>
+                                                      <option value="1" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 1 ){ echo "selected";}?>>Jan</option>
+                                                      <option value="2" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 2 ){ echo "selected";}?>>Feb</option>
+                                                      <option value="3" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 3 ){ echo "selected";}?>>Mar</option>
+                                                      <option value="4" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 4 ){ echo "selected";}?>>Apr</option>
+                                                      <option value="5" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 5 ){ echo "selected";}?>>May</option>
+                                                      <option value="6" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 6 ){ echo "selected";}?>>Jun</option>
+                                                      <option value="7" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 7 ){ echo "selected";}?>>Jul</option>
+                                                      <option value="8" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 8 ){ echo "selected";}?>>Aug</option>
+                                                      <option value="9" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 9 ){ echo "selected";}?>>Sep</option>
+                                                      <option value="10" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 10 ){ echo "selected";}?>>Oct</option>
+                                                      <option value="11" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 11 ){ echo "selected";}?>>Nov</option>
+                                                      <option value="12" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 12 ){ echo "selected";}?>>Dec</option>
 
-                                                            </select>
+                                                    </select>
+                                                </div>
                                                 <?php
                                                 if(!isset($_POST['searchDateYear'])){
-                                                    echo '<input name="searchDateYear" type="text" class="form-control" placeholder="Year" style="width: 100px; float: left;">';
+                                                    echo '<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><input name="searchDateYear" type="text" class="form-control" placeholder="Year" ></div>';
                                                 } else {
-                                                    echo '<input name="searchDateYear" type="text" class="form-control" placeholder="Year" style="width: 100px; float: left;" value="'.$_POST['searchDateYear'].'">';
+                                                    echo '<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><input name="searchDateYear" type="text" class="form-control" placeholder="Year"  value="'.$_POST['searchDateYear'].'"></div>';
                                                 }
                                                 ?>
 
                                                 <?php
                                                 if(!isset($_POST['searchWord'])){
 
-                                                    echo '<input name="searchWord" type="text" class="form-control" placeholder="Key word" pattern="[\sa-zA-z0-9]+" style="width: 350px; float: left;" value="">';
+                                                    echo '<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><input name="searchWord" type="text" class="form-control" placeholder="Key word" pattern="[\sa-zA-z0-9]+"  value=""></div>';
                                                 } else {
-                                                    echo '<input name="searchWord" type="text" class="form-control" placeholder="Key word" value="'.$_POST['searchWord'].'" pattern="[\sa-zA-z0-9]+" style="width: 350px; float: left;">';
+                                                    echo '<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><input name="searchWord" type="text" class="form-control" placeholder="Key word" value="'.$_POST['searchWord'].'" pattern="[\sa-zA-z0-9]+"></div>';
                                                 }
-                                                    echo'<div class="col-md-2"><select Class="form-control" id="region_code" name="region_code" >
+                                                    echo'<div class="col-sm-2 col-md-2 col-lg-2"><select Class="form-control" id="region_code" name="region_code" >
                                                         <option style="color: gray;" value="0">Region</option>
                                                         <option value="NCR">NCR</option>
                                                         <option value="CAR">CAR</option>
@@ -126,15 +127,15 @@
                                                         <option value="Region XIII">Region XIII</option>
                                                     </select></div>';
 
-                                                    echo '<div class="col-md-3">
+                                                    echo '<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                                                     <select class="form-control" id="municipal-name" name="municipal_name">
                                                         <option style="color: gray;">Municipal</option>
                                                     </select></div>';
                                                 
                                                 ?>
-                                                ?>
-
-                                                <button class="btn search-btn" type="submit" style="float: left;"><i class="fa fa-search"></i></button>
+                                                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                                                    <button class="btn search-btn" type="submit" style="float: left;"><i class="fa fa-search"></i></button>
+                                                </div>
                                         </form>
                                     </div>
                                 </div>
