@@ -22,7 +22,7 @@
                             <button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button> 
                         </form>
                         
-                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover" data-provide="data-table" id="toggle-column table-example">                
+                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover" data-provide="data-table" id="tbl">                
                             <thead class="">
                                 <tr>
                                   <th>#</th>
@@ -77,4 +77,9 @@
         </div>
     </div>
 </div>
+<script>
+  $(document).read(function(){
+    $("#tbl").dataTable();
+  });
+</script>
            
