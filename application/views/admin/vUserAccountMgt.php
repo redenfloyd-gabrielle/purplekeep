@@ -15,12 +15,12 @@
                     </header>
 
                     <div class="panel-body">
-                        <!-- <form action="<?php echo site_url();?>/admin/CAdmin/viewSearchUserAccountMgt" class=" form-inline" method="POST">
+                        <form action="<?php echo site_url();?>/admin/CAdmin/viewSearchUserAccountMgt" class=" form-inline" method="POST">
 
                             <input name="search_val" type="text" class="form-control" placeholder="Search User"></input>
                 
                             <button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button> 
-                        </form> -->
+                        </form>
                         
                         <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover" data-provide="data-table" id="tbl">                
                             <thead class="">
