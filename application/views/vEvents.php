@@ -481,6 +481,11 @@
     </div>
     <div role="tabpanel" class="tab-pane" id="messages">
          <div class="col-md-12 clear">
+                        <?php
+                            $mt = new MTicket();
+                            $res = $mt->generatePaymenets();
+                        ?>
+
                         <table class="table table-hover table-striped">
                             <thead>
                                 <tr>
@@ -490,7 +495,14 @@
                                 </tr>
                             </thead>
                             <tbody>
-
+                                <?php 
+                                    foreach ($res as $r) {
+                                            echo  '<tr>';
+                                                    echo '<td>'.$r->dateSold.'</td>';
+                                                    echo '<td>'.$r->ticket_type_id.'</td>';
+                                            echo '</tr>';
+                                    }
+                                ?>
                             </tbody>
                         </table>
                     </div>
