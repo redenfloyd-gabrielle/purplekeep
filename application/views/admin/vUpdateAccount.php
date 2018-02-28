@@ -15,7 +15,7 @@
             <div class="col-lg-12">
                 <section class="panel">
                     <header class="panel-heading">
-                        <h2><strong>Update</strong> Account</h2>
+                        <h2><strong>Update</strong> Profile</h2>
                     </header>
 
                     <div class="panel-body">

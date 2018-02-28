@@ -38,7 +38,7 @@
                     <ul class="main-nav nav navbar-nav navbar-right">
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_HOME ?></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_PROFILE ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements">Announcements</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>'><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_ANNOUNCEMENTS ?><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents">Interested Events</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/CCart/viewCart">View Cart</a></li>
                     </ul>
@@ -58,8 +58,7 @@
                 </div>
             </div>
         </div>
-
-        <!-- End page header -->
+                <!-- End page header -->
 
         <!-- property area -->
         <div class="properties-area recent-property" style="background-color: #FFF;">
@@ -250,6 +249,13 @@
             </div>
         </div>
     </div>
+    
+    <?php if ($this->session->flashdata('success_msg')): ?>
+        <div class="alert alert-success">
+              <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+              <?php echo $this->session->flashdata('success_msg') ?>
+          </div>
+      <?php endif ?>
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" id="myTabs" role="tablist">
@@ -264,8 +270,6 @@
   <div class="tab-content">
     <div role="tabpanel" class="tab-pane active" id="home">
         <div class="col-md-12 clear">
-           
-
             <div id="list-type" class="proerty-th">
 
                         <?php
@@ -524,9 +528,9 @@
                 <div class="form-group">
                     <label for="gender">Gender</label>
                     <select class="form-control" name="gender">
-                        <option value="Male" <?php  if(isset($gender) && $gender=="Male"){echo 'selected';}?>>Male</option>
-                        <option value="Female" <?php  if(isset($gender) && $gender=="Female"){echo 'selected';}?>>Female</option>
-                        <option value="Other" <?php  if(isset($gender) && $gender=="Other"){echo 'selected';}?>>Other</option>
+                        <option value="Male" <?php  if(isset($in->gender) && $in->gender=="Male"){echo 'selected';}?>>Male</option>
+                        <option value="Female" <?php  if(isset($in->gender) && $in->gender=="Female"){echo 'selected';}?>>Female</option>
+                        <option value="Other" <?php  if(isset($in->gender) && $in->gender=="Other"){echo 'selected';}?>>Other</option>
                     </select>
                 </div>
 
@@ -651,6 +655,52 @@
 
         </div>
 
+<div id="errorModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title" id="errorTitle"></h3>
+      </div>
+      <div class="modal-body">
+        <p id="errorMessage"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<?php
+  if(isset($dataError)){
+    if($dataError == "CodeInvalid") {
+        echo "<script type = 'text/javascript'>
+                $(document).ready(function(){
+                  $('#errorModal').modal('show');
+
+                  document.getElementById('errorTitle').innerHTML = 'CODE INVALID';
+                  document.getElementById('errorMessage').innerHTML = 'The code you entered is not found. Please make sure you entered a valid code.';
+
+                });
+              </script>";
+    } else if ($dataError == "CodeUsed") {
+        echo "<script type = 'text/javascript'>
+                $(document).ready(function(){
+                  $('#errorModal').modal('show');
+
+                  document.getElementById('errorTitle').innerHTML = 'CODE ALREADY USED';
+                  document.getElementById('errorMessage').innerHTML = 'The code you entered has already been used. Please use a new one.';
+
+                });
+              </script>";
+    }
+  }
+?>
+
 <script type="text/javascript">
     var today = new Date();
     var dd = today.getDate();
@@ -666,3 +716,4 @@
     today = yyyy+'-'+mm+'-'+dd;
     document.getElementById("bdate").setAttribute("max", today);
 </script>
+
