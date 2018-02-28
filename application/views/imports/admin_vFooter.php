@@ -27,6 +27,9 @@
 <script type="text/javascript" src="<?php echo base_url('assets/adminAssets/plugins/miscellaneous/miscellaneous.js')?>"></script>
 <!-- Library Themes Customize-->
 <script type="text/javascript" src="<?php echo base_url('assets/adminAssets/js/caplet.custom.js')?>"></script>
+
+<script src="<?php echo base_url("assets/jquery.dataTables.js");?>"></script>
+
 <script type="text/javascript">
 
   function fnShowHide( iCol , table){

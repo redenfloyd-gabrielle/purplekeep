@@ -16,7 +16,7 @@
                     <div class="panel-body">
 
                     <form id="gForm" class="form inline" method="POST" action="<?php echo site_url('finance/CCard/card'); ?>">
-                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover" data-provide="data-table" id="toggle-column table-example">
+                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover" id="toggle-column table-example">
                             <thead>
                                 <tr>
                                   <th>Amount</th>
