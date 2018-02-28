@@ -60,6 +60,7 @@
       <div class="content-area recent-property" style="padding-bottom: 60px; background-color: rgb(252, 252, 252);">
          <div class="container">
              <div class="row">
+<<<<<<< Updated upstream
                 <div class="col-md-12 ">
                     <div id="list-type" class="proerty-th">
                        <?php if(isset($events) && count($events)>0){
@@ -122,6 +123,118 @@
                           <h1>Nothing in your cart. Shop for tickets now!</h1>
                        <?php }?>
                     </div>
+=======
+                <!-- <div class="col-md-12"> -->
+                  <?php if ($this->session->flashdata('error_msg')): ?>
+                      <div class="alert alert-danger" style="margin-top: 15px;">
+                          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                          <?php echo $this->session->flashdata('error_msg'); ?>
+                      </div>
+                  <?php endif ?>
+                      <div class="alert alert-danger hidden" id="error" style="margin-top: 15px;">
+                          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                          <div id="errLabel"></div>
+                      </div>
+                  
+                  <?php if ($this->session->flashdata('success_msg')): ?>
+                      <div class="alert alert-success" style="margin-top: 15px;">
+                          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                          <?php echo $this->session->flashdata('success_msg'); ?>
+                      </div>
+                  <?php endif ?>
+
+
+                    <!-- <div class="col-md-12"> -->
+                      <div class="col-md-3">
+                        <div class="wow fadeInRight animated" style="padding:1%; margin-top: 2%;">
+                          <div class="panel panel-default" style="border-style: solid;border-color: #CB6C52;">
+                            <div class="panel-body">
+                                <h2><strong>Load Balance :</strong></h2>
+                                <span class="h4" style="color: #CB6C52;">Php <?php foreach($user as $u){echo $u->load_amt;}?>.00</span>
+                            </div>
+                          </div>
+
+                          <div class="panel panel-default" style="border-style: solid;border-color: #CB6C52;">
+                            <div class="panel-body">
+                                <h2><strong>TOTAL :</strong></h2>
+                                <span class="h4" style="color: #CB6C52;" id="total">Php <?php foreach($total as $t){echo $t->total;}?></span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-9" style="padding:1%; margin-top: 3%; border-color:  #ecf1f2; border-style: solid; border-width: 1px;">
+                        <div>
+                          <div id="list-type" class="proerty-th">
+                          <?php 
+                          $attr = array('class' => 'form_horizontal',
+                                'id' => 'myform');
+                                echo form_open(site_url()."/finance/CCart/checkout", $attr); ?>
+                             <?php if(isset($events) && count($events)>0){
+                                    foreach ($events as $event) {
+                                         ?>
+                                          <div style="padding:1%; margin-top: 2%;">
+                                            <input type="checkbox" checked="checked" class="evt" id="<?php echo key($events); ?>"  style="margin-bottom:2%;">
+                                            <span class="h4">
+                                              <strong>Event Name :<?php echo $event[0]->event_name;?></strong>
+                                            </span>
+                                          </div>
+                                         <?php
+                                         foreach ($event as $cart) {                     
+                                         ?>
+                                            <div class="panel panel-default" style="margin-left:3%;">
+                                            <input type="hidden" class="cartID" value="<?php echo $cart->cart_id;?>" >
+                                             <div class="panel-heading">
+
+                                                    <input type="checkbox" name="ticket[]" value="<?php echo $cart->cart_id;?>" class="<?php echo 'tix'.key($events);?> indi chkbox" id="<?php echo $cart->ticket_type_id;?>" checked="checked">
+                                                    <span> Ticket Name:<strong><?php echo $cart->ticket_name;?></strong></span>
+                                                    
+                                                    <span class="pull-right h5">Total Price:<span id="label<?php echo $cart->cart_id;?>"><b><?php echo $cart->total_price;?></b></span></span>                       
+                                              </div>
+                                             <div class="panel-body">
+                                                <table class="table table-sm table-borderless">
+                                                    <tbody>
+                                                      <tr>
+                                                        <th class="closest" scope="row"> Price:<?php echo $cart->price;?> </th>
+                                                        <td class="pull-right">
+                                                          <form class="offset-md-3">
+                                                              <div class="form-group row">
+                                                                <button class="btn btn-default pull-left plus" type="button"><span class="glyphicon glyphicon-plus"></span></button>
+                                                                <div class="col-sm-6">
+                                                                  <input type="text" class="qty" value ="<?php echo $cart->quantity;?>" class="form-control">
+                                                                </div>
+                                                                <button class="btn btn-default minus" type="button"><span class="glyphicon glyphicon-minus"></span></button>
+                                                              </div>
+                                                          </form>
+                                                        </td>
+                                                        <td> 
+                                                          <form  method="POST" action="<?php echo site_url(); ?>/finance/CCart/deleteCartItem">
+                                                            <input name="id" class="hidden" value="<?php echo $cart->cart_id;?>">
+                                                            <button type="submit" class="btn btn-primary pull-right" type="button">
+                                                            <span class="glyphicon glyphicon-trash delete"></span>
+                                                            </button>
+                                                          </form>
+                                                        </td>     
+                                                      </tr>
+                                                    </tbody>
+                                                  </table>                                           
+                                             </div>
+                                           </div>
+                                         <?php
+                                         }?>
+                                         </div>
+                                         <?php
+                                         next($events);
+                                    }
+                             }else{?>
+                                <h1>Nothing in your cart. Shop for tickets now!</h1>
+                             <?php }?>
+                           <?php echo form_close(); ?>
+                        </div>
+                      </div>
+                    <!-- </div> -->
+                  <!-- </div> -->
+                    
+>>>>>>> Stashed changes
                 </div>
              </div><!-- END OF ROW-->
 
@@ -184,7 +297,12 @@
 
         </div>
 
+<<<<<<< Updated upstream
 <script type="text/javascript">
+=======
+<script>
+
+>>>>>>> Stashed changes
   var panel;
     $(document).ready(function() {
       
@@ -205,7 +323,10 @@
       //           }
       //       });
       // });
+      
+
       $('input').on('ifChecked', function (event){
+
           $(this).closest("input").attr('checked', true);          
           var id = $(this).closest("input").attr('id');
           $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").addClass("checked");
@@ -213,16 +334,7 @@
 
           var classList = $(this).attr('class').split(/\s+/);
           var temp = classList[0].replace('tix','');
-          // $.each(classList, function(index, item) {
-          //     var temp = item.replace('tix','');
-          //     console.log($(document).find(".tix"+temp));
-
-          //     // if($(document).find(".tix"+temp).closest("div.icheckbox_square-yellow").hasClass("checked")){
-          //     //   $(document).find("#"+temp).closest("div.icheckbox_square-yellow").addClass("checked");  
-          //     //   $(document).find("#"+temp).attr("checked",true);
-          //     // }
-              
-          // });
+          
           var cnt =0;
           var cnt1 =0;
           $.each($(document).find(".tix"+temp).closest("div.icheckbox_square-yellow"),function(index1,item1){
@@ -236,6 +348,9 @@
             $(document).find("#"+temp).closest("div.icheckbox_square-yellow").addClass("checked");  
             $(document).find("#"+temp).attr("checked",true);
           }
+
+
+          console.log($(this).closest(".h4").html());
       });
       $('input').on('ifUnchecked', function (event) {
           $(this).closest("input").attr('checked', false);
@@ -253,6 +368,8 @@
 
       });
 
+     
+
       $(".minus").click(function(){
         var input = $(this).closest("div.row").find("input");
         if(input.val() > 1){
@@ -260,6 +377,9 @@
           get-=1;
           input.val(get);
           updateTicketCount("minus",$(this).closest("div.panel").find("input.cartID").val(),get);
+
+
+          updateTotal("minus", $(this).closest("tr").find("th.closest").html());
         }
       });
       $(".plus").click(function(){
@@ -268,7 +388,27 @@
         get+=1;
         input.val(get);
         updateTicketCount("plus",$(this).closest("div.panel").find("input.cartID").val(),get);
+
+        updateTotal("plus", $(this).closest("tr").find("th.closest").html());
       });
+
+      function updateTotal (type, p) {
+        p = p.replace("Price:", "");
+        var price;
+        if(type == "plus"){
+          price = parseInt(p);
+        }else{
+          price = parseInt(p);
+          price = -price;
+        }
+
+        var t = $("#total").text();
+        t = t.replace("Php ", "");
+        var total = parseInt(t);
+
+        $("#total").text("Php "+(total+price));
+        // console.log(t);
+      }
 
       function updateTicketCount(type,id,quantity){
         var link ="";

@@ -75,7 +75,18 @@ class CCart extends CI_Controller {
 
 	public function viewCart(){
 
+<<<<<<< Updated upstream
 		$data['events'] = $this->MCart->getCart();
+=======
+                              	$("#dash").addClass("active");
+
+                              });
+
+                        </script>';
+
+        $data['user'] = $this->MUser->read($this->session->userdata['userSession']->userID);
+        $data['total'] = $this->MCart->getTotal();
+>>>>>>> Stashed changes
 		
 		$this->load->view('imports/vHeaderLandingPage');
 		$this->load->view('vCart',$data);	

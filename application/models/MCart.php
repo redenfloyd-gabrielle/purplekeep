@@ -7,12 +7,28 @@
 			
 		}
 
+		public function getTotal () {
+
+			$this->db->select("sum(total_price) as total");
+			$this->db->from("cart");
+			$this->db->where("account_id",3);
+			$this->db->where("status","active");
+
+			$query = $this->db->get();
+
+			return $query->result();
+		}
+
 		public function getCart(){
 			$arr =array();
 			$events = $this->getEvents();
 			foreach ($events as $event) {
 				$arr[$event->event_id] = array();
+<<<<<<< Updated upstream
 					$this->db->select("c.cart_id,tt.ticket_type_id,ei.event_name, tt.ticket_name, c.quantity , tt.price");
+=======
+				$this->db->select("c.total_price,c.cart_id,tt.ticket_type_id,ei.event_name, tt.ticket_name, c.quantity , tt.price");
+>>>>>>> Stashed changes
 				$this->db->from("cart as c");
 				$this->db->join("ticket_type as tt","tt.ticket_type_id = c.ticket_id","left");
 				$this->db->join("event_info as ei","tt.event_id = ei.event_id","left");
