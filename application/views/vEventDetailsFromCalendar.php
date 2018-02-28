@@ -89,21 +89,6 @@ foreach($going as $g){
                                             <i class="fa fa-print"></i>
                                         </a>
                                     </div>
-
-                                    <ul id="image-gallery" class="gallery list-unstyled cS-hidden" >
-                                        <li data-thumb="assets/img/property-1/property1.jpg">
-                                            <img src="assets/img/property-1/property1.jpg" />
-                                        </li>
-                                        <li data-thumb="assets/img/property-1/property2.jpg">
-                                            <img src="assets/img/property-1/property3.jpg" />
-                                        </li>
-                                        <li data-thumb="assets/img/property-1/property3.jpg">
-                                            <img src="assets/img/property-1/property3.jpg" />
-                                        </li>
-                                        <li data-thumb="assets/img/property-1/property4.jpg">
-                                            <img src="assets/img/property-1/property4.jpg" />
-                                        </li>
-                                    </ul>
                                 </div>
                             </div>
                         </div>
@@ -335,16 +320,6 @@ foreach($going as $g){
                                     </ul>
                                 </div>
                             </div>
-
-                            <div class="panel panel-default sidebar-menu wow fadeInRight animated">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Ads here</h3>
-                                </div>
-                                <div class="panel-body recent-property-widget">
-                                    <img src="assets/img/ads.jpg">
-                                </div>
-                            </div>
-
                             <!-- <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
                                 <div class="panel-heading">
                                 <h3 class="panel-title">Search</h3>

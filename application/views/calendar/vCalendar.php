@@ -457,10 +457,10 @@
                 ?>
                 {
                     id: '<?php echo $events->event_id; ?>',
-                    title: '<?php echo $events->event_name; ?>',
+                    title: '<?php echo substr(trim(str_replace("\"", "\'",(preg_replace( "/\r|\n/", "", $events->event_name )))),0,25); ?>',
                     start: '<?php echo $start; ?>',
                     end: '<?php echo $end; ?>',
-                    details: '<?php echo $events->event_details; ?>',
+                    details: '<?php echo substr(trim(str_replace("\"", "\'",(preg_replace( "/\r|\n/", "", $events->event_details )))),0,25); ?>',
                     category: '<?php echo $events->event_category; ?>',
                     venue: '<?php echo $events->event_venue; ?>',
                     color: '<?php

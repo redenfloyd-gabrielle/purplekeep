@@ -427,15 +427,7 @@ div.desc {
                                 <h1>Card Load: <span><?php echo $u->load_amt; ?></span></h1>
                             </div>
                           </div>
-                            <div class="panel panel-default sidebar-menu wow fadeInRight animated">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Ads here</h3>
-                                </div>
-                                <div class="panel-body recent-property-widget">
-                                    <img src="<?php echo base_url("assets/nikkiAssets/img/ads.jpg"); ?>">
-                                </div>
-                            </div>
-
+                            
                             <!-- <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
                                 <div class="panel-heading">
                                 <h3 class="panel-title">Search</h3>
