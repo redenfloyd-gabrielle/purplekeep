@@ -63,7 +63,7 @@
                                         </a>
                                     </div> 
 
-                                    <ul id="image-gallery" class="gallery list-unstyled cS-hidden" >
+                                    <!-- <ul id="image-gallery" class="gallery list-unstyled cS-hidden" >
                                         <li data-thumb="assets/img/property-1/property1.jpg"> 
                                             <img src="<?php echo base_url('assets/img/property-1/property1.jpg')?>">
                                         </li>
@@ -76,7 +76,7 @@
                                         <li data-thumb="assets/img/property-1/property4.jpg"> 
                                             <img src="assets/img/property-1/property4.jpg" />
                                         </li>                                         
-                                    </ul>
+                                    </ul> -->
                                 </div>
                             </div>
                         </div>
