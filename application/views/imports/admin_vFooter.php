@@ -55,7 +55,7 @@
     });
 
     // Call dataTable in this page only
-    $('#table-example').dataTable();
+    // $('#table-example').dataTable();
     $('table[data-provide="data-table"]').dataTable();
   });
 </script>
