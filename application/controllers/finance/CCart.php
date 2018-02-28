@@ -134,6 +134,7 @@ class CCart extends CI_Controller {
                         </script>';
 
         $data['user'] = $this->MUser->read($this->session->userdata['userSession']->userID);
+        $data['total'] = $this->MCart->getTotal($this->session->userdata['userSession']->userID);
 		
 		$this->load->view('imports/vHeaderLandingPage');
 		$this->load->view('vCart',$data);	

@@ -84,11 +84,18 @@
                   <div class="col-md-12">
                     <div class="col-md-3 wow fadeInRight animated" style="padding:1%; margin-top: 2%;">
                       <div class="panel panel-default" style="border-style: solid;border-color: #CB6C52;">
-                      <div class="panel-body">
-                          <h2><strong>Load Balance :</strong></h2>
-                          <span class="h4" style="color: #CB6C52;">Php <?php foreach($user as $u){echo $u->load_amt;}?>.00</span>
+                        <div class="panel-body">
+                            <h2><strong>Load Balance :</strong></h2>
+                            <span class="h4" style="color: #CB6C52;">Php <?php foreach($user as $u){echo $u->load_amt;}?>.00</span>
+                        </div>
                       </div>
-                    </div>
+
+                      <div class="panel panel-default" style="border-style: solid;border-color: #CB6C52;">
+                        <div class="panel-body">
+                            <h2><strong>Total :</strong></h2>
+                            <span class="h4" style="color: #CB6C52;" id="total">Php <?php foreach($total as $t){echo $t->total;}?>.00</span>
+                        </div>
+                      </div>
                     </div>
 
                     <div class="col-md-9" style="padding:1%; margin-top: 3%; border-color:  #ecf1f2; border-style: solid; border-width: 1px;">
@@ -122,7 +129,7 @@
                                             <table class="table table-sm table-borderless">
                                                 <tbody>
                                                   <tr>
-                                                    <th scope="row"> Price:<?php echo $cart->price;?> </th>
+                                                    <th scope="row" class="closest"> Price:<?php echo $cart->price;?> </th>
                                                     <td class="pull-right">
                                                       <form class="offset-md-3">
                                                           <div class="form-group row">
@@ -333,6 +340,8 @@
           get-=1;
           input.val(get);
           updateTicketCount("minus",$(this).closest("div.panel").find("input.cartID").val(),get);
+
+          updateTotal("minus", $(this).closest("tr").find("th.closest").html());
         }
       });
       $(".plus").click(function(){
@@ -341,7 +350,28 @@
         get+=1;
         input.val(get);
         updateTicketCount("plus",$(this).closest("div.panel").find("input.cartID").val(),get);
+
+        updateTotal("plus", $(this).closest("tr").find("th.closest").html());
       });
+
+      function updateTotal (type, p) {
+        //p = p.replace("Price:", "");
+        p = p.replace("Price:", "");
+        var price;
+        if(type == "plus"){
+          price = parseInt(p);
+        }else{
+          price = parseInt(p);
+          price = -price;
+        }
+
+        var t = $("#total").text();
+        t = t.replace("Php ", "");
+        var total = parseInt(t);
+
+        $("#total").text("Php "+(total+price)+".00");
+        // console.log(t);
+      }
 
       function updateTicketCount(type,id,quantity){
         var link ="";
