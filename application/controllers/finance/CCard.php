@@ -27,7 +27,9 @@ class CCard extends CI_Controller {
 		for ($i = 0; $i < 4; $i++) {
 			$this->card1($amount[$i], $qty[$i]);
 		}
-		redirect('admin/CAdmin/viewReport');
+		$this->session->set_flashdata('success_msg',"Cards Generate!");
+		redirect("admin/CAdmin/generateCard");
+		// redirect('admin/CAdmin/viewReport');
 	}
 	public function card1 ($amount, $qty) {
 		for ($i = 0; $i < $qty; $i++) {
@@ -73,7 +75,7 @@ class CCard extends CI_Controller {
 					'cardAmount' => $amount,
 					'cardStatus' => 1,
 					'addedBy' => $this->session->userdata['adminSession']->userID,
-					'updatedBy' => $this->session->userdata['adminSession']->userID);
+					'updatedBy' => 0);
 			
 		$query = $card->insert($data);
 		///////////////////////////////////////

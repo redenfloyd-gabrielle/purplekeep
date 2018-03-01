@@ -77,6 +77,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
+
                                         <!-- <p>Insufficient balance?
                                              <a style=" color: #e2624b; cursor:pointer; border-bottom: 1.5px solid #e2624b;padding-bottom: 2px"  onMouseOver="this.style.color='#ffcec0';this.style.paddingBottom='8px';this.style.borderBottom='3px solid #e2624b';"    onMouseOut="this.style.color='#e2624b' ;this.style.paddingBottom='2px';" type="button" class="dbutton " id="load" >Load Now</a> -->
                                            <p><?php echo CustomizationManager::$strings->PROFILE_PAGE_INSUFFICIENT_BALANCE ?>
@@ -256,6 +257,12 @@
               <?php echo $this->session->flashdata('success_msg') ?>
           </div>
       <?php endif ?>
+    <?php if ($this->session->flashdata('error_msg')): ?>
+        <div class="alert alert-danger" style="margin-top: 15px;">
+            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+            <?php echo $this->session->flashdata('error_msg'); ?>
+        </div>
+    <?php endif ?>
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" id="myTabs" role="tablist">
