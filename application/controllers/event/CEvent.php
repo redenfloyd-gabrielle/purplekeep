@@ -184,21 +184,23 @@ class CEvent extends CI_Controller {
 
 	}
 
-	public function viewEvents()
+	public function viewEvents($page)
 	{
 		$userid = $this->session->userdata['userSession']->userID;
-
+     
 		//////////////////////////////////////////////////////////////////////////////
 		//================Sprint 3 SPRINT 3 INTERFACE MODULE============//
 		/////////////////////////////////////////////////////////////////////////////
-		$strEventSelect = "*, DATE_FORMAT(event_info.event_date_start,'%d-%b-%y %H:%m') as dateStart, DATE_FORMAT(event_info.event_date_end,'%d-%b-%y %H:%m') as dateEnd";
-		$strEventWhere = array("user_id" => $userid,
-													 "event_isActive" => TRUE
-													);
-		$result = $this->MEvent->select_certain_where_isDistinct_hasOrderBy_hasGroupBy_isArray($strEventSelect,
-							$strEventWhere,FALSE,FALSE,FALSE,FALSE);
+		// $strEventSelect = "*, DATE_FORMAT(event_info.event_date_start,'%d-%b-%y %H:%m') as dateStart, DATE_FORMAT(event_info.event_date_end,'%d-%b-%y %H:%m') as dateEnd";
+		// $strEventWhere = array("user_id" => $userid,
+		// 				"event_isActive" => TRUE);
+		// $result = $this->MEvent->select_certain_where_isDistinct_hasOrderBy_hasGroupBy_isArray($strEventSelect,
+		// 					$strEventWhere,FALSE,FALSE,FALSE,FALSE);
 		// echo"<pre>";
 		// var_dump($result);
+
+		$npages = ($page * 9)-9;
+		$result = $this->MEvent->getLimitedEventsByUser($userid,$npages);
 		$array = array();
 		foreach ($result as $value) {
 			$arrObj = new stdClass;
@@ -210,6 +212,20 @@ class CEvent extends CI_Controller {
 
 			$array[] = $arrObj;
 		}
+		
+
+		$strEventSelect1 = "*, DATE_FORMAT(event_info.event_date_start,'%d-%b-%y %H:%m') as dateStart, DATE_FORMAT(event_info.event_date_end,'%d-%b-%y %H:%m') as dateEnd";
+		$strEventWhere1 = array("user_id" => $userid,
+						"event_isActive" => TRUE);
+		$result1 = $this->MEvent->select_certain_where_isDistinct_hasOrderBy_hasGroupBy_isArray($strEventSelect1,
+							$strEventWhere1,FALSE,FALSE,FALSE,FALSE);
+		$x = 0;
+		foreach ($result1 as $value) {
+			$x++;
+		}
+		$num = $x/9;
+     	$num = ceil($num);
+
 
 		$val = array();
 		foreach ($array as $key) {
@@ -238,6 +254,45 @@ class CEvent extends CI_Controller {
 
 		$data['userid'] = $userid;
 
+<<<<<<< Updated upstream
+=======
+		$data['announcements'] = $this->MAnnouncement->getUnviewedOfUser($this->session->userdata['userSession']->userID);
+		$data['announcementCount'] = count($data['announcements']);
+		if(count($data['announcements']) == 0){
+			$data['announcements'] = NULL;
+		}
+
+			$array1 = array();
+			if($data['announcements']){
+				foreach ($data['announcements'] as $value) {
+						$arrObj = new stdClass;
+						$arrObj->announcementID = $value->announcementID;
+						$arrObj->announcementDetails = $value->announcementDetails;
+						$arrObj->first_name = $value->first_name;
+						$arrObj->last_name = $value->last_name;
+						if($value->sec){
+							$arrObj->ago =$value->sec;
+							$arrObj->agoU ="seconds ago";
+						}else if($value->min){
+							$arrObj->ago =$value->min;
+							$arrObj->agoU ="minutes ago";
+						}else if($value->hr){
+							$arrObj->ago =$value->hr;
+							$arrObj->agoU ="hours ago";
+						}else if($value->day){
+							$arrObj->ago =$value->day;
+							$arrObj->agoU ="days ago";
+						}
+						$array1[] = $arrObj;
+				}
+			}
+			$data['announcements'] = $array1;
+			$data['page'] = $page;
+			$data['ppage'] = 1;
+			$data['npage'] = 1;
+    		$data['pages'] = $num;
+        
+>>>>>>> Stashed changes
 		$this->load->view('imports/vHeaderLandingPage');
 		$this->load->view('vEvents',$data);
 		$this->load->view('imports/vFooterLandingPage');
@@ -252,8 +307,26 @@ class CEvent extends CI_Controller {
 		//////////////////////////////////////////////////////////////////////////////
 		//================SPRINT 3 SPRINT 3 INTERFACE MODULE============//
 		/////////////////////////////////////////////////////////////////////////////
+<<<<<<< Updated upstream
 		$gID = $data1 ['events']  = $this->MEvent->read_where('event_id = '.$id.'');
 		////////////STOPS HERE///////////////////////////////////////////////////
+=======
+	
+		$result = $this->MEvent->getLimitedEventsByUser($userid,$page);
+		// echo"<pre>";
+		// var_dump($result);
+		$array = array();
+		foreach ($result as $value) {
+			$arrObj = new stdClass;
+			$arrObj->data = $value;
+			$arrObj->data->tix = $this->MEvent->getTicketsOfEvent($value->event_id);
+
+			//Adding of location
+			$arrObj->data->location = $this->MLocation->read_where("location_id = ".$value->location_id."");
+
+			$array[] = $arrObj;
+		}
+>>>>>>> Stashed changes
 
 		foreach ($gID as $k) {
 			$eid = $k->event_id;
@@ -538,8 +611,16 @@ class CEvent extends CI_Controller {
 								<h1 class="modal-title" align="center">Create Event Successful</h1>
 						</div>
 					</div>
+<<<<<<< Updated upstream
 				';
 				header( "refresh:1; viewEvents" );
+=======
+				';*/
+				// header( "refresh:1; viewEvents" );
+				$this->session->set_flashdata('success_msg',"Your event has been successfully submitted. Please wait for the confirmation.");
+				redirect("event/CEvent/viewEvents/1");
+				//redirect("event/CEvent/viewEvents");
+>>>>>>> Stashed changes
 			}else{
 				echo'
 					<div id="addAdmin" class="modal fade"  data-header-color="#34495e">
@@ -655,7 +736,7 @@ class CEvent extends CI_Controller {
 
 		}
 
-		$this->load->view('event/CEvent/viewEvents');
+		$this->load->view('event/CEvent/viewEvents/1');
 
 
 
