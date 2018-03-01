@@ -109,7 +109,7 @@ class cUser extends CI_Controller {
 
 				if($res){
 					$code = $card[0]->cardId;
-					$res1 = $this->MCardLoad->update($code, array('cardStatus'=>0));
+					$res1 = $this->MCardLoad->update($code, array('cardStatus'=>0,"updatedBy"=>$this->session->userdata["userSession"]->userID));
 					
 					$this->session->set_flashdata('success_msg',"Your wallet has been added P".$card[0]->cardAmount." ammount of load!");
 					redirect("event/cEvent/viewEvents");

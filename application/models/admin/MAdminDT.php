@@ -10,17 +10,22 @@
 								"card.cardCode",
 								"card.cardAmount",
 								"card.cardStatus",
-								"first_name",
-								"last_name",
-								"card.addedAt",
-								"card.updatedAt");
+								"ua.first_name",
+								"ua.last_name",
+								"DATE_FORMAT(card.addedAt,'%d-%b-%y %h:%m') as addedAt",
+								"DATE_FORMAT(card.updatedAt,'%d-%b-%y %h:%m') as updatedAt",
+								"ua1.first_name as 'buyerF'",
+								"ua1.last_name as 'buyerL'");
 
 
 			$this->db->select($searchColumn);
 			$this->db->from($this::DB_TABLE);
-			$this->db->join($this::DB_TABLE_B,'card.addedBy = user_account.account_id');
+			$this->db->join("user_account as ua",'card.addedBy = ua.account_id');
+			$this->db->join("user_account as ua1","card.updatedBy = ua1.account_id","left");
 
 			$query = $this->db->get();
+			// echo		$this->db->last_query();
+			// 	die();
 
 			return $query->result();
 			

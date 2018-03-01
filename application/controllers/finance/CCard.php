@@ -73,7 +73,7 @@ class CCard extends CI_Controller {
 					'cardAmount' => $amount,
 					'cardStatus' => 1,
 					'addedBy' => $this->session->userdata['adminSession']->userID,
-					'updatedBy' => $this->session->userdata['adminSession']->userID);
+					'updatedBy' => 0);
 			
 		$query = $card->insert($data);
 		///////////////////////////////////////

@@ -22,9 +22,9 @@
                                   <th>Amount</th>
                                   <th>Status</th>
                                   <th>Created By</th>
-                                  <th>Updated By</th>
                                   <th>Added On</th>
-                                  <th>Updated On</th>
+                                  <th>Redeemed by</th>
+                                  <th>Redeemed On</th>
                                 </tr>
                               </thead>
 
@@ -37,14 +37,15 @@
                                     
                                     $statCards = ($cards->cardStatus == 0)?'<span class="label label-danger">Used</span>':'<span class="label label-success">Available</span>';
                                     $nameCard = $cards->first_name. " ". $cards->last_name;
+                                    $nameCard1 = $cards->buyerF. " ". $cards->buyerL;
                                     $prepareDat .= "<tr>".
                                                       "<td>".$cards->cardId."</td>".
                                                       "<td>".$cards->cardCode."</td>".
                                                       "<td>".$cards->cardAmount."</td>".
                                                       "<td>".$statCards."</td>".
                                                       "<td>".$nameCard."</td>".
-                                                      "<td>".$nameCard."</td>".
                                                       "<td>".$cards->addedAt."</td>".
+                                                      "<td>".$nameCard1."</td>".
                                                       "<td>".$cards->updatedAt."</td>".
                                                     "</tr>";
                                   }
