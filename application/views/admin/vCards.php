@@ -30,7 +30,7 @@
                     
                       foreach ($dtCards as $cards) {
                         
-                        $statCards = ($cards->cardStatus == 1)?'<span class="label label-danger">Used</span>':'<span class="label label-success">Available</span>';
+                        $statCards = ($cards->cardStatus == 0)?'<span class="label label-danger">Used</span>':'<span class="label label-success">Available</span>';
                         $nameCard = $cards->first_name. " ". $cards->last_name;
                         $prepareDat .= "<tr>".
                                           "<td>".$cards->cardId."</td>".
