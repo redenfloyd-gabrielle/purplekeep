@@ -133,6 +133,6 @@ $autoload['language'] = array();
 |	$autoload['model'] = array('first_model' => 'first');
 */
 
-$autoload['model'] = array('MCardLoad','MUserInfo','user/MUser','calendar/MCalendar','finance/MFinance','reports/MReports','security/MSecurity','user/MUser','MEventInfo','MRegisterEvent','MTicket','../core/MY_Model', 'user/MTicketType','admin/MAnnouncement','MCart','MNotificationItem','user/MPreference');
+$autoload['model'] = array('MCardLoad','MUserInfo','user/MUser','calendar/MCalendar','finance/MFinance','reports/MReports','security/MSecurity','user/MUser','MEventInfo','MRegisterEvent','MTicket','../core/MY_Model', 'user/MTicketType','admin/MAnnouncement','MCart','MNotificationItem','user/MPreference','admin/MAdminDT');
 	
 
