@@ -15,8 +15,19 @@
                     </header>
                     <div class="panel-body">
                       <button class="btn btn-outline-primary" style="margin-bottom:25px;" type="button" name="button" data-toggle="modal" data-target="#createAnnouncement" data-backdrop="static" data-keyboard="false">Generate Cards</button>
-
-                      <table class="table table-bordered table-hover text-center" id = "card-table" data-card-url="<?php echo site_url();?>/admin/CAdmin/fetchCardData">
+                    <?php if ($this->session->flashdata('success_msg')): ?>
+                          <div class="alert alert-success">
+                              <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                              <?php echo $this->session->flashdata('success_msg') ?>
+                          </div>
+                      <?php endif ?>
+                      <?php if ($this->session->flashdata('error_msg')): ?>
+                              <div class="alert alert-danger" style="margin-top: 15px;">
+                                  <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                                  <?php echo $this->session->flashdata('error_msg'); ?>
+                              </div>
+                      <?php endif ?>
+                    <table class="table table-bordered table-hover text-center" id = "card-table" data-card-url="<?php echo site_url();?>/admin/CAdmin/fetchCardData">
                               <thead>
                                 <tr>
                                   <th>ID</th>
@@ -212,7 +223,7 @@
             </div>
     </section>
   </div>
-  
+
 </div>     
 
 <script type="text/javascript">
@@ -302,24 +313,24 @@ var value = 0 ;
       } 
     });
 
-      $(document).on('submit',"#gForm",function(e){
-        e.preventDefault();
-        var _url = $(this).attr('action');
+      // $(document).on('submit',"#gForm",function(e){
+      //   e.preventDefault();
+      //   var _url = $(this).attr('action');
 
 
-        $.ajax({
-          url: _url,
-          method:"POST",
-          data: $(this).serialize(),
-          success: function(){ 
-                    alert("sucess");
-                    $(':input').val(0);
-                  },
-          error: function(){
-                    alert("error!");
-                  }
-        });
-      });
+      //   $.ajax({
+      //     url: _url,
+      //     method:"POST",
+      //     data: $(this).serialize(),
+      //     success: function(){ 
+      //               alert("sucess");
+      //               $(':input').val(0);
+      //             },
+      //     error: function(){
+      //               alert("error!");
+      //             }
+      //   });
+      // });
   });
 
   
