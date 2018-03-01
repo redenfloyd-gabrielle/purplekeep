@@ -8,6 +8,49 @@
 
     <div id="content">
         <div class="row">
+          <div class="col-lg-12">
+          <table class="table table-bordered table-hover text-center" id = "card-table" data-card-url="<?php echo site_url();?>/admin/CAdmin/fetchCardData">
+									<thead>
+										<tr>
+											<th>ID</th>
+                      <th>Code</th>
+                      <th>Amount</th>
+                      <th>Status</th>
+                      <th>Created By</th>
+                      <th>Updated By</th>
+                      <th>Added On</th>
+                      <th>Updated On</th>
+										</tr>
+									</thead>
+
+									<tbody >
+                  <?php
+                    if($dtCards != False){
+                      $prepareDat = "";
+                    
+                      foreach ($dtCards as $cards) {
+                        
+                        $statCards = ($cards->cardStatus == 1)?'<span class="label label-danger">Used</span>':'<span class="label label-success">Available</span>';
+                        $nameCard = $cards->first_name. " ". $cards->last_name;
+                        $prepareDat .= "<tr>".
+                                          "<td>".$cards->cardId."</td>".
+                                          "<td>".$cards->cardCode."</td>".
+                                          "<td>".$cards->cardAmount."</td>".
+                                          "<td>".$statCards."</td>".
+                                          "<td>".$nameCard."</td>".
+                                          "<td>".$nameCard."</td>".
+                                          "<td>".$cards->addedAt."</td>".
+                                          "<td>".$cards->updatedAt."</td>".
+                                        "</tr>";
+                      }
+                       echo $prepareDat;   
+                    }
+                  ?>
+									</tbody>
+								</table>
+          </div>
+        </div>
+        <div class="row">
             <div class="col-lg-12">
                 <section class="panel">
                     <header class="panel-heading">
@@ -190,6 +233,8 @@ var value = 0 ;
         });
       });
   });
+
+  
 </script>
   </body>
 </html>
