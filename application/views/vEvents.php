@@ -36,8 +36,9 @@
                     </div>
 
                     <ul class="main-nav nav navbar-nav navbar-right">
+
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_HOME ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_PROFILE ?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents/1"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_PROFILE ?></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>'><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_ANNOUNCEMENTS ?><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents">Interested Events</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/CCart/viewCart">View Cart</a></li>
@@ -77,6 +78,7 @@
                                         </div>
                                     </div>
                                     <div class="row">
+
                                         <!-- <p>Insufficient balance?
                                              <a style=" color: #e2624b; cursor:pointer; border-bottom: 1.5px solid #e2624b;padding-bottom: 2px"  onMouseOver="this.style.color='#ffcec0';this.style.paddingBottom='8px';this.style.borderBottom='3px solid #e2624b';"    onMouseOut="this.style.color='#e2624b' ;this.style.paddingBottom='2px';" type="button" class="dbutton " id="load" >Load Now</a> -->
                                            <p><?php echo CustomizationManager::$strings->PROFILE_PAGE_INSUFFICIENT_BALANCE ?>
@@ -256,6 +258,12 @@
               <?php echo $this->session->flashdata('success_msg') ?>
           </div>
       <?php endif ?>
+    <?php if ($this->session->flashdata('error_msg')): ?>
+        <div class="alert alert-danger" style="margin-top: 15px;">
+            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+            <?php echo $this->session->flashdata('error_msg'); ?>
+        </div>
+    <?php endif ?>
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" id="myTabs" role="tablist">
@@ -357,13 +365,16 @@
                 <div class="pull-right">
                     <div class="pagination">
                         <ul>
-                            <li><a href="#">Prev</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">Next</a></li>
+                            <li><a href = '<?php echo site_url()?>/event/CEvent/viewEvents/<?php if($page !=1){$ppage = $page-1;} echo $ppage?>'>Prev</a></li>
+                            <?php
+                            for($n=1; $n<=$pages; $n++){
+                                echo "<li><a href='".site_url()."/event/CEvent/viewEvents/".$n."'>".$n."</a></li>";
+                            }
+                            ?>
+                            <li><a href = '<?php echo site_url()?>/event/CEvent/viewEvents/<?php if($page != $pages){$ppage = $page+1;} echo $ppage?>'>Next</a></li>
+
                         </ul>
+                     
                     </div>
                 </div>
             </div>

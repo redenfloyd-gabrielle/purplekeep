@@ -78,6 +78,19 @@
 			$query = $this->db->get();
 			return $query->result();
 		}
+
+		public function getLimitedEventsByUser($id,$page){
+			$this->db->select("*");
+			$this->db->select("DATE_FORMAT(event_info.event_date_start,'%d-%b-%y %H:%m') as dateStart");
+			$this->db->select("DATE_FORMAT(event_info.event_date_end,'%d-%b-%y %H:%m') as dateEnd");
+			$this->db->from("event_info");
+			$this->db->where("user_id = $id");
+			$this->db->where("event_isActive!=FALSE");
+			$this->db->limit(9,$page);
+			$query = $this->db->get();
+			return $query->result();
+		}
+
 		public function getTicketsOfEvent($event_id){
 			//Sample code
 			//find read_all function at application/core/MY_Model.php

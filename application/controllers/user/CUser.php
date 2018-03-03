@@ -109,19 +109,18 @@ class cUser extends CI_Controller {
 
 				if($res){
 					$code = $card[0]->cardId;
-					$res1 = $this->MCardLoad->update($code, array('cardStatus'=>0));
-
+					$res1 = $this->MCardLoad->update($code, array('cardStatus'=>0,"updatedBy"=>$this->session->userdata["userSession"]->userID));
+					
+					$this->session->set_flashdata('success_msg',"Your wallet has been added P".$card[0]->cardAmount." ammount of load!");
 					redirect("event/cEvent/viewEvents");
 				}
 			} else {
-				$data = "CodeUsed";
-
-				redirect("event/cEvent/viewEventsFromCodeError(".$data.")");
+				$this->session->set_flashdata('error_msg','Code already taken.');
+				redirect("event/cEvent/viewEvents");
 			}
 		} else {
-			$data = "CodeInvalid";
-
-			redirect("event/cEvent/viewEventsFromCodeError/".$data."/");
+			$this->session->set_flashdata('error_msg','Code invalid.');
+			redirect("event/cEvent/viewEvents");
 		}
 
 		//$this->load->view('vLogin', $data);
