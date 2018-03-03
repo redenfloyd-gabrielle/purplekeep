@@ -240,11 +240,11 @@
 
 			$this->db->join("location", "event_info.location_id = location.location_id");			
 			
-			$current_yr = date('Y');
-			$current_mon = date('m');
+			// $current_yr = date('Y');
+			// $current_mon = date('m');
 			
-			$this->db->where("MONTH(event_date_start) = ".$current_mon."");
-			$this->db->where("YEAR(event_date_start) = ".$current_yr."");
+			// $this->db->where("MONTH(event_date_start) = ".$current_mon."");
+			// $this->db->where("YEAR(event_date_start) = ".$current_yr."");
 			
 			$this->db->where("event_info.event_status = 'Approved'");
 
