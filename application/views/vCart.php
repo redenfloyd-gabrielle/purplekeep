@@ -344,15 +344,36 @@
           updateTotal("minus", $(this).closest("tr").find("th.closest").html());
         }
       });
+
+      var limit = 0;
       $(".plus").click(function(){
         var input = $(this).closest("div.row").find("input");
         var get = parseInt(input.val());
         get+=1;
+
+        check($(this).closest("div.panel").find("input.cartID").val());
+        if (get > limit) {
+          get--;
+        }
         input.val(get);
         updateTicketCount("plus",$(this).closest("div.panel").find("input.cartID").val(),get);
 
         updateTotal("plus", $(this).closest("tr").find("th.closest").html());
       });
+
+      //check if more than limit
+      function check (id) {
+        $.ajax ({
+          url : "<?php echo site_url()?>/finance/CCart/getLimit",
+          data : {"id" : id},
+          method : "POST",
+          success: function(e){
+                    limit = e;
+                },
+                error: function(e){
+                }
+        });
+      }
 
       function updateTotal (type, p) {
         //p = p.replace("Price:", "");

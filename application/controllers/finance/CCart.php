@@ -16,6 +16,18 @@ class CCart extends CI_Controller {
 	public function index() {
 	}
 
+	public function getLimit () {
+		$tm = new MTicketType();
+
+		$id = $this->input->post('id');
+
+		$data = $tm->read_where(array("ticket_type_id" => $id));
+
+		foreach($data as $d) {
+			echo $d->ticket_count;
+		}
+	}
+
 	public function addToCart () {
 		$cart = new MCart();
 		//$qty = $this->input->post('qty1')
