@@ -1,5 +1,4 @@
 <?php if(isset($this->session->userdata['adminSession'])){
-    echo"asdAS";
     ?>
 <!DOCTYPE html>
 <html>
@@ -18,5 +17,5 @@
 
   </head>
 <?php }else{
-        redirect("cLogin/login");
+        redirect("CLogin/login");
         }?>

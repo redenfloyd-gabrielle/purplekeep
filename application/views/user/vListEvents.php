@@ -24,8 +24,8 @@
 						<td><?php echo $e->event_venue;?></td>
 						<td><?php echo $e->event_category;?></td>
 						<td>
-							<a href="<?php echo site_url();?>/user/cEvent/displayEventDetails/<?php echo $e->event_id;?>"><button id="<?php echo $e->event_id;?>">View</button></a>
-							<a href="<?php echo site_url();?>/event/cEvent/deleteEvent/<?php echo $e->event_id;?>"><button id="<?php echo $e->event_id;?>">Delete</button></a>
+							<a href="<?php echo site_url();?>/user/CEvent/displayEventDetails/<?php echo $e->event_id;?>"><button id="<?php echo $e->event_id;?>">View</button></a>
+							<a href="<?php echo site_url();?>/event/cCEvent/deleteEvent/<?php echo $e->event_id;?>"><button id="<?php echo $e->event_id;?>">Delete</button></a>
 						</td>
 					</tr>
 				<?php } ?>

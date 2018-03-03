@@ -1,7 +1,7 @@
 <div id="main">
 
     <ol class="breadcrumb">
-        <li><a href="<?php echo site_url();?>/admin/cAdmin">Home</a></li>
+        <li><a href="<?php echo site_url();?>/admin/CAdmin">Home</a></li>
         <li class="active">Reports</li>
     </ol>
 
@@ -265,7 +265,7 @@
 
              function getData(){
                $.ajax({
-                      url:"<?php echo site_url()?>/admin/cAdmin/getUserMonthly",
+                      url:"<?php echo site_url()?>/admin/CAdmin/getUserMonthly",
                       method:"GET",
                       dataType:"json",
                       data: {
@@ -296,7 +296,7 @@
              function getData2(){
 
                $.ajax({
-                      url:"<?php echo site_url()?>/admin/cAdmin/getCardsMonthly",
+                      url:"<?php echo site_url()?>/admin/CAdmin/getCardsMonthly",
                       method:"GET",
                       dataType:"json",
                       data: {
@@ -327,7 +327,7 @@
 
              function getEventsData(){
                $.ajax({
-                      url:"<?php echo site_url()?>/admin/cAdmin/getEvents",
+                      url:"<?php echo site_url()?>/admin/CAdmin/getEvents",
                       method:"GET",
                       dataType:"text json",
                       data: {
