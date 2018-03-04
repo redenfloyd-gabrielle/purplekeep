@@ -25,12 +25,12 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>                       
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
     <script src="<?php echo base_url('assets/customization1Assets/js/ticket.js')?>"></script>
 
     <!--end of datetime picker styling -------->
-    
+
     <link href="<?php echo base_url('assets/nikkiAssets/css/announcement.css')?>" rel="stylesheet" />
     <link href="<?php echo base_url('assets/nikkiAssets/css/normalize.css')?>" rel="stylesheet" />
     <link href="<?php echo base_url('assets/nikkiAssets/css/font-awesome.min.css')?>" rel="stylesheet" />
@@ -49,5 +49,22 @@
     <link href="<?php echo base_url('assets/nikkiAssets/css/normalize.css')?>" rel="stylesheet" />
     <link href="<?php echo base_url('assets/nikkiAssets/css/responsive.css')?>" rel="stylesheet" />
     <link href="<?php echo base_url('assets/customization1Assets/css/w3.css')?>" rel="stylesheet" />
+    <style>
+         .ballons {
+            float:right;
+            margin:-20px 8px 0 0;
+            line-height:30px;
+            padding:0 10px;
+            border-radius: 30px;
+            border:3px solid #fff;
+            -moz-border-radius: 30px;
+            -webkit-border-radius: 305px;
+            background:red;
+            color:#fff;
+            text-align:center;
+            -moz-box-shadow:    1px 1px 3px 3px #ccc;
+            -webkit-box-shadow: 1px 1px 3px 3px #ccc;
+            box-shadow:         1px 1px 3px 3px #ccc;
+        }
+    </style>
 </head>
-
