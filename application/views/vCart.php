@@ -228,7 +228,13 @@
              <div class="checkoutContainer" style="margin-left:3%;">
                    <input type="checkbox" checked="">
                    <span class="h4"><strong>SELECT ALL</strong><span style="margin: 10px;" class="badge badge-light h5">4</span> </span>
-                  <button class="btn btn-default pull-right" id="chkout" type="button">CHECKOUT</button>
+                  <form id = "form01" action="<?php echo site_url(); ?>/finance/CCart/getCart" method="POST">
+                    <!--blank form-->
+                  </form>
+                  <form action="<?php echo site_url(); ?>/finance/CCart/checkout" method="POST">
+                    <input id ="i01" type="hidden" value="" name="input01">
+                    <button class="btn btn-default pull-right" id="checkout" type="submit">CHECKOUT</button>
+                  </form>
              </div>
              <?php } ?>
         </div>
@@ -267,6 +273,24 @@
       });
       
     $(document).ready(function() {
+      var id = "";
+      $.ajax({
+        url: $("#form01").attr('action'),
+        method:"POST",
+        success: function(retval){ 
+                  var arr = JSON.parse(retval);
+                  for (var i = 0; i < arr.length; i++) {
+                    if ($("#"+arr[i]['ticket_id']).attr("checked") == "checked") {
+                      id = id+"/"+arr[i]['ticket_id'];
+                    }
+                  }
+                  $("#i01").val(id); 
+                  console.log(id);
+                },
+        error: function(){
+                alert("error!");
+              }
+      });
       
       // $(".delete").click(function(){
       //    panel= $(this).closest("div.panel");
@@ -316,6 +340,8 @@
             $(document).find("#"+temp).closest("div.icheckbox_square-yellow").addClass("checked");  
             $(document).find("#"+temp).attr("checked",true);
           }
+
+          addId($(this).attr('id'));
       });
       $('input').on('ifUnchecked', function (event) {
           $(this).closest("input").attr('checked', false);
@@ -330,8 +356,33 @@
               $(document).find("#"+temp).removeAttr('checked');
 
           });
-
+          removeId($(this).attr('id'));
       });
+
+      function removeId (id) {
+        var s = $("#i01").val();
+        var arr = s.split('/');
+        var done = "";
+        for (var i=0; i< arr.length; i++) {
+          if (arr[i] != id) {
+            done = done+arr[i]+"/";
+          }
+        }
+        $("#i01").val(done);
+        console.log($("#i01").val());
+      }
+
+      function addId (id) {
+        var s = $("#i01").val();
+        var arr = s.split('/');
+        var done = "";
+        for (var i=0; i< arr.length; i++) {
+          done=done+arr[i]+"/";
+        }
+        done += id;
+        $("#i01").val(done);
+        console.log($("#i01").val());
+      }
 
       $(".minus").click(function(){
         var input = $(this).closest("div.row").find("input");
@@ -349,16 +400,15 @@
       $(".plus").click(function(){
         var input = $(this).closest("div.row").find("input");
         var get = parseInt(input.val());
-        get+=1;
-
         check($(this).closest("div.panel").find("input.cartID").val());
-        if (get > limit) {
-          get--;
-        }
-        input.val(get);
-        updateTicketCount("plus",$(this).closest("div.panel").find("input.cartID").val(),get);
+        if (get != limit) {
+          get++;
+          input.val(get);
+          updateTicketCount("plus",$(this).closest("div.panel").find("input.cartID").val(),get);
 
-        updateTotal("plus", $(this).closest("tr").find("th.closest").html());
+          updateTotal("plus", $(this).closest("tr").find("th.closest").html());
+        }
+        
       });
 
       //check if more than limit
@@ -391,7 +441,6 @@
         var total = parseInt(t);
 
         $("#total").text("Php "+(total+price)+".00");
-        // console.log(t);
       }
 
       function updateTicketCount(type,id,quantity){
