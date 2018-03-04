@@ -9,6 +9,7 @@ class CCart extends CI_Controller {
 	 	$this->load->model('MTicket');
 	 	$this->load->model('MTicketType');
 	 	$this->load->model('MUser');
+	 	$this->load->model('MAnnouncement');
 	 	$this->load->library('form_validation');
 		$this->load->helper('security');
 		$this->load->model('MCheckout');

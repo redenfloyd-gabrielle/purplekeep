@@ -135,7 +135,7 @@
                                                           <div class="form-group row">
                                                             <button class="btn btn-default pull-left plus" type="button"><span class="glyphicon glyphicon-plus"></span></button>
                                                             <div class="col-sm-6">
-                                                              <input type="text" class="qty" value ="<?php echo $cart->quantity;?>" class="form-control">
+                                                              <input type="text" class="qty" disabled value ="<?php echo $cart->quantity;?>" class="form-control">
                                                             </div>
                                                             <button class="btn btn-default minus" type="button"><span class="glyphicon glyphicon-minus"></span></button>
                                                           </div>
@@ -472,23 +472,7 @@
                 }
             });
       }
-        $(document).on('click', '#aDropdown', function(){
-            var id = $(this).data('id');
-            $.ajax({
-                url: "<?php echo site_url()?>/user/CUser/updateAnnounce/"+id,
-                data: { id:id },
-                type: "POST",
-                success: function(data){
-                    var d=data.split('/');
-                    $('#bdg').remove();
-                    // alert(d[0].trim());
-                   
-                },
-                error: function(data){
-                    alert("error");
-                }
-            });
-        });
+
     } );
     
    

@@ -2,12 +2,77 @@
 
     <ol class="breadcrumb">
         <li><a href="<?php echo site_url();?>/admin/CAdmin">Home</a></li>
-        <li class="active">Generate Card</li>
+        <li class="active">Card</li>
     </ol>
       <!-- //breadcrumb-->
 
     <div id="content">
         <div class="row">
+          <div class="col-lg-12">
+                <section class="panel">
+                    <header class="panel-heading">
+                        <h2><strong>Cards</strong></h2>
+                    </header>
+                    <div class="panel-body">
+                      <button class="btn btn-outline-primary" style="margin-bottom:25px;" type="button" name="button" data-toggle="modal" data-target="#createAnnouncement" data-backdrop="static" data-keyboard="false">Generate Cards</button>
+                    <?php if ($this->session->flashdata('success_msg')): ?>
+                          <div class="alert alert-success">
+                              <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                              <?php echo $this->session->flashdata('success_msg') ?>
+                          </div>
+                      <?php endif ?>
+                      <?php if ($this->session->flashdata('error_msg')): ?>
+                              <div class="alert alert-danger" style="margin-top: 15px;">
+                                  <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                                  <?php echo $this->session->flashdata('error_msg'); ?>
+                              </div>
+                      <?php endif ?>
+                    <table class="table table-bordered table-hover text-center" id = "card-table" data-card-url="<?php echo site_url();?>/admin/CAdmin/fetchCardData">
+                              <thead>
+                                <tr>
+                                  <th>ID</th>
+                                  <th>Code</th>
+                                  <th>Amount</th>
+                                  <th>Status</th>
+                                  <th>Created By</th>
+                                  <th>Added On</th>
+                                  <th>Redeemed by</th>
+                                  <th>Redeemed On</th>
+                                </tr>
+                              </thead>
+
+                              <tbody >
+                              <?php
+                                if($dtCards != False){
+                                  $prepareDat = "";
+                                
+                                  foreach ($dtCards as $cards) {
+                                    
+                                    $statCards = ($cards->cardStatus == 0)?'<span class="label label-danger">Used</span>':'<span class="label label-success">Available</span>';
+                                    $nameCard = $cards->first_name. " ". $cards->last_name;
+                                    $nameCard1 = $cards->buyerF. " ". $cards->buyerL;
+                                    $prepareDat .= "<tr>".
+                                                      "<td>".$cards->cardId."</td>".
+                                                      "<td>".$cards->cardCode."</td>".
+                                                      "<td>".$cards->cardAmount."</td>".
+                                                      "<td>".$statCards."</td>".
+                                                      "<td>".$nameCard."</td>".
+                                                      "<td>".$cards->addedAt."</td>".
+                                                      "<td>".$nameCard1."</td>".
+                                                      "<td>".$cards->updatedAt."</td>".
+                                                    "</tr>";
+                                  }
+                                   echo $prepareDat;   
+                                }
+                              ?>
+                              </tbody>
+                      </table>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+        <!-- <div class="row">
             <div class="col-lg-12">
                 <section class="panel">
                     <header class="panel-heading">
@@ -15,74 +80,151 @@
                     </header>
                     <div class="panel-body">
 
-                    <form id="gForm" class="form inline" method="POST" action="<?php echo site_url('finance/CCard/card'); ?>">
-                        <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover" data-provide="data-table" id="toggle-column table-example">
-                            <thead>
-                                <tr>
-                                  <th>Amount</th>
-                                  <th>Quantity</th>
-                                </tr>
-                            </thead>
-                            
-                            <tbody>
-                                <tr>
-                                    <td>&#x20B1; 100</td>
-                                    <td>
-                                        <span class="input-group-btn form-group">
-                                           <button class="btn btn-secondary col-1 cardsbtn unaM" type="button"><i class="fa fa-minus" aria-hidden="true"></i></button> 
-                                           <input type="text" name="qty1" class="form-control col-sm-3 qtyinput" id="qty1" placeholder="Quantity" aria-label="Quantity">
-                                           <button class="btn btn-secondary col-1 cardsbtn unaP" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                        </span>
-                                    </td>
-                                </tr>
+                      <form id="gForm" class="form inline" method="POST" action="<?php echo site_url('finance/CCard/card'); ?>">
+                          <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover" id="toggle-column table-example">
+                              <thead>
+                                  <tr>
+                                    <th>Amount</th>
+                                    <th>Quantity</th>
+                                  </tr>
+                              </thead>
+                              
+                              <tbody>
+                                  <tr>
+                                      <td>&#x20B1; 100</td>
+                                      <td>
+                                          <span class="input-group-btn form-group">
+                                             <button class="btn btn-secondary col-1 cardsbtn unaM" type="button"><i class="fa fa-minus" aria-hidden="true"></i></button> 
+                                             <input type="text" name="qty1" class="form-control col-sm-3 qtyinput" id="qty1" placeholder="Quantity" aria-label="Quantity">
+                                             <button class="btn btn-secondary col-1 cardsbtn unaP" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                          </span>
+                                      </td>
+                                  </tr>
 
-                                <tr>
-                                    <td>&#x20B1; 200</td> 
-                                    <td>
-                                        <span class="input-group-btn form-group">
-                                           <button class="btn btn-secondary col-1 dosM" type="button"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                                           <input type="text" name="qty2" class="form-control col-sm-3 qtyinput" id="qty2" placeholder="Quantity" aria-label="Quantity">
-                                           <button class="btn btn-secondary col-1 dosP" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                        </span>
-                                    </td>
-                                </tr>
+                                  <tr>
+                                      <td>&#x20B1; 200</td> 
+                                      <td>
+                                          <span class="input-group-btn form-group">
+                                             <button class="btn btn-secondary col-1 dosM" type="button"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                             <input type="text" name="qty2" class="form-control col-sm-3 qtyinput" id="qty2" placeholder="Quantity" aria-label="Quantity">
+                                             <button class="btn btn-secondary col-1 dosP" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                          </span>
+                                      </td>
+                                  </tr>
 
-                                <tr>
-                                    <td>&#x20B1; 500</td>
-                                    <td>
-                                        <span class="input-group-btn form-group">
-                                           <button class="btn btn-secondary col-1 tresM" type="button"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                                           <input type="text" name="qty3" class="form-control col-sm-3 qtyinput" id="qty3" placeholder="Quantity" aria-label="Quantity">
-                                           <button class="btn btn-secondary col-1 tresP" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                        </span>
-                                    </td>
-                                </tr>
+                                  <tr>
+                                      <td>&#x20B1; 500</td>
+                                      <td>
+                                          <span class="input-group-btn form-group">
+                                             <button class="btn btn-secondary col-1 tresM" type="button"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                             <input type="text" name="qty3" class="form-control col-sm-3 qtyinput" id="qty3" placeholder="Quantity" aria-label="Quantity">
+                                             <button class="btn btn-secondary col-1 tresP" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                          </span>
+                                      </td>
+                                  </tr>
 
-                                <tr>
-                                    <td>&#x20B1; 1000</td>
-                                    <td>
-                                        <span class="input-group-btn form-group">
-                                           <button class="btn btn-secondary col-1 kwatroM" type="button"><i class="fa fa-minus" aria-hidden="true"></i></button>
-                                           <input type="text" name="qty4" class="form-control col-sm-3 qtyinput" id="qty4" placeholder="Quantity" aria-label="Quantity">
-                                           <button class="btn btn-secondary col-1 kwatroP" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
-                                        </span>
-                                    </td>
-                                </tr>   
-                            </tbody>
-                        </table>
+                                  <tr>
+                                      <td>&#x20B1; 1000</td>
+                                      <td>
+                                          <span class="input-group-btn form-group">
+                                             <button class="btn btn-secondary col-1 kwatroM" type="button"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                             <input type="text" name="qty4" class="form-control col-sm-3 qtyinput" id="qty4" placeholder="Quantity" aria-label="Quantity">
+                                             <button class="btn btn-secondary col-1 kwatroP" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                          </span>
+                                      </td>
+                                  </tr>   
+                              </tbody>
+                          </table>
 
-                        <center>
-                            <button id="generate" class="btn btn-inverse btn-transparent" type="submit">
-                                <strong>GENERATE</strong>
-                            </button>
-                        </center>
-                    </form>
-                </div>
-            </section>
-        </div>
+                          <center>
+                              <button id="generate" class="btn btn-inverse btn-transparent" type="submit">
+                                  <strong>GENERATE</strong>
+                              </button>
+                          </center>
+                      </form>
+                    </div>
+                </section>
+            </div>
+        </div> -->
     </div>
-</div>
-          
+     
+<div id="createAnnouncement" class="modal" tabindex="-1" data-width="650">
+  <div class="modal-header bg-inverse bd-inverse-darken">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+    <h1 class="modal-title" align="center">GENERATE CARD</h1>
+  </div>
+
+  <div class="modal-body">
+    <section class="panel">
+            <div class="panel-body">
+
+              <form id="gForm" class="form inline" method="POST" action="<?php echo site_url('finance/CCard/card'); ?>">
+                  <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover" id="toggle-column table-example">
+                      <thead>
+                          <tr>
+                            <th>Amount</th>
+                            <th>Quantity</th>
+                          </tr>
+                      </thead>
+                      
+                      <tbody>
+                          <tr>
+                              <td>&#x20B1; 100</td>
+                              <td>
+                                  <span class="input-group-btn form-group">
+                                     <button class="btn btn-secondary col-1 cardsbtn unaM" type="button"><i class="fa fa-minus" aria-hidden="true"></i></button> 
+                                     <input type="text" name="qty1" class="form-control col-sm-3 qtyinput" id="qty1" placeholder="Quantity" aria-label="Quantity">
+                                     <button class="btn btn-secondary col-1 cardsbtn unaP" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                  </span>
+                              </td>
+                          </tr>
+
+                          <tr>
+                              <td>&#x20B1; 200</td> 
+                              <td>
+                                  <span class="input-group-btn form-group">
+                                     <button class="btn btn-secondary col-1 dosM" type="button"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                     <input type="text" name="qty2" class="form-control col-sm-3 qtyinput" id="qty2" placeholder="Quantity" aria-label="Quantity">
+                                     <button class="btn btn-secondary col-1 dosP" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                  </span>
+                              </td>
+                          </tr>
+
+                          <tr>
+                              <td>&#x20B1; 500</td>
+                              <td>
+                                  <span class="input-group-btn form-group">
+                                     <button class="btn btn-secondary col-1 tresM" type="button"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                     <input type="text" name="qty3" class="form-control col-sm-3 qtyinput" id="qty3" placeholder="Quantity" aria-label="Quantity">
+                                     <button class="btn btn-secondary col-1 tresP" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                  </span>
+                              </td>
+                          </tr>
+
+                          <tr>
+                              <td>&#x20B1; 1000</td>
+                              <td>
+                                  <span class="input-group-btn form-group">
+                                     <button class="btn btn-secondary col-1 kwatroM" type="button"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                                     <input type="text" name="qty4" class="form-control col-sm-3 qtyinput" id="qty4" placeholder="Quantity" aria-label="Quantity">
+                                     <button class="btn btn-secondary col-1 kwatroP" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                                  </span>
+                              </td>
+                          </tr>   
+                      </tbody>
+                  </table>
+
+                  <center>
+                      <button id="generate" class="btn btn-inverse btn-transparent" type="submit">
+                          <strong>GENERATE</strong>
+                      </button>
+                  </center>
+              </form>
+            </div>
+    </section>
+  </div>
+
+</div>     
 
 <script type="text/javascript">
 var value = 0 ;
@@ -171,25 +313,27 @@ var value = 0 ;
       } 
     });
 
-      $(document).on('submit',"#gForm",function(e){
-        e.preventDefault();
-        var _url = $(this).attr('action');
+      // $(document).on('submit',"#gForm",function(e){
+      //   e.preventDefault();
+      //   var _url = $(this).attr('action');
 
 
-        $.ajax({
-          url: _url,
-          method:"POST",
-          data: $(this).serialize(),
-          success: function(){ 
-                    alert("sucess");
-                    $(':input').val(0);
-                  },
-          error: function(){
-                    alert("error!");
-                  }
-        });
-      });
+      //   $.ajax({
+      //     url: _url,
+      //     method:"POST",
+      //     data: $(this).serialize(),
+      //     success: function(){ 
+      //               alert("sucess");
+      //               $(':input').val(0);
+      //             },
+      //     error: function(){
+      //               alert("error!");
+      //             }
+      //   });
+      // });
   });
+
+  
 </script>
   </body>
 </html>

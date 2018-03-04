@@ -147,7 +147,10 @@
                 .corner-ribbon.orange{background: #e82;}
                 .corner-ribbon.yellow{background: #ec0;}
 
-            
+            li.active{
+              border-bottom: 100px;
+              border-color: #CB6C52;
+            }
     </style>
 </head>
 
