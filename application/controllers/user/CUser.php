@@ -11,6 +11,7 @@ class cUser extends CI_Controller {
       $this->load->model('MCardLoad');
 	  $this->load->model('MAnnouncement'); //admin module functionality
 	  $this->load->model('MNotificationItem');
+	  $this->load->model('MLoadhistory');
 	  $this->load->model('location/MLocation');
       $this->load->library('session');
       $this->load->library('form_validation');
@@ -110,6 +111,13 @@ class cUser extends CI_Controller {
 				if($res){
 					$code = $card[0]->cardId;
 					$res1 = $this->MCardLoad->update($code, array('cardStatus'=>0));
+
+					//add to loadhistory
+					$lh = array (
+						"account_id" => $this->session->userdata["userSession"]->userID,
+						"cardId" => $code
+					);
+					$this->MLoadhistory->insert($lh);
 
 					redirect("event/cEvent/viewEvents");
 				}

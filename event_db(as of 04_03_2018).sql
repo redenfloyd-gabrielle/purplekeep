@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 04, 2018 at 10:47 AM
+-- Generation Time: Mar 04, 2018 at 11:51 AM
 -- Server version: 10.1.10-MariaDB
 -- PHP Version: 7.0.2
 
@@ -60,11 +60,11 @@ CREATE TABLE `card` (
 --
 
 INSERT INTO `card` (`cardId`, `cardCode`, `cardAmount`, `cardStatus`, `addedBy`, `updatedBy`, `addedAt`, `updatedAt`, `cardCreatedOn`) VALUES
-(1, 'CE3qYyTw7m', 1000, 0, 1, 1, '2018-03-04 12:15:08', '2018-03-04 12:15:45', '2018-03-04 04:15:45'),
-(2, 'B1SOYag0PZ', 1000, 0, 1, 1, '2018-03-04 12:15:09', '2018-03-04 12:16:18', '2018-03-04 04:16:18'),
-(3, 'NM6TefSE4e', 1000, 0, 1, 1, '2018-03-04 12:15:09', '2018-03-04 12:16:30', '2018-03-04 04:16:30'),
-(4, 'qLlV6lIzZy', 1000, 1, 1, 1, '2018-03-04 12:15:09', '2018-03-04 12:15:09', '2018-03-04 04:15:09'),
-(5, 'lH5vm7z5Qj', 1000, 1, 1, 1, '2018-03-04 12:15:09', '2018-03-04 12:15:09', '2018-03-04 04:15:09');
+(1, 'CE3qYyTw7m', 1000, 0, 1, 1, '2018-03-04 12:15:08', '2018-03-04 18:50:54', '2018-03-04 10:50:54'),
+(2, 'B1SOYag0PZ', 1000, 1, 1, 1, '2018-03-04 12:15:09', '2018-03-04 18:50:36', '2018-03-04 10:50:36'),
+(3, 'NM6TefSE4e', 1000, 1, 1, 1, '2018-03-04 12:15:09', '2018-03-04 18:50:42', '2018-03-04 10:50:42'),
+(4, 'qLlV6lIzZy', 1000, 0, 1, 1, '2018-03-04 12:15:09', '2018-03-04 18:41:04', '2018-03-04 10:41:04'),
+(5, 'lH5vm7z5Qj', 1000, 0, 1, 1, '2018-03-04 12:15:09', '2018-03-04 18:50:11', '2018-03-04 10:50:11');
 
 -- --------------------------------------------------------
 
@@ -145,6 +145,26 @@ CREATE TABLE `event_info` (
 INSERT INTO `event_info` (`event_id`, `event_date_start`, `event_date_end`, `no_tickets_total`, `total_no_addedTickets`, `total_tickets_amtSold`, `event_status`, `event_name`, `event_details`, `event_category`, `event_venue`, `event_isActive`, `event_picture`, `color`, `user_id`, `addedBy`, `updatedBy`, `addedAt`, `updatedAt`, `location_id`) VALUES
 (1, '2018-02-21 00:00:00', '2018-02-21 00:00:00', 0, 0, 0, 'Pending', 'Counting Stars', 'Let us spend the night with music and fun.', 'Attraction', 'Rooftop', 1, 'images/events/images_(1).jpg', NULL, 3, 0, 0, '2018-02-21 14:37:05', '2018-02-21 21:37:05', 19),
 (2, '2018-02-22 00:00:00', '2018-03-02 00:00:00', 0, 0, 0, 'Pending', 'Diving', 'Let us enjoy the waves with food and music! \r\n\r\nGet to meet your favorite artists, vloggers, and surfers.', '', 'Siargao Beach', 1, 'images/events/IMG_20160420_200400.jpg', NULL, 3, 0, 0, '2018-02-21 14:40:51', '2018-02-21 21:40:51', 109);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `loadhistory`
+--
+
+CREATE TABLE `loadhistory` (
+  `lhId` int(11) NOT NULL,
+  `account_id` int(11) NOT NULL,
+  `cardId` int(11) NOT NULL,
+  `createdOn` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loadhistory`
+--
+
+INSERT INTO `loadhistory` (`lhId`, `account_id`, `cardId`, `createdOn`) VALUES
+(1, 3, 1, '2018-03-04 10:50:54');
 
 -- --------------------------------------------------------
 
@@ -369,7 +389,7 @@ CREATE TABLE `user_account` (
 INSERT INTO `user_account` (`account_id`, `user_name`, `password`, `user_type`, `upgradedBy`, `user_status`, `first_name`, `last_name`, `middle_initial`, `user_imgpath`, `email`, `birthdate`, `gender`, `contact_no`, `load_amt`, `addedBy`, `updatedBy`, `addedAt`, `updatedAt`) VALUES
 (1, 'timoteo', '7D6ECC2E16DC040356AE49CFCBE3A36D428E0C64D66C44E95D753EA1CAEF44347A1D4C59AB9942D5531BC60638B429984C0AF27144AF0E9B49446338807CE399', 'Admin', 0, 'Active', 'Timothy', 'Doe', 'J', '', 'timoteo@gmail.com', '1997-08-01', 'Male', '09231569795', 5000, NULL, NULL, '2018-02-21 20:24:28', '2018-02-21 20:24:28'),
 (2, 'harvey', '93E3545BCC181B039B5B3AD091A6C30139CE6A85C1615A2ABB9D450491CF8A0DECF7C4D2C9FDFD62FD76EFAE01583A3F6EBF521BC9A02E64BAF663487EC751DA', 'Superadmin', 0, 'Active', 'Harvey', 'Doe', 'K', '', 'harvey@gmail.com', '1996-02-12', 'Male', '09231564848', 4000, NULL, NULL, '2018-02-21 20:26:05', '2018-02-21 20:26:05'),
-(3, 'crystal', '9BC35193EE927E4047CE28012E893ED2366852ADEDE6F7699F6D92B4496DEAA5FDE1B90143ACA4BBEE8416D522FB88468E570514BE07139F07F94A8C39A335C1', 'Regular', 0, 'Active', 'Crystal', 'Lovegood', 'G', '', 'crystal@gmail.com', '1996-11-07', 'Male', '09567815989', 500, NULL, NULL, '2018-02-21 20:27:32', '2018-03-04 17:28:30');
+(3, 'crystal', '9BC35193EE927E4047CE28012E893ED2366852ADEDE6F7699F6D92B4496DEAA5FDE1B90143ACA4BBEE8416D522FB88468E570514BE07139F07F94A8C39A335C1', 'Regular', 0, 'Active', 'Crystal', 'Lovegood', 'G', '', 'crystal@gmail.com', '1996-11-07', 'Male', '09567815989', 3500, NULL, NULL, '2018-02-21 20:27:32', '2018-03-04 18:50:54');
 
 -- --------------------------------------------------------
 
@@ -425,6 +445,12 @@ ALTER TABLE `event_info`
   ADD PRIMARY KEY (`event_id`),
   ADD KEY `event_info_fk` (`user_id`),
   ADD KEY `location_id` (`location_id`);
+
+--
+-- Indexes for table `loadhistory`
+--
+ALTER TABLE `loadhistory`
+  ADD PRIMARY KEY (`lhId`);
 
 --
 -- Indexes for table `location`
@@ -498,6 +524,11 @@ ALTER TABLE `checkout`
 --
 ALTER TABLE `event_info`
   MODIFY `event_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+--
+-- AUTO_INCREMENT for table `loadhistory`
+--
+ALTER TABLE `loadhistory`
+  MODIFY `lhId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `location`
 --

@@ -505,6 +505,30 @@
                             </tbody>
                         </table>
                     </div>
+
+                    <!--view details modal-->
+                    <div class="modal fade" id="lmodal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3><img src="img/credit-card.png" class="elogo"> eLoad</h3>
+                                </div>
+                                <div class="modal-body">
+
+                                    <label class="label-control">Card Number</label>
+                                    <input type="text" class="form-control" name="" placeholder="Enter Card Number">
+
+                                    <h6 class="note">*Note: you only have 3 attemps to enter correct values</h6>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
     </div>
      <div role="tabpanel" class="tab-pane" id="editprofile">
         <h2>Edit Profile</h2>
