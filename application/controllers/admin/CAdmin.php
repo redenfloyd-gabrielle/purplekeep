@@ -146,6 +146,10 @@ class CAdmin extends CI_Controller {
 	}
 
 	public function Unban($id,$frm){
+		if(!isset($id) || $isset($frm)){
+			redirect('admin/CAdmin/viewUserAccountMgt');
+		}
+
 		$user_module = new MUserInfo();
 
 		$data = array('account_id' => $id);
