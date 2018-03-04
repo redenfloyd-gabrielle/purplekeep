@@ -12,12 +12,13 @@
 			$events = $this->getEvents();
 			foreach ($events as $event) {
 				$arr[$event->event_id] = array();
-					$this->db->select("c.cart_id,tt.ticket_type_id,ei.event_name, tt.ticket_name, c.quantity , tt.price");
+					$this->db->select("c.total_price,c.cart_id,tt.ticket_type_id,ei.event_name, tt.ticket_name, c.quantity , tt.price");
 				$this->db->from("cart as c");
 				$this->db->join("ticket_type as tt","tt.ticket_type_id = c.ticket_id","left");
 				$this->db->join("event_info as ei","tt.event_id = ei.event_id","left");
 				$this->db->where("ei.event_id",$event->event_id);
 				$this->db->where("c.status","active");
+				$this->db->where("c.account_id",$this->session->userdata['userSession']->userID);
 				$this->db->group_by("tt.ticket_type_id");
 				$arr[$event->event_id] =  new stdClass;
 				

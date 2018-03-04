@@ -1,7 +1,7 @@
 <div id="main">
 
     <ol class="breadcrumb">
-        <li><a href="<?php echo site_url();?>/admin/cAdmin">Home</a></li>
+        <li><a href="<?php echo site_url();?>/admin/CAdmin">Home</a></li>
         <li class="active">Events</li>
     </ol>
       <!-- //breadcrumb-->
@@ -38,9 +38,9 @@
                                             <td>".$object->event_status."</td>";
 
                                             if($object->event_status == "Pending"){
-                                              echo " <td><a href='".site_url()."/admin/cAdmin/approveEvent/".$object->event_id."'>
+                                              echo " <td><a href='".site_url()."/admin/CAdmin/approveEvent/".$object->event_id."'>
                                                   <button  type='button' class='btn btn-inverse'>APPROVE</button></a>
-                                                  <a href='".site_url()."/admin/cAdmin/rejectEvent/".$object->event_id."'>
+                                                  <a href='".site_url()."/admin/CAdmin/rejectEvent/".$object->event_id."'>
                                                   <button  type='button' class='btn btn-theme'>REJECT</button></a>
                                                   </td>
                                                   </tr>";

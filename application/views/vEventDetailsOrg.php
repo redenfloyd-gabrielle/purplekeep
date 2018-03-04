@@ -19,13 +19,13 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<?php echo site_url();?>/cLogin/viewDashBoard"><img src="<?php echo base_url('assets/dianeAssets/img/logoBlack.png')?>"></a>
+                    <a class="navbar-brand" href="<?php echo site_url();?>/CLogin/viewDashBoard"><img src="<?php echo base_url('assets/dianeAssets/img/logoBlack.png')?>"></a>
                 </div>
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cLogin/viewEvents">Home</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cLogin/viewEvents">Events</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewEvents">Home</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewEvents">Events</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.4s"><a href="contact.html">Contact</a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
@@ -63,7 +63,7 @@
                                         </a>
                                     </div> 
 
-                                    <ul id="image-gallery" class="gallery list-unstyled cS-hidden" >
+                                    <!-- <ul id="image-gallery" class="gallery list-unstyled cS-hidden" >
                                         <li data-thumb="assets/img/property-1/property1.jpg"> 
                                             <img src="<?php echo base_url('assets/img/property-1/property1.jpg')?>">
                                         </li>
@@ -76,7 +76,7 @@
                                         <li data-thumb="assets/img/property-1/property4.jpg"> 
                                             <img src="assets/img/property-1/property4.jpg" />
                                         </li>                                         
-                                    </ul>
+                                    </ul> -->
                                 </div>
                             </div>
                         </div>
@@ -150,7 +150,7 @@
                             </div>  
                             <!-- End additional-details area  -->
 
-                            <button class="navbar-btn nav-button wow bounceInRight login"><a href ="<?php echo site_url();?>/cLogin/viewEvents">Save Changes</button>
+                            <button class="navbar-btn nav-button wow bounceInRight login"><a href ="<?php echo site_url();?>/CLogin/viewEvents">Save Changes</button>
                             <!-- End video area  -->
                             
                         </div>
