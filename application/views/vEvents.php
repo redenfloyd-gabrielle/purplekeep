@@ -285,19 +285,21 @@
                                 foreach ($events as $event) {
                                    ?>
                             <div class="col-sm-6 col-md-4 p0" >
-                                <div class="box-two proerty-item" style="height:530px;">
-                                    <div class="item-thumb">
+                                <div class="box-two proerty-item" style="height:330px;">
+                                    <!-- <div class="item-thumb">
                                         <a href="<?php echo site_url();?>/event/CEvent/displayEventDetails/<?php echo $event->event_id;?>"><img  style="max-height: 50px;" src="<?php echo base_url();?><?php echo $event->event_picture; ?>"></a>
-                                    </div>
+                                    </div> -->
                                        <div class="item-entry overflow">
-                                        <h5><a href="<?php echo site_url();?>/event/CEvent/displayEventDetails/<?php echo $event->event_id;?>"> <?php
+                                       <a href="<?php echo site_url();?>/event/CEvent/displayEventDetails/<?php echo $event->event_id;?>">
+                                            <h3 class="text-center" style="padding:50px;background-color:#CB6C52;"> <?php
                                                 if(strlen($event->event_name)>=26){
                                                     echo substr($event->event_name,0,23)."...";
                                                 }else{
                                                         echo $event->event_name;
                                                 }
                                                 ?>
-                                        </a></h5>
+                                            </h3>
+                                        </a>
                                         <?php
                                                 if($event->event_status == 'Approved'){
                                                         date_default_timezone_set('Asia/Manila');
@@ -325,7 +327,7 @@
 
 
                                                 ?>
-                                            <div style="height:170px;">
+                                            <div style="height:90px;">
                                              <table class="table-condensed table-responsive" >
                                                                 <thead>
                                                                     <th><center>Ticket Name</center></th>

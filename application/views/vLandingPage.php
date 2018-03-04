@@ -46,19 +46,19 @@
 
      <div class="slider-area">
             <div class="slider">
-                <div id="bg-slider" class="owl-carousel owl-theme">
+                <div id="bg-slider" class="owl-carousel owl-theme" >
 
                     <!-- <div class="item"><img src= "<?php echo base_url('assets/nikkiAssets/img/slide1/slider-image-2.jpg')?>"></div>
                     <div class="item"><img src= "<?php echo base_url('assets/nikkiAssets/img/slide1/slider-image-5.jpg')?>"></div>
                     <div class="item"><img src= "<?php echo base_url('assets/nikkiAssets/img/slide1/slider-image-3.jpg')?>"></div> -->
 
-                    <?php echo '<div class="item"><img src= "' . base_url(CustomizationManager::$images->LANDING_PAGE_CAROUSEL_BACKGROUND_1) . '"></div>'?>
+                    <!-- <?php echo '<div class="item"><img src= "' . base_url(CustomizationManager::$images->LANDING_PAGE_CAROUSEL_BACKGROUND_1) . '"></div>'?>
                     <?php echo '<div class="item"><img src= "' . base_url(CustomizationManager::$images->LANDING_PAGE_CAROUSEL_BACKGROUND_2) . '"></div>'?>
-                    <?php echo '<div class="item"><img src= "' . base_url(CustomizationManager::$images->LANDING_PAGE_CAROUSEL_BACKGROUND_3) . '"></div>'?>
+                    <?php echo '<div class="item"><img src= "' . base_url(CustomizationManager::$images->LANDING_PAGE_CAROUSEL_BACKGROUND_3) . '"></div>'?> -->
 
                 </div>
             </div>
-            <div class="container slider-content">
+            <div class="container slider-content" >
                 <div class="row">
                     <div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-1 col-sm-12">
                         <!-- <h2>See Events Near You</h2> -->
@@ -216,7 +216,7 @@
                                                                     }
                                                                 }   
 
-                                                                echo '<h3 class="text-center"><a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"> ';
+                                                                echo '<a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'" style="background-color:#CB6C52;"><h3 class="text-center"> ';
 
                                                                 if(strlen($event->event_name)>=42){
                                                                     echo substr($event->event_name,0,39)."...";
@@ -224,11 +224,11 @@
                                                                     echo $event->event_name;
                                                                 }
                                                 
-                                                                echo '</a></h3>';
+                                                                echo '</h3></a>';
 
-                                                                echo '<div class="item-thumb">
-                                                                <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
-
+                                                                // echo '<div class="item-thumb">
+                                                                // <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
+                                                                
                                                                 echo '<div style="height:130px;"><h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
 
                                                                 $dateS = date_create($event->dateStart);
@@ -254,7 +254,7 @@
                                                                 echo '<div class="corner-ribbon top-right sticky red">Happening now!</div>';
                                                                     
 
-                                                                echo '<h3 class="text-center"><a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"> ';
+                                                                echo '<a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'" ><h3 class="text-center"> ';
 
                                                                 if(strlen($event->event_name)>=42){
                                                                     echo substr($event->event_name,0,39)."...";
@@ -262,10 +262,10 @@
                                                                     echo $event->event_name;
                                                                 }
                                                 
-                                                                echo '</a></h3>';
+                                                                echo '</h3></a>';
 
-                                                                echo '<div class="item-thumb">
-                                                                <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
+                                                                // echo '<div class="item-thumb">
+                                                                // <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
 
                                                                 echo '<div style="height:130px;"><h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
 
