@@ -20,21 +20,21 @@
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a>
+                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="fa fa-sign-out navbar-btn nav-button wow bounceInRight login"><!--Logout--> </button></a>
                     </div>
 
                     <div class="button navbar-right">
-                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a>
+                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="fa fa-calendar-plus-o navbar-btn nav-button wow bounceInRight login"><!-- Create Event --></button></a>
                     </div>
 
 
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewDashBoard">Home</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-home" href="<?php echo site_url();?>/CLogin/viewDashBoard"><!--Home--></a></li>
 
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents">Profile</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements">Announcements</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents">Interested Events</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/CCart/viewCart">View Cart</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-user" href="<?php echo site_url();?>/event/CEvent/viewEvents"><!--Profile--></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-bullhorn" href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><!--Announcements--></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-thumb-tack" href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><!--Interested Events--></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-shopping-cart" href="<?php echo site_url();?>/finance/CCart/viewCart"><!--View Cart--></a></li>
                         <!--
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" >Contact</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href ="#" >Profile</a></li> -->
@@ -44,17 +44,17 @@
         </nav>
         <!-- End of nav bar -->
 
-        <div class="page-head"> 
+        <div class="page-head">
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">Announcements</h1>               
+                        <h1 class="page-title">Announcements</h1>
                     </div>
                 </div>
             </div>
         </div>
         <!-- End page header -->
- 
+
         <?php
             if($announcements!=FALSE){
                 foreach ($announcements as $announcement) {
@@ -126,7 +126,7 @@
                 </div>
             </div>
         </div>
-   
+
         <!-- Footer area-->
         <div class="footer-area">
 
@@ -170,7 +170,7 @@
                         <div class="bottom-menu pull-right">
                             <ul>
                                 <li><a class="wow fadeInUp animated" href="<?php echo site_url();?>/CLogin/viewDashBoard" data-wow-delay="0.2s">Home</a></li>
-                                
+
                             </ul>
                         </div>
                     </div>
@@ -180,8 +180,7 @@
         </div>
 
 <script>
-    $(document).ready(function() { 
+    $(document).ready(function() {
         $('html, body').animate({ scrollTop: $('#<?php echo $clickedAnnouncement; ?>').offset().top}, 'slow');
     });
 </script>
-

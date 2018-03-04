@@ -26,31 +26,31 @@
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a>
+                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="fa fa-sign-out navbar-btn nav-button wow bounceInRight login"><!--Logout --></button></a>
                     </div>
 
                     <div class="button navbar-right">
-                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a>
+                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="fa fa-calendar-plus-o navbar-btn nav-button wow bounceInRight login"><!-- Create Event --></button></a>
                     </div>
 
 
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_HOME ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_PROFILE ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>'><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_ANNOUNCEMENTS ?><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents">Interested Events</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_VIEW_CART ?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-home" href="<?php echo site_url();?>/CLogin/viewDashBoard"><!--?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_HOME ?--></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-user" href="<?php echo site_url();?>/event/CEvent/viewEvents"><!--?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_PROFILE ?--></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>'><a class="fa fa-bullhorn" href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><!--?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_ANNOUNCEMENTS ?--><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-thumb-tack" href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><!--Interested Events--></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-shopping-cart" href="<?php echo site_url();?>/finance/CCart/viewCart"><!--?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_VIEW_CART ?--></a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
         <!-- End of nav bar -->
 
-        <div class="page-head"> 
+        <div class="page-head">
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">View Cart</h1>               
+                        <h1 class="page-title">View Cart</h1>
                     </div>
                 </div>
             </div>
@@ -72,7 +72,7 @@
                           <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
                           <div id="errLabel"></div>
                       </div>
-                  
+
                   <?php if ($this->session->flashdata('success_msg')): ?>
                       <div class="alert alert-success" style="margin-top: 15px;">
                           <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -93,7 +93,7 @@
 
                     <div class="col-md-9" style="padding:1%; margin-top: 3%; border-color:  #ecf1f2; border-style: solid; border-width: 1px;">
                       <div id="list-type" class="proerty-th">
-                      <?php 
+                      <?php
                       $attr = array('class' => 'form_horizontal',
                             'id' => 'myform');
                             echo form_open(site_url()."/finance/CCart/checkout", $attr); ?>
@@ -107,7 +107,7 @@
                                         </span>
                                       </div>
                                      <?php
-                                     foreach ($event as $cart) {                     
+                                     foreach ($event as $cart) {
                                      ?>
                                         <div class="panel panel-default" style="margin-left:3%;">
                                         <input type="hidden" class="cartID" value="<?php echo $cart->cart_id;?>" >
@@ -115,8 +115,8 @@
 
                                                 <input type="checkbox" name="ticket[]" value="<?php echo $cart->cart_id;?>" class="<?php echo 'tix'.key($events);?> indi" id="<?php echo $cart->ticket_type_id;?>" checked="checked">
                                                 <span> Ticket Name:<strong><?php echo $cart->ticket_name;?></strong></span>
-                                                
-                                                <span class="pull-right h5">Total Price:<span id="label<?php echo $cart->cart_id;?>"><b><?php echo $cart->total_price;?></b></span></span>                       
+
+                                                <span class="pull-right h5">Total Price:<span id="label<?php echo $cart->cart_id;?>"><b><?php echo $cart->total_price;?></b></span></span>
                                           </div>
                                          <div class="panel-body">
                                             <table class="table table-sm table-borderless">
@@ -134,20 +134,20 @@
                                                           </div>
                                                       </form>
                                                     </td>
-                                                    <td> 
+                                                    <td>
                                                       <form  method="POST" action="<?php echo site_url(); ?>/finance/CCart/deleteCartItem">
                                                         <input name="id" class="hidden" value="<?php echo $cart->cart_id;?>">
                                                         <button type="submit" class="btn btn-primary pull-right" type="button">
                                                         <span class="glyphicon glyphicon-trash delete"></span>
                                                         </button>
                                                       </form>
-                                                    </td>     
+                                                    </td>
                                                   </tr>
                                                 </tbody>
-                                              </table>                                           
+                                              </table>
                                          </div>
                                        </div>
-                                     
+
                                      <?php
                                      }?>
                                      </div>
@@ -161,13 +161,13 @@
                     </div>
                     </div>
                   </div>
-                    
+
                 </div>
              </div><!-- END OF ROW-->
-            
+
          </div>
      <!--- END OF CONTENT AREA-->
-      
+
         <!-- Footer area-->
         <div class="footer-area">
             <div class=" footer">
@@ -253,14 +253,14 @@
                           // alert("Load Balance Insufficient");
                         }
                       }
-                    
+
                  });
-                 
+
                 return false;
       });
-      
+
     $(document).ready(function() {
-      
+
       // $(".delete").click(function(){
       //    panel= $(this).closest("div.panel");
       //   var id = panel.find("input.cartID").val();
@@ -279,7 +279,7 @@
       //       });
       // });
       $('input').on('ifChecked', function (event){
-          $(this).closest("input").attr('checked', true);          
+          $(this).closest("input").attr('checked', true);
           var id = $(this).closest("input").attr('id');
           $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").addClass("checked");
           $(document).find(".tix"+id).attr("checked",true);
@@ -291,10 +291,10 @@
           //     console.log($(document).find(".tix"+temp));
 
           //     // if($(document).find(".tix"+temp).closest("div.icheckbox_square-yellow").hasClass("checked")){
-          //     //   $(document).find("#"+temp).closest("div.icheckbox_square-yellow").addClass("checked");  
+          //     //   $(document).find("#"+temp).closest("div.icheckbox_square-yellow").addClass("checked");
           //     //   $(document).find("#"+temp).attr("checked",true);
           //     // }
-              
+
           // });
           var cnt =0;
           var cnt1 =0;
@@ -306,7 +306,7 @@
               });
 
           if(cnt1+1 == cnt){
-            $(document).find("#"+temp).closest("div.icheckbox_square-yellow").addClass("checked");  
+            $(document).find("#"+temp).closest("div.icheckbox_square-yellow").addClass("checked");
             $(document).find("#"+temp).attr("checked",true);
           }
       });
@@ -382,7 +382,7 @@
                     var d=data.split('/');
                     $('#bdg').remove();
                     // alert(d[0].trim());
-                   
+
                 },
                 error: function(data){
                     alert("error");
@@ -390,6 +390,6 @@
             });
         });
     } );
-    
-   
+
+
 </script>

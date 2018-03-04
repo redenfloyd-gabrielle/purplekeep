@@ -25,24 +25,24 @@
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                        <button class="navbar-btn nav-button wow bounceInRight login"> <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s">
-                            <?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_LOGOUT_BUTTON ?> </a>
+                        <button class="navbar-btn nav-button wow bounceInRight login"> <a class="fa fa-sign-out" href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s">
+                            <!--?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_LOGOUT_BUTTON ?--> </a>
                         </button>
                     </div>
 
                     <div class="button navbar-right">
-                        <button class="navbar-btn nav-button wow bounceInRight login"> <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s">
-                            <?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_CREATE_EVENT_BUTTON ?> </a>
+                        <button class="navbar-btn nav-button wow bounceInRight login"> <a class="fa fa-calendar-plus-o" href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s">
+                            <!--?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_CREATE_EVENT_BUTTON ?--> </a>
                         </button>
                     </div>
 
 
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_NAV_HOME ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_NAV_PROFILE ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>'><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_ANNOUNCEMENTS ?><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents">Interested Events</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/CCart/viewCart">View Cart</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-home 10px" href="<?php echo site_url();?>/CLogin/viewDashBoard"><!--?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_NAV_HOME ?--></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-user" href="<?php echo site_url();?>/event/CEvent/viewEvents"><!--?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_NAV_PROFILE ?--></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>'><a class="fa fa-bullhorn" href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><!--?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_ANNOUNCEMENTS ?--><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-thumb-tack" href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><!--Interested Events--></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-shopping-cart" href="<?php echo site_url();?>/finance/CCart/viewCart"><!--View Cart--></a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->

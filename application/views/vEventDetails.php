@@ -107,21 +107,20 @@ div.desc {
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                        <button class="navbar-btn nav-button wow bounceInRight login"> <a href ="<?php echo site_url();?>/cLogin/userLogout" data-wow-delay="0.1s">Logout </a></button>
+                        <button class="navbar-btn nav-button wow bounceInRight login"> <a class="fa fa-sign-out" href ="<?php echo site_url();?>/cLogin/userLogout" data-wow-delay="0.1s"><!--Logout--></a></button>
                     </div>
 
                     <div class="button navbar-right">
-                        <button class="navbar-btn nav-button wow bounceInRight login"> <a href ="<?php echo site_url();?>/event/cEvent/viewCreateEvent" data-wow-delay="0.4s">Create Event </a></button>
+                        <button class="navbar-btn nav-button wow bounceInRight login"> <a class="fa fa-calendar-plus-o" href ="<?php echo site_url();?>/event/cEvent/viewCreateEvent" data-wow-delay="0.4s"><!--Create Event--></a></button>
                     </div>
 
 
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cLogin/viewDashBoard">Home</a></li>
-
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/cEvent/viewEvents">Profile</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/user/cUser/viewAnnouncements">Announcements</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/cEvent/viewPreferenceEvents">Interested Events</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/cCart/viewCart">View Cart</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-home" href="<?php echo site_url();?>/cLogin/viewDashBoard"><!--Home--></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-user" href="<?php echo site_url();?>/event/cEvent/viewEvents"><!--Profile--></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-bullhorn" href="<?php echo site_url();?>/user/cUser/viewAnnouncements"><!--Announcements--></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-thumb-tack" href="<?php echo site_url();?>/event/cEvent/viewPreferenceEvents"><!--Interested Events--></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-shopping-cart" href="<?php echo site_url();?>/finance/cCart/viewCart"><!--View Cart--></a></li>
                         <!--
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href ="<?php echo site_url();?>/event/cEvent/viewCreateEvent" >Contact</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href ="#" >Profile</a></li> -->
@@ -427,7 +426,7 @@ div.desc {
                                 <h1>Card Load: <span><?php echo $u->load_amt; ?></span></h1>
                             </div>
                           </div>
-                            
+
                             <!-- <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
                                 <div class="panel-heading">
                                 <h3 class="panel-title">Search</h3>

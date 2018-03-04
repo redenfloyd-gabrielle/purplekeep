@@ -28,19 +28,19 @@
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
                         <!-- <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a> -->
-                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->PROFILE_PAGE_LOGOUT_BUTTON ?> </button></a>
+                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="fa fa-sign-out navbar-btn nav-button wow bounceInRight login"> <!--?php echo CustomizationManager::$strings->PROFILE_PAGE_LOGOUT_BUTTON ?--> </button></a>
                     </div>
                     <div class="button navbar-right">
                         <!-- <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a> -->
-                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->PROFILE_PAGE_CREATE_EVENT_BUTTON ?> </button></a>
+                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="fa fa-calendar-plus-o navbar-btn nav-button wow bounceInRight login"> <!--?php echo CustomizationManager::$strings->PROFILE_PAGE_CREATE_EVENT_BUTTON ?--> </button></a>
                     </div>
 
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_HOME ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_PROFILE ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>'><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_ANNOUNCEMENTS ?><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents">Interested Events</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/CCart/viewCart">View Cart</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-home" href="<?php echo site_url();?>/CLogin/viewDashBoard"><!--?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_HOME ?--></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-user" href="<?php echo site_url();?>/event/CEvent/viewEvents"><!--?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_PROFILE ?--></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>'><a class="fa fa-bullhorn" href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><!--?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_ANNOUNCEMENTS ?--><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-thumb-tack" href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><!--Interested Events--></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-shopping-cart" href="<?php echo site_url();?>/finance/CCart/viewCart"><!--View Cart--></a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -249,7 +249,7 @@
             </div>
         </div>
     </div>
-    
+
     <?php if ($this->session->flashdata('success_msg')): ?>
         <div class="alert alert-success">
               <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -495,7 +495,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php 
+                                <?php
                                     foreach ($res as $r) {
                                             echo  '<tr>';
                                                     echo '<td>'.$r->dateSold.'</td>';
@@ -565,7 +565,7 @@
 
             </div>
         </form>
-        
+
         <?php
             }
         ?>
@@ -720,12 +720,11 @@
     var yyyy = today.getFullYear();
      if(dd<10){
             dd='0'+dd
-        } 
+        }
         if(mm<10){
             mm='0'+mm
-        } 
+        }
 
     today = yyyy+'-'+mm+'-'+dd;
     document.getElementById("bdate").setAttribute("max", today);
 </script>
-
