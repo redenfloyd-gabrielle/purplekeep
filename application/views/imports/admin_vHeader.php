@@ -21,6 +21,7 @@
 <link type="text/css" rel="stylesheet" href="<?php echo base_url('assets/adminAssets/css/bootstrap/bootstrap-themes.css')?>" />
 <link type="text/css" rel="stylesheet" href="<?php echo base_url('assets/adminAssets/css/dsStudentsStyles.css')?>" />
 <link type="text/css" rel="stylesheet" href="<?php echo base_url('assets/adminAssets/css/style5.css')?>" />
+<link rel="stylesheet" href="<?php echo base_url('assets/adminAssets/css/datatables.min.css')?>">
 
 <link type="text/css" rel="alternate stylesheet" media="screen" title="style1" href="<?php echo base_url('assets/adminAssets/css/styleTheme1.css')?>" />
 <link type="text/css" rel="stylesheet" href="<?php echo base_url('assets/adminAssets/css/animation.css')?>" />
@@ -66,6 +67,7 @@
                     <ul class="dropdown-menu pull-right icon-right arrow">
                         <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
                         <li><a href="<?php echo site_url();?>/admin/CAdmin/adminSettings"><i class="fa fa-cog"></i> Settings </a></li>
+                        <li><a href ="<?php echo site_url();?>/admin/CAdmin/updateAccount" data-wow-delay="0.1s"><i class="icon  fa fa-cog"></i> Update Profile </a></li>
                         <li class="divider"></li>
                         <li><a href="<?php echo site_url();?>/CLogin/userLogout"><i class="fa fa-sign-out"></i> Signout </a></li>
                     </ul>
@@ -108,19 +110,19 @@
         <ul>
             <li><a href="<?php echo site_url();?>/admin/CAdmin"><i class="icon  fa fa-laptop"></i> Dashboard </a></li>
 
-            <li><a href="<?php echo site_url();?>/admin/CAdmin/viewAllEvents"><i class="icon  fa fa-bullhorn"></i>  Events </a></li>
+            <li><a href="<?php echo site_url();?>/admin/CAdmin/viewAllEvents"><i class="icon  fa fa-calendar"></i>  Events </a></li>
 
             <li><a href="<?php echo site_url();?>/admin/CAdmin/viewUserAccountMgt"><i class="icon  fa fa-users"></i>  User Account </a></li>
 
             <li><a href="<?php echo site_url();?>/admin/CAdmin/viewAdminAccountMgt"><i class="icon  fa fa-user"></i>  Admin Account </a></li>
 
-            <li><a href="<?php echo site_url();?>/admin/CAdmin/viewAnnouncements"><i class="icon  fa fa-user"></i>  Announcements </a></li>
+            <li><a href="<?php echo site_url();?>/admin/CAdmin/viewAnnouncements"><i class="icon  fa fa-bullhorn"></i>  Announcements </a></li>
 
             <li><a href="<?php echo site_url();?>/admin/CAdmin/viewFinance"><i class="icon  fa fa-money"></i> Finance </a></li>
 
             <li><a href ="<?php echo site_url();?>/admin/CAdmin/generateCard" data-wow-delay="0.1s"><i class="icon  fa fa-credit-card"></i> Cards </a></li>
 
-            <li><a href ="<?php echo site_url();?>/admin/CAdmin/updateAccount" data-wow-delay="0.1s"><i class="icon  fa fa-credit-card"></i> Update Account </a></li>
+            
 
         </ul>
     </nav>

@@ -40,6 +40,7 @@
                       <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_HOME ?></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_PROFILE ?></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements">Announcements</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents">Interested Events</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/CCart/viewCart">View Cart</a></li>
                   </ul>
                 </div><!-- /.navbar-collapse -->
@@ -456,10 +457,10 @@
                 ?>
                 {
                     id: '<?php echo $events->event_id; ?>',
-                    title: '<?php echo $events->event_name; ?>',
+                    title: '<?php echo substr(trim(str_replace("\"", "\'",(preg_replace( "/\r|\n/", "", $events->event_name )))),0,25); ?>',
                     start: '<?php echo $start; ?>',
                     end: '<?php echo $end; ?>',
-                    details: '<?php echo $events->event_details; ?>',
+                    details: '<?php echo substr(trim(str_replace("\"", "\'",(preg_replace( "/\r|\n/", "", $events->event_details )))),0,25); ?>',
                     category: '<?php echo $events->event_category; ?>',
                     venue: '<?php echo $events->event_venue; ?>',
                     color: '<?php

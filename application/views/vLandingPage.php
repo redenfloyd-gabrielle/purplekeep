@@ -60,69 +60,88 @@
             </div>
             <div class="container slider-content">
                 <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
+                    <div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-1 col-sm-12">
                         <!-- <h2>See Events Near You</h2> -->
                         <h2><?php echo CustomizationManager::$strings->LANDING_PAGE_CAROUSEL_MESSAGE ?></h2>
-                        <div class="search-form wow pulse" data-wow-delay="0.8s">
 
-                            <form action="<?php echo site_url();?>/user/CEvent/searchEvent" class=" form-inline" method="POST">
-                                <span style="color: gray;"><?php echo CustomizationManager::$strings->LANDING_PAGE_SEARCH_BOX_LABEL ?>
-                                <div class="form-group">
-                                    <?php
-                                    if(!isset($_POST['searchDateMonth'])){
-                                        echo '<select name="searchDateMonth" class="form-control">
-                                                  <option value="0">-Month-</option>
-                                                  <option value="1">Jan</option>
-                                                  <option value="2">Feb</option>
-                                                  <option value="3">Mar</option>
-                                                  <option value="4">Apr</option>
-                                                  <option value="5">May</option>
-                                                  <option value="6">Jun</option>
-                                                  <option value="7">Jul</option>
-                                                  <option value="8">Aug</option>
-                                                  <option value="9">Sep</option>
-                                                  <option value="10">Oct</option>
-                                                  <option value="11">Nov</option>
-                                                  <option value="12">Dec</option>
-                                                </select>';
-                                    } else {
-                                        echo '<select name="searchDateMonth" class="form-control">
-                                                  <option value="0">-Month-</option>
-                                                  <option value="1">Jan</option>
-                                                  <option value="2">Feb</option>
-                                                  <option value="3">Mar</option>
-                                                  <option value="4">Apr</option>
-                                                  <option value="5">May</option>
-                                                  <option value="6">Jun</option>
-                                                  <option value="7">Jul</option>
-                                                  <option value="8">Aug</option>
-                                                  <option value="9">Sep</option>
-                                                  <option value="10">Oct</option>
-                                                  <option value="11">Nov</option>
-                                                  <option value="12">Dec</option>
-                                                </select>';
-                                    }
-                                    ?>
-
-                                    <?php
-                                    if(!isset($_POST['searchDateYear'])){
-                                        echo '<input name="searchDateYear" type="text" class="form-control" placeholder="Year">';
-                                    } else {
-                                        echo '<input name="searchDateYear" type="text" class="form-control" placeholder="Key word" value="'.$_POST['searchDateYear'].'">';
-                                    }
-                                    ?>
-
-                                    <?php
-                                    if(!isset($_POST['searchWord'])){
-                                        echo '<input name="searchWord" type="text" class="form-control" placeholder="Key word" pattern="[\sa-zA-z0-9]+">';
-                                    } else {
-                                        echo '<input name="searchWord" type="text" class="form-control" placeholder="Key word" value="'.$_POST['searchWord'].'" pattern="[\sa-zA-z0-9]+">';
-                                    }
-                                    ?>
-
+                        <div class="search-form wow pulse" data-wow-delay="0.8s" style="height: 125px;">
+                                <div class="row">
+                                    <div class="col-md-12 col-lg-12 pull-left" style="padding-left: 50px;" >
+                                      <span class="h6 pull-left" style="color: gray;"><?php echo CustomizationManager::$strings->LANDING_PAGE_SEARCH_BOX_LABEL ?></span>
+                                    </div>
                                 </div>
-                                <button class="btn search-btn" type="submit"><i class="fa fa-search"></i></button> 
-                            </form>
+                                <div class="row">
+                                    <div class="col-sm-12 col-md-12 col-lg-12" style="padding-left: 25px;align-content: center;-webkit-align-content: center;">
+                                        <form action="<?php echo site_url();?>/user/CEvent/searchEvent" class="form" method="POST">
+                                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                                    <select name="searchDateMonth" class="form-control">
+                                                      <option value="0" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 0 ){ echo "selected";}?>>-Month-</option>
+                                                      <option value="1" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 1 ){ echo "selected";}?>>Jan</option>
+                                                      <option value="2" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 2 ){ echo "selected";}?>>Feb</option>
+                                                      <option value="3" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 3 ){ echo "selected";}?>>Mar</option>
+                                                      <option value="4" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 4 ){ echo "selected";}?>>Apr</option>
+                                                      <option value="5" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 5 ){ echo "selected";}?>>May</option>
+                                                      <option value="6" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 6 ){ echo "selected";}?>>Jun</option>
+                                                      <option value="7" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 7 ){ echo "selected";}?>>Jul</option>
+                                                      <option value="8" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 8 ){ echo "selected";}?>>Aug</option>
+                                                      <option value="9" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 9 ){ echo "selected";}?>>Sep</option>
+                                                      <option value="10" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 10 ){ echo "selected";}?>>Oct</option>
+                                                      <option value="11" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 11 ){ echo "selected";}?>>Nov</option>
+                                                      <option value="12" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 12 ){ echo "selected";}?>>Dec</option>
+
+                                                    </select>
+                                                </div>
+                                                <?php
+                                                if(!isset($_POST['searchDateYear'])){
+                                                    echo '<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><input name="searchDateYear" type="text" class="form-control" placeholder="Year" ></div>';
+                                                } else {
+                                                    echo '<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><input name="searchDateYear" type="text" class="form-control" placeholder="Year"  value="'.$_POST['searchDateYear'].'"></div>';
+                                                }
+                                                ?>
+
+                                                <?php
+                                                if(!isset($_POST['searchWord'])){
+
+                                                    echo '<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><input name="searchWord" type="text" class="form-control" placeholder="Key word" pattern="[\sa-zA-z0-9]+"  value=""></div>';
+                                                } else {
+                                                    echo '<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><input name="searchWord" type="text" class="form-control" placeholder="Key word" value="'.$_POST['searchWord'].'" pattern="[\sa-zA-z0-9]+"></div>';
+                                                }
+                                                    echo'<div class="col-sm-2 col-md-2 col-lg-2"><select Class="form-control" id="region_code" name="region_code" >
+                                                        <option style="color: gray;" value="0">Region</option>
+                                                        <option value="NCR">NCR</option>
+                                                        <option value="CAR">CAR</option>
+                                                        <option value="MIMAROPA">MIMAROPA</option>
+                                                        <option value="ARMM">ARMM</option>
+                                                        <option value="Region I">Region I</option>
+                                                        <option value="Region II">Region II</option>
+                                                        <option value="Region III">Region III</option>
+                                                        <option value="Region IV">Region IV-A</option>
+                                                        <option value="Region V">Region V</option>
+                                                        <option value="Region VI">Region VI</option>
+                                                        <option value="Region VII">Region VII</option>
+                                                        <option value="Region VIII">Region VIII</option>
+                                                        <option value="Region IX">Region IX</option>
+                                                        <option value="Region X">Region X</option>
+                                                        <option value="Region XI">Region XI</option>
+                                                        <option value="Region XII">Region XII</option>
+                                                        <option value="Region XIII">Region XIII</option>
+                                                    </select></div>';
+
+                                                    echo '<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                                    <select class="form-control" id="municipal-name" name="municipal_name">
+                                                        <option style="color: gray;">Municipal</option>
+                                                    </select></div>';
+                                                
+                                                ?>
+                                                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                                                    <button class="btn search-btn" type="submit" style="float: left;"><i class="fa fa-search"></i></button>
+                                                </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                
+                            
+                            
                         </div>
                     </div>
                 </div>
@@ -210,7 +229,7 @@
                                                                 echo '<div class="item-thumb">
                                                                 <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
 
-                                                                echo '<h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
+                                                                echo '<div style="height:130px;"><h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
 
                                                                 $dateS = date_create($event->dateStart);
                                                                 $dateE = date_create($event->dateEnd);
@@ -222,7 +241,7 @@
                                                                 foreach ($event->tix as $key) {
                                                                     $mintix = ($key->price <= $mintix)? $key->price : $mintix;
                                                                 }
-                                                                echo '<h5>Event Tickets as low as Php '.$mintix.'!!!</h5>';          
+                                                                echo '<h5>Event Tickets as low as Php '.$mintix.'!!!</h5></div>';          
                                                                 echo '<div class="dot-hr"></div>
                                                             </div>
                                                         </div>
@@ -248,7 +267,7 @@
                                                                 echo '<div class="item-thumb">
                                                                 <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
 
-                                                                echo '<h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
+                                                                echo '<div style="height:130px;"><h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
 
                                                                 $dateS = date_create($event->dateStart);
                                                                 $dateE = date_create($event->dateEnd);
@@ -257,7 +276,7 @@
                                                                 foreach ($event->tix as $key) {
                                                                     $mintix = ($key->price <= $mintix)? $key->price : $mintix;
                                                                 }
-                                                                echo '<h5>Event Tickets as low as Php '.$mintix.'!!!</h5>';
+                                                                echo '<h5>Event Tickets as low as Php '.$mintix.'!!!</h5></div>';
                                                                 echo '<div class="dot-hr"></div>
                                                             </div>
                                                         </div>
@@ -325,55 +344,66 @@
         </div> <!-END OF FOOTER -->
 </body>
 
-<!--START OF  SCRIPT-->
-<script type="text/javascript">
-    $(document).ready(function() {
-        $(document).on('click', '#aDropdown', function(){
-            var id = $(this).data('id');
-            $.ajax({
-                url: "<?php echo site_url()?>/user/CUser/updateAnnounce/"+id,
-                data: { id:id },
-                type: "POST",
-                success: function(data){
-                    var d=data.split('/');
-                    $('#bdg').remove();
-                    // alert(d[0].trim());
-                   
-                },
-                error: function(data){
-                    alert("error");
-                }
-            });
-        });
-    } );
-    
+<script>
     $(document).ready(function(){
-        <?php if(isset($announcements)){
-        foreach ($announcements as $key) {
-            ?>
-             $.notify({
-              title: "<?php echo '<strong>'.substr(trim(preg_replace( "/\r|\n/", "", $key->announcementDetails )),0,25).'</strong><br>';?>",
-              icon: 'glyphicon glyphicon-info-sign',
-              message: '<?php echo $key->ago." ".$key->agoU;?><a href="<?php echo site_url();?>/user/CUser/viewClickedAnnouncement/<?php echo $key->announcementID; ?>" >Click here...</a> '
-            },{
-              type: 'info',
-              animate: {
-                    enter: 'animated fadeInUp',
-                exit: 'animated fadeOutDown'
-              },
-              placement: {
-                from: "bottom",
-                align: "left"
-              },
-              offset: 20,
-              spacing: 10,
-              z_index: 1031,
-            });
-            <?php
-        }
-       
-       
-    }?>
-<?php ?>
+        $('#region_code').on('change', function(){
+          $('#municipal-name').empty().append('<option></option>');
+            if(this.value != ""){
+                // alert(this.value);
+                var code = this.value;
+                var dataSet = "region_code="+code;
+                    $.ajax({
+                        type: "POST",
+                        url: '<?php echo site_url()?>/event/cEvent/displayMunicipal',
+                        data: dataSet,
+                        cache: true,
+                        success: function(result){
+                            if(result){
+                            //    $('body').html(result);
+                                var output = $.parseJSON(result);
+                                $.each(output, function(i, d) {
+                                    // You will need to alter the below to get the right values from your json object.  Guessing that d.id / d.modelName are columns in your carModels data
+                                    $('#municipal-name').append('<option value="' + d.location_id+ '">' + d.location_name + '</option>');
+
+                                });
+                            }else{
+                                alert("Error");
+                            }
+                        },
+                        error: function(jqXHR, errorThrown){
+                            console.log(errorThrown);
+                        }
+                    });
+            }
+        });
+
+        $('#municipal-name').on('change', function(){
+            if(this.value != ""){
+                // alert(this.value);
+                var code = this.value;
+                var dataSet = "region_code="+code;
+                    $.ajax({
+                        type: "POST",
+                        url: '<?php echo site_url()?>/event/cEvent/sortByLocation',
+                        data: dataSet,
+                        cache: true,
+                        success: function(result){
+                            if(result){
+                                $('#list-type').html(result);
+                            }else{
+                                alert("Error");
+                            }
+                        },
+                        error: function(jqXHR, errorThrown){
+                            console.log(errorThrown);
+                        }
+                    });
+            }
+        });
+
+
     });
-</script> <!--END OF  SCRIPT-->
+</script>
+
+
+<!--END OF  SCRIPT-->
