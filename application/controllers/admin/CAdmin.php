@@ -230,7 +230,7 @@ class CAdmin extends CI_Controller {
 		$rules = "strip_tags|trim|xss_clean";
 		$this->form_validation->set_rules('uname','first name',$rules.'|required|min_length[6]|max_length[50]');
 		$this->form_validation->set_rules('password','Password','required|min_length[8]');
-		
+
 		$this->form_validation->set_rules('fname','First Name',$rules.'|required|max_length[50]');
 		$this->form_validation->set_rules('lname','Last Name',$rules.'|required|min_length[2]|max_length[50]');
 		$this->form_validation->set_rules('miname','Middle initial',$rules.'|required|min_length[1]');
@@ -615,10 +615,10 @@ class CAdmin extends CI_Controller {
 	}
 
 	public function createAnnouncement() {
-		
+
 		$rules = "strip_tags|trim|xss_clean";
 		$this->form_validation->set_rules('announcementDetails','Announcement Details',$rules.'|required|min_length[5]|max_length[150]');
-        
+
 		if ($this->form_validation->run() != FALSE )
 		{
 			$announcement = new MAnnouncement();
@@ -643,7 +643,7 @@ class CAdmin extends CI_Controller {
 								  'announcement' => $id
 								);
 
-					$result = $notif->insert($data);	
+					$result = $notif->insert($data);
 				}
 				$this->session->set_flashdata('success_msg',"Announcement posted!");
 				redirect('admin/CAdmin/viewAnnouncements');
@@ -665,6 +665,10 @@ class CAdmin extends CI_Controller {
 	}
 
 	public function deleteAnnouncement($id){
+		if(!isset($id)){
+			redirect('admin/CAdmin/viewAnnouncements');
+		}
+
 		$announcement = new MAnnouncement();
 
 		$data = array('announcementID' => $id);
@@ -738,7 +742,7 @@ public function updateAccount() {
 			$sub_array[] = $row->first_name . " " . $row->last_name;
 			$sub_array[] = $row->addedAt;
 			$sub_array[] = $row->updatedAt;
-    
+
 
           $data[] = $sub_array;
         }
@@ -752,5 +756,3 @@ public function updateAccount() {
         echo json_encode($output);
       }
 }
-
-
