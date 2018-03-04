@@ -11,6 +11,7 @@ class cUser extends CI_Controller {
       $this->load->model('MCardLoad');
 	  $this->load->model('MAnnouncement'); //admin module functionality
 	  $this->load->model('MNotificationItem');
+	  $this->load->model('MLoadhistory');
 	  $this->load->model('location/MLocation');
       $this->load->library('session');
       $this->load->library('form_validation');
@@ -110,8 +111,17 @@ class cUser extends CI_Controller {
 				if($res){
 					$code = $card[0]->cardId;
 					$res1 = $this->MCardLoad->update($code, array('cardStatus'=>0,"updatedBy"=>$this->session->userdata["userSession"]->userID));
+
+					//add to loadhistory
+					$lh = array (
+						"account_id" => $this->session->userdata["userSession"]->userID,
+						"cardId" => $code
+					);
+					$this->MLoadhistory->insert($lh);
+
 					
 					$this->session->set_flashdata('success_msg',"Your wallet has been added P".$card[0]->cardAmount." ammount of load!");
+
 					redirect("event/cEvent/viewEvents");
 				}
 			} else {

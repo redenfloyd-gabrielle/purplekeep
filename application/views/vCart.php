@@ -84,11 +84,18 @@
                   <div class="col-md-12">
                     <div class="col-md-3 wow fadeInRight animated" style="padding:1%; margin-top: 2%;">
                       <div class="panel panel-default" style="border-style: solid;border-color: #CB6C52;">
-                      <div class="panel-body">
-                          <h2><strong>Load Balance :</strong></h2>
-                          <span class="h4" style="color: #CB6C52;">Php <?php foreach($user as $u){echo $u->load_amt;}?>.00</span>
+                        <div class="panel-body">
+                            <h2><strong>Load Balance :</strong></h2>
+                            <span class="h4" style="color: #CB6C52;">Php <?php foreach($user as $u){echo $u->load_amt;}?>.00</span>
+                        </div>
                       </div>
-                    </div>
+
+                      <div class="panel panel-default" style="border-style: solid;border-color: #CB6C52;">
+                        <div class="panel-body">
+                            <h2><strong>Total :</strong></h2>
+                            <span class="h4" style="color: #CB6C52;" id="total">Php <?php foreach($total as $t){echo $t->total;}?>.00</span>
+                        </div>
+                      </div>
                     </div>
 
                     <div class="col-md-9" style="padding:1%; margin-top: 3%; border-color:  #ecf1f2; border-style: solid; border-width: 1px;">
@@ -122,7 +129,7 @@
                                             <table class="table table-sm table-borderless">
                                                 <tbody>
                                                   <tr>
-                                                    <th scope="row"> Price:<?php echo $cart->price;?> </th>
+                                                    <th scope="row" class="closest"> Price:<?php echo $cart->price;?> </th>
                                                     <td class="pull-right">
                                                       <form class="offset-md-3">
                                                           <div class="form-group row">
@@ -221,7 +228,13 @@
              <div class="checkoutContainer" style="margin-left:3%;">
                    <input type="checkbox" checked="">
                    <span class="h4"><strong>SELECT ALL</strong><span style="margin: 10px;" class="badge badge-light h5">4</span> </span>
-                  <button class="btn btn-default pull-right" id="chkout" type="button">CHECKOUT</button>
+                  <form id = "form01" action="<?php echo site_url(); ?>/finance/CCart/getCart" method="POST">
+                    <!--blank form-->
+                  </form>
+                  <form action="<?php echo site_url(); ?>/finance/CCart/checkout" method="POST">
+                    <input id ="i01" type="hidden" value="" name="input01">
+                    <button class="btn btn-default pull-right" id="checkout" type="submit">CHECKOUT</button>
+                  </form>
              </div>
              <?php } ?>
         </div>
@@ -260,6 +273,24 @@
       });
       
     $(document).ready(function() {
+      var id = "";
+      $.ajax({
+        url: $("#form01").attr('action'),
+        method:"POST",
+        success: function(retval){ 
+                  var arr = JSON.parse(retval);
+                  for (var i = 0; i < arr.length; i++) {
+                    if ($("#"+arr[i]['ticket_id']).attr("checked") == "checked") {
+                      id = id+"/"+arr[i]['ticket_id'];
+                    }
+                  }
+                  $("#i01").val(id); 
+                  console.log(id);
+                },
+        error: function(){
+                alert("error!");
+              }
+      });
       
       // $(".delete").click(function(){
       //    panel= $(this).closest("div.panel");
@@ -309,6 +340,8 @@
             $(document).find("#"+temp).closest("div.icheckbox_square-yellow").addClass("checked");  
             $(document).find("#"+temp).attr("checked",true);
           }
+
+          addId($(this).attr('id'));
       });
       $('input').on('ifUnchecked', function (event) {
           $(this).closest("input").attr('checked', false);
@@ -323,8 +356,33 @@
               $(document).find("#"+temp).removeAttr('checked');
 
           });
-
+          removeId($(this).attr('id'));
       });
+
+      function removeId (id) {
+        var s = $("#i01").val();
+        var arr = s.split('/');
+        var done = "";
+        for (var i=0; i< arr.length; i++) {
+          if (arr[i] != id) {
+            done = done+arr[i]+"/";
+          }
+        }
+        $("#i01").val(done);
+        console.log($("#i01").val());
+      }
+
+      function addId (id) {
+        var s = $("#i01").val();
+        var arr = s.split('/');
+        var done = "";
+        for (var i=0; i< arr.length; i++) {
+          done=done+arr[i]+"/";
+        }
+        done += id;
+        $("#i01").val(done);
+        console.log($("#i01").val());
+      }
 
       $(".minus").click(function(){
         var input = $(this).closest("div.row").find("input");
@@ -333,15 +391,57 @@
           get-=1;
           input.val(get);
           updateTicketCount("minus",$(this).closest("div.panel").find("input.cartID").val(),get);
+
+          updateTotal("minus", $(this).closest("tr").find("th.closest").html());
         }
       });
+
+      var limit = 0;
       $(".plus").click(function(){
         var input = $(this).closest("div.row").find("input");
         var get = parseInt(input.val());
-        get+=1;
-        input.val(get);
-        updateTicketCount("plus",$(this).closest("div.panel").find("input.cartID").val(),get);
+        check($(this).closest("div.panel").find("input.cartID").val());
+        if (get != limit) {
+          get++;
+          input.val(get);
+          updateTicketCount("plus",$(this).closest("div.panel").find("input.cartID").val(),get);
+
+          updateTotal("plus", $(this).closest("tr").find("th.closest").html());
+        }
+        
       });
+
+      //check if more than limit
+      function check (id) {
+        $.ajax ({
+          url : "<?php echo site_url()?>/finance/CCart/getLimit",
+          data : {"id" : id},
+          method : "POST",
+          success: function(e){
+                    limit = e;
+                },
+                error: function(e){
+                }
+        });
+      }
+
+      function updateTotal (type, p) {
+        //p = p.replace("Price:", "");
+        p = p.replace("Price:", "");
+        var price;
+        if(type == "plus"){
+          price = parseInt(p);
+        }else{
+          price = parseInt(p);
+          price = -price;
+        }
+
+        var t = $("#total").text();
+        t = t.replace("Php ", "");
+        var total = parseInt(t);
+
+        $("#total").text("Php "+(total+price)+".00");
+      }
 
       function updateTicketCount(type,id,quantity){
         var link ="";
