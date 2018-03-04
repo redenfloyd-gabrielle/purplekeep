@@ -72,8 +72,8 @@ class CEvent extends CI_Controller {
 									<div class="box-two proerty-item">
 										<div class="item-entry overflow">
 										'.($now < $start?($interval->days == 0? "<div class='corner-ribbon top-right sticky red'>Less than a day!</div>": "<div class='corner-ribbon top-right sticky red'>".$interval->days." day/s left!</div>"):"").'
-										
-												<h3 class="text-center"><a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"> 
+
+												<h3 class="text-center"><a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'">
 													'.$title.'
 												</a></h3>
 												<div class="item-thumb">
@@ -96,7 +96,7 @@ class CEvent extends CI_Controller {
 								<div class="box-two proerty-item">
 									<div class="item-entry overflow">
 										<div class="corner-ribbon top-right sticky red">Happening now!</div>
-										
+
 										<h3 class="text-center">
 										<a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'">
 										'.$title.'
@@ -120,7 +120,7 @@ class CEvent extends CI_Controller {
 							</div>
 					';
                 }
-				
+
 			}
 			echo $ht;
 		}else{
@@ -311,7 +311,7 @@ class CEvent extends CI_Controller {
 	}
 
 	//redirect View Events Page from Redeem Code error
-	public function viewEventsFromCodeError($dataError) 
+	public function viewEventsFromCodeError($dataError)
 	{
 		$userid = $this->session->userdata['userSession']->userID;
 
@@ -448,11 +448,11 @@ class CEvent extends CI_Controller {
 				$this->load->view('imports/vHeaderLandingPage');
 				$this->load->view('vEventDetails',$data);
 				$this->load->view('imports/vFooterLandingPage');
-	
+
 		}else{
 			redirect("CLogin/viewDashboard");
 		}
-		
+
 
 		// $this->load->view('imports/vHeader');
 		// $this->load->view('user/vEventRegistration', $data);
@@ -550,7 +550,7 @@ class CEvent extends CI_Controller {
 					  'ticket_type_id' => $tId
 	 				  );
 					$res = $this->MTicket->insert($data);
-				
+
 					$asd = $this->MTicketType->updTicketCnt($tId, $res1[0]->ticket_count-1);
 					$result = $this->MUser->update1(array("account_id"=>$this->session->userdata['userSession']->userID),array("load_amt"=>$result));
 					// $this->success = "Bought ticket for ".$res1[0]->price;
@@ -568,6 +568,10 @@ class CEvent extends CI_Controller {
 		}
 		public function createEvent(){
 			// $this->load->model('events/MEvent','event');
+			if(empty($this->input->post('event_name'))){
+				redirect("event/CEvent/viewEvents");
+			}
+
 			$flag = true;
 
 			$event = new mEvent();
@@ -600,7 +604,7 @@ class CEvent extends CI_Controller {
 
 			$constraint = array('event_venue' => $data['event_venue'], 'location_id' => $data['location_id'], 'event_date_start' => $data['event_date_start'], 'event_date_end' => $data['event_date_end']);
 			$res = $this->MEvent->read_where($constraint);
-		
+
 			if(count($res) > 0){
 				$flag = false;
 			}else{
@@ -629,9 +633,9 @@ class CEvent extends CI_Controller {
 				$datetime1 = new DateTime($this->input->post('dateStart'));
 				$datetime2 = new DateTime($this->input->post('dateEnd'));
 				$interv = date_diff($datetime2, $datetime1);
-	
+
 				$no = $interv->format('%H:%I:%S');
-			
+
 				if($this->input->post('ticketType2')||$this->input->post('no_tickets_total2')||$this->input->post('no_tickets_total2')){
 					$data1['ticket_name'] = $this->input->post('ticketType2');
 					$data1['ticket_count'] = $this->input->post('no_tickets_total2');
@@ -655,7 +659,7 @@ class CEvent extends CI_Controller {
 				$where =  array('no_tickets_total' => $totalNumTix );
 				$res = $this->MEvent->update($evt_id,$where);
 				$flag = $res;
-				
+
 			}
 			if($flag){
 				/*echo'
@@ -780,7 +784,7 @@ class CEvent extends CI_Controller {
 			$user->updateUser();
 
 			//$this->load->view('imports/vHeaderLandingPage');
-			
+
 
 		}else{
 
