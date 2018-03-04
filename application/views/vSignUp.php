@@ -1,7 +1,7 @@
 <!-- Add these lines below to pages with customizable elements -->
 <?php
   require('assets/CustomizationManager.php');
-  CustomizationManager::SetTheme("configurations 0");
+  CustomizationManager::SetTheme("configurations 1");
 ?>
 <!-- Up to here -->
 <body>
@@ -195,17 +195,17 @@
         $('#cpassword').on('keyup', function () {
             if ($(this).val() == $('#password').val()) {
                 $('#message').html('password matched').css('color', 'green');
-                $("#sub").removeAttr("disabled");      
+                $("#sub").removeAttr("disabled");
             } else {
                $('#message').html('password mismatch').css('color', 'red');
-               $('#sub').prop('disabled',true); 
-            } 
+               $('#sub').prop('disabled',true);
+            }
         });
 
-       
+
 
         $('#uname').on('keyup', function () {
-            
+
             $.ajax({
             url: "<?php echo site_url()?>/user/cUser/checkAllUsername",
             data:'username='+$("#uname").val(),
@@ -219,7 +219,7 @@
            });
         });
     });
-            
+
 </script>
 
 <script type="text/javascript">
@@ -229,10 +229,10 @@ var mm = today.getMonth()+1; //January is 0!
 var yyyy = today.getFullYear();
  if(dd<10){
         dd='0'+dd
-    } 
+    }
     if(mm<10){
         mm='0'+mm
-    } 
+    }
 
 today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("bdate").setAttribute("max", today);

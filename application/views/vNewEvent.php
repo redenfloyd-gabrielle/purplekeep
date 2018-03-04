@@ -1,6 +1,6 @@
 <?php
   require('assets/CustomizationManager.php');
-  CustomizationManager::SetTheme("configurations 0");
+  CustomizationManager::SetTheme("configurations 1");
 ?>
     <body>
 
@@ -193,7 +193,7 @@
                                 </div>
                                 <div style="border:1px solid #f2f2f2;margin:1.5%;height:150px;overflow-x:hidden;overflow-y:auto">
                                    <ul style="padding:5px" id="tixContainer">
-                                       
+
                                    </ul>
                                 </div>
                                 <div class="text-center">
@@ -285,7 +285,7 @@
                     </div>
                   </div>
                 </div>
-              </div>    
+              </div>
             <div class="footer-copy text-center">
                 <div class="container">
                     <div class="row">

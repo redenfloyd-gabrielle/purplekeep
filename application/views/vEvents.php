@@ -1,7 +1,7 @@
 <!-- Add these lines below to pages with customizable elements -->
 <?php
   require('assets/CustomizationManager.php');
-  CustomizationManager::SetTheme("configurations 0");
+  CustomizationManager::SetTheme("configurations 1");
 ?>
 <!-- Up to here -->
 
@@ -250,7 +250,7 @@
             </div>
         </div>
     </div>
-    
+
     <?php if ($this->session->flashdata('success_msg')): ?>
         <div class="alert alert-success">
               <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -502,7 +502,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php 
+                                <?php
                                     foreach ($res as $r) {
                                             echo  '<tr>';
                                                     echo '<td>'.$r->dateSold.'</td>';
@@ -572,7 +572,7 @@
 
             </div>
         </form>
-        
+
         <?php
             }
         ?>
@@ -727,12 +727,11 @@
     var yyyy = today.getFullYear();
      if(dd<10){
             dd='0'+dd
-        } 
+        }
         if(mm<10){
             mm='0'+mm
-        } 
+        }
 
     today = yyyy+'-'+mm+'-'+dd;
     document.getElementById("bdate").setAttribute("max", today);
 </script>
-
