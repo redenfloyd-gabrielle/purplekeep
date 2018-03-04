@@ -212,7 +212,7 @@
                             <div class="col-xs-4 col-lg-4">
                                 <input type="text" class="form-control" placeholder="Key word">
                             </div>
-                            <div class="col-xs-4 col-lg-2">
+<!--                             <div class="col-xs-4 col-lg-2">
                                 <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Category">
                                     <option>Attraction</option>
                                     <option>Appearance</option>
@@ -231,8 +231,8 @@
                                     <option>Tour</option>
                                     <option>Others</option>
                                 </select>
-                            </div>
-                            <div class="col-xs-2 col-lg-2">
+                            </div> -->
+                            <!-- <div class="col-xs-2 col-lg-2">
                                 <div class="price-range-wrap">
                                     <label for="price-range" style="color:#000">Price range (P):</label>
                                         <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="10000" data-slider-step="5"
@@ -240,7 +240,7 @@
                                         <b class="pull-left color" style="color:#000">P0.00</b>
                                         <b class="pull-right color" style="color:#000" >P10,000.00</b>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-xs-2 col-lg-2">
                                 <input class="button btn smallsearch-btn" value="Search" type="submit">
                              </div>

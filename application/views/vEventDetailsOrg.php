@@ -271,7 +271,7 @@
                                         </div>
                                     </fieldset>
 
-                                    <fieldset>
+                                   <!--  <fieldset>
                                         <div class="row">
                                             <div class="col-xs-6">
 
@@ -300,7 +300,7 @@
                                                 <b class="pull-right color">P10,000.00</b>                                       
                                             </div>                                      
                                         </div>
-                                    </fieldset>                                
+                                    </fieldset>                     -->            
 
                                     <fieldset class="padding-5">
                                         <div class="row">
