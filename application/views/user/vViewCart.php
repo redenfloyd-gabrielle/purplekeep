@@ -121,25 +121,3 @@
 
         </div>
 
-<script type="text/javascript">
-    $(document).ready(function() {
-        $(document).on('click', '#aDropdown', function(){
-            var id = $(this).data('id');
-            $.ajax({
-                url: "<?php echo site_url()?>/user/CUser/updateAnnounce/"+id,
-                data: { id:id },
-                type: "POST",
-                success: function(data){
-                    var d=data.split('/');
-                    $('#bdg').remove();
-                    // alert(d[0].trim());
-                   
-                },
-                error: function(data){
-                    alert("error");
-                }
-            });
-        });
-    } );
-
-</script>

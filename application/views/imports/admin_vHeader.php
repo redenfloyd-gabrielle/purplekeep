@@ -21,6 +21,7 @@
 <link type="text/css" rel="stylesheet" href="<?php echo base_url('assets/adminAssets/css/bootstrap/bootstrap-themes.css')?>" />
 <link type="text/css" rel="stylesheet" href="<?php echo base_url('assets/adminAssets/css/dsStudentsStyles.css')?>" />
 <link type="text/css" rel="stylesheet" href="<?php echo base_url('assets/adminAssets/css/style5.css')?>" />
+<link rel="stylesheet" href="<?php echo base_url('assets/adminAssets/css/datatables.min.css')?>">
 
 <link type="text/css" rel="alternate stylesheet" media="screen" title="style1" href="<?php echo base_url('assets/adminAssets/css/styleTheme1.css')?>" />
 <link type="text/css" rel="stylesheet" href="<?php echo base_url('assets/adminAssets/css/animation.css')?>" />

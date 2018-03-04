@@ -46,19 +46,19 @@
 
      <div class="slider-area">
             <div class="slider">
-                <div id="bg-slider" class="owl-carousel owl-theme">
+                <div id="bg-slider" class="owl-carousel owl-theme" >
 
                     <!-- <div class="item"><img src= "<?php echo base_url('assets/nikkiAssets/img/slide1/slider-image-2.jpg')?>"></div>
                     <div class="item"><img src= "<?php echo base_url('assets/nikkiAssets/img/slide1/slider-image-5.jpg')?>"></div>
                     <div class="item"><img src= "<?php echo base_url('assets/nikkiAssets/img/slide1/slider-image-3.jpg')?>"></div> -->
 
-                    <?php echo '<div class="item"><img src= "' . base_url(CustomizationManager::$images->LANDING_PAGE_CAROUSEL_BACKGROUND_1) . '"></div>'?>
+                    <!-- <?php echo '<div class="item"><img src= "' . base_url(CustomizationManager::$images->LANDING_PAGE_CAROUSEL_BACKGROUND_1) . '"></div>'?>
                     <?php echo '<div class="item"><img src= "' . base_url(CustomizationManager::$images->LANDING_PAGE_CAROUSEL_BACKGROUND_2) . '"></div>'?>
-                    <?php echo '<div class="item"><img src= "' . base_url(CustomizationManager::$images->LANDING_PAGE_CAROUSEL_BACKGROUND_3) . '"></div>'?>
+                    <?php echo '<div class="item"><img src= "' . base_url(CustomizationManager::$images->LANDING_PAGE_CAROUSEL_BACKGROUND_3) . '"></div>'?> -->
 
                 </div>
             </div>
-            <div class="container slider-content">
+            <div class="container slider-content" >
                 <div class="row">
                     <div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-1 col-sm-12">
                         <!-- <h2>See Events Near You</h2> -->
@@ -73,39 +73,40 @@
                                 <div class="row">
                                     <div class="col-sm-12 col-md-12 col-lg-12" style="padding-left: 25px;align-content: center;-webkit-align-content: center;">
                                         <form action="<?php echo site_url();?>/user/CEvent/searchEvent" class="form" method="POST">
-                                            
-                                                <select name="searchDateMonth" class="form-control" style="width: 100px; float: left;">
-                                                              <option value="0" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 0 ){ echo "selected";}?>>-Month-</option>
-                                                              <option value="1" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 1 ){ echo "selected";}?>>Jan</option>
-                                                              <option value="2" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 2 ){ echo "selected";}?>>Feb</option>
-                                                              <option value="3" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 3 ){ echo "selected";}?>>Mar</option>
-                                                              <option value="4" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 4 ){ echo "selected";}?>>Apr</option>
-                                                              <option value="5" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 5 ){ echo "selected";}?>>May</option>
-                                                              <option value="6" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 6 ){ echo "selected";}?>>Jun</option>
-                                                              <option value="7" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 7 ){ echo "selected";}?>>Jul</option>
-                                                              <option value="8" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 8 ){ echo "selected";}?>>Aug</option>
-                                                              <option value="9" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 9 ){ echo "selected";}?>>Sep</option>
-                                                              <option value="10" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 10 ){ echo "selected";}?>>Oct</option>
-                                                              <option value="11" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 11 ){ echo "selected";}?>>Nov</option>
-                                                              <option value="12" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 12 ){ echo "selected";}?>>Dec</option>
+                                                <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                                    <select name="searchDateMonth" class="form-control">
+                                                      <option value="0" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 0 ){ echo "selected";}?>>-Month-</option>
+                                                      <option value="1" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 1 ){ echo "selected";}?>>Jan</option>
+                                                      <option value="2" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 2 ){ echo "selected";}?>>Feb</option>
+                                                      <option value="3" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 3 ){ echo "selected";}?>>Mar</option>
+                                                      <option value="4" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 4 ){ echo "selected";}?>>Apr</option>
+                                                      <option value="5" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 5 ){ echo "selected";}?>>May</option>
+                                                      <option value="6" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 6 ){ echo "selected";}?>>Jun</option>
+                                                      <option value="7" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 7 ){ echo "selected";}?>>Jul</option>
+                                                      <option value="8" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 8 ){ echo "selected";}?>>Aug</option>
+                                                      <option value="9" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 9 ){ echo "selected";}?>>Sep</option>
+                                                      <option value="10" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 10 ){ echo "selected";}?>>Oct</option>
+                                                      <option value="11" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 11 ){ echo "selected";}?>>Nov</option>
+                                                      <option value="12" <?php if(isset($_POST['searchDateMonth']) && $_POST['searchDateMonth'] == 12 ){ echo "selected";}?>>Dec</option>
 
-                                                            </select>
+                                                    </select>
+                                                </div>
                                                 <?php
                                                 if(!isset($_POST['searchDateYear'])){
-                                                    echo '<input name="searchDateYear" type="text" class="form-control" placeholder="Year" style="width: 100px; float: left;">';
+                                                    echo '<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><input name="searchDateYear" type="text" class="form-control" placeholder="Year" ></div>';
                                                 } else {
-                                                    echo '<input name="searchDateYear" type="text" class="form-control" placeholder="Year" style="width: 100px; float: left;" value="'.$_POST['searchDateYear'].'">';
+                                                    echo '<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><input name="searchDateYear" type="text" class="form-control" placeholder="Year"  value="'.$_POST['searchDateYear'].'"></div>';
                                                 }
                                                 ?>
 
                                                 <?php
                                                 if(!isset($_POST['searchWord'])){
 
-                                                    echo '<input name="searchWord" type="text" class="form-control" placeholder="Key word" pattern="[\sa-zA-z0-9]+" style="width: 350px; float: left;" value="">';
+                                                    echo '<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><input name="searchWord" type="text" class="form-control" placeholder="Key word" pattern="[\sa-zA-z0-9]+"  value=""></div>';
                                                 } else {
-                                                    echo '<input name="searchWord" type="text" class="form-control" placeholder="Key word" value="'.$_POST['searchWord'].'" pattern="[\sa-zA-z0-9]+" style="width: 350px; float: left;">';
+                                                    echo '<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><input name="searchWord" type="text" class="form-control" placeholder="Key word" value="'.$_POST['searchWord'].'" pattern="[\sa-zA-z0-9]+"></div>';
                                                 }
-                                                    echo'<div class="col-md-2"><select Class="form-control" id="region_code" name="region_code" >
+                                                    echo'<div class="col-sm-2 col-md-2 col-lg-2"><select Class="form-control" id="region_code" name="region_code" >
                                                         <option style="color: gray;" value="0">Region</option>
                                                         <option value="NCR">NCR</option>
                                                         <option value="CAR">CAR</option>
@@ -126,15 +127,15 @@
                                                         <option value="Region XIII">Region XIII</option>
                                                     </select></div>';
 
-                                                    echo '<div class="col-md-3">
+                                                    echo '<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                                                     <select class="form-control" id="municipal-name" name="municipal_name">
                                                         <option style="color: gray;">Municipal</option>
                                                     </select></div>';
                                                 
                                                 ?>
-                                                ?>
-
-                                                <button class="btn search-btn" type="submit" style="float: left;"><i class="fa fa-search"></i></button>
+                                                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                                                    <button class="btn search-btn" type="submit" style="float: left;"><i class="fa fa-search"></i></button>
+                                                </div>
                                         </form>
                                     </div>
                                 </div>
@@ -215,7 +216,7 @@
                                                                     }
                                                                 }   
 
-                                                                echo '<h3 class="text-center"><a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"> ';
+                                                                echo '<a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'" style="background-color:#CB6C52;"><h3 class="text-center"> ';
 
                                                                 if(strlen($event->event_name)>=42){
                                                                     echo substr($event->event_name,0,39)."...";
@@ -223,11 +224,11 @@
                                                                     echo $event->event_name;
                                                                 }
                                                 
-                                                                echo '</a></h3>';
+                                                                echo '</h3></a>';
 
-                                                                echo '<div class="item-thumb">
-                                                                <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
-
+                                                                // echo '<div class="item-thumb">
+                                                                // <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
+                                                                
                                                                 echo '<div style="height:130px;"><h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
 
                                                                 $dateS = date_create($event->dateStart);
@@ -253,7 +254,7 @@
                                                                 echo '<div class="corner-ribbon top-right sticky red">Happening now!</div>';
                                                                     
 
-                                                                echo '<h3 class="text-center"><a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"> ';
+                                                                echo '<a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'" ><h3 class="text-center"> ';
 
                                                                 if(strlen($event->event_name)>=42){
                                                                     echo substr($event->event_name,0,39)."...";
@@ -261,10 +262,10 @@
                                                                     echo $event->event_name;
                                                                 }
                                                 
-                                                                echo '</a></h3>';
+                                                                echo '</h3></a>';
 
-                                                                echo '<div class="item-thumb">
-                                                                <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
+                                                                // echo '<div class="item-thumb">
+                                                                // <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
 
                                                                 echo '<div style="height:130px;"><h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
 
@@ -343,30 +344,6 @@
         </div> <!-END OF FOOTER -->
 </body>
 
-<!--START OF  SCRIPT-->
-<script type="text/javascript">
-    $(document).ready(function() {
-        $(document).on('click', '#aDropdown', function(){
-            var id = $(this).data('id');
-            $.ajax({
-                url: "<?php echo site_url()?>/user/CUser/updateAnnounce/"+id,
-                data: { id:id },
-                type: "POST",
-                success: function(data){
-                    var d=data.split('/');
-                    $('#bdg').remove();
-                    // alert(d[0].trim());
-                   
-                },
-                error: function(data){
-                    alert("error");
-                }
-            });
-        });
-    } );
-    
-    
-</script> 
 <script>
     $(document).ready(function(){
         $('#region_code').on('change', function(){
