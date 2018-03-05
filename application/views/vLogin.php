@@ -10,6 +10,7 @@ if (!isset($this->session->userdata['userSession']) && !isset($this->session->us
 <html>
 <head>
   <title>DailyEvents </title>
+  <link rel="icon" href="<?php echo base_url('assets/dianeAssets/img/DE Icon.png')?>">
   <!-- Custom Theme files -->
   <link href="<?php echo base_url('assets/josephAssets/"css/font-awesome.css')?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/josephAssets/"css/font-awesome.min.css')?>" rel="stylesheet">

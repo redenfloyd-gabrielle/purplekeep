@@ -11,6 +11,7 @@
 
 <!-- Title-->
 <title>DailyEvents </title>
+<link rel="icon" href="<?php echo base_url('assets/dianeAssets/img/DE Icon.png')?>">
 <!-- Favicons -->
 <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
 <link rel="shortcut icon" href="assets/ico/logo.png">
