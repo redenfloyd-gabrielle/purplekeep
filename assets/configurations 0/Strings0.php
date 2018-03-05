@@ -84,5 +84,6 @@
     public $PROFILE_PAGE_TAB_PAYMENT_HISTORY = "Payment History";
     public $PROFILE_PAGE_TAB_SETTINGS = "Settings";
     public $CALENDAR_PAGE_TITLE = "Calendar";
+    public $CALENDAR_PAGE_PROFILE_BUTTON = "Profile";
   }
 ?>
