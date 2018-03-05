@@ -819,11 +819,12 @@ class CEvent extends CI_Controller {
 			$this->load->view('user/vEditEvent', $v);
 			$this->load->view('imports/vFooterLandingPage');
 		}
-		public function interested($id)
+		public function interested()
 		{
 			$uid = $this->session->userdata['userSession']->userID;
 			$pref = new MPreference();
-
+			$id = $this->input->post('check1');
+			//print_r($id);
 			$now = NEW DateTime(NULL, new DateTimeZone('UTC'));
 			$data = array('preference_date' => $now->format('Y-m-d H:i:s'),
 						  'user_id' => $uid ,
@@ -833,13 +834,15 @@ class CEvent extends CI_Controller {
 			$result = $pref->insert($data);
 
 			if($result){
-				redirect("event/CEvent/viewPreferenceEvents");
+				//redirect("event/CEvent/viewPreferenceEvents");
 				// $this->viewPreferenceEvents();
-			}
 
+				echo 1;
+			}
+			//echo $id;
 			# code...
 		}
-		public function interestedRemove($id)
+		public function interestedRemove()
 		{
 			// $uid = $this->session->userdata['userSession']->userID;
 			// $pref = new MPreference();
@@ -849,14 +852,16 @@ class CEvent extends CI_Controller {
 			// 			  'user_id' => $uid ,
 			// 			  'event_id' => $id
 		 // 				  );
-
+			$id = $this->input->post('check1');
+			//print_r($id);
 			$result = $this->MPreference->delete($id);
 
 			if($result){
-				redirect("event/CEvent/viewPreferenceEvents");
+				//redirect("event/CEvent/viewPreferenceEvents");
 				// $this->viewPreferenceEvents();
+				echo 1;
 			}
-
+			//echo $id;
 			# code...
 		}
 		public function viewPreferenceEvents()

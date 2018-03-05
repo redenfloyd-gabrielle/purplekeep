@@ -213,11 +213,53 @@ div.desc {
                                 <h1 class="property-title pull-left"><?php echo $e->event_name; ?></h1>
 
                                 <?php if(isset($user_event_preference_id)){
-                                    echo "<a href='".site_url()."/event/cEvent/interestedRemove/".$user_event_preference_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
+                                    //echo "<a href='".site_url()."/event/cEvent/interestedRemove/".$user_event_preference_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
+                                    echo "<button><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></button>";
                                 }else{
-                                    echo "<a href='".site_url()."/event/cEvent/interested/".$e->event_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
+                                    //echo "<a href='".site_url()."/event/cEvent/interested/".$e->event_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
+                                    echo "<button><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></button>";
                                 }
                                 ?>
+                                <script type="text/javascript">
+                                    $(document).ready(function(e){                                        
+                                        $('.star').on("click", function(e){
+                                            e.preventDefault();
+                                            var check1 = <?php if(isset($user_event_preference_id)){
+                                                        echo $user_event_preference_id;
+                                                    }else{
+                                                        echo $e->event_id;
+                                                    }
+                                                ?>;
+                                            var check2 = <?php if(isset($user_event_preference_id)){
+                                                        $pass = site_url()."/event/cEvent/interestedRemove";
+                                                        echo json_encode($pass);
+                                                    }else{
+                                                        $pass = site_url()."/event/cEvent/interested";
+                                                        echo json_encode($pass);
+                                                    }
+                                                ?>;
+
+                                            $.ajax({
+                                                url:check2,
+                                                method: "POST",
+                                                data:{check1:check1},
+                                                success: function(e){
+                                                    //alert(e);
+                                                    var pic1 = <?php $pass = site_url().'../../assets/neilAssets/img/star.png'; echo json_encode($pass); ?>;
+                                                    var pic2 = <?php $pass = site_url().'../../assets/neilAssets/img/white-star.png'; echo json_encode($pass); ?>;
+                                                    var img = document.getElementById("star").src;
+                                                    alert (img == pic1);
+                                                    //console.log([img, pic1]);
+                                                    if (img == pic1){
+                                                        $(".star").attr("src", pic2);
+                                                    }else{
+                                                        $(".star").attr("src", pic1);
+                                                    }
+                                                }
+                                            });
+                                        });
+                                    });
+                                </script>
                                 <?php if($this->session->userdata['userSession']->userID == $e->user_id){?>
                                 <span class="property-price pull-right"><?php echo $e->event_status; ?></span>
                                 <?php } ?>
