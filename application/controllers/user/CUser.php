@@ -45,7 +45,10 @@ class cUser extends CI_Controller {
 			}
 		}
 		////////////STOPS HERE///////////////////////////////////////////////////
-		$data['events'] = $array;
+		if( $array !=null){
+			$data['events'] = $array;
+		}
+		
 		$data['announcements'] = $this->MAnnouncement->getUnviewedOfUser($this->session->userdata['userSession']->userID);
 		$data['announcementCount'] = count($data['announcements']);
 		if(count($data['announcements']) == 0){
