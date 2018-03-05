@@ -1,3 +1,4 @@
+
 <!-- Add these lines below to pages with customizable elements -->
 <?php
   require('assets/CustomizationManager.php');
@@ -44,23 +45,13 @@
             </div><!-- /.container-fluid -->
         </nav> <! -- END OF NAV -->
 
-     <div class="slider-area">
-            <div class="slider">
-                <div id="bg-slider" class="owl-carousel owl-theme" >
-
-                    <!-- <div class="item"><img src= "<?php echo base_url('assets/nikkiAssets/img/slide1/slider-image-2.jpg')?>"></div>
-                    <div class="item"><img src= "<?php echo base_url('assets/nikkiAssets/img/slide1/slider-image-5.jpg')?>"></div>
-                    <div class="item"><img src= "<?php echo base_url('assets/nikkiAssets/img/slide1/slider-image-3.jpg')?>"></div> -->
-
-                    <!-- <?php echo '<div class="item"><img src= "' . base_url(CustomizationManager::$images->LANDING_PAGE_CAROUSEL_BACKGROUND_1) . '"></div>'?>
-                    <?php echo '<div class="item"><img src= "' . base_url(CustomizationManager::$images->LANDING_PAGE_CAROUSEL_BACKGROUND_2) . '"></div>'?>
-                    <?php echo '<div class="item"><img src= "' . base_url(CustomizationManager::$images->LANDING_PAGE_CAROUSEL_BACKGROUND_3) . '"></div>'?> -->
-
-                </div>
-            </div>
-            <div class="container slider-content" >
+    <div class="page-head" style="height: 400px;"> 
+            <div class="container">
+                    <div class="row">
+                        <div class="page-head-content">
+                                   <div class="container slider-content" >
                 <div class="row">
-                    <div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-1 col-sm-12">
+                    <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12">
                         <!-- <h2>See Events Near You</h2> -->
                         <h2><?php echo CustomizationManager::$strings->LANDING_PAGE_CAROUSEL_MESSAGE ?></h2>
 
@@ -145,8 +136,12 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div> <!-END OF SLIDER-->
+            </div>         
+                        </div>
+                    </div>
+                </div>
+         </div>
+
 
      <!-- CONTENT AREA -->
       <div class="content-area recent-property" style="padding-bottom: 60px; background-color: rgb(252, 252, 252);">
@@ -406,3 +401,4 @@
 </script>
 
 <!--END OF  SCRIPT-->
+
