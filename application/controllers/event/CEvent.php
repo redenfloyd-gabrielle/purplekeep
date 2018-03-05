@@ -219,22 +219,24 @@ class CEvent extends CI_Controller {
 
 	}
 
-	public function viewEvents()
+	public function viewEvents($page)
 	{
 
 		$userid = $this->session->userdata['userSession']->userID;
-
+     
 		//////////////////////////////////////////////////////////////////////////////
 		//================Sprint 3 SPRINT 3 INTERFACE MODULE============//
 		/////////////////////////////////////////////////////////////////////////////
-		$strEventSelect = "*, DATE_FORMAT(event_info.event_date_start,'%d-%b-%y %H:%m') as dateStart, DATE_FORMAT(event_info.event_date_end,'%d-%b-%y %H:%m') as dateEnd";
-		$strEventWhere = array("user_id" => $userid,
-													 "event_isActive" => TRUE
-													);
-		$result = $this->MEvent->select_certain_where_isDistinct_hasOrderBy_hasGroupBy_isArray($strEventSelect,
-							$strEventWhere,FALSE,FALSE,FALSE,FALSE);
+		// $strEventSelect = "*, DATE_FORMAT(event_info.event_date_start,'%d-%b-%y %H:%m') as dateStart, DATE_FORMAT(event_info.event_date_end,'%d-%b-%y %H:%m') as dateEnd";
+		// $strEventWhere = array("user_id" => $userid,
+		// 				"event_isActive" => TRUE);
+		// $result = $this->MEvent->select_certain_where_isDistinct_hasOrderBy_hasGroupBy_isArray($strEventSelect,
+		// 					$strEventWhere,FALSE,FALSE,FALSE,FALSE);
 		// echo"<pre>";
 		// var_dump($result);
+
+		$npages = ($page * 9)-9;
+		$result = $this->MEvent->getLimitedEventsByUser($userid,$npages);
 		$array = array();
 		foreach ($result as $value) {
 			$arrObj = new stdClass;
@@ -246,6 +248,20 @@ class CEvent extends CI_Controller {
 
 			$array[] = $arrObj;
 		}
+		
+
+		$strEventSelect1 = "*, DATE_FORMAT(event_info.event_date_start,'%d-%b-%y %H:%m') as dateStart, DATE_FORMAT(event_info.event_date_end,'%d-%b-%y %H:%m') as dateEnd";
+		$strEventWhere1 = array("user_id" => $userid,
+						"event_isActive" => TRUE);
+		$result1 = $this->MEvent->select_certain_where_isDistinct_hasOrderBy_hasGroupBy_isArray($strEventSelect1,
+							$strEventWhere1,FALSE,FALSE,FALSE,FALSE);
+		$x = 0;
+		foreach ($result1 as $value) {
+			$x++;
+		}
+		$num = $x/9;
+     	$num = ceil($num);
+
 
 		$val = array();
 		foreach ($array as $key) {
@@ -273,9 +289,6 @@ class CEvent extends CI_Controller {
 		////////////STOPS HERE///////////////////////////////////////////////////
 
 		$data['userid'] = $userid;
-
-		//payment history checkout
-		$data['checkout'] = $this->MCheckout->showCheckout($this->session->userdata['userSession']->userID);
 
 		$data['announcements'] = $this->MAnnouncement->getUnviewedOfUser($this->session->userdata['userSession']->userID);
 		$data['announcementCount'] = count($data['announcements']);
@@ -308,7 +321,11 @@ class CEvent extends CI_Controller {
 				}
 			}
 			$data['announcements'] = $array1;
-
+			$data['page'] = $page;
+			$data['ppage'] = 1;
+			$data['npage'] = 1;
+    		$data['pages'] = $num;
+        
 		$this->load->view('imports/vHeaderLandingPage');
 		$this->load->view('vEvents',$data);
 		$this->load->view('imports/vFooterLandingPage');
@@ -322,6 +339,11 @@ class CEvent extends CI_Controller {
 		//////////////////////////////////////////////////////////////////////////////
 		//================Sprint 3 SPRINT 3 INTERFACE MODULE============//
 		/////////////////////////////////////////////////////////////////////////////
+		$gID = $data1 ['events']  = $this->MEvent->read_where('event_id = '.$id.'');
+		////////////STOPS HERE///////////////////////////////////////////////////
+
+		$result = $this->MEvent->getLimitedEventsByUser($userid,$page);
+
 		$strEventSelect = "*, DATE_FORMAT(event_info.event_date_start,'%d-%b-%y %H:%m') as dateStart, DATE_FORMAT(event_info.event_date_end,'%d-%b-%y %H:%m') as dateEnd";
 		$strEventWhere = array("user_id" => $userid,
 													 "event_isActive" => TRUE
@@ -670,14 +692,7 @@ class CEvent extends CI_Controller {
 								<h1 class="modal-title" align="center">Create Event Successful</h1>
 						</div>
 					</div>
-				';*/
-				// header( "refresh:1; viewEvents" );
-				$this->session->set_flashdata('success_msg',"Your event has been successfully submitted. Please wait for the confirmation.");
-				redirect("event/CEvent/viewEvents");
-				//redirect("event/CEvent/viewEvents");
-			}else{
-				$this->load->view('error_404');
-				/*
+
 				echo'
 					<div id="addAdmin" class="modal fade"  data-header-color="#34495e">
 						<div class="modal-header">
@@ -792,7 +807,7 @@ class CEvent extends CI_Controller {
 
 		}
 
-		$this->load->view('event/CEvent/viewEvents');
+		$this->load->view('event/CEvent/viewEvents/1');
 
 
 
