@@ -12,8 +12,8 @@
 								"card.cardStatus",
 								"ua.first_name",
 								"ua.last_name",
-								"DATE_FORMAT(card.addedAt,'%d-%b-%y %h:%m') as addedAt",
-								"DATE_FORMAT(card.updatedAt,'%d-%b-%y %h:%m') as updatedAt",
+								"DATE_FORMAT(card.addedAt,'%d-%b-%y %h:%i') as addedAt",
+								"DATE_FORMAT(card.updatedAt,'%d-%b-%y %h:%i') as updatedAt",
 								"ua1.first_name as 'buyerF'",
 								"ua1.last_name as 'buyerL'");
 
