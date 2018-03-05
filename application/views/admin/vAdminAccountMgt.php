@@ -218,9 +218,8 @@
                     		<input class="form-control" pattern="[a-zA-Z0-9]{8,}" type="password" name="password" required="">
                     	</div>
                     </div>
-
-
-        			<div class="modal-footer">
+  
+              			<div class="modal-footer">
                         <button id="closeEditAccount" type="button" class="btn btn-danger" data-dismiss="modal" >Close</button>
                         <input id="" class="btn btn-primary" type="submit"  name="action" value="Add">
                     </div>
@@ -228,6 +227,7 @@
             </div>
         </div>
     </div>
+    
 
 
     <!-- UPDATE ACCOUNT MODAL -->
