@@ -21,7 +21,7 @@
                                   <th>#</th>
                                   <th>Name</th>
                                   <th>Time</th>
-                                  <th>Tickets Sold</th>
+                                  <th>Number of Tickets</th>
                                   <th>Status</th>
                                   <th>Options</th>
                                 </tr>
