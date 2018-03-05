@@ -100,6 +100,12 @@
       <?php echo form_open(site_url()."/admin/cAdmin/createAnnouncement", 'class="form-horizontal"'); ?>
           <!-- <form class="form-horizontal" method="POST" action="<?php echo site_url()?>/admin/cAdmin/createAnnouncement"> -->
 
+                <div class="form-group" >
+                  <label for="announcement-title" class="col-8 control-label">Title:</label>
+                  <div class="col-8">
+                    <input class="form-control"  title="Only valid characters are allowed." type="text" name="announcementTitle" placeholder="Enter Announcement Title" maxlength="100" required style="resize:none; overflow:hidden;"> 
+                  </div>
+                </div>
 
                 <div class="form-group" >
                   <label for="" class="col-8 control-label">Announcement:</label>
