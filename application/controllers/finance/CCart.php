@@ -245,7 +245,7 @@ class CCart extends CI_Controller {
 
 		$total = 0;
 		foreach ($finalChecked as $key) {
-			$query = $this->MCart->read_where(array('ticket_id' => $key));
+			$query = $this->MCart->read_where(array('ticket_id' => $key,"status"=>"active","account_id"=>$this->session->userdata['userSession']->userID));
 			echo json_encode($query);
 			foreach($query as $q) {
 				$total += $q->total_price; 
