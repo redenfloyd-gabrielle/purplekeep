@@ -240,7 +240,7 @@
                     <!--blank form-->
                   </form>
                   <form action="<?php echo site_url(); ?>/finance/CCart/checkout" method="POST">
-                    <input id ="i01"  value="" name="input01">
+                    <input id ="i01" type="hidden" value="" name="input01">
                     <button class="btn btn-default pull-right" id="checkout" type="submit">CHECKOUT</button>
                   </form>
              </div>
