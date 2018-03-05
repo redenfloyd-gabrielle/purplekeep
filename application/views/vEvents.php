@@ -137,14 +137,6 @@
                                         </div>
                                     </div>
                                 </fieldset>
-                                <fieldset >
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <!-- <button class = "button btn largesearch-btn">Payment Summary</button> -->
-                                            <button class = "button btn largesearch-btn"><?php echo CustomizationManager::$strings->PROFILE_PAGE_PAYMENT_SUMMARY_BUTTON ?></button>
-                                        </div>
-                                    </div>
-                                </fieldset>
                             </div>
                             <br><br>
                         </div>
@@ -282,9 +274,18 @@
                             if(isset($events)){
                                 $cnt =1;
                                 foreach ($events as $event) {
-                                   ?>
+                                    $cntTx = count($event->tix);
+                                    $cHeight = "76px";
+
+                                    if($cntTx > 2){
+                                        $cHeight = "0px";
+                                    }else if($cntTx > 1){
+                                        $cHeight = "17px";
+                                    }
+
+                        ?>
                             <div class="col-sm-6 col-md-4 p0" >
-                                <div class="box-two proerty-item" style="height:330px;">
+                                <div class="box-two proerty-item" style="height:398px;">
                                     <!-- <div class="item-thumb">
                                         <a href="<?php echo site_url();?>/event/CEvent/displayEventDetails/<?php echo $event->event_id;?>"><img  style="max-height: 50px;" src="<?php echo base_url();?><?php echo $event->event_picture; ?>"></a>
                                     </div> -->
@@ -326,7 +327,7 @@
 
 
                                                 ?>
-                                            <div style="height:90px;">
+                                            <div style="margin-bottom:<?php echo $cHeight;?>;">
                                              <table class="table-condensed table-responsive" >
                                                                 <thead>
                                                                     <th><center>Ticket Name</center></th>
