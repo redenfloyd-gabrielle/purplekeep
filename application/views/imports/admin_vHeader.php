@@ -48,7 +48,7 @@
             <ul class="nav navbar-nav nav-main-xs">
                 <li><a href="#" class="icon-toolsbar nav-mini"><i class="fa fa-bars"></i></a></li>
 
-                <li><button class="btn btn-circle btn-header-search" ><i class="fa fa-search"></i></button></li>
+                <!-- <li><button class="btn btn-circle btn-header-search" ><i class="fa fa-search"></i></button></li> -->
             </ul>
 
 
