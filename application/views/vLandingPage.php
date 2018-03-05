@@ -60,7 +60,7 @@
             </div>
             <div class="container slider-content" >
                 <div class="row">
-                    <div class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-1 col-sm-12">
+                    <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
                         <!-- <h2>See Events Near You</h2> -->
                         <h2><?php echo CustomizationManager::$strings->LANDING_PAGE_CAROUSEL_MESSAGE ?></h2>
 

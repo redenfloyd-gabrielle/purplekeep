@@ -607,12 +607,14 @@ class CEvent extends CI_Controller {
 				$affectedRows = $this->MEvent->insert($data);
 				$evt_id = $this->MEvent->db->insert_id();
 				// print_r($evt_id);
-				$photo = $this->MEvent->do_upload_event($evt_id);
+
+				/*$photo = $this->MEvent->do_upload_event($evt_id);
 				// $this->MEvent->do_upload_event($evt_id);
 
 				if(!$photo) {
 					$photo = $this->MEvent->insertPhotoEvent("events1.jpg",$evt_id);
-				}
+				}*/
+				
 				//var_dump($photo);
 
 					// print_r($photo);
