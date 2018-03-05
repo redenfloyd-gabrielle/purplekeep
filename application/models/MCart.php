@@ -7,6 +7,18 @@
 			
 		}
 
+		public function getTotal ($id) {
+
+	      $this->db->select("sum(total_price) as total");
+	      $this->db->from("cart");
+	      $this->db->where("account_id", $id);
+	      $this->db->where("status","active");
+
+	      $query = $this->db->get();
+
+	      return $query->result();
+	    }
+
 		public function getCart(){
 			$arr =array();
 			$events = $this->getEvents();
