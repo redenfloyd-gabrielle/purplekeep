@@ -67,7 +67,7 @@
 
                                   <div class='box-body'>
                                     <div class='box-title'>
-                                      <h1><a href='#''>This Post Has No Heading</a></h1>
+                                      <h1>".(($announcement->announcementTitle)?strtoupper($announcement->announcementTitle):'THIS ANNOUNCEMENT HAS NO TITLE')."</h1>
                                     </div>
                                     <div class='box-summary'>
                                       <p>".$announcement->announcementDetails."</p>

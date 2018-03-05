@@ -11,7 +11,8 @@ class CEvent extends CI_Controller {
     	$this->load->model('user/MTicketType');
     	$this->load->model('user/MTicket');
     	$this->load->model('MNotification');
-	  $this->load->model('MAnnouncement'); //admin module functionalit
+    	$this->load->model('MCheckout');
+	  	$this->load->model('MAnnouncement'); //admin module functionalit
     	$this->load->helper('date');
 		$this->load->model('MEventInfo');
 		$this->load->model('location/MLocation');
@@ -289,11 +290,6 @@ class CEvent extends CI_Controller {
 
 		$data['userid'] = $userid;
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> 73020d088dedf6b6d7422de74bfdd67273740fe4
 		$data['announcements'] = $this->MAnnouncement->getUnviewedOfUser($this->session->userdata['userSession']->userID);
 		$data['announcementCount'] = count($data['announcements']);
 		if(count($data['announcements']) == 0){
@@ -325,16 +321,11 @@ class CEvent extends CI_Controller {
 				}
 			}
 			$data['announcements'] = $array1;
-<<<<<<< HEAD
 			$data['page'] = $page;
 			$data['ppage'] = 1;
 			$data['npage'] = 1;
     		$data['pages'] = $num;
         
->>>>>>> Stashed changes
-=======
-
->>>>>>> 73020d088dedf6b6d7422de74bfdd67273740fe4
 		$this->load->view('imports/vHeaderLandingPage');
 		$this->load->view('vEvents',$data);
 		$this->load->view('imports/vFooterLandingPage');
@@ -348,21 +339,17 @@ class CEvent extends CI_Controller {
 		//////////////////////////////////////////////////////////////////////////////
 		//================Sprint 3 SPRINT 3 INTERFACE MODULE============//
 		/////////////////////////////////////////////////////////////////////////////
-<<<<<<< HEAD
-<<<<<<< Updated upstream
 		$gID = $data1 ['events']  = $this->MEvent->read_where('event_id = '.$id.'');
 		////////////STOPS HERE///////////////////////////////////////////////////
-=======
-	
+
 		$result = $this->MEvent->getLimitedEventsByUser($userid,$page);
-=======
+
 		$strEventSelect = "*, DATE_FORMAT(event_info.event_date_start,'%d-%b-%y %H:%m') as dateStart, DATE_FORMAT(event_info.event_date_end,'%d-%b-%y %H:%m') as dateEnd";
 		$strEventWhere = array("user_id" => $userid,
 													 "event_isActive" => TRUE
 													);
 		$result = $this->MEvent->select_certain_where_isDistinct_hasOrderBy_hasGroupBy_isArray($strEventSelect,
 							$strEventWhere,FALSE,FALSE,FALSE,FALSE);
->>>>>>> 73020d088dedf6b6d7422de74bfdd67273740fe4
 		// echo"<pre>";
 		// var_dump($result);
 		$array = array();
@@ -370,16 +357,6 @@ class CEvent extends CI_Controller {
 			$arrObj = new stdClass;
 			$arrObj->data = $value;
 			$arrObj->data->tix = $this->MEvent->getTicketsOfEvent($value->event_id);
-<<<<<<< HEAD
-
-			//Adding of location
-			$arrObj->data->location = $this->MLocation->read_where("location_id = ".$value->location_id."");
-
-			$array[] = $arrObj;
-		}
->>>>>>> Stashed changes
-=======
->>>>>>> 73020d088dedf6b6d7422de74bfdd67273740fe4
 
 			//Adding of location
 			$arrObj->data->location = $this->MLocation->read_where("location_id = ".$value->location_id."");
@@ -656,12 +633,14 @@ class CEvent extends CI_Controller {
 				$affectedRows = $this->MEvent->insert($data);
 				$evt_id = $this->MEvent->db->insert_id();
 				// print_r($evt_id);
-				$photo = $this->MEvent->do_upload_event($evt_id);
+
+				/*$photo = $this->MEvent->do_upload_event($evt_id);
 				// $this->MEvent->do_upload_event($evt_id);
 
 				if(!$photo) {
 					$photo = $this->MEvent->insertPhotoEvent("events1.jpg",$evt_id);
-				}
+				}*/
+				
 				//var_dump($photo);
 
 					// print_r($photo);
@@ -713,27 +692,7 @@ class CEvent extends CI_Controller {
 								<h1 class="modal-title" align="center">Create Event Successful</h1>
 						</div>
 					</div>
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-				';
-				header( "refresh:1; viewEvents" );
-=======
-				';*/
-				// header( "refresh:1; viewEvents" );
-				$this->session->set_flashdata('success_msg',"Your event has been successfully submitted. Please wait for the confirmation.");
-				redirect("event/CEvent/viewEvents/1");
-				//redirect("event/CEvent/viewEvents");
->>>>>>> Stashed changes
-=======
-				';*/
-				// header( "refresh:1; viewEvents" );
-				$this->session->set_flashdata('success_msg',"Your event has been successfully submitted. Please wait for the confirmation.");
-				redirect("event/CEvent/viewEvents");
-				//redirect("event/CEvent/viewEvents");
->>>>>>> 73020d088dedf6b6d7422de74bfdd67273740fe4
-			}else{
-				$this->load->view('error_404');
-				/*
+
 				echo'
 					<div id="addAdmin" class="modal fade"  data-header-color="#34495e">
 						<div class="modal-header">
