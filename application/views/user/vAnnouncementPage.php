@@ -49,41 +49,56 @@
             </div>
         </div>
         <!-- End page header -->
+
  
         <?php
             if($announcements!=FALSE){
                 foreach ($announcements as $announcement) {
                     if($announcement->announcementStatus != "Finished") {
                         $date = date("m-d-Y", strtotime($announcement->addedAt));
-                        echo  "
-                            <div class='box-container'>
-                                <div class='box-header'>
-                                    <div class='box-author--no-cover'  id='".$announcement->announcementID."'>
-                                        <h3>".$announcement->first_name." ".$announcement->last_name."</h3>
-                                    </div>
-                                  </div>
+                    ?>
+                    
+                        <div class='card'>
+                            <div class='thumbnail'><img src="<?php echo base_url('assets/nikkiAssets/img/default_user.png')?>">'</div>
 
-                                  <div class='box-body'>
-                                    <div class='box-title'>
-                                      <h1>".(($announcement->announcementTitle)?strtoupper($announcement->announcementTitle):'THIS ANNOUNCEMENT HAS NO TITLE')."</h1>
-                                    </div>
-                                    <div class='box-summary'>
-                                      <p>".$announcement->announcementDetails."</p>
-                                    </div>
-                                  </div>
+                            <?php
+                                echo "
+                                    <div class='right'>
+                                        <div id='".$announcement->announcementID."'>
+                                        </div>
 
-                                   <div class='box-footer'>
-                                    <ul>
-                                      <li class='published-date'>".$date."</li>
-                                    </ul>
-                                </div>
-                            </div>"
-                            ;
-                        }
+                                        <p class='title'>
+                                          ".(($announcement->announcementTitle)?strtoupper($announcement->announcementTitle):'THIS ANNOUNCEMENT HAS NO TITLE')."
+                                        </p>
+                                        
+                                        <div class='separator'></div>
+
+                                        <p>".$announcement->announcementDetails."</p>
+
+                                        <div class='author'>
+                                          <span class='box-text'>".$announcement->first_name." ".$announcement->last_name."</span>
+                                        </div>
+
+                                        <div class='date'>
+                                         <span class='box-text'>".$date."</span>
+                                        </div>
+                                    
+                                     </div>
+
+                                "
+                            ?>
+                                
+                            </div>
+                        </div>
+
+                    <?php 
+                        ;
                     }
                 }
-            ?>
-
+            }
+        ?>
+                           
+       
 
 
 
