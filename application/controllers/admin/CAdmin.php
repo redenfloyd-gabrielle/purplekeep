@@ -626,7 +626,8 @@ class CAdmin extends CI_Controller {
 
 			// $now = NEW DateTime(NULL, new DateTimeZone('UTC'));
 
-			$data = array('announcementDetails' => $this->input->post('announcementDetails'),
+			$data = array('announcementTitle' => $this->input->post('announcementTitle'),
+						  'announcementDetails' => $this->input->post('announcementDetails'),
 						  'announcementStatus' => 'OnGoing',
 						  'addedBy' => $this->input->post('postedBy'),
 						  // 'addedAt' => $now->format('Y-m-d H:i:s')

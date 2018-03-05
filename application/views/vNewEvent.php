@@ -71,11 +71,10 @@
                         <div class="col-md-12 col-xs-12 register-blocks">
                             <h2><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_DETAILS ?></h2>
                             <form name="createEventForm" id="createEventForm" action="<?php echo site_url();?>/event/CEvent/createEvent " method="post" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return checkLocation()">
-                                <div class="form-group">
-                                    <!-- <label for="name">Event Picture</label> -->
+                                <!-- <div class="form-group">
                                     <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_PICTURE ?></label>
                                    <input type="file" name="userfile"  id="fileToUpload" accept="image/*">
-                                </div>
+                                </div> -->
                                 <div class="form-group">
                                     <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_TITLE ?></label>
 
