@@ -1010,7 +1010,7 @@ label small{
 
 .slider-area{
     position: relative;
-    height: 350px;
+    height: 250px;
     background-color: #444343;
 }
 #bg-slider .item img{
@@ -1020,7 +1020,6 @@ label small{
 
 .slider-content{
     position: absolute;
-    top: 20%;
     text-align: center;
     color: #FFF;
     width: 100%;
