@@ -137,14 +137,6 @@
                                         </div>
                                     </div>
                                 </fieldset>
-                                <fieldset >
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <!-- <button class = "button btn largesearch-btn">Payment Summary</button> -->
-                                            <button class = "button btn largesearch-btn"><?php echo CustomizationManager::$strings->PROFILE_PAGE_PAYMENT_SUMMARY_BUTTON ?></button>
-                                        </div>
-                                    </div>
-                                </fieldset>
                             </div>
                             <br><br>
                         </div>
@@ -498,31 +490,54 @@
     </div>
     <div role="tabpanel" class="tab-pane" id="messages">
          <div class="col-md-12 clear">
-                        <?php
-                            $mt = new MTicket();
-                            $res = $mt->generatePaymenets();
-                        ?>
-
                         <table class="table table-hover table-striped">
                             <thead>
                                 <tr>
                                     <th>Event Name</th>
                                     <th>Amount</th>
                                     <th>Date paid</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php 
-                                    foreach ($res as $r) {
-                                            echo  '<tr>';
-                                                    echo '<td>'.$r->dateSold.'</td>';
-                                                    echo '<td>'.$r->ticket_type_id.'</td>';
-                                            echo '</tr>';
-                                    }
-                                ?>
+                                    foreach ($checkout as $c) { ?>
+                                        <tr>
+                                            <td><?php echo $c->event_name?></td>
+                                            <td><?php echo $c->checkTotal?></td>
+                                            <td><?php echo $c->checkCreatedOn?></td>
+                                            <td>
+                                                <button>VIEW DETAILS</button>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                             </tbody>
                         </table>
                     </div>
+
+                    <!--view details modal-->
+                    <div class="modal fade" id="lmodal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3><img src="img/credit-card.png" class="elogo"> eLoad</h3>
+                                </div>
+                                <div class="modal-body">
+
+                                    <label class="label-control">Card Number</label>
+                                    <input type="text" class="form-control" name="" placeholder="Enter Card Number">
+
+                                    <h6 class="note">*Note: you only have 3 attemps to enter correct values</h6>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
     </div>
      <div role="tabpanel" class="tab-pane" id="editprofile">
         <h2>Edit Profile</h2>

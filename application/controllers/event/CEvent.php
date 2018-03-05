@@ -11,7 +11,8 @@ class CEvent extends CI_Controller {
     	$this->load->model('user/MTicketType');
     	$this->load->model('user/MTicket');
     	$this->load->model('MNotification');
-	  $this->load->model('MAnnouncement'); //admin module functionalit
+    	$this->load->model('MCheckout');
+	  	$this->load->model('MAnnouncement'); //admin module functionalit
     	$this->load->helper('date');
 		$this->load->model('MEventInfo');
 		$this->load->model('location/MLocation');
@@ -272,6 +273,9 @@ class CEvent extends CI_Controller {
 		////////////STOPS HERE///////////////////////////////////////////////////
 
 		$data['userid'] = $userid;
+
+		//payment history checkout
+		$data['checkout'] = $this->MCheckout->showCheckout($this->session->userdata['userSession']->userID);
 
 		$data['announcements'] = $this->MAnnouncement->getUnviewedOfUser($this->session->userdata['userSession']->userID);
 		$data['announcementCount'] = count($data['announcements']);
