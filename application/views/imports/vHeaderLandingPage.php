@@ -45,6 +45,9 @@
     <link href="<?php echo base_url('assets/customization1Assets/css/notification.css')?>" rel="stylesheet" />
     <script src="<?php echo base_url('assets/customization1Assets/js/notification.js')?>"></script>
 
+    <!--Fontawesome icons for Nav Tab Icons-->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    
     <style>
         .calendar-legend{ margin-top:5%; max-width: 50%; border-radius: 15px; border: 1px solid #ccc; padding: 5px;}
         .legend { list-style: none; margin-left:-35px;}
@@ -147,11 +150,14 @@
                 .corner-ribbon.orange{background: #e82;}
                 .corner-ribbon.yellow{background: #ec0;}
 
-            
+            li.active{
+              border-bottom: 100px;
+              border-color: #CB6C52;
+            }
     </style>
 </head>
 
 <?php } else {
-        redirect('cLogin/login');
+        redirect('CLogin/login');
     }
 ?>

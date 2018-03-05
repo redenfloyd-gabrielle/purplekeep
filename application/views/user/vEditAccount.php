@@ -16,24 +16,24 @@
                             <span class="icon-bar"></span>
                             <span class="icon-bar"></span>
                         </button>
-                        <a class="navbar-brand" href="<?php echo site_url();?>/cLogin/viewDashBoard"><img src="<?php echo base_url('assets/dianeAssets/img/logoBlack.png')?>"></a>
+                        <a class="navbar-brand" href="<?php echo site_url();?>/CLogin/viewDashBoard"><img src="<?php echo base_url('assets/dianeAssets/img/logoBlack.png')?>"></a>
                     </div>
 
                     <div class="collapse navbar-collapse yamm" id="navigation">
                         <div class="button navbar-right">
-                            <button class="navbar-btn nav-button wow bounceInRight login"> <a href ="<?php echo site_url();?>/cLogin/userLogout" data-wow-delay="0.1s">Logout </a></button>
+                            <button class="navbar-btn nav-button wow bounceInRight login"> <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s">Logout </a></button>
                         </div>
 
                         <div class="button navbar-right">
-                            <button class="navbar-btn nav-button wow bounceInRight login"> <a href ="<?php echo site_url();?>/event/cEvent/viewCreateEvent" data-wow-delay="0.4s">Create Event </a></button>
+                            <button class="navbar-btn nav-button wow bounceInRight login"> <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s">Create Event </a></button>
                         </div>
 
 
                         <ul class="main-nav nav navbar-nav navbar-right">
-                            <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cLogin/viewDashBoard">Home</a></li>
+                            <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewDashBoard">Home</a></li>
 
-                            <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/cEvent/viewEvents">Profile</a></li><!--
-                            <li class="wow fadeInDown" data-wow-delay="0.1s"><a href ="<?php echo site_url();?>/event/cEvent/viewCreateEvent" >Contact</a></li>
+                            <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents">Profile</a></li><!--
+                            <li class="wow fadeInDown" data-wow-delay="0.1s"><a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" >Contact</a></li>
                             <li class="wow fadeInDown" data-wow-delay="0.1s"><a href ="#" >Profile</a></li> -->
                         </ul>
                     </div><!-- /.navbar-collapse -->
@@ -62,7 +62,7 @@
                     <div class="box-for overflow">
                         <div class="col-md-12 col-xs-12 register-blocks">
                             <h2>Your Account : </h2>
-                            <form action="<?php echo site_url();?>/user/cUser/updateAccount" method="post">
+                            <form action="<?php echo site_url();?>/user/CUser/updateAccount" method="post">
                                 <input type="text" name="account_id" value="<?php echo $ev["account_id"];?>" hidden>
                                 <div class="form-group">
                                     <label for="name">First Name</label>
@@ -81,7 +81,7 @@
 
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-default"><!-- <a href="<?php echo site_url();?>/cLogin/viewAccount"> -->Save</button>
+                                    <button type="submit" class="btn btn-default"><!-- <a href="<?php echo site_url();?>/CLogin/viewAccount"> -->Save</button>
                                 </div>
                             </form>
                         </div>

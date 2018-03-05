@@ -28,20 +28,21 @@
                 </div>
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
-                  <div class="button navbar-right">
-                      <!-- <a href ="<?php echo site_url();?>/cLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a> -->
-                      <a href ="<?php echo site_url();?>/cLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->PROFILE_PAGE_LOGOUT_BUTTON ?> </button></a>
-                  </div>
-                  <div class="button navbar-right">
-                      <a href ="<?php echo site_url();?>/event/cEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->PROFILE_PAGE_CREATE_EVENT_BUTTON ?> </button></a>
-                  </div>
-
-                  <ul class="main-nav nav navbar-nav navbar-right">
-                      <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cLogin/viewDashBoard"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_HOME ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/cEvent/viewEvents"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_PROFILE ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/user/cUser/viewAnnouncements">Announcements</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/cCart/viewCart">View Cart</a></li>
-                  </ul>
+                    <div class="button navbar-right">
+                        <!-- <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a> -->
+                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login" title="Logout"><span class="fas fa-sign-out-alt fa-lg"></span></button></a>
+                    </div>
+                    <div class="button navbar-right">
+                        <!-- <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a> -->
+                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login" title="Create Event"><span class="fas fa-calendar-plus fa-lg"></span></button></a>
+                    </div>
+                    <ul class="main-nav nav navbar-nav navbar-right">
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Home"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><span class="fas fa-home fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents"><span class="fas fa-user fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><span class="fas fa-bell fa-lg"></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Interested Events"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><span class="fas fa-star fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="View Cart"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><span class="fas fa-shopping-cart fa-lg"></span></a></li>
+                    </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
@@ -89,7 +90,7 @@
                                             <div class="row">
 
                                                     <div class="col-xs-12" id="some" hidden="">
-                                                        <form action="<?php echo site_url(); ?>/user/cUser/redeemCode" method="post">
+                                                        <form action="<?php echo site_url(); ?>/user/CUser/redeemCode" method="post">
                                                             <input type="text" class="form-control" name="ccode" placeholder="Enter code">
                                                             <!-- <button type="submit" class="navbar-btn nav-button pull-right"   >Redeem Code</button> -->
                                                             <button type="submit" class="navbar-btn nav-button pull-right"   ><?php echo CustomizationManager::$strings->PROFILE_PAGE_REDEEM_CODE ?></button>
@@ -126,17 +127,9 @@
                                     <fieldset >
                                         <div class="row">
                                             <div class="col-md-12">
-                                                 <a href="<?php echo site_url()?>/calendar/cCalendar">
+                                                 <a href="<?php echo site_url();?>/event/CEvent/viewEvents">
                                                    <!-- <button class = "button btn largesearch-btn">Calendar</button></a> -->
-                                                   <button class = "button btn largesearch-btn"><?php echo CustomizationManager::$strings->PROFILE_PAGE_CALENDAR_BUTTON ?></button></a>
-                                            </div>
-                                        </div>
-                                    </fieldset>
-                                    <fieldset >
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                              <!-- <button class = "button btn largesearch-btn">Payment Summary</button> -->
-                                              <button class = "button btn largesearch-btn"><?php echo CustomizationManager::$strings->PROFILE_PAGE_PAYMENT_SUMMARY_BUTTON ?></button>
+                                                   <button class = "button btn largesearch-btn"><?php echo CustomizationManager::$strings->CALENDAR_PAGE_PROFILE_BUTTON ?></button></a>
                                             </div>
                                         </div>
                                     </fieldset>
@@ -225,7 +218,7 @@
                                         <div class="modal fade" id="ModalAdd" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                                           <div class="modal-dialog" role="document">
                                             <div class="modal-content">
-                                            <form class="form-horizontal" method="POST" action="<?php echo site_url()?>/calendar/cCalendar/AddEvent">
+                                            <form class="form-horizontal" method="POST" action="<?php echo site_url()?>/calendar/CCalendar/AddEvent">
 
                                               <div class="modal-header">
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
@@ -414,7 +407,7 @@
                         var dataSet = "startDate="+startDate+"&startTime="+startTime+"&endDate="+endDate+"&endTime="+endTime;
                         $.ajax({
                             type: "POST",
-                            url: '<?php echo site_url()?>/event/cEvent/viewCreateFromCalendar',
+                            url: '<?php echo site_url()?>/event/CEvent/viewCreateFromCalendar',
                             data: dataSet,
                             cache: false,
                             success: function(result){
@@ -456,10 +449,10 @@
                 ?>
                 {
                     id: '<?php echo $events->event_id; ?>',
-                    title: '<?php echo $events->event_name; ?>',
+                    title: '<?php echo substr(trim(str_replace("\"", "\'",(preg_replace( "/\r|\n/", "", $events->event_name )))),0,25); ?>',
                     start: '<?php echo $start; ?>',
                     end: '<?php echo $end; ?>',
-                    details: '<?php echo $events->event_details; ?>',
+                    details: '<?php echo substr(trim(str_replace("\"", "\'",(preg_replace( "/\r|\n/", "", $events->event_details )))),0,25); ?>',
                     category: '<?php echo $events->event_category; ?>',
                     venue: '<?php echo $events->event_venue; ?>',
                     color: '<?php
@@ -501,7 +494,7 @@
                         var dataSet = "id="+id+"&color="+color;
                         $.ajax({
                             type: "POST",
-                            url: '<?php echo site_url()?>/event/cEvent/displayEventDetailsFromCalendar',
+                            url: '<?php echo site_url()?>/event/CEvent/displayEventDetailsFromCalendar',
                             data: dataSet,
                             cache: false,
                             success: function(result){
@@ -531,7 +524,7 @@
             Event[1] = start;
             Event[2] = end;
             $.ajax({
-             url: '<?php echo site_url()?>/calendar/cCalendar/ajaxUpdate',
+             url: '<?php echo site_url()?>/calendar/CCalendar/ajaxUpdate',
              type: "POST",
              data: {Event:Event},
              success: function(rep) {
@@ -608,7 +601,7 @@
                         </div>
                         <div class="bottom-menu pull-right">
                          <ul>
-                            <li><a class="wow fadeInUp animated" href="<?php echo site_url();?>/cLogin/viewDashBoard" data-wow-delay="0.2s"><?php echo CustomizationManager::$strings->FOOTER_NAV_HOME ?></a></li>
+                            <li><a class="wow fadeInUp animated" href="<?php echo site_url();?>/CLogin/viewDashBoard" data-wow-delay="0.2s"><?php echo CustomizationManager::$strings->FOOTER_NAV_HOME ?></a></li>
                           </ul>
                         </div>
                     </div>
