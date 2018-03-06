@@ -122,15 +122,15 @@ class cUser extends CI_Controller {
 					
 					$this->session->set_flashdata('success_msg',"Your wallet has been added P".$card[0]->cardAmount." ammount of load!");
 
-					redirect("event/cEvent/viewEvents");
+					redirect("event/cEvent/viewEvents/1");
 				}
 			} else {
 				$this->session->set_flashdata('error_msg','Code already taken.');
-				redirect("event/cEvent/viewEvents");
+				redirect("event/cEvent/viewEvents/1");
 			}
 		} else {
 			$this->session->set_flashdata('error_msg','Code invalid.');
-			redirect("event/cEvent/viewEvents");
+			redirect("event/cEvent/viewEvents/1");
 		}
 
 		//$this->load->view('vLogin', $data);
