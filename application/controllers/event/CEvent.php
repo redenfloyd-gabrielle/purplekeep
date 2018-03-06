@@ -638,6 +638,12 @@ class CEvent extends CI_Controller {
 			$event = new mEvent();
 			$data['event_date_start'] = $this->input->post('dateStart');
 			$data['event_date_end'] = $this->input->post('dateEnd');
+			$date3 = new DateTime('now');
+
+			$date2=explode(" ", $data3);
+			$d = explode ("/", $date2[0]);
+			$ts = strtotime($d[2]."-".$d[0]."-".$d[1]." ".$date2[1].":00 ".$date2[2]);
+			$date3 = mdate("%Y-%m-%d %H:%i:%s", $ts);
 
 			$date2=explode(" ", $data['event_date_start']);
 			$d = explode ("/", $date2[0]);
@@ -649,6 +655,11 @@ class CEvent extends CI_Controller {
 			$ts = strtotime($d[2]."-".$d[0]."-".$d[1]." ".$date2[1].":00 ".$date2[2]);
 			$data['event_date_end'] = mdate("%Y-%m-%d %H:%i:%s", $ts);
 
+			if($data['event_date_start'] < $date3 && $data['event_date_end'] < $date3){
+				redirect('event/CEvent/viewCreateEvent');
+			}if($data['event_date_start'] > $data['event_date_end'] || $data['event_date_start'] == $data['event_date_end']){
+				redirect('event/CEvent/viewCreateEvent');
+			}else{
 			$data['no_tickets_total'] = 0;
 			$data['event_status'] = 'pending';
 			$data['event_name'] = $this->input->post('event_name');
@@ -665,7 +676,7 @@ class CEvent extends CI_Controller {
 
 			$constraint = array('event_venue' => $data['event_venue'], 'location_id' => $data['location_id'], 'event_date_start' => $data['event_date_start'], 'event_date_end' => $data['event_date_end']);
 			$res = $this->MEvent->read_where($constraint);
-		
+			}
 			if(count($res) > 0){
 				$flag = false;
 			}else{
@@ -741,7 +752,8 @@ class CEvent extends CI_Controller {
 				';
 				header( "refresh:1; viewCreateEvent" );*/
 			}
-		  }
+		  
+		}
 
 
 
@@ -784,7 +796,6 @@ class CEvent extends CI_Controller {
 		$event_venue = 'Consolacion Central Elementary School, Consolacion, Central Visayas, Philippines';
 		*/
 		//end of code snippet
-
 		$data = array('event_date_start'=>$event_date_start,
 					  'event_date_end'=>$event_date_end,
 					  'event_name'=>$event_name,
@@ -792,7 +803,29 @@ class CEvent extends CI_Controller {
 					  'event_category'=>$event_category,
 					  'event_venue'=>$event_venue);
 
-		$v = $this->MUser->updateSpecificEvent($event_id,$data);
+			$date3 = new DateTime('now');
+
+			$date2=explode(" ", $date3);
+			$d = explode ("/", $date2[0]);
+			$ts = strtotime($d[2]."-".$d[0]."-".$d[1]." ".$date2[1].":00 ".$date2[2]);
+			$date3 = mdate("%Y-%m-%d %H:%i:%s", $ts);
+
+			$date2=explode(" ", $data['event_date_start']);
+			$d = explode ("/", $date2[0]);
+			$ts = strtotime($d[2]."-".$d[0]."-".$d[1]." ".$date2[1].":00 ".$date2[2]);
+			$data['event_date_start'] = mdate("%Y-%m-%d %H:%i:%s", $ts);
+
+			$date2=explode(" ", $data['event_date_end']);
+			$d = explode ("/", $date2[0]);
+			$ts = strtotime($d[2]."-".$d[0]."-".$d[1]." ".$date2[1].":00 ".$date2[2]);
+			$data['event_date_end'] = mdate("%Y-%m-%d %H:%i:%s", $ts);
+
+			if($data['event_date_start'] < $date3 && $data['event_date_end'] < $date3){
+				redirect('event/CEvent/editEvent/'.$event_id);
+			}if($data['event_date_start'] > $data['event_date_end'] || $data['event_date_start'] == $data['event_date_end']){
+				redirect('event/CEvent/editEvent/'.$event_id);
+			}else{
+			$v = $this->MUser->updateSpecificEvent($event_id,$data);
 
 		if($v){
 			for($temp = 0; $temp < $this->input->post('totalshit'); $temp++){
@@ -811,6 +844,7 @@ class CEvent extends CI_Controller {
 		}else{
 			echo "Error...";
 		}
+	  }
 
 
 	}
