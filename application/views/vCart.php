@@ -34,11 +34,13 @@
                         <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login" title="Create Event"><span class="fas fa-calendar-plus fa-lg"></span></button></a>
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
+
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Home"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><span class="fas fa-home fa-lg"></span></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents"><span class="fas fa-user fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents/1"><span class="fas fa-user fa-lg"></span></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><span class="fas fa-bell fa-lg"><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Interested Events"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><span class="fas fa-star fa-lg"></span></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="View Cart"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><span class="fas fa-shopping-cart fa-lg"></span></a></li>
+
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -100,18 +102,22 @@
                     <div class="col-md-9" style="padding:1%; margin-top: 3%; border-color:  #ecf1f2; border-style: solid; border-width: 1px;">
                       <div id="list-type" class="proerty-th">
                       <?php 
-                      $attr = array('class' => 'form_horizontal',
+                          $attr = array('class' => 'form_horizontal',
                             'id' => 'myform');
                             echo form_open(site_url()."/finance/CCart/checkout", $attr); ?>
                          <?php if(isset($events) && count($events)>0){
+
                                 foreach ($events as $event) {
                                      ?>
-                                      <div style="padding:1%; margin-top: 2%;">
+                                     <div class="panel panel-default" style="margin-left:3%;">
+                                      <div class="panel-heading">
                                         <input type="checkbox" checked="checked" class="evt" id="<?php echo key($events); ?>"  style="margin-bottom:2%;">
-                                        <span class="h4">
-                                          <strong>Event Name :<?php echo $event[0]->event_name;?></strong>
-                                        </span>
+                                          <span class="h4">
+                                            <strong>Event Name :  <?php echo $event[0]->event_name;?></strong>
+                                          </span>
                                       </div>
+                                      <div class="panel-body">                                                      
+                                      
                                      <?php
                                      foreach ($event as $cart) {                     
                                      ?>
@@ -132,19 +138,19 @@
                                                     <td class="pull-right">
                                                       <form class="offset-md-3">
                                                           <div class="form-group row">
-                                                            <button class="btn btn-default pull-left plus" type="button"><span class="glyphicon glyphicon-plus"></span></button>
+                                                            <button class="btn btn-default pull-left minus" type="button"><span class="glyphicon glyphicon-minus"></span></button>
                                                             <div class="col-sm-6">
                                                               <input type="text" class="qty" disabled value ="<?php echo $cart->quantity;?>" class="form-control">
                                                             </div>
-                                                            <button class="btn btn-default minus" type="button"><span class="glyphicon glyphicon-minus"></span></button>
+                                                            <button class="btn btn-default  plus" type="button"><span class="glyphicon glyphicon-plus"></span></button>
                                                           </div>
                                                       </form>
                                                     </td>
                                                     <td> 
                                                       <form  method="POST" action="<?php echo site_url(); ?>/finance/CCart/deleteCartItem">
                                                         <input name="id" class="hidden" value="<?php echo $cart->cart_id;?>">
-                                                        <button type="submit" class="btn btn-primary pull-right" type="button">
-                                                        <span class="glyphicon glyphicon-trash delete"></span>
+                                                        <button type="submit" class="button btn btn-default pull-right">
+                                                          <i class="glyphicon glyphicon-trash delete"></i>
                                                         </button>
                                                       </form>
                                                     </td>     
@@ -153,13 +159,17 @@
                                               </table>                                           
                                          </div>
                                        </div>
-                                     
                                      <?php
-                                     }?>
+                                      }
+                                     ?>
                                      </div>
                                      <?php
                                      next($events);
                                 }
+                         ?>
+                                    </div>
+                        </div>
+                         <?php
                          }else{?>
                             <h1>Nothing in your cart. Shop for tickets now!</h1>
                          <?php }?>
@@ -172,6 +182,7 @@
              </div><!-- END OF ROW-->
             
          </div>
+        
      <!--- END OF CONTENT AREA-->
       
         <!-- Footer area-->
@@ -291,73 +302,94 @@
               }
       });
       
-      // $(".delete").click(function(){
-      //    panel= $(this).closest("div.panel");
-      //   var id = panel.find("input.cartID").val();
-      //   $(this).attr("disabled",true);
-      //   $.ajax({
-      //           url: "<?php echo site_url()?>/finance/CCart/deleteCartItem",
-      //           data: { "id":id},
-      //           type: "POST",
-      //           success: function(e){
-      //             panel.remove();
-      //           },
-      //           error: function(e){
-      //               // console.log(e);
-      //               // alert(e.responseText);
-      //           }
-      //       });
-      // });
-      $('input').on('ifChecked', function (event){
+
+      $('input.indi').on('ifChecked', function (event){
           $(this).closest("input").attr('checked', true);          
           var id = $(this).closest("input").attr('id');
-          $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").addClass("checked");
-          $(document).find(".tix"+id).attr("checked",true);
+          // $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").addClass("checked");
+          // $(document).find(".tix"+id).attr("checked",true);
 
           var classList = $(this).attr('class').split(/\s+/);
           var temp = classList[0].replace('tix','');
-          // $.each(classList, function(index, item) {
-          //     var temp = item.replace('tix','');
-          //     console.log($(document).find(".tix"+temp));
+        
 
-          //     // if($(document).find(".tix"+temp).closest("div.icheckbox_square-yellow").hasClass("checked")){
-          //     //   $(document).find("#"+temp).closest("div.icheckbox_square-yellow").addClass("checked");  
-          //     //   $(document).find("#"+temp).attr("checked",true);
-          //     // }
-              
-          // });
           var cnt =0;
           var cnt1 =0;
-          $.each($(document).find(".tix"+temp).closest("div.icheckbox_square-yellow"),function(index1,item1){
-                if(item1.className.toString().includes("checked")){
+          $.each($(document).find(".tix"+temp),function(index1,item1){
+            
+                if(item1.checked){
                   cnt1+=1;
+                }else{
+                  console.log(item1);      
                 }
                 cnt+=1;
               });
-
-          if(cnt1+1 == cnt){
-            $(document).find("#"+temp).closest("div.icheckbox_square-yellow").addClass("checked");  
-            $(document).find("#"+temp).attr("checked",true);
+          if(cnt1 == cnt){
+            $(document).find("input#"+temp).iCheck('check');
           }
-
-          addId($(this).attr('id'));
+          
+            addId($(this).attr('id'));
+          
       });
-      $('input').on('ifUnchecked', function (event) {
+      $('input.indi').on('ifUnchecked', function (event) {
           $(this).closest("input").attr('checked', false);
           var id = $(this).closest("input").attr('id');
-          $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").removeClass("checked");
-          $(document).find(".tix"+id).removeAttr('checked');
+          // $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").removeClass("checked");
+          // $(document).find(".tix"+id).removeAttr('checked');
 
           var classList = $(this).attr('class').split(/\s+/);
           $.each(classList, function(index, item) {
               var temp = item.replace('tix','');
               $(document).find("input#"+temp).closest("div.icheckbox_square-yellow").removeClass("checked");
               $(document).find("#"+temp).removeAttr('checked');
+                // $(document).find("input#"+temp).iCheck('uncheck');
 
           });
           removeId($(this).attr('id'));
       });
+      $('input.evt').on('ifChecked', function (event){
+          $(this).closest("input").attr('checked', true);          
+          var id = $(this).closest("input").attr('id');
+          $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").addClass("checked");
+          $(document).find(".tix"+id).attr("checked",true);
 
+          var id = $(this).attr('id');
+          
+          
+          // $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").addClass("checked");
+          $(document).find(".tix"+id).iCheck('check');
+
+          // $.each($(document).find(".tix"+id),function(index1,item1){
+          //     addId(item1.id);
+          // });
+      });
+      $('input.evt').on('ifUnchecked', function (event) {
+          $(this).closest("input").attr('checked', true);          
+          var id = $(this).closest("input").attr('id');
+          $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").removeClass("checked");
+          $(document).find(".tix"+id).attr("checked",false);
+
+          var id = $(this).attr('id');
+          
+          
+          // $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").removeClass("checked");
+          // $(document).find(".tix"+id).attr("checked",false);
+          $(document).find(".tix"+id).iCheck('uncheck');
+          $.each($(document).find(".tix"+id),function(index1,item1){
+                removeId(item1.id);
+              });
+      });
+      function checkID (id) {
+        var s = $("#i01").val();
+        var arr = s.split('/');
+        var ret
+        for (var i=0; i< arr.length; i++) {
+          if (arr[i] == id) {
+            return true;
+          }
+        }
+       return false;
+      }
       function removeId (id) {
         var s = $("#i01").val();
         var arr = s.split('/');
