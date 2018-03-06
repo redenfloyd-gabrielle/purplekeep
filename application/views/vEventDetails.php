@@ -229,7 +229,6 @@ div.desc {
                                                 dataType: 'json',
                                                 data:{'eid':<?php echo $e->event_id?>},
                                                 success: function(e){
-                                                    console.log(e);
                                                     var pic1 = <?php $pass = site_url().'../../assets/neilAssets/img/star.png'; echo json_encode($pass); ?>;
                                                     var pic2 = <?php $pass = site_url().'../../assets/neilAssets/img/white-star.png'; echo json_encode($pass); ?>;
                                                     var img = document.getElementById("star").src;

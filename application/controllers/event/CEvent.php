@@ -823,46 +823,55 @@ class CEvent extends CI_Controller {
 		{
 			$uid = $this->session->userdata['userSession']->userID;
 			$pref = new MPreference();
-			$id = $this->input->post('check1');
+			$eid = $this->input->post('eid');
 			//print_r($id);
 			$now = NEW DateTime(NULL, new DateTimeZone('UTC'));
-			$data = array('preference_date' => $now->format('Y-m-d H:i:s'),
+			$constraint = array('event_id' => $eid, 'user_id' => $uid);
+			$res = $pref->read_where($constraint);
+
+			if(null != $res && count($res) > 0){
+				$pid = $res[0]->user_event_preference_id;
+				$pref->delete($pid);
+
+				echo json_encode(false);
+			}else{
+				$data = array('preference_date' => $now->format('Y-m-d H:i:s'),
 						  'user_id' => $uid ,
-						  'event_id' => $id
+						  'event_id' => $eid
 		 				  );
-
-			$result = $pref->insert($data);
-
-			if($result){
-				//redirect("event/CEvent/viewPreferenceEvents");
-				// $this->viewPreferenceEvents();
-
-				echo 1;
+				$result = $pref->insert($data);
+				echo json_encode(true);
 			}
-			//echo $id;
-			# code...
+			// if($result){
+			// 	//redirect("event/CEvent/viewPreferenceEvents");
+			// 	// $this->viewPreferenceEvents();
+
+			// 	echo 1;
+			// }
+			// //echo $id;
+			// # code...
 		}
 		public function interestedRemove()
 		{
-			// $uid = $this->session->userdata['userSession']->userID;
-			// $pref = new MPreference();
+			// // $uid = $this->session->userdata['userSession']->userID;
+			// // $pref = new MPreference();
 
-			// $now = NEW DateTime(NULL, new DateTimeZone('UTC'));
-			// $data = array('preference_date' => $now->format('Y-m-d H:i:s'),
-			// 			  'user_id' => $uid ,
-			// 			  'event_id' => $id
-		 // 				  );
-			$id = $this->input->post('check1');
-			//print_r($id);
-			$result = $this->MPreference->delete($id);
+			// // $now = NEW DateTime(NULL, new DateTimeZone('UTC'));
+			// // $data = array('preference_date' => $now->format('Y-m-d H:i:s'),
+			// // 			  'user_id' => $uid ,
+			// // 			  'event_id' => $id
+		 // // 				  );
+			// $id = $this->input->post('check1');
+			// //print_r($id);
+			// $result = $this->MPreference->delete($id);
 
-			if($result){
-				//redirect("event/CEvent/viewPreferenceEvents");
-				// $this->viewPreferenceEvents();
-				echo 1;
-			}
-			//echo $id;
-			# code...
+			// if($result){
+			// 	//redirect("event/CEvent/viewPreferenceEvents");
+			// 	// $this->viewPreferenceEvents();
+			// 	echo 1;
+			// }
+			// //echo $id;
+			// # code...
 		}
 		public function viewPreferenceEvents()
 		{
