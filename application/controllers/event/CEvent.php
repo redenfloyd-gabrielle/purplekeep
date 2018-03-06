@@ -707,6 +707,8 @@ class CEvent extends CI_Controller {
 					</div>
 				';
 				header( "refresh:1; viewCreateEvent" );*/
+				$this->session->set_flashdata('success_msg',"Event is successfully created!");
+				redirect("event/cEvent/viewEvents/1");
 			}
 		  }
 
