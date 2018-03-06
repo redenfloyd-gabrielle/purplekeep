@@ -137,14 +137,6 @@
                                         </div>
                                     </div>
                                 </fieldset>
-                                <fieldset >
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <!-- <button class = "button btn largesearch-btn">Payment Summary</button> -->
-                                            <button class = "button btn largesearch-btn"><?php echo CustomizationManager::$strings->PROFILE_PAGE_PAYMENT_SUMMARY_BUTTON ?></button>
-                                        </div>
-                                    </div>
-                                </fieldset>
                             </div>
                             <br><br>
                         </div>
