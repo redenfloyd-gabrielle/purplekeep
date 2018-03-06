@@ -288,12 +288,14 @@ class cUser extends CI_Controller {
 	
 	public function viewSignUp()
 	{
+		$data['page_title'] = "Registration Page";
+
 		if(!$this->data){
-			$this->load->view('imports/vHeaderSignUpPage');
+			$this->load->view('imports/vHeaderSignUpPage',$data);
 			$this->load->view('vSignUp');
 			$this->load->view('imports/vFooterLandingPage');
 		}else{
-			$this->load->view('imports/vHeaderSignUpPage');
+			$this->load->view('imports/vHeaderSignUpPage',$data);
 			$this->load->view('vSignUp',$this->data);
 			$this->load->view('imports/vFooterLandingPage');
 		}
@@ -343,8 +345,7 @@ class cUser extends CI_Controller {
   	}
 
   	public function viewRegistrationConfirmation() {
-  		$data['page_title'] = "Registration Page";
-		$this->load->view('imports/vHeaderSignUpPage', $data);
+		$this->load->view('imports/vHeaderSignUpPage');
 	  	$this->load->view('vRegistrationConfirmation.php');
   		$this->load->view('imports/vFooterLandingPage');
 	}

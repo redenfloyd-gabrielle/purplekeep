@@ -471,7 +471,9 @@ class CEvent extends CI_Controller {
 				}else{
 					$data['interested']	= FALSE;
 				}
-				$this->load->view('imports/vHeaderLandingPage');
+				$data['page_title'] = "Event Details Page";
+
+				$this->load->view('imports/vHeaderLandingPage',$data);
 				$this->load->view('vEventDetails',$data);
 				$this->load->view('imports/vFooterLandingPage');
 	
@@ -832,7 +834,9 @@ class CEvent extends CI_Controller {
 			$v['ev'] = $this->MUser->getEventDetails($id)->row();
 			$v['ti'] = $this->MUser->getTicketDetails($id)->result();
 
-			$this->load->view('imports/vHeaderSignUpPage');
+			$data['page_title'] = "Edit Event Page";
+
+			$this->load->view('imports/vHeaderSignUpPage',$data);
 			$this->load->view('user/vEditEvent', $v);
 			$this->load->view('imports/vFooterLandingPage');
 		}
