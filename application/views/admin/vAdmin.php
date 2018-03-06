@@ -34,7 +34,7 @@
                                             <td>".$object->event_id."</td>
                                             <td>".$object->event_name."</td>
                                             <td>".$object->event_date_start." to ".$object->event_date_end."</td>
-                                            <td>".$object->no_tickets_total."</td>
+                                            <td>".$object->total_tickets_amtSold."</td>
                                             <td>".$object->event_status."</td>";
 
                                             if($object->event_status == "Pending"){
