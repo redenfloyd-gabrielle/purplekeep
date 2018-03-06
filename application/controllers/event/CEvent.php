@@ -467,7 +467,7 @@ class CEvent extends CI_Controller {
 				$checkEvent = $this->MEvent->getEventById($eid);
 
 				if($checkEvent){
-					if(strcmp($checkEvent[0]->event_status,'Approved')==0 && $checkEvent[0]->user_id == $uid){
+					if(strcmp($checkEvent[0]->event_status,'Approved')==0 || $checkEvent[0]->user_id == $uid){
 						$result = $this->MPreference->checkIfInterestedAlready($this->session->userdata['userSession']->userID,$eid);
 						if($result){
 							$data['interested']	= TRUE;
