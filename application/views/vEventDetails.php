@@ -359,18 +359,6 @@ div.desc {
                                                         <li><i class="pe-7s-call strong"> </i> <?php echo $o->contact_no;?></li>
                                                     </ul>
                                                 </div>
-
-                                                <div class="dealer-social-media">
-                                                  <a class="twitter" target="_blank" href="">
-                                                      <i class="fa fa-twitter"></i>
-                                                  </a>
-                                                  <a class="facebook" target="_blank" href="">
-                                                      <i class="fa fa-facebook"></i>
-                                                  </a>
-                                                  <a class="instagram" target="_blank" href="">
-                                                      <i class="fa fa-instagram"></i>
-                                                  </a>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
