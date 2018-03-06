@@ -582,8 +582,9 @@ class CEvent extends CI_Controller {
 					  'ticket_type_id' => $tId
 	 				  );
 					$res = $this->MTicket->insert($data);
-				
-					$asd = $this->MTicketType->updTicketCnt($tId, $res1[0]->ticket_count-1);
+				    $cnt = array('ticket_count' =>$res1[0]->ticket_count-1);
+				    $where = array('ticket_type_id' => $tId);
+					$asd = $this->MTicketType->update1($where, $cnt);
 					$result = $this->MUser->update1(array("account_id"=>$this->session->userdata['userSession']->userID),array("load_amt"=>$result));
 					// $this->success = "Bought ticket for ".$res1[0]->price;
 					// $this->displayEventDetails($eid);
