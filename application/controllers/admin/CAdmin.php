@@ -11,8 +11,11 @@ class CAdmin extends CI_Controller {
 		$this->load->model('MEventInfo');
 		$this->load->model('MReports');
 		$this->load->model('MUser');
+		$this->load->model('MAdminDT');
 		$this->load->model('MAnnouncement');
 		$this->load->model('MCardLoad');
+		$this->load->library('form_validation');
+		$this->load->helper('security');
 		// $this->load->model('MUserInfo');
 	}
 
@@ -119,6 +122,10 @@ class CAdmin extends CI_Controller {
 	}
 
 	public function Ban($id,$frm){
+		if(!isset($id) || $isset($frm)){
+			redirect('admin/CAdmin/viewUserAccountMgt');
+		}
+
 		$user_module = new MUserInfo();
 
 		$data = array('account_id' => $id);
@@ -139,6 +146,10 @@ class CAdmin extends CI_Controller {
 	}
 
 	public function Unban($id,$frm){
+		if(!isset($id) || $isset($frm)){
+			redirect('admin/CAdmin/viewUserAccountMgt');
+		}
+
 		$user_module = new MUserInfo();
 
 		$data = array('account_id' => $id);
@@ -224,67 +235,80 @@ class CAdmin extends CI_Controller {
 
 	public function addAdmin()
 	{
-		$user = new MUserInfo();
+		$rules = "strip_tags|trim|xss_clean";
+		$this->form_validation->set_rules('uname','first name',$rules.'|required|min_length[6]|max_length[50]');
+		$this->form_validation->set_rules('password','Password','required|min_length[8]');
 
-		$now = NEW DateTime(NULL, new DateTimeZone('UTC'));
+		$this->form_validation->set_rules('fname','First Name',$rules.'|required|max_length[50]');
+		$this->form_validation->set_rules('lname','Last Name',$rules.'|required|min_length[2]|max_length[50]');
+		$this->form_validation->set_rules('miname','Middle initial',$rules.'|required|min_length[1]');
+		$this->form_validation->set_rules('email','email',$rules.'|required|min_length[2]|max_length[50]|valid_email');
+		$this->form_validation->set_rules('bdate','birthday',$rules.'|required');
+		if ($this->form_validation->run() != FALSE )
+		{
+			$user = new MUserInfo();
 
-		if($this->input->post('userType')=="Superadmin") {
-			$data = array('user_name' => $this->input->post('uname'),
-					  'password' => hash('sha512',$this->input->post('password')),
-					  'first_name' => $this->input->post('fname'),
-					  'last_name' => $this->input->post('lname'),
-					  'middle_initial' => $this->input->post('miname'),
-					  'email' => $this->input->post('email'),
-					  'birthdate' => $this->input->post('bdate'),
-					  'gender' => $this->input->post('gender'),
-					  'contact_no' => $this->input->post('contact'),
-					  'user_type' =>  $this->input->post('userType'),
-					  'upgradedBy' => $this->session->userdata['adminSession']->userID,
-					  'addedAt	' => $now->format('Y-m-d H:i:s')
-					);
-		} else {
-			$data = array('user_name' => $this->input->post('uname'),
-					  'password' => hash('sha512',$this->input->post('password')),
-					  'first_name' => $this->input->post('fname'),
-					  'last_name' => $this->input->post('lname'),
-					  'middle_initial' => $this->input->post('miname'),
-					  'email' => $this->input->post('email'),
-					  'birthdate' => $this->input->post('bdate'),
-					  'gender' => $this->input->post('gender'),
-					  'contact_no' => $this->input->post('contact'),
-					  'user_type' =>  $this->input->post('userType'),
-					  'addedAt	' => $now->format('Y-m-d H:i:s')
-					);
-		}
+			$now = NEW DateTime(NULL, new DateTimeZone('UTC'));
 
-
-
-		$res = $this->MUser->read_where(array('user_name' => $data['user_name']));
-		$res1 = $this->MUser->read_where(array('email' => $data['email']));
-
-    	if($res){
-    			$this->session->set_flashdata('error_msg','Username taken');
-    			$this->viewAdminAccountMgt();
-    			// redirect('user/cUser/viewSignUp',"refresh");
-				//echo "INVALID, EXISTING USERNAME, PLS TRY AGAIN";
-
-		}else if($res1){
-			$this->session->set_flashdata('error_msg','Email taken');
-				$this->viewAdminAccountMgt();
-				//echo "INVALID, EXISTING EMAIL, PLS TRY AGAIN";
-
-		}else{
-
-			$result = $user->insert($data);
-
-
-			if($result){
-				//$this->index();
-				redirect('admin/CAdmin/viewAdminAccountMgt');
+			if($this->input->post('userType')=="Superadmin") {
+				$data = array('user_name' => $this->input->post('uname'),
+						  'password' => hash('sha512',$this->input->post('password')),
+						  'first_name' => $this->input->post('fname'),
+						  'last_name' => $this->input->post('lname'),
+						  'middle_initial' => $this->input->post('miname'),
+						  'email' => $this->input->post('email'),
+						  'birthdate' => $this->input->post('bdate'),
+						  'gender' => $this->input->post('gender'),
+						  'contact_no' => $this->input->post('contact'),
+						  'user_type' =>  $this->input->post('userType'),
+						  'upgradedBy' => $this->session->userdata['adminSession']->userID,
+						  'addedAt	' => $now->format('Y-m-d H:i:s')
+						);
+			} else {
+				$data = array('user_name' => $this->input->post('uname'),
+						  'password' => hash('sha512',$this->input->post('password')),
+						  'first_name' => $this->input->post('fname'),
+						  'last_name' => $this->input->post('lname'),
+						  'middle_initial' => $this->input->post('miname'),
+						  'email' => $this->input->post('email'),
+						  'birthdate' => $this->input->post('bdate'),
+						  'gender' => $this->input->post('gender'),
+						  'contact_no' => $this->input->post('contact'),
+						  'user_type' =>  $this->input->post('userType'),
+						  'addedAt	' => $now->format('Y-m-d H:i:s')
+						);
 			}
-		}
 
-		# code...
+
+
+			$res = $this->MUser->read_where(array('user_name' => $data['user_name']));
+			$res1 = $this->MUser->read_where(array('email' => $data['email']));
+
+	    	if($res){
+	    			$this->session->set_flashdata('error_msg','Username taken');
+	    			redirect("admin/CAdmin/viewAdminAccountMgt");
+	    			// redirect('user/cUser/viewSignUp',"refresh");
+					//echo "INVALID, EXISTING USERNAME, PLS TRY AGAIN";
+
+			}else if($res1){
+				$this->session->set_flashdata('error_msg','Email taken');
+					redirect("admin/CAdmin/viewAdminAccountMgt");
+					//echo "INVALID, EXISTING EMAIL, PLS TRY AGAIN";
+
+			}else{
+
+				$result = $user->insert($data);
+
+
+				if($result){
+					//$this->index();
+					redirect('admin/CAdmin/viewAdminAccountMgt');
+				}
+			}
+		}else{
+			$this->session->set_flashdata('error_msg',validation_errors());
+	    	redirect("admin/CAdmin/viewAdminAccountMgt");
+		}
 	}
 
 	public function viewUserAccountMgt() {
@@ -396,9 +420,21 @@ class CAdmin extends CI_Controller {
 
 	}
 
+	public function readAllCards(){
+		//Continue
+		$result= $this->MAdminDT->fetchCardModel();
+
+		if($result){
+			return $result;
+		}else{
+			return false;
+		}
+	}
+
 	public function generateCard() {
+		$data2['dtCards']=$this->readAllCards();
 		$this->load->view('imports/admin_vHeader');
-		$this->load->view('admin/vCards');
+		$this->load->view('admin/vCards',$data2);
 		$this->load->view('imports/admin_vFooter');
 
 	}
@@ -587,31 +623,41 @@ class CAdmin extends CI_Controller {
 	}
 
 	public function createAnnouncement() {
-		$announcement = new MAnnouncement();
 
-		// $now = NEW DateTime(NULL, new DateTimeZone('UTC'));
+		$rules = "strip_tags|trim|xss_clean";
+		$this->form_validation->set_rules('announcementDetails','Announcement Details',$rules.'|required|min_length[5]|max_length[150]');
 
-		$data = array('announcementDetails' => $this->input->post('announcementDetails'),
-					  'announcementStatus' => 'OnGoing',
-					  'addedBy' => $this->input->post('postedBy'),
-					  // 'addedAt' => $now->format('Y-m-d H:i:s')
-					);
+		if ($this->form_validation->run() != FALSE )
+		{
+			$announcement = new MAnnouncement();
 
-		$result = $announcement->insert($data);
-		 $id= $announcement->db->insert_id();
-		if($result){
-			//$this->index();
-			//$this->index();
-			$notif = new MNotificationItem();
-			$user = $this->MUser->getAllUsers();
-			foreach ($user as $key) {
-				$data = array('user' => $key->account_id,
-							  'announcement' => $id
-							);
+			// $now = NEW DateTime(NULL, new DateTimeZone('UTC'));
 
-				$result = $notif->insert($data);	
+			$data = array('announcementDetails' => $this->input->post('announcementDetails'),
+						  'announcementStatus' => 'OnGoing',
+						  'addedBy' => $this->input->post('postedBy'),
+						  // 'addedAt' => $now->format('Y-m-d H:i:s')
+						);
+
+			$result = $announcement->insert($data);
+			 $id= $announcement->db->insert_id();
+			if($result){
+				//$this->index();
+				//$this->index();
+				$notif = new MNotificationItem();
+				$user = $this->MUser->getAllUsers();
+				foreach ($user as $key) {
+					$data = array('user' => $key->account_id,
+								  'announcement' => $id
+								);
+
+					$result = $notif->insert($data);
+				}
+				$this->session->set_flashdata('success_msg',"Announcement posted!");
+				redirect('admin/CAdmin/viewAnnouncements');
 			}
-			
+		}else{
+			$this->session->set_flashdata('error_msg',validation_errors());
 			redirect('admin/CAdmin/viewAnnouncements');
 		}
 	}
@@ -627,6 +673,10 @@ class CAdmin extends CI_Controller {
 	}
 
 	public function deleteAnnouncement($id){
+		if(!isset($id)){
+			redirect('admin/CAdmin/viewAnnouncements');
+		}
+
 		$announcement = new MAnnouncement();
 
 		$data = array('announcementID' => $id);
@@ -672,6 +722,45 @@ public function updateAccount() {
 
 
 	}
+
+	//Datatable function for Generating cards starts here
+	public function fetchCardData(){
+        // $DT = new MAdminDT();
+
+        $fetch_data_card = $this->MAdminDT->make_datatables_card();
+        $data = array();
+
+        foreach($fetch_data_card as $row){
+          $sub_array = array();
+
+        //   $sub_array[] ="<a data-toggle='modal' href='#modalCompEdit' data='".$row->c_id."' class='btn btn-sm btn-warning deskEdit' rel='tooltip' title='Edit Desktop' data-placement='auto'><span class='glyphicon glyphicon-edit'></span></a>"
+		//   ."<a href='javascript:;' data='".$row->c_id."' class='btn btn-sm btn-danger deskDelete' rel='tooltip' title='Delete Desktop'><span class='glyphicon glyphicon-trash'></span></a>";
+		$searchColumn = array("cardId",
+									"cardCode",
+									"cardAmount",
+									"cardStatus",
+									"first_name",
+									"last_name",
+									"addedAt",
+									"updatedAt");
+		  $sub_array[] = $row->cardId;
+		  $sub_array[] = $row->cardCode;
+		  $sub_array[] = $row->cardAmount;
+			$sub_array[] = ($row->cardStatus == 1)?'<span class="label label-danger">Used</span>':'<span class="label label-success">Available</span>';
+			$sub_array[] = $row->first_name . " " . $row->last_name;
+			$sub_array[] = $row->addedAt;
+			$sub_array[] = $row->updatedAt;
+
+
+          $data[] = $sub_array;
+        }
+
+        $output = array(
+          "draw"             => intval($_POST["draw"]),
+          "recordsTotal"     => $this->Dashboard_model->get_all_data_card(),
+          "recordsFiltered"  => $this->Dashboard_model->get_filtered_data_card(),
+          "data"             => $data
+        );
+        echo json_encode($output);
+      }
 }
-
-

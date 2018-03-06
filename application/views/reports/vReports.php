@@ -25,13 +25,13 @@
 						<td><?php echo $e->event_status;?></td>
 						<td><?php echo $e->event_venue;?></td>
 						<td><?php echo $e->event_category;?></td>
-						<td><a href="<?php echo site_url();?>/reports/cReports/generateRevenue/<?php echo $e->event_id;?>"><button id="<?php echo $e->event_id;?>">Generate Revenue</button></a></td>
+						<td><a href="<?php echo site_url();?>/reports/CReports/generateRevenue/<?php echo $e->event_id;?>"><button id="<?php echo $e->event_id;?>">Generate Revenue</button></a></td>
 					</tr>
 				<?php } ?>
 			<?php } ?>
 		</tbody>
 	</table>
 	<br><br>
-	<a href="<?php echo site_url();?>/reports/cReports/generatePerformance/"><button>PERFORMANCE</button></a> <br>
-	<a href="<?php echo site_url();?>/reports/cReports/generateAttendance/"><button>HISTORY</button></a> <br>
+	<a href="<?php echo site_url();?>/reports/CReports/generatePerformance/"><button>PERFORMANCE</button></a> <br>
+	<a href="<?php echo site_url();?>/reports/CReports/generateAttendance/"><button>HISTORY</button></a> <br>
 </div>
