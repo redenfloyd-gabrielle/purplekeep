@@ -23,6 +23,7 @@
 			$this->db->join("ticket_type as tt","tt.ticket_type_id = cart.ticket_id","left");
 			$this->db->join("event_info as ei","tt.event_id = ei.event_id","left");
 			$this->db->where("checkout.account_id", $id);
+			$this->db->group_by("checkout.checkId");
 			
 			$query = $this->db->get();
 			return $query->result();
