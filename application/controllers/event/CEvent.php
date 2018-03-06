@@ -836,7 +836,7 @@ class CEvent extends CI_Controller {
 						$this->session->set_flashdata('userDetails',json_encode($data));	
 						redirect("event/CEvent/viewEvents/1");
 
-<<<<<<< HEAD
+
 				}else{
 					
 					$data['password'] = hash('sha512',$data['password']);
@@ -849,9 +849,6 @@ class CEvent extends CI_Controller {
 						$this->session->set_flashdata('success_msg',"User Profile updated!");
 						redirect("event/CEvent/viewEvents/1");
 					}	
-=======
-		$this->load->view('event/CEvent/viewEvents/1');
->>>>>>> 83b0976bc36400d0032b161ba987bfd03052567a
 
 				}
 
