@@ -287,7 +287,11 @@ class CEvent extends CI_Controller {
 		/////////////////////////////////////////////////////////////////////////////
 		$data['hist']   = $this->MEventInfo->getTransHistory($this->session->userdata['userSession']->userID);
 		////////////STOPS HERE///////////////////////////////////////////////////
-
+		$data['checkout'] = $this->MCheckout->showCheckout($this->session->userdata['userSession']->userID);
+		
+		for ($i=0; $i < count($data['checkout']) ; $i++) { 
+			$data['checkout'][$i]->checkoutDetails = $this->MCart->getChekDetails($data['checkout'][$i]->checkId);;
+		}
 		$data['userid'] = $userid;
 
 		$data['announcements'] = $this->MAnnouncement->getUnviewedOfUser($this->session->userdata['userSession']->userID);

@@ -466,7 +466,75 @@
                                             <td><?php echo $c->checkTotal?></td>
                                             <td><?php echo $c->checkCreatedOn?></td>
                                             <td>
-                                                <button>VIEW DETAILS</button>
+                                                <div class="panel-body search-widget">
+                                                    <fieldset >
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <!-- <a href="<?php echo site_url();?>/reports/cReports/generateRevenue/<?php echo $e->event_id;?>"><button class="button btn largesearch-btn " id="<?php echo $e->event_id;?>">Generate Revenue</button></a> -->
+
+<!-- Button HTML (to Trigger Modal) -->
+<a href="#paymentHistory<?php echo $c->checkId;?>" role="button" class="button btn largesearch-btn" data-toggle="modal">View Details</a>
+
+<!-- Modal HTML -->
+<div id="paymentHistory<?php echo $c->checkId;?>" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h1 class="modal-title"></h1>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-hover table-striped">
+                    <tbody>
+                        <thead>
+                            <tr>
+                                <th style="text-align:center;">Ticket Name</th>
+                                <th style="text-align:center;">Quantity Bought</th>
+                                <th style="text-align:center;">Price</th>
+                                <th style="text-align:center;">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $grandTotal = 0;
+                            foreach ($c->checkoutDetails as $cd) {
+                            ?>
+                            <tr style="text-align:center;">
+                                <td><?php echo $cd->ticket_name;?></td>
+                                <td><?php echo $cd->quantity;?></td>
+                                <td><?php echo $cd->total_price / $cd->quantity;?></td>
+                                <td><?php echo $cd->total_price; $grandTotal+= $cd->total_price;?></td>
+                            </tr>
+
+                        <?php }
+                            ?>
+                            <tr><td></td><td></td>
+                                <td><h3 style="font-size: 20px; text-align: right; font-weight: 600; padding: 10px;"> Total Revenue: </h3></td>
+                                <td>
+
+                                    <div class="panel-heading">
+                                        <center><h2 class="panel-title" style="font-size: 30px; font-weight: 600; border-bottom: 3px solid #e2624b; padding: 10px;"> <?php echo $grandTotal; ?> </h2></center>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
                                             </td>
                                         </tr>
                                     <?php } ?>
