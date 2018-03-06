@@ -56,12 +56,11 @@
     public $NEW_EVENT_PAGE_EVENT_PICTURE = "Event Picture";
     public $NEW_EVENT_PAGE_EVENT_TITLE = "Event Title";
     public $NEW_EVENT_PAGE_EVENT_LOCATION = "Location";
-    public $NEW_EVENT_PAGE_EVENT_CAPACITY = "Venue Capacity";
     public $NEW_EVENT_PAGE_EVENT_START = "Starts";
     public $NEW_EVENT_PAGE_EVENT_END = "Ends";
     public $NEW_EVENT_PAGE_EVENT_CATEGORY = "Category";
     public $NEW_EVENT_PAGE_EVENT_DESCRIPTION = "Event Description";
-    public $NEW_EVENT_PAGE_TICKET_DETAILS = "Tickets:";
+    public $NEW_EVENT_PAGE_TICKET_DETAILS = "Ticket Details :";
     public $NEW_EVENT_PAGE_TICKET_TYPE = "Ticket Type";
     public $NEW_EVENT_PAGE_TICKET_QUANTITY = "Number of Tickets";
     public $NEW_EVENT_PAGE_TICKET_PRICE = "Price of Ticket";

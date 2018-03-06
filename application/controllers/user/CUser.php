@@ -35,7 +35,6 @@ class cUser extends CI_Controller {
 					$arrObj->dateEnd = $value->event_date_end;
 					$arrObj->event_category = $value->event_category;
 					$arrObj->event_venue = $value->event_venue;
-					$arrObj->venue_capacity = $value->venue_capacity;
 					//Location
 					$arrObj->location_name =$value->location_name;
 					$arrObj->region_code = $value->region_code;

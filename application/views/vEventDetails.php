@@ -235,10 +235,8 @@ div.desc {
                                                     var img = document.getElementById("star").src;
                                                     if (e){
                                                         $(".star").attr("src", pic1);
-                                                        console.log('dako otin')
                                                     }else{
                                                         $(".star").attr("src", pic2);
-                                                        console.log('gamay otin');
                                                     }
                                                 }
                                             });
