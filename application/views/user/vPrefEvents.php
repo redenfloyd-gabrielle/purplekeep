@@ -63,7 +63,8 @@
                     <div id="list-type" class="proerty-th">
                         <?php
                             $cnt =1;
-                            if(isset($events)){
+                            if(isset($events) && count($events)>0){
+                                var_dump($events);
                                  foreach ($events as $event) {
                                     date_default_timezone_set('Asia/Manila');
                                     $now = new DateTime("now");
@@ -153,9 +154,13 @@
                                                             </div>
                                                         </div>
                                                     </div>';
-                                            }
+                                            }else {
+                echo "<center><h2>There are no events interested in.</h2></center>";
+            }
                                 }
-                            }
+                            }else{
+                echo "<center><h2>There are no events interested in.</h2></center>";
+            }
                         ?>
                     </div>
                 </div>
