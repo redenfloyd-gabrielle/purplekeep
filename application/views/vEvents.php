@@ -211,18 +211,35 @@
         </div>
     <?php endif ?>
 
+
+
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" id="myTabs" role="tablist">
-    <li role="presentation" class="tab active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_EVENTS ?></a></li>
+    <?php if (!$this->session->flashdata('userDetails')){ ?>
+        <li role="presentation" class="tab active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_EVENTS ?></a></li>
+    <?php }else{ ?>
+        <li role="presentation" class="tab"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_EVENTS ?></a></li>
+    <?php } ?>
+
     <li role="presentation" class="tab"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_REPORTS ?></a></li>
     <li role="presentation" class="tab"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_PAYMENT_HISTORY ?></a></li>
-    <li role="presentation" class="tab"><a href="#editprofile" aria-controls="editprofile" role="tab" data-toggle="tab">Edit Profile</a></li>
+    <?php if ($this->session->flashdata('userDetails')){ ?>
+        <li role="presentation" class="tab active"><a href="#editprofile" aria-controls="editprofile" role="tab" data-toggle="tab">Edit Profile</a></li>
+    <?php }else{ ?>
+        <li role="presentation" class="tab"><a href="#editprofile" aria-controls="editprofile" role="tab" data-toggle="tab">Edit Profile</a></li>
+    <?php } ?>
+    
 
   </ul>
 
   <!-- Tab panes -->
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="home">
+     <?php if (!$this->session->flashdata('userDetails')){ ?>
+            <div role="tabpanel" class="tab-pane active" id="home">
+    <?php }else{ ?>
+        <div role="tabpanel" class="tab-pane" id="home">
+    <?php } ?>
+    
         <div class="col-md-12 clear">
             <div id="list-type" class="proerty-th">
 
@@ -566,24 +583,33 @@
 
 
     </div>
-     <div role="tabpanel" class="tab-pane" id="editprofile">
+    <?php if ($this->session->flashdata('userDetails')){ ?>
+        <div role="tabpanel" class="tab-pane active" id="editprofile">
+    <?php 
+            $info = array();
+         $info[] = json_decode($this->session->flashdata('userDetails'));
+
+}else{ ?>
+            <div role="tabpanel" class="tab-pane" id="editprofile">
+    <?php } ?>
+     
         <h2>Edit Profile</h2>
         <?php foreach($info as $in){ ?>
-            <form  method="POST" action="<?php echo site_url()?>/CEvent/updateProfile">
+            <form  method="POST" action="<?php echo site_url()?>/event/CEvent/updateProfile">
             <div class="col-md-8">
                 <div class="form-group">
                     <label for="first name">First Name</label>
-                    <input type="text" <?php  echo 'value="'.$in->first_name.'"';?> class="form-control" pattern="[a-zA-Z]+" name="fname" id="name" required="">
+                    <input type="text" <?php  echo 'value="'.$in->first_name.'"';?> class="form-control" pattern="[a-zA-Z]+" name="fname" id="fname" required="">
                 </div>
 
                 <div class="form-group">
                     <label for="middle initial">Middle Initial</label>
-                    <input type="text"  <?php  echo 'value="'.$in->middle_initial.'"';?> class="form-control" pattern="[a-zA-Z]+" name="midname" id="name" required="">
+                    <input type="text"  <?php  echo 'value="'.$in->middle_initial.'"';?> class="form-control" pattern="[a-zA-Z]+" name="midname" id="midname" required="">
                 </div>
 
                 <div class="form-group">
                     <label for="last name">Last Name</label>
-                    <input type="text"  <?php  echo 'value="'.$in->last_name.'"';?> class="form-control" pattern="[a-zA-Z]+" name="lname" id="name" required="">
+                    <input type="text"  <?php  echo 'value="'.$in->last_name.'"';?> class="form-control" pattern="[a-zA-Z]+" name="lname" id="lname" required="">
                 </div>
 
             <div class="form-group">
@@ -607,15 +633,23 @@
 
                 <div class="form-group">
                     <label for="contact no">Contact Number (09XXXXXXXXX) </label>
-                    <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{9}$" class="form-control" name="contact" id="email" required="">
+                    <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{9}$" class="form-control" name="contact" id="contact" required="">
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" minlength="6"<?php  echo 'value="'.$in->user_name.'"';?> required="" class="form-control" pattern="[a-zA-Z0-9]+" name="uname" id="uname">
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" <?php  echo 'value="'.$in->password.'"';?> class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="password" id="password">
+                    <label for="password">Old Password</label>
+                    <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="OldPassword" id="OldPassword">
+                </div>
+                <div class="form-group">
+                    <label for="password">New Password</label>
+                    <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="password" id="password">
+                </div>
+                <div class="form-group">
+                    <label for="password">Confirm Password</label>
+                    <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="cpassword" id="cpassword">
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-default"><!-- <a href="<?php echo site_url();?>/CEvent/updateProfile"> -->Edit Profile</button>
@@ -635,7 +669,7 @@
 
 
   <script type="text/javascript">
-
+    
     /*
     $(document).ready(function(){
         var wrap = $(this).find('.es-wrap');

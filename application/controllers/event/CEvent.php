@@ -18,6 +18,8 @@ class CEvent extends CI_Controller {
 		$this->load->model('location/MLocation');
     	$this->error = "";
     	$this->success = "";
+    	$this->load->library('form_validation');
+	    $this->load->helper('security');
     }
 
 
@@ -783,37 +785,84 @@ class CEvent extends CI_Controller {
 	public function updateProfile(){
 		$user = new MUser();
 
-		/* $data = array('event_date_start'=>$event_date_start,
-					  'event_date_end'=>$event_date_end,
-					  'event_name'=>$event_name,
-					  'event_details'=>$event_details,
-					  'event_category'=>$event_category,
-					  'event_venue'=>$event_venue); */
+		$rules = "strip_tags|trim|xss_clean";
+		$this->form_validation->set_rules('uname','first name',$rules.'|required|min_length[6]|max_length[50]');
+		$this->form_validation->set_rules('password','Password','required|min_length[8]');
+		$this->form_validation->set_rules('cpassword','Confirm password','required|matches[password]');
+		
+		$this->form_validation->set_rules('fname','First Name',$rules.'|required|max_length[50]');
+		$this->form_validation->set_rules('lname','Last Name',$rules.'|required|min_length[2]|max_length[50]');
+		$this->form_validation->set_rules('midname','Middle initial',$rules.'|required|min_length[1]');
+		$this->form_validation->set_rules('email','email',$rules.'|required|min_length[2]|max_length[50]|valid_email');
+		$this->form_validation->set_rules('bdate','birthday',$rules.'|required');
+		$data = array('user_name' => $this->input->post('uname'),
+						  'password' => $this->input->post('password'),
+						  'OldPassword' => $this->input->post('OldPassword'),
+						  'cpassword' => $this->input->post('cpassword'),
+						  'first_name' => $this->input->post('fname'),
+						  'last_name' => $this->input->post('lname'),
+						  'middle_initial' => $this->input->post('midname'),
+						  'email' => $this->input->post('email'),
+						  'birthdate' => $this->input->post('bdate'),
+						  'gender' => $this->input->post('gender'),
+						  'contact_no' => $this->input->post('contact'),
+						  'user_type' => 'Regular'
+						);
+		if ($this->form_validation->run() != FALSE )
+		{
+			$now = NEW DateTime(NULL, new DateTimeZone('UTC'));
 
-		$user->setAccount_id($this->input->post('$sessionData->userID'));
-		$user->setUser_name($this->input->post('uname'));
-		$user->setUser_password(hash('sha512',$this->input->post('password')));
-		$user->setFirst_name($this->input->post('fname'));
-		$user->setMiddle_initial($this->input->post('midname'));
-		$user->setLast_name($this->input->post('lname'));
-		$user->setEmail($this->input->post('email'));
-		$user->setBirthdate($this->input->post('bdate'));
-		$user->setGender($this->input->post('gender'));
-		$user->setContact_no($this->input->post('contact'));
-
-		if(isset($user)){
-			$user->updateUser();
-
-			//$this->load->view('imports/vHeaderLandingPage');
 			
 
+				$res = $this->MUser->read_where(array('user_name' => $data['user_name']));
+				$res1 = $this->MUser->read_where(array('email' => $data['email']));
+				
+				$data['OldPassword'] = hash('sha512',$data['OldPassword']);
+				
+				$res2 = $this->MUser->read_where(array('account_id' => $this->session->userdata['userSession']->userID,
+														"password"=>$data['OldPassword']));
+				// echo "<pre>";
+				// var_dump($res1);
+				// die();
+				if(!$res2){
+					$this->session->set_flashdata('error_msg','Password does not match the current password.');
+					$this->data = $data;
+					$this->session->set_flashdata('userDetails',json_encode($data));	
+					redirect("event/CEvent/viewEvents/1");
+				}else if($res && $res[0]->account_id != $this->session->userdata['userSession']->userID){
+						$this->session->set_flashdata('error_msg','Username taken');
+						$this->data = $data;
+						$this->session->set_flashdata('userDetails',json_encode($data));	
+						redirect("event/CEvent/viewEvents/1");
+				}else if($res1 && $res1[0]->account_id != $this->session->userdata['userSession']->userID){
+					$this->session->set_flashdata('error_msg','Email taken');
+						$this->data = $data;
+						$this->session->set_flashdata('userDetails',json_encode($data));	
+						redirect("event/CEvent/viewEvents/1");
+
+
+				}else{
+					
+					$data['password'] = hash('sha512',$data['password']);
+					unset($data['cpassword']);
+					unset($data['OldPassword']);
+					 
+					$result = $user->update($this->session->userdata['userSession']->userID,$data);
+
+					if($result){
+						$this->session->set_flashdata('success_msg',"User Profile updated!");
+						redirect("event/CEvent/viewEvents/1");
+					}	
+
+				}
+
 		}else{
-
+			$this->session->set_flashdata('error_msg',validation_errors());
+			// redirect("user/cUser/viewSignUp");
+			$this->data = $data;
+					$this->session->set_flashdata('userDetails',json_encode($data));	
+					redirect("event/CEvent/viewEvents/1");
 		}
-
-		$this->load->view('event/CEvent/viewEvents/1');
-
-
 
 	}
 
