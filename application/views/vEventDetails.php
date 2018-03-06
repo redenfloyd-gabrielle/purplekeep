@@ -371,9 +371,9 @@ div.desc {
                                         <li>
                                             <div class="col-md-8 col-sm-8 col-xs-8 blg-entry" >
                                                 <h4> <?php echo  $t->ticket_name.": ".$t->ticket_count." left";?>
-                                                <?php if($e->event_status == "Approved"){?>
+                                                
                                                     <button class="myBtn" data-id='<?php echo  $t->ticket_type_id;?>'>Buy More Tickets</button></h4>
-                                                <?php }?>
+                                                
 
                                                 <br>
                                                 <span class="property-price"><?php echo "P"." ".$t->price.".00";?></span>
