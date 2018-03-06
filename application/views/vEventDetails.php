@@ -671,7 +671,7 @@ $(document).ready(function(){
     }
   });
 
-  var limit = 24;
+  var limit = 0;
   $("#unaP").click(function(){
     var get = parseInt($('#qty1').val());
 
