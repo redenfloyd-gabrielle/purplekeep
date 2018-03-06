@@ -840,6 +840,7 @@ class CEvent extends CI_Controller {
 		{
 			$uid = $this->session->userdata['userSession']->userID;
 			$pref = new MPreference();
+			$isDup = null;
 
 			$now = NEW DateTime(NULL, new DateTimeZone('UTC'));
 			$data = array('preference_date' => $now->format('Y-m-d H:i:s'),
@@ -847,7 +848,11 @@ class CEvent extends CI_Controller {
 						  'event_id' => $id
 		 				  );
 
-			$result = $pref->insert($data);
+			$isDup = $pref->checkIfInterestedAlready('user_id','event_id');
+
+			if(isDup == 0){
+				$result = $pref->insert($data);
+			}
 
 			if($result){
 				redirect("event/CEvent/viewPreferenceEvents");
@@ -856,6 +861,8 @@ class CEvent extends CI_Controller {
 
 			# code...
 		}
+
+
 		public function interestedRemove($id)
 		{
 			// $uid = $this->session->userdata['userSession']->userID;
