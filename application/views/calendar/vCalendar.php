@@ -90,8 +90,8 @@
                                             <div class="row">
 
                                                     <div class="col-xs-12" id="some" hidden="">
-                                                        <form action="<?php echo site_url(); ?>/user/CUser/redeemCode" method="post">
-                                                            <input type="text" class="form-control" name="ccode" placeholder="Enter code">
+                                                        <form action="<?php echo site_url(); ?>/user/CUser/redeemCodeCalendar" method="post">
+                                                            <input type="text" class="form-control" name="ccode" placeholder="Enter code" required="">
                                                             <!-- <button type="submit" class="navbar-btn nav-button pull-right"   >Redeem Code</button> -->
                                                             <button type="submit" class="navbar-btn nav-button pull-right"   ><?php echo CustomizationManager::$strings->PROFILE_PAGE_REDEEM_CODE ?></button>
                                                         </form>
@@ -127,7 +127,7 @@
                                     <fieldset >
                                         <div class="row">
                                             <div class="col-md-12">
-                                                 <a href="<?php echo site_url();?>/event/CEvent/viewEvents">
+                                                 <a href="<?php echo site_url();?>/event/CEvent/viewEvents/1">
                                                    <!-- <button class = "button btn largesearch-btn">Calendar</button></a> -->
                                                    <button class = "button btn largesearch-btn"><?php echo CustomizationManager::$strings->CALENDAR_PAGE_PROFILE_BUTTON ?></button></a>
                                             </div>
