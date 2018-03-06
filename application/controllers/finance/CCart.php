@@ -269,20 +269,12 @@ class CCart extends CI_Controller {
 			//update cart status
 			//nya add checkout
 			$checkout = new MCheckout();
-<<<<<<< Updated upstream
-			$chck = array ("account_id" => 3,
-						   "checkTotal" => $total);
-			$checkout->insert($chck);
-			$checkId = $checkout->db->insert_id();
 
-=======
 			$chck = array ("account_id" => $this->session->userdata['userSession']->userID,
 						   "checkTotal" => $total);
 			$checkout->insert($chck);
 
 			$checkId = $checkout->db->insert_id();
-			
->>>>>>> Stashed changes
 			foreach ($finalChecked as $d) {
 				$query = $this->MCart->read_where(array('cart_id' => $d));
 					for ($i=0; $i < $query[0]->quantity; $i++) { 
@@ -299,26 +291,6 @@ class CCart extends CI_Controller {
 				$where = array ("ticket_id" => $d);
 
 				$this->MCart->update1($where, $cart);
-
-<<<<<<< Updated upstream
-
-				//nya add checkout
-				$checkout = new MCheckout();
-				$chck = array ("account_id" => $this->session->userdata['userSession']->userID,
-							   "checkTotal" => $total);
-				$checkout->insert($chck);
-
-				//nya kuha id
-				$checkoutData = $checkout->getLastAdded();
-				$checkId = 0;
-				foreach($checkoutData as $c) {
-					$checkId = $c->checkId;
-				}
-=======
-				
-				
->>>>>>> Stashed changes
-
 
 				$cart = array ("checkoutId" => $checkId);
 				$where = array ("ticket_id" => $d);
@@ -344,10 +316,7 @@ class CCart extends CI_Controller {
 
 				$newload = $loadamount - $total;
 				$this->MUser->update($this->session->userdata['userSession']->userID, array("load_amt" => $newload));
-<<<<<<< Updated upstream
 
-=======
->>>>>>> Stashed changes
 			}
 			$this->session->set_flashdata('success_msg',"Successfully Checkedout!");
 				redirect("finance/CCart/viewCart");
