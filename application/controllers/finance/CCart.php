@@ -287,7 +287,7 @@ class CCart extends CI_Controller {
 
 					}
 
-				$cart = array ("status" => "deleted");
+				$cart = array ("status" => "paid");
 				$where = array ("ticket_id" => $d);
 
 				$this->MCart->update1($where, $cart);
