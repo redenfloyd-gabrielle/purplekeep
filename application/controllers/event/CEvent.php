@@ -857,15 +857,15 @@ class CEvent extends CI_Controller {
 						  'event_id' => $id
 		 				  );
 
-			$isDup = $pref->checkIfInterestedAlready('user_id','event_id');
+			$isDup = $pref->checkIfInterestedAlready($uid,$id);
 
-			if(isDup == 0){
+			if(empty($isDup)){
 				$result = $pref->insert($data);
-			}
 
-			if($result){
-				redirect("event/CEvent/viewPreferenceEvents");
-				// $this->viewPreferenceEvents();
+				if($result){
+					redirect("event/CEvent/viewPreferenceEvents");
+					// $this->viewPreferenceEvents();
+				}
 			}
 
 			# code...
