@@ -38,10 +38,10 @@
                                             <td>".$object->event_status."</td>";
 
                                             if($object->event_status == "Pending"){
-                                              echo " <td><a href='".site_url()."/admin/CAdmin/approveEvent/".$object->event_id."'>
-                                                  <button  type='button' class='btn btn-inverse'>APPROVE</button></a>
-                                                  <a href='".site_url()."/admin/CAdmin/rejectEvent/".$object->event_id."'>
-                                                  <button  type='button' class='btn btn-theme'>REJECT</button></a>
+                                              echo " <td><a  href='#' data-id= '".$object->event_id."'>
+                                                  <button  type='button' class='btn btn-inverse aprv'>APPROVE</button></a>
+                                                  <a href='#' data-id= '".$object->event_id."'>
+                                                  <button  type='button' class='btn btn-theme rej'>REJECT</button></a>
                                                   </td>
                                                   </tr>";
                                             }else {
@@ -99,3 +99,31 @@
 </div>
 
 </body>
+<script>
+  $(document).ready(function(){
+
+    $('.aprv').click(function(){
+     var id = $(this).closest("a").data('id');
+     var res = confirm("Are you sure you want to approve this event?");
+
+                          if(res == true) {
+                           $(this).closest("a").attr("href", "<?php echo site_url()."/admin/CAdmin/approveEvent/"?>"+ id);
+                           $(this).closest("a").click; 
+                          }
+     
+    });
+
+    $('.rej').click(function(){
+     var id = $(this).closest("a").data('id');
+     var res = confirm("Are you sure you want to reject this event?");
+
+                          if(res == true) {
+                           $(this).closest("a").attr("href", "<?php echo site_url()."/admin/CAdmin/rejectEvent/"?>"+ id);
+                           $(this).closest("a").click; 
+                          }
+     
+    });
+
+  });
+
+</script>
