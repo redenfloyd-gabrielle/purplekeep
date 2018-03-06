@@ -34,8 +34,9 @@ class CCalendar extends CI_Controller {
 												);
 		$data['event_data'] = $this->MEvent->select_certain_where_isDistinct_hasOrderBy_hasGroupBy_isArray($strCalSelect,$strCalWhere,false,false,false,false);
 		////////////STOPS HERE///////////////////////////////////////////////////
+		$data['page_title'] = "Calendar Page";
 		$this->load->helper('url');
-		$this->load->view('imports/vHeaderLandingPage');
+		$this->load->view('imports/vHeaderLandingPage',$data);
 		$this->load->view('calendar/vCalendar',$data);
 		$this->load->view('imports/vFooterLandingPage',$this->data);
 	}

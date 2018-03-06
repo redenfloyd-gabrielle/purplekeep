@@ -315,7 +315,8 @@ class cUser extends CI_Controller {
 	public function viewAnnouncements()
 	{
 		$data['announcements'] = $this->MAnnouncement->loadAllAnnouncementDetails();
-		$this->load->view('imports/vHeaderSignUpPage');
+		$data['page_title'] = "Announcement Page";
+		$this->load->view('imports/vHeaderSignUpPage', $data);
 		$this->load->view('user/vAnnouncementPage.php', $data);
 		$this->load->view('imports/vFooterLandingPage');
 
@@ -342,7 +343,8 @@ class cUser extends CI_Controller {
   	}
 
   	public function viewRegistrationConfirmation() {
-		$this->load->view('imports/vHeaderSignUpPage');
+  		$data['page_title'] = "Registration Page";
+		$this->load->view('imports/vHeaderSignUpPage', $data);
 	  	$this->load->view('vRegistrationConfirmation.php');
   		$this->load->view('imports/vFooterLandingPage');
 	}

@@ -212,8 +212,8 @@ class CEvent extends CI_Controller {
 		$this->data['custom_js']= '<script type="text/javascript">
                               	$("#user").addClass("active");
                         </script>';
-
-  		$this->load->view('imports/vHeaderSignUpPage');
+        $data['page_title'] = "Create Event Page";
+  		$this->load->view('imports/vHeaderSignUpPage',$data);
 		$this->load->view('vNewEvent',$data);
 		$this->load->view('imports/vFooterLandingPage');
 
@@ -325,8 +325,8 @@ class CEvent extends CI_Controller {
 			$data['ppage'] = 1;
 			$data['npage'] = 1;
     		$data['pages'] = $num;
-        
-		$this->load->view('imports/vHeaderLandingPage');
+        	$data['page_title'] = "Profile Page";
+		$this->load->view('imports/vHeaderLandingPage',$data);
 		$this->load->view('vEvents',$data);
 		$this->load->view('imports/vFooterLandingPage');
 	}
@@ -944,7 +944,8 @@ class CEvent extends CI_Controller {
                               });
 
                         </script>';
-			$this->load->view('imports/vHeaderLandingPage');
+            $data['page_title'] = "Interested Event Page";
+			$this->load->view('imports/vHeaderLandingPage' ,$data);
 			$this->load->view('user/vPrefEvents', $data);
 
 			$this->load->view('imports/vFooterLandingPage');

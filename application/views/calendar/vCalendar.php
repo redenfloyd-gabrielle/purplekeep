@@ -127,7 +127,7 @@
                                     <fieldset >
                                         <div class="row">
                                             <div class="col-md-12">
-                                                 <a href="<?php echo site_url();?>/event/CEvent/viewEvents">
+                                                 <a href="<?php echo site_url();?>/event/CEvent/viewEvents/1">
                                                    <!-- <button class = "button btn largesearch-btn">Calendar</button></a> -->
                                                    <button class = "button btn largesearch-btn"><?php echo CustomizationManager::$strings->CALENDAR_PAGE_PROFILE_BUTTON ?></button></a>
                                             </div>

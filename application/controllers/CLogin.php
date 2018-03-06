@@ -175,7 +175,8 @@ $sessionData = new stdClass;
 		if (isset($this->session->userdata['adminSession']) || isset($this->session->userdata['userSession'])) {
 			redirect('cLogin/viewDashBoard');
 		}else{
-			$this->load->view('imports/vHeaderSignUpPage');
+			$data['page_title'] = "Forgot Password Page";
+			$this->load->view('imports/vHeaderSignUpPage', $data);
 			$this->load->view('vForgotPassword');
 			$this->load->view('imports/vFooterLandingPage');
 		}
