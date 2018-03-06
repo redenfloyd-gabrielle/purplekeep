@@ -35,11 +35,13 @@
                         <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login" title="Create Event"><span class="fas fa-calendar-plus fa-lg"></span></button></a>
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
+
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Home"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><span class="fas fa-home fa-lg"></span></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents"><span class="fas fa-user fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents/1"><span class="fas fa-user fa-lg"></span></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><span class="fas fa-bell fa-lg"><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Interested Events"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><span class="fas fa-star fa-lg"></span></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="View Cart"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><span class="fas fa-shopping-cart fa-lg"></span></a></li>
+
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -141,53 +143,7 @@
                             <br><br>
                         </div>
 
-                        <div class="panel panel-default sidebar-menu wow fadeInRight animated">
-                            <div class="panel-heading">
-                                <!-- <h3 class="panel-title">Recommended</h3> -->
-                                <h3 class="panel-title"><?php echo CustomizationManager::$strings->PROFILE_PAGE_RECOMMENDED_HEADER ?></h3>
-                            </div>
-                            <div class="panel-body recent-property-widget">
-                                        <ul>
-                                        <li>
-                                            <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                <a href="single.html"><img src="<?php echo base_url('assets/nikkiAssets/img/demo/small-property-2.jpg');?>"></a>
-                                            </div>
-                                            <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                <h6> <a href="single.html"> JS Workshop </a></h6>
-                                                <span class="property-price">P 200.00</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                <a href="single.html"><img src="<?php echo base_url('assets/nikkiAssets/img/demo/small-property-2.jpg');?>"></a>
-                                            </div>
-                                            <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                <h6> <a href="single.html"> Music Concert </a></h6>
-                                                <span class="property-price">P 250.00</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                <a href="single.html"><img src="<?php echo base_url('assets/nikkiAssets/img/demo/small-property-2.jpg');?>"></a>
-                                            </div>
-                                            <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                <h6> <a href="single.html"> Some Party </a></h6>
-                                                <span class="property-price">P 600.00</span>
-                                            </div>
-                                        </li>
-                                       <li>
-                                            <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                <a href="single.html"><img src="<?php echo base_url('assets/nikkiAssets/img/demo/small-property-2.jpg');?>"></a>
-                                            </div>
-                                            <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                <h6> <a href="single.html"> Food Bazaar </a></h6>
-                                                <span class="property-price">P 100.00</span>
-                                            </div>
-                                        </li>
-
-                                    </ul>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
 
@@ -203,7 +159,7 @@
                             <div class="col-xs-4 col-lg-4">
                                 <input type="text" class="form-control" placeholder="Key word">
                             </div>
-                            <div class="col-xs-4 col-lg-2">
+<!--                             <div class="col-xs-4 col-lg-2">
                                 <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Category">
                                     <option>Attraction</option>
                                     <option>Appearance</option>
@@ -222,8 +178,8 @@
                                     <option>Tour</option>
                                     <option>Others</option>
                                 </select>
-                            </div>
-                            <div class="col-xs-2 col-lg-2">
+                            </div> -->
+                            <!-- <div class="col-xs-2 col-lg-2">
                                 <div class="price-range-wrap">
                                     <label for="price-range" style="color:#000">Price range (P):</label>
                                         <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="10000" data-slider-step="5"
@@ -231,7 +187,7 @@
                                         <b class="pull-left color" style="color:#000">P0.00</b>
                                         <b class="pull-right color" style="color:#000" >P10,000.00</b>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-xs-2 col-lg-2">
                                 <input class="button btn smallsearch-btn" value="Search" type="submit">
                              </div>
@@ -255,18 +211,35 @@
         </div>
     <?php endif ?>
 
+
+
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" id="myTabs" role="tablist">
-    <li role="presentation" class="tab active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_EVENTS ?></a></li>
+    <?php if (!$this->session->flashdata('userDetails')){ ?>
+        <li role="presentation" class="tab active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_EVENTS ?></a></li>
+    <?php }else{ ?>
+        <li role="presentation" class="tab"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_EVENTS ?></a></li>
+    <?php } ?>
+
     <li role="presentation" class="tab"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_REPORTS ?></a></li>
     <li role="presentation" class="tab"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_PAYMENT_HISTORY ?></a></li>
-    <li role="presentation" class="tab"><a href="#editprofile" aria-controls="editprofile" role="tab" data-toggle="tab">Edit Profile</a></li>
+    <?php if ($this->session->flashdata('userDetails')){ ?>
+        <li role="presentation" class="tab active"><a href="#editprofile" aria-controls="editprofile" role="tab" data-toggle="tab">Edit Profile</a></li>
+    <?php }else{ ?>
+        <li role="presentation" class="tab"><a href="#editprofile" aria-controls="editprofile" role="tab" data-toggle="tab">Edit Profile</a></li>
+    <?php } ?>
+    
 
   </ul>
 
   <!-- Tab panes -->
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="home">
+     <?php if (!$this->session->flashdata('userDetails')){ ?>
+            <div role="tabpanel" class="tab-pane active" id="home">
+    <?php }else{ ?>
+        <div role="tabpanel" class="tab-pane" id="home">
+    <?php } ?>
+    
         <div class="col-md-12 clear">
             <div id="list-type" class="proerty-th">
 
@@ -366,13 +339,16 @@
                 <div class="pull-right">
                     <div class="pagination">
                         <ul>
-                            <li><a href="#">Prev</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">Next</a></li>
+                            <li><a href = '<?php echo site_url()?>/event/CEvent/viewEvents/<?php if($page !=1){$ppage = $page-1;} echo $ppage?>'>Prev</a></li>
+                            <?php
+                            for($n=1; $n<=$pages; $n++){
+                                echo "<li><a href='".site_url()."/event/CEvent/viewEvents/".$n."'>".$n."</a></li>";
+                            }
+                            ?>
+                            <li><a href = '<?php echo site_url()?>/event/CEvent/viewEvents/<?php if($page != $pages){$ppage = $page+1;} echo $ppage?>'>Next</a></li>
+
                         </ul>
+                     
                     </div>
                 </div>
             </div>
@@ -539,24 +515,33 @@
 
 
     </div>
-     <div role="tabpanel" class="tab-pane" id="editprofile">
+    <?php if ($this->session->flashdata('userDetails')){ ?>
+        <div role="tabpanel" class="tab-pane active" id="editprofile">
+    <?php 
+            $info = array();
+         $info[] = json_decode($this->session->flashdata('userDetails'));
+
+}else{ ?>
+            <div role="tabpanel" class="tab-pane" id="editprofile">
+    <?php } ?>
+     
         <h2>Edit Profile</h2>
         <?php foreach($info as $in){ ?>
-            <form  method="POST" action="<?php echo site_url()?>/CEvent/updateProfile">
+            <form  method="POST" action="<?php echo site_url()?>/event/CEvent/updateProfile">
             <div class="col-md-8">
                 <div class="form-group">
                     <label for="first name">First Name</label>
-                    <input type="text" <?php  echo 'value="'.$in->first_name.'"';?> class="form-control" pattern="[a-zA-Z]+" name="fname" id="name" required="">
+                    <input type="text" <?php  echo 'value="'.$in->first_name.'"';?> class="form-control" pattern="[a-zA-Z]+" name="fname" id="fname" required="">
                 </div>
 
                 <div class="form-group">
                     <label for="middle initial">Middle Initial</label>
-                    <input type="text"  <?php  echo 'value="'.$in->middle_initial.'"';?> class="form-control" pattern="[a-zA-Z]+" name="midname" id="name" required="">
+                    <input type="text"  <?php  echo 'value="'.$in->middle_initial.'"';?> class="form-control" pattern="[a-zA-Z]+" name="midname" id="midname" required="">
                 </div>
 
                 <div class="form-group">
                     <label for="last name">Last Name</label>
-                    <input type="text"  <?php  echo 'value="'.$in->last_name.'"';?> class="form-control" pattern="[a-zA-Z]+" name="lname" id="name" required="">
+                    <input type="text"  <?php  echo 'value="'.$in->last_name.'"';?> class="form-control" pattern="[a-zA-Z]+" name="lname" id="lname" required="">
                 </div>
 
             <div class="form-group">
@@ -580,15 +565,23 @@
 
                 <div class="form-group">
                     <label for="contact no">Contact Number (09XXXXXXXXX) </label>
-                    <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{9}$" class="form-control" name="contact" id="email" required="">
+                    <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{9}$" class="form-control" name="contact" id="contact" required="">
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" minlength="6"<?php  echo 'value="'.$in->user_name.'"';?> required="" class="form-control" pattern="[a-zA-Z0-9]+" name="uname" id="uname">
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" <?php  echo 'value="'.$in->password.'"';?> class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="password" id="password">
+                    <label for="password">Old Password</label>
+                    <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="OldPassword" id="OldPassword">
+                </div>
+                <div class="form-group">
+                    <label for="password">New Password</label>
+                    <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="password" id="password">
+                </div>
+                <div class="form-group">
+                    <label for="password">Confirm Password</label>
+                    <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="cpassword" id="cpassword">
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-default"><!-- <a href="<?php echo site_url();?>/CEvent/updateProfile"> -->Edit Profile</button>
@@ -608,7 +601,7 @@
 
 
   <script type="text/javascript">
-
+    
     /*
     $(document).ready(function(){
         var wrap = $(this).find('.es-wrap');
