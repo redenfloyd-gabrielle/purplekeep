@@ -21,7 +21,7 @@ class CCart extends CI_Controller {
 	public function getCart () {
 		$mc = new MCart();
 
-		echo json_encode($mc->read_where(array("account_id" => 3, "status"=> "active")));
+		echo json_encode($mc->read_where(array("account_id" => $this->session->userdata['userSession']->userID, "status"=> "active")));
 		// $carts = $this->input->post('cart');
 		// echo $carts;
 		
@@ -245,10 +245,14 @@ class CCart extends CI_Controller {
 
 		$total = 0;
 		foreach ($finalChecked as $key) {
+
+			$query = $this->MCart->read_where(array('ticket_id' => $key, "status" => "active"));
+			
+
 			$query = $this->MCart->read_where(array('ticket_id' => $key,"status"=>"active","account_id"=>$this->session->userdata['userSession']->userID));
-			echo json_encode($query);
+
 			foreach($query as $q) {
-				$total += $q->total_price; 
+				$total += $q->total_price;
 			}
 			
 		}
@@ -259,6 +263,8 @@ class CCart extends CI_Controller {
 			$loadamount = $u->load_amt;
 		}
 
+		echo $loadamount;
+		echo $total;
 		if($loadamount >= $total){
 			//update cart status
 			//nya add checkout
@@ -285,11 +291,42 @@ class CCart extends CI_Controller {
 
 				$this->MCart->update1($where, $cart);
 
-				
+
+				//nya add checkout
+				$checkout = new MCheckout();
+				$chck = array ("account_id" => $this->session->userdata['userSession']->userID,
+							   "checkTotal" => $total);
+				$checkout->insert($chck);
+
+				//nya kuha id
+				$checkoutData = $checkout->getLastAdded();
+				$checkId = 0;
+				foreach($checkoutData as $c) {
+					$checkId = $c->checkId;
+				}
+
 
 				$cart = array ("checkoutId" => $checkId);
 				$where = array ("ticket_id" => $d);
 				$this->MCart->update1($where, $cart);
+
+				//get cart quantity
+				$cartData = $this->MCart->read_where(array("ticket_id" => $d));
+				$qauntity = 0;
+				foreach($cartData as $cart) {
+					$quantity = $cart->quantity;
+				}
+
+				$tickettype = $this->MTicketType->read_where(array ("ticket_type_id" => $d));
+				$currentqty = 0;
+				foreach ($tickettype as $tt) {
+					$currentqty = $tt->ticket_count;
+				}
+
+				$currentqty -= $quantity;
+
+				//update ticket type count
+				$this->MTicketType->update1(array("ticket_type_id" => $d), array("ticket_count" => $currentqty));
 
 				$newload = $loadamount - $total;
 				$this->MUser->update($this->session->userdata['userSession']->userID, array("load_amt" => $newload));
