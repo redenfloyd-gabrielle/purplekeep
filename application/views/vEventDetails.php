@@ -354,18 +354,6 @@ div.desc {
                                                         <li><i class="pe-7s-call strong"> </i> <?php echo $o->contact_no;?></li>
                                                     </ul>
                                                 </div>
-
-                                                <div class="dealer-social-media">
-                                                  <a class="twitter" target="_blank" href="">
-                                                      <i class="fa fa-twitter"></i>
-                                                  </a>
-                                                  <a class="facebook" target="_blank" href="">
-                                                      <i class="fa fa-facebook"></i>
-                                                  </a>
-                                                  <a class="instagram" target="_blank" href="">
-                                                      <i class="fa fa-instagram"></i>
-                                                  </a>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -383,9 +371,9 @@ div.desc {
                                         <li>
                                             <div class="col-md-8 col-sm-8 col-xs-8 blg-entry" >
                                                 <h4> <?php echo  $t->ticket_name.": ".$t->ticket_count." left";?>
-                                                <?php if($e->event_status == "Approved"){?>
+                                                
                                                     <button class="myBtn" data-id='<?php echo  $t->ticket_type_id;?>'>Buy More Tickets</button></h4>
-                                                <?php }?>
+                                                
 
                                                 <br>
                                                 <span class="property-price"><?php echo "P"." ".$t->price.".00";?></span>
