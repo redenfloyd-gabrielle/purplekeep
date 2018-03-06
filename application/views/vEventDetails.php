@@ -658,15 +658,50 @@ $(document).ready(function(){
       $('#qty1').val(get);
     }
   });
+
+  $("#qty1").on("keyup", function () {
+    var get = parseInt($('#qty1').val());
+    check($("#ticID").val());
+
+    console.log("get" +get);
+    console.log("limit "+limit);
+    if (get > limit) {
+        console.log("im in");
+        $('#qty1').val(limit);
+    }
+  });
+
+  var limit = 24;
   $("#unaP").click(function(){
     var get = parseInt($('#qty1').val());
-    get+=1;
+
+
+    check($("#ticID").val());
+
+    if (get != limit) {
+      get++;
+    }
+
     $('#qty1').val(get);
   });
 
   $("#intrstd").click(function(){
     $(this).attr("disabled",true);
   });
+
+  //check if more than limit
+  function check (id) {
+    $.ajax ({
+      url : "<?php echo site_url()?>/finance/CCart/getLimit",
+      data : {"id" : id},
+      method : "POST",
+      success: function(e){
+                limit = e;
+            },
+            error: function(e){
+            }
+    });
+  }
 
   // btn.onclick = function() {
   //   modal.style.display = "block";
