@@ -31,7 +31,7 @@
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <ul class="main-nav nav navbar-nav navbar-right">
                       <!-- <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cInitialize">Home</a></li> -->
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cInitialize"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_NAV_HOME ?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cInitialize"><span class="fas fa-home fa-lg" title="HOME"></span></a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
