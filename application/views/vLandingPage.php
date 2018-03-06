@@ -283,6 +283,8 @@
                                                     </div>';
                                             }
                                 }
+                            }else{
+                                echo "<h2> No approved events as of the moment.</h2>";
                             }
                         ?>
                     </div>

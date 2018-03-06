@@ -38,7 +38,7 @@
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Home"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><span class="fas fa-home fa-lg"></span></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents"><span class="fas fa-user fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents/1"><span class="fas fa-user fa-lg"></span></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><span class="fas fa-bell fa-lg"></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Interested Events"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><span class="fas fa-star fa-lg"></span></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="View Cart"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><span class="fas fa-shopping-cart fa-lg"></span></a></li>
@@ -127,7 +127,7 @@
                                     <fieldset >
                                         <div class="row">
                                             <div class="col-md-12">
-                                                 <a href="<?php echo site_url();?>/event/CEvent/viewEvents">
+                                                 <a href="<?php echo site_url();?>/event/CEvent/viewEvents/1">
                                                    <!-- <button class = "button btn largesearch-btn">Calendar</button></a> -->
                                                    <button class = "button btn largesearch-btn"><?php echo CustomizationManager::$strings->CALENDAR_PAGE_PROFILE_BUTTON ?></button></a>
                                             </div>
@@ -137,53 +137,7 @@
                                 <br><br>
                             </div>
 
-                            <div class="panel panel-default sidebar-menu wow fadeInRight animated">
-                                <div class="panel-heading">
-                                  <!-- <h3 class="panel-title">Recommended</h3> -->
-                                  <h3 class="panel-title"><?php echo CustomizationManager::$strings->PROFILE_PAGE_RECOMMENDED_HEADER ?></h3>
-                                </div>
-                                <div class="panel-body recent-property-widget">
-                                            <ul>
-                                            <li>
-                                                <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                    <a href="single.html"><img src="assets/img/demo/small-property-2.jpg"></a>
-                                                </div>
-                                                <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                    <h6> <a href="single.html"> JS Workshop </a></h6>
-                                                    <span class="property-price">P 200.00</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                    <a href="single.html"><img src="assets/img/demo/small-property-2.jpg"></a>
-                                                </div>
-                                                <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                    <h6> <a href="single.html"> Music Concert </a></h6>
-                                                    <span class="property-price">P 250.00</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                    <a href="single.html"><img src="assets/img/demo/small-property-2.jpg"></a>
-                                                </div>
-                                                <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                    <h6> <a href="single.html"> Some Party </a></h6>
-                                                    <span class="property-price">P 600.00</span>
-                                                </div>
-                                            </li>
-                                           <li>
-                                                <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                    <a href="single.html"><img src="assets/img/demo/small-property-2.jpg"></a>
-                                                </div>
-                                                <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                    <h6> <a href="single.html"> Food Bazaar </a></h6>
-                                                    <span class="property-price">P 100.00</span>
-                                                </div>
-                                            </li>
-
-                                        </ul>
-                                </div>
-                            </div>
+                            
                         </div>
                     </div>
 

@@ -118,7 +118,7 @@ div.desc {
                     <ul class="main-nav nav navbar-nav navbar-right">
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cLogin/viewDashBoard">Home</a></li>
 
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/cEvent/viewEvents">Profile</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/cEvent/viewEvents/1">Profile</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/user/cUser/viewAnnouncements">Announcements</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/cEvent/viewPreferenceEvents">Interested Events</a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/cCart/viewCart">View Cart</a></li>
@@ -658,15 +658,50 @@ $(document).ready(function(){
       $('#qty1').val(get);
     }
   });
+
+  $("#qty1").on("keyup", function () {
+    var get = parseInt($('#qty1').val());
+    check($("#ticID").val());
+
+    console.log("get" +get);
+    console.log("limit "+limit);
+    if (get > limit) {
+        console.log("im in");
+        $('#qty1').val(limit);
+    }
+  });
+
+  var limit = 0;
   $("#unaP").click(function(){
     var get = parseInt($('#qty1').val());
-    get+=1;
+
+
+    check($("#ticID").val());
+
+    if (get != limit) {
+      get++;
+    }
+
     $('#qty1').val(get);
   });
 
   $("#intrstd").click(function(){
     $(this).attr("disabled",true);
   });
+
+  //check if more than limit
+  function check (id) {
+    $.ajax ({
+      url : "<?php echo site_url()?>/finance/CCart/getLimit",
+      data : {"id" : id},
+      method : "POST",
+      success: function(e){
+                limit = e;
+            },
+            error: function(e){
+            }
+    });
+  }
 
   // btn.onclick = function() {
   //   modal.style.display = "block";
