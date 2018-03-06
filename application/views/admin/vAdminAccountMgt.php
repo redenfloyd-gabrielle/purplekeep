@@ -119,7 +119,7 @@
     </div>
 
     <!-- ADD ADMIN MODAL -->
-	<div id="addAdmin" class="modal" tabindex="-1" data-width="550">
+	<div id="addAdmin" class="modal" tabindex="-1" data-width="550" data-backdrop="static" data-keyboard="false">
 		<div class="modal-header bg-inverse bd-inverse-darken">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
                 <h1 class="modal-title" align="center">ADD ADMIN</h1>
