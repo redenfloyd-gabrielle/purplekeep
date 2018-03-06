@@ -97,6 +97,8 @@
                         ;
                     }
                 }
+            }else{
+                echo "<center><h2>No announcements this time.</h2></center>";
             }
         ?>
                            
