@@ -267,24 +267,30 @@ class CCart extends CI_Controller {
 		echo $total;
 		if($loadamount >= $total){
 			//update cart status
+			//nya add checkout
+			$checkout = new MCheckout();
+
+			$chck = array ("account_id" => $this->session->userdata['userSession']->userID,
+						   "checkTotal" => $total);
+			$checkout->insert($chck);
+
+			$checkId = $checkout->db->insert_id();
 			foreach ($finalChecked as $d) {
+				$query = $this->MCart->read_where(array('cart_id' => $d));
+					for ($i=0; $i < $query[0]->quantity; $i++) { 
+							$now = NEW DateTime(NULL, new DateTimeZone('UTC'));
+							$data = array('date_sold' => $now->format('Y-m-d H:i:s'),
+									  'user_id' => $this->session->userdata['userSession']->userID ,
+									  'ticket_type_id' => $query[0]->ticket_id
+		 				  				);
+							$res = $this->MTicket->insert($data);
+
+					}
+
 				$cart = array ("status" => "deleted");
 				$where = array ("ticket_id" => $d);
 
 				$this->MCart->update1($where, $cart);
-
-				//nya add checkout
-				$checkout = new MCheckout();
-				$chck = array ("account_id" => $this->session->userdata['userSession']->userID,
-							   "checkTotal" => $total);
-				$checkout->insert($chck);
-
-				//nya kuha id
-				$checkoutData = $checkout->getLastAdded();
-				$checkId = 0;
-				foreach($checkoutData as $c) {
-					$checkId = $c->checkId;
-				}
 
 				$cart = array ("checkoutId" => $checkId);
 				$where = array ("ticket_id" => $d);
@@ -311,9 +317,9 @@ class CCart extends CI_Controller {
 				$newload = $loadamount - $total;
 				$this->MUser->update($this->session->userdata['userSession']->userID, array("load_amt" => $newload));
 
-				$this->session->set_flashdata('success_msg',"Successfully Checkedout!");
-				redirect("finance/CCart/viewCart");
 			}
+			$this->session->set_flashdata('success_msg',"Successfully Checkedout!");
+				redirect("finance/CCart/viewCart");
 		}else{
 			$this->session->set_flashdata('error_msg',"Insufficient balance!");
 			redirect("finance/CCart/viewCart");
