@@ -866,6 +866,8 @@ class CEvent extends CI_Controller {
 					redirect("event/CEvent/viewPreferenceEvents");
 					// $this->viewPreferenceEvents();
 				}
+			}else{
+				redirect("event/CEvent/viewPreferenceEvents");
 			}
 
 			# code...
