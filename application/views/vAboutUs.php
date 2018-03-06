@@ -47,6 +47,7 @@
             }
             #dailyEvents{
                 text-align: center;
+                color:white;
             }
         </style>
     </head>
@@ -72,14 +73,11 @@
                     <div>
                         <img src="<?php echo base_url(CustomizationManager::$images->LOGO_LIGHT)?>" style="display: block; margin-left: auto; margin-right: auto; height:200px; width:350px;">
                     </div>
-                    <div id="dailyEvents">Daily Events is a joint effort project software application that the students of University of San Carlos made for their project in Software Development Course with their awe-inspiring instructor who has taught them ropes by applying methods directly from the industry in order to have confidence in pursuing the Software Development career in the field of Information Technology.
-                    </div>
-                    <br>
-                    <div>
-                    This web application allows people to connect together through events and give them an accessible way for them to look for events that have piqued their interests, giving clients an easy way to bring events to them through this site and maybe even new, unique or hidden events that you the customer have yet to discover and love. In order for this to work, the team of highly skilled individuals who are the students of USC have made ascertain that the application is up to the standards of modern day software application and even added their own little touch, giving a feeling of distinctiveness. This application also allows users to transact the tickets directly using this website making it hassle-free by simply loading up your account in order to buy said ticket.
-                    </div>
-                    <br>
-                    <div>Lastly, I would like to give credit to the people who have made this application possible no matter how small or big the contribution they have to this project, their laughs, their blessings, their perseverance, their ideas and even their time, understanding that the entire class still had other matters to work on such as their thesis, helped all of us no matter how of a burden or hardship it may be, yet they persevered through and through. 
+                    <div id="dailyEvents" >Daily Events is a joint effort project made by students from the University of 
+                    San Carlos in line with their Software Engineering course.
+                    The team composes of 4th year BSIT students from University of San Carlos, together with 
+                    their teacher, a working professional in the field to guide them.
+                    
                     </div>
                 </div>
             </div>
