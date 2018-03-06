@@ -63,40 +63,121 @@
          <div class="container">
              <div class="row">
                 <div class="col-md-12 ">
-                  <?php if ($this->session->flashdata('error_msg')): ?>
-                      <div class="alert alert-danger" style="margin-top: 15px;">
-                          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                          <?php echo $this->session->flashdata('error_msg'); ?>
-                      </div>
-                  <?php endif ?>
-                      <div class="alert alert-danger hidden" id="error" style="margin-top: 15px;">
-                          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                          <div id="errLabel"></div>
-                      </div>
                   
-                  <?php if ($this->session->flashdata('success_msg')): ?>
-                      <div class="alert alert-success" style="margin-top: 15px;">
-                          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                          <?php echo $this->session->flashdata('success_msg'); ?>
-                      </div>
-                  <?php endif ?>
+
+                <div class="col-md-3 p0 padding-top-40">
+                      
+                </div>
+
+
+
+
+
 
 
                   <div class="col-md-12">
-                    <div class="col-md-3 wow fadeInRight animated" style="padding:1%; margin-top: 2%;">
-                      <div class="panel panel-default" style="border-style: solid;border-color: #CB6C52;">
+                    <div class="col-md-3 wow fadeInRight animated" style="padding:1;">
+                      <div class="blog-asside-right pr0">
+                        <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
+                            <div class="panel-body search-widget">
+                               <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel-heading">
+                                                <center><h1 style="font-size: 50px;" class="panel-title">Php <?php foreach($user as $u){echo $u->load_amt;}?>.00</h1></center>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                      <p><?php echo CustomizationManager::$strings->PROFILE_PAGE_INSUFFICIENT_BALANCE ?>
+                                        <a style=" color: #e2624b; cursor:pointer; border-bottom: 1.5px solid #e2624b;padding-bottom: 2px"  onMouseOver="this.style.color='#ffcec0';this.style.paddingBottom='8px';this.style.borderBottom='3px solid #e2624b';"    onMouseOut="this.style.color='#e2624b' ;this.style.paddingBottom='2px';" type="button" class="dbutton " id="load" ><?php echo CustomizationManager::$strings->PROFILE_PAGE_LOAD_NOW ?></a>
+  <script>
+     $("#load").click(function(){
+        $("#some").toggle(500);
+    });
+ </script>
+                                      </p>
+                                      <div class="row">
+                                        <div class="col-xs-12" id="some" hidden="">
+                                          <form action="<?php echo site_url(); ?>/user/CUser/redeemCodeInCart" method="post">
+                                              <input type="text" class="form-control" name="ccode" placeholder="Enter code">
+                                              <!-- <button type="submit" class="navbar-btn nav-button pull-right"   >Redeem Code</button> -->
+                                              <button type="submit" class="navbar-btn nav-button pull-right"   ><?php echo CustomizationManager::$strings->PROFILE_PAGE_REDEEM_CODE ?></button>
+                                          </form>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div> <!-- col-md-12 -->
+                            </div> <!--panel body search widget -->
+                        </div>
+                        <div class="modal fade" id="lmodal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3><img src="img/credit-card.png" class="elogo"> eLoad</h3>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <label class="label-control">Card Number</label>
+                                        <input type="text" class="form-control" name="" placeholder="Enter Card Number">
+
+                                        <h6 class="note">*Note: you only have 3 attemps to enter correct values</h6>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+
+
+
+
+
+
+
+                      <!-- <div class="panel panel-default" style="border-style: solid;border-color: #CB6C52;">
                         <div class="panel-body">
                             <h2><strong>Load Balance :</strong></h2>
                             <span class="h4" style="color: #CB6C52;">Php <?php foreach($user as $u){echo $u->load_amt;}?>.00</span>
                         </div>
-                      </div>
+                      </div> -->
 
                       <div class="panel panel-default" style="border-style: solid;border-color: #CB6C52;">
                         <div class="panel-body">
                             <h2><strong>Total :</strong></h2>
-                            <span class="h4" style="color: #CB6C52;" id="total">Php <?php foreach($total as $t){echo $t->total;}?>.00</span>
+                            <span class="h4" style="color: #CB6C52;" id="total">Php <?php foreach($total as $t){
+                              if($t->total>0){
+                                echo $t->total;
+                              }else{
+                                echo "0";
+                              }
+                            }?>.00</span>
                         </div>
                       </div>
+                    </div>
+
+                    <div class="col-md-9">
+                      <?php if ($this->session->flashdata('error_msg')): ?>
+                        <div class="alert alert-danger">
+                            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                            <?php echo $this->session->flashdata('error_msg'); ?>
+                        </div>
+                      <?php endif ?>
+                          <div class="alert alert-danger hidden" id="error">
+                              <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                              <div id="errLabel"></div>
+                          </div>
+                    
+                      <?php if ($this->session->flashdata('success_msg')): ?>
+                          <div class="alert alert-success">
+                              <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                              <?php echo $this->session->flashdata('success_msg'); ?>
+                          </div>
+                      <?php endif ?> 
                     </div>
 
                     <div class="col-md-9" style="padding:1%; margin-top: 3%; border-color:  #ecf1f2; border-style: solid; border-width: 1px;">
