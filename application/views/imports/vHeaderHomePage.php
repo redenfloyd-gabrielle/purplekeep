@@ -6,6 +6,7 @@
 <html lang="en">
 <head>
 	<title>DailyEvents </title>
+	<link rel="icon" href="<?php echo base_url('assets/dianeAssets/img/DE Icon.png')?>">
     <link href="<?php echo base_url('assets/dianeAssets/css/bootstrap/bootstrap.min.css')?>" rel="stylesheet" />
     <link href="<?php echo base_url('assets/dianeAssets/css/bootstrap/bootstrap-themes.css')?>" rel="stylesheet" />
     <link href="<?php echo base_url('assets/dianeAssets/css/font-awesome.min.css')?>" rel="stylesheet" />

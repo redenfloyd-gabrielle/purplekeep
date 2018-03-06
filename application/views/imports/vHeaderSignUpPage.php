@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Event System | Home page</title>
+    <link rel="icon" href="<?php echo base_url('assets/dianeAssets/img/DE Icon.png')?>">
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
     <style>
@@ -47,6 +48,10 @@
     <link href="<?php echo base_url('assets/nikkiAssets/css/style.css')?>" rel="stylesheet" />
     <link href="<?php echo base_url('assets/nikkiAssets/css/normalize.css')?>" rel="stylesheet" />
     <link href="<?php echo base_url('assets/nikkiAssets/css/responsive.css')?>" rel="stylesheet" />
+
+    <!--Fontawesome icons for Nav Tab Icons-->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    
     <style>
          .ballons {
             float:right;

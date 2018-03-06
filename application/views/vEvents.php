@@ -28,19 +28,20 @@
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
                         <!-- <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a> -->
-                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->PROFILE_PAGE_LOGOUT_BUTTON ?> </button></a>
+                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login" title="Logout"><span class="fas fa-sign-out-alt fa-lg"></span></button></a>
                     </div>
                     <div class="button navbar-right">
                         <!-- <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a> -->
-                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->PROFILE_PAGE_CREATE_EVENT_BUTTON ?> </button></a>
+                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login" title="Create Event"><span class="fas fa-calendar-plus fa-lg"></span></button></a>
                     </div>
-
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_HOME ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_PROFILE ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>'><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_ANNOUNCEMENTS ?><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents">Interested Events</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/CCart/viewCart">View Cart</a></li>
+
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Home"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><span class="fas fa-home fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents/1"><span class="fas fa-user fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><span class="fas fa-bell fa-lg"><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Interested Events"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><span class="fas fa-star fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="View Cart"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><span class="fas fa-shopping-cart fa-lg"></span></a></li>
+
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -138,65 +139,11 @@
                                         </div>
                                     </div>
                                 </fieldset>
-                                <fieldset >
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <!-- <button class = "button btn largesearch-btn">Payment Summary</button> -->
-                                            <button class = "button btn largesearch-btn"><?php echo CustomizationManager::$strings->PROFILE_PAGE_PAYMENT_SUMMARY_BUTTON ?></button>
-                                        </div>
-                                    </div>
-                                </fieldset>
                             </div>
                             <br><br>
                         </div>
 
-                        <div class="panel panel-default sidebar-menu wow fadeInRight animated">
-                            <div class="panel-heading">
-                                <!-- <h3 class="panel-title">Recommended</h3> -->
-                                <h3 class="panel-title"><?php echo CustomizationManager::$strings->PROFILE_PAGE_RECOMMENDED_HEADER ?></h3>
-                            </div>
-                            <div class="panel-body recent-property-widget">
-                                        <ul>
-                                        <li>
-                                            <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                <a href="single.html"><img src="<?php echo base_url('assets/nikkiAssets/img/demo/small-property-2.jpg');?>"></a>
-                                            </div>
-                                            <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                <h6> <a href="single.html"> JS Workshop </a></h6>
-                                                <span class="property-price">P 200.00</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                <a href="single.html"><img src="<?php echo base_url('assets/nikkiAssets/img/demo/small-property-2.jpg');?>"></a>
-                                            </div>
-                                            <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                <h6> <a href="single.html"> Music Concert </a></h6>
-                                                <span class="property-price">P 250.00</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                <a href="single.html"><img src="<?php echo base_url('assets/nikkiAssets/img/demo/small-property-2.jpg');?>"></a>
-                                            </div>
-                                            <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                <h6> <a href="single.html"> Some Party </a></h6>
-                                                <span class="property-price">P 600.00</span>
-                                            </div>
-                                        </li>
-                                       <li>
-                                            <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                <a href="single.html"><img src="<?php echo base_url('assets/nikkiAssets/img/demo/small-property-2.jpg');?>"></a>
-                                            </div>
-                                            <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                <h6> <a href="single.html"> Food Bazaar </a></h6>
-                                                <span class="property-price">P 100.00</span>
-                                            </div>
-                                        </li>
-
-                                    </ul>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
 
@@ -212,7 +159,7 @@
                             <div class="col-xs-4 col-lg-4">
                                 <input type="text" class="form-control" placeholder="Key word">
                             </div>
-                            <div class="col-xs-4 col-lg-2">
+<!--                             <div class="col-xs-4 col-lg-2">
                                 <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Category">
                                     <option>Attraction</option>
                                     <option>Appearance</option>
@@ -231,8 +178,8 @@
                                     <option>Tour</option>
                                     <option>Others</option>
                                 </select>
-                            </div>
-                            <div class="col-xs-2 col-lg-2">
+                            </div> -->
+                            <!-- <div class="col-xs-2 col-lg-2">
                                 <div class="price-range-wrap">
                                     <label for="price-range" style="color:#000">Price range (P):</label>
                                         <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="10000" data-slider-step="5"
@@ -240,7 +187,7 @@
                                         <b class="pull-left color" style="color:#000">P0.00</b>
                                         <b class="pull-right color" style="color:#000" >P10,000.00</b>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-xs-2 col-lg-2">
                                 <input class="button btn smallsearch-btn" value="Search" type="submit">
                              </div>
@@ -283,21 +230,32 @@
                             if(isset($events)){
                                 $cnt =1;
                                 foreach ($events as $event) {
-                                   ?>
+                                    $cntTx = count($event->tix);
+                                    $cHeight = "76px";
+
+                                    if($cntTx > 2){
+                                        $cHeight = "0px";
+                                    }else if($cntTx > 1){
+                                        $cHeight = "17px";
+                                    }
+
+                        ?>
                             <div class="col-sm-6 col-md-4 p0" >
-                                <div class="box-two proerty-item" style="height:530px;">
-                                    <div class="item-thumb">
+                                <div class="box-two proerty-item" style="height:398px;">
+                                    <!-- <div class="item-thumb">
                                         <a href="<?php echo site_url();?>/event/CEvent/displayEventDetails/<?php echo $event->event_id;?>"><img  style="max-height: 50px;" src="<?php echo base_url();?><?php echo $event->event_picture; ?>"></a>
-                                    </div>
+                                    </div> -->
                                        <div class="item-entry overflow">
-                                        <h5><a href="<?php echo site_url();?>/event/CEvent/displayEventDetails/<?php echo $event->event_id;?>"> <?php
+                                       <a href="<?php echo site_url();?>/event/CEvent/displayEventDetails/<?php echo $event->event_id;?>">
+                                            <h3 class="text-center" style="padding:50px;background-color:#CB6C52;"> <?php
                                                 if(strlen($event->event_name)>=26){
                                                     echo substr($event->event_name,0,23)."...";
                                                 }else{
                                                         echo $event->event_name;
                                                 }
                                                 ?>
-                                        </a></h5>
+                                            </h3>
+                                        </a>
                                         <?php
                                                 if($event->event_status == 'Approved'){
                                                         date_default_timezone_set('Asia/Manila');
@@ -325,7 +283,7 @@
 
 
                                                 ?>
-                                            <div style="height:170px;">
+                                            <div style="margin-bottom:<?php echo $cHeight;?>;">
                                              <table class="table-condensed table-responsive" >
                                                                 <thead>
                                                                     <th><center>Ticket Name</center></th>
@@ -364,13 +322,16 @@
                 <div class="pull-right">
                     <div class="pagination">
                         <ul>
-                            <li><a href="#">Prev</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">Next</a></li>
+                            <li><a href = '<?php echo site_url()?>/event/CEvent/viewEvents/<?php if($page !=1){$ppage = $page-1;} echo $ppage?>'>Prev</a></li>
+                            <?php
+                            for($n=1; $n<=$pages; $n++){
+                                echo "<li><a href='".site_url()."/event/CEvent/viewEvents/".$n."'>".$n."</a></li>";
+                            }
+                            ?>
+                            <li><a href = '<?php echo site_url()?>/event/CEvent/viewEvents/<?php if($page != $pages){$ppage = $page+1;} echo $ppage?>'>Next</a></li>
+
                         </ul>
+                     
                     </div>
                 </div>
             </div>
