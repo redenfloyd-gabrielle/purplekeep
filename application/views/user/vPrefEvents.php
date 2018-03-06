@@ -63,7 +63,8 @@
                     <div id="list-type" class="proerty-th">
                         <?php
                             $cnt =1;
-                            if(isset($events)){
+                            if(isset($events) && count($events)>0){
+                                var_dump($events);
                                  foreach ($events as $event) {
                                     date_default_timezone_set('Asia/Manila');
                                     $now = new DateTime("now");
@@ -96,8 +97,10 @@
                                                 
                                                                 echo '</a></h3>';
 
-                                                                echo '<div class="item-thumb">
-                                                                <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
+
+                                                                // echo '<div class="item-thumb">
+                                                                // <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
+
 
                                                                 echo '<h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
 
@@ -134,8 +137,8 @@
                                                 
                                                                 echo '</a></h3>';
 
-                                                                echo '<div class="item-thumb">
-                                                                <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
+                                                                // echo '<div class="item-thumb">
+                                                                // <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
 
                                                                 echo '<h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
 
@@ -151,9 +154,13 @@
                                                             </div>
                                                         </div>
                                                     </div>';
-                                            }
+                                            }else {
+                echo "<center><h2>There are no events interested in.</h2></center>";
+            }
                                 }
-                            }
+                            }else{
+                echo "<center><h2>There are no events interested in.</h2></center>";
+            }
                         ?>
                     </div>
                 </div>

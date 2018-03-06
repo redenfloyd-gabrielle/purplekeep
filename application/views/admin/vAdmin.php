@@ -21,7 +21,7 @@
                                   <th>#</th>
                                   <th>Name</th>
                                   <th>Time</th>
-                                  <th>Tickets Sold</th>
+                                  <th>Number of Tickets</th>
                                   <th>Status</th>
                                   <th>Options</th>
                                 </tr>
@@ -34,24 +34,26 @@
                                             <td>".$object->event_id."</td>
                                             <td>".$object->event_name."</td>
                                             <td>".$object->event_date_start." to ".$object->event_date_end."</td>
-                                            <td>".$object->no_tickets_total."</td>
+                                            <td>".$object->total_tickets_amtSold."</td>
                                             <td>".$object->event_status."</td>";
 
                                             if($object->event_status == "Pending"){
-                                              echo " <td><a href='".site_url()."/admin/CAdmin/approveEvent/".$object->event_id."'>
-                                                  <button  type='button' class='btn btn-inverse'>APPROVE</button></a>
-                                                  <a href='".site_url()."/admin/CAdmin/rejectEvent/".$object->event_id."'>
-                                                  <button  type='button' class='btn btn-theme'>REJECT</button></a>
+                                              echo " <td><a  href='#' data-id= '".$object->event_id."'>
+                                                  <button  type='button' class='btn btn-inverse aprv'>APPROVE</button></a>
+                                                  <a href='#' data-id= '".$object->event_id."'>
+                                                  <button  type='button' class='btn btn-theme rej'>REJECT</button></a>
                                                   </td>
                                                   </tr>";
                                             }else {
-                                             echo "<td>
-                                                <button name='button' data-toggle='modal' data-target='#updateAccount' type='button' class='btn btn-info' data-backdrop='static' data-keyboard='false'>VIEW ATTENDEES </button>
+                                              if($object->event_status=="Approved") {
+                                                echo "<td>
+                                                <button name='button' data-toggle='modal' data-target='#updateAccount".$object->event_id."' type='button' class='btn btn-info' data-backdrop='static' data-keyboard='false'>VIEW ATTENDEES </button>
                                                 <input type = 'hidden' value = '".$object->event_id." id = 'pass' name = 'pass'>
                                                 </td>
                                             </tr>";  
+                                              }                                             
                                             }
-                                            echo " <div id='updateAccount' class='modal' tabindex'-1' data-width='500'>
+                                            echo " <div id='updateAccount".$object->event_id."' class='modal' tabindex'-1' data-width='500'>
                                             <div class='modal-header bg-inverse bd-inverse-darken'>
                                                     <button type='button' class='close' data-dismiss='modal' aria-hidden='true'><i class='fa fa-times'></i></button>
                                                     <h1 class='modal-title' align='center'>Event: ". $object->event_name."</h1>
@@ -97,3 +99,31 @@
 </div>
 
 </body>
+<script>
+  $(document).ready(function(){
+
+    $('.aprv').click(function(){
+     var id = $(this).closest("a").data('id');
+     var res = confirm("Are you sure you want to approve this event?");
+
+                          if(res == true) {
+                           $(this).closest("a").attr("href", "<?php echo site_url()."/admin/CAdmin/approveEvent/"?>"+ id);
+                           $(this).closest("a").click; 
+                          }
+     
+    });
+
+    $('.rej').click(function(){
+     var id = $(this).closest("a").data('id');
+     var res = confirm("Are you sure you want to reject this event?");
+
+                          if(res == true) {
+                           $(this).closest("a").attr("href", "<?php echo site_url()."/admin/CAdmin/rejectEvent/"?>"+ id);
+                           $(this).closest("a").click; 
+                          }
+     
+    });
+
+  });
+
+</script>
