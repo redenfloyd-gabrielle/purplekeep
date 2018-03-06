@@ -575,8 +575,9 @@ div.desc {
                                 <h4>Contact Us</h4>
                                 <div class="footer-title-line"></div>
                                 <ul class="footer-adress">
-                                    <li><i class="pe-7s-mail strong"> </i> dailyEvents@gmail.com</li>
-                                    <li><i class="pe-7s-call strong"> </i> 253-2753</li>
+                                    <li><i class="pe-7s-map-marker strong"> </i> USC TC - Nasipit Talamban Cebu City</li>
+                                    <li><i class="pe-7s-mail strong"> </i> dailyevents@gmail.com</li>
+                                    <li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
                                 </ul>
 
                             </div>
