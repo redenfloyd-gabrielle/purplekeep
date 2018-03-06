@@ -288,16 +288,20 @@ class cUser extends CI_Controller {
 	
 	public function viewSignUp()
 	{
-		$data['page_title'] = "Registration Page";
-
-		if(!$this->data){
-			$this->load->view('imports/vHeaderSignUpPage',$data);
-			$this->load->view('vSignUp');
-			$this->load->view('imports/vFooterLandingPage');
+		if (isset($this->session->userdata['adminSession']) || isset($this->session->userdata['userSession'])) {
+			redirect('cLogin/viewDashBoard');
 		}else{
-			$this->load->view('imports/vHeaderSignUpPage',$data);
-			$this->load->view('vSignUp',$this->data);
-			$this->load->view('imports/vFooterLandingPage');
+			$data['page_title'] = "Registration Page";
+
+			if(!$this->data){
+				$this->load->view('imports/vHeaderSignUpPage',$data);
+				$this->load->view('vSignUp');
+				$this->load->view('imports/vFooterLandingPage');
+			}else{
+				$this->load->view('imports/vHeaderSignUpPage',$data);
+				$this->load->view('vSignUp',$this->data);
+				$this->load->view('imports/vFooterLandingPage');
+			}
 		}
 
 	}
