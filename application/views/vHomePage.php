@@ -52,4 +52,10 @@
 		</div>
 	</div>
 </div>
-
+<!-- Audio -->
+<audio id = "audio-welcome" src = "assets/customization1Assets/audio/welcome.wav"></audio>
+<script>
+$(document).ready(function(){
+	$('#audio-welcome').trigger('play');
+});
+</script>

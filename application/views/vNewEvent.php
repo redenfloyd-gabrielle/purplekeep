@@ -209,6 +209,8 @@
                 <div class="col-md-3"></div>
             </div>
         </div>
+        <!-- Audio -->
+        <audio id = "audio-event" src = "../../../assets/customization1Assets/audio/event.wav"></audio>
 
          <!-- Footer area-->
          <div class="footer-area">
@@ -302,6 +304,12 @@
             </div>
 
          </div>
+        <script>
+          $(document).ready(function(){
+            $('#audio-event').trigger('play');
+          });
+        </script>
+
         <script type="text/javascript">
             $("#datetime").datepicker();
         </script>

@@ -90,9 +90,15 @@ if (!isset($this->session->userdata['userSession']) && !isset($this->session->us
 <!-- End of Error Modal Trigger -->
 
  <div style="position:fixed;top:15px;right:15px;"> <a href="<?php echo base_url()?>" style="color:#ffff;">⟵ Home</a></div>
-
+ <!-- Audio -->
+ <audio id = "audio-login" src = "../assets/customization1Assets/audio/login.wav"></audio>
 </body>
 </html>
 <?php }else{
   redirect('CLogin/viewDashboard');
   }?>
+<script>
+  $(document).ready(function(){
+    $('#audio-login').trigger('play');
+  });
+</script>

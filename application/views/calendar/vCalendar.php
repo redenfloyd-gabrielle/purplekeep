@@ -208,10 +208,10 @@
 
                                         </div>
                                         <!-- /.row -->
-                                        
+
 
                                         <!-- LEGEND -->
-                                        
+
                                         <div class="calendar-legend">
                                             <center><h3>L E G E N D</h3></center>
                                             <ul class="legend">
@@ -373,6 +373,9 @@
                 </div>
             </div>
         </div>
+
+        <!-- Audio -->
+        <audio id = "audio-calendar" src = "../../assets/customization1Assets/audio/calendar.wav"></audio>
 
         <script >
 
@@ -617,3 +620,9 @@
             </div>
 
           </div>
+
+          <script>
+            $(document).ready(function(){
+              $('#audio-calendar').trigger('play');
+            });
+          </script>

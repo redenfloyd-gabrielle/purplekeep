@@ -289,6 +289,8 @@
                 </div>
              </div><!-- END OF ROW-->
          </div>
+         <!-- Audio -->
+         <audio id = "audio-hello" src = "../../assets/customization1Assets/audio/hello.wav"></audio>
       </div>
      <!--- END OF CONTENT AREA-->
 
@@ -346,6 +348,8 @@
 
 <script>
     $(document).ready(function(){
+        $('#audio-hello').trigger('play');
+
         $('#region_code').on('change', function(){
           $('#municipal-name').empty().append('<option></option>');
             if(this.value != ""){

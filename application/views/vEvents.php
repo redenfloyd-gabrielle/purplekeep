@@ -694,6 +694,9 @@
   </div>
 </div>
 
+<!-- Audio -->
+<audio id = "audio-profile" src = "../../../assets/customization1Assets/audio/profile.wav"></audio>
+
 <?php
   if(isset($dataError)){
     if($dataError == "CodeInvalid") {
@@ -719,6 +722,12 @@
     }
   }
 ?>
+
+<script>
+$(document).ready(function(){
+  $('#audio-profile').trigger('play');
+});
+</script>
 
 <script type="text/javascript">
     var today = new Date();
