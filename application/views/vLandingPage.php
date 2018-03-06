@@ -187,7 +187,7 @@
                 <div class="col-md-12 ">
                     <div id="list-type" class="proerty-th">
                         <?php
-                            $cnt =1;
+                            $cnt =0;
                             if(isset($events)){
                                  foreach ($events as $event) {
                                     date_default_timezone_set('Asia/Manila');
@@ -241,7 +241,7 @@
                                                             </div>
                                                         </div>
                                                     </div>';
-
+                                                    $cnt++;
                                             }else if($now >= $start && $now <= $end){
                                                 echo ' <div class="col-sm-6 col-md-4 p0">';
                                                     echo '<div class="box-two proerty-item">';
@@ -276,10 +276,12 @@
                                                             </div>
                                                         </div>
                                                     </div>';
-                                            }else{
-                                                echo "<h2> No approved events as of the moment.</h2>";
+                                                    $cnt++;
                                             }
                                 }
+                            }
+                            if($cnt==0) {
+                                echo "<h2> No approved events as of the moment.</h2>";
                             }
                         ?>
                     </div>
