@@ -411,7 +411,7 @@ class CEvent extends CI_Controller {
 		/////////////////////////////////////////////////////////////////////////////
 		$gID = $data1 ['events']  = $this->MEvent->read_where('event_id = '.$id.'');
 		////////////STOPS HERE///////////////////////////////////////////////////
-		if($gID){
+		if($gID > 1){
 				foreach ($gID as $k) {
 					$eid = $k->event_id;
 					$uid = $k->user_id; //retrieve
@@ -463,17 +463,26 @@ class CEvent extends CI_Controller {
 					$data['successMsg']= $this->success;
 				 // print_r($data);
 				}
-				$result = $this->MPreference->checkIfInterestedAlready($this->session->userdata['userSession']->userID,$eid);
 
-				if($result){
-					$data['interested']	= TRUE;
-					$data['user_event_preference_id'] = $result[0]->user_event_preference_id;
-				}else{
-					$data['interested']	= FALSE;
+				$checkEvent = $this->MEvent->getEventById($eid);
+
+				if($checkEvent){
+					if(strcmp($checkEvent[0]->event_status,'Approved')==0 && $checkEvent[0]->user_id == $uid){
+						$result = $this->MPreference->checkIfInterestedAlready($this->session->userdata['userSession']->userID,$eid);
+						if($result){
+							$data['interested']	= TRUE;
+							$data['user_event_preference_id'] = $result[0]->user_event_preference_id;
+						}else{
+							$data['interested']	= FALSE;
+						}
+
+						$this->load->view('imports/vHeaderLandingPage');
+						$this->load->view('vEventDetails',$data);
+						$this->load->view('imports/vFooterLandingPage');
+					}else{
+						redirect("CLogin/viewDashboard");
+					}
 				}
-				$this->load->view('imports/vHeaderLandingPage');
-				$this->load->view('vEventDetails',$data);
-				$this->load->view('imports/vFooterLandingPage');
 	
 		}else{
 			redirect("CLogin/viewDashboard");

@@ -79,6 +79,15 @@
 			return $query->result();
 		}
 
+		public function getEventById($id){
+			$this->db->select("*");
+			$this->db->from($this::DB_TABLE);
+			$this->db->where('event_id',$id);
+			
+			$query = $this->db->get();
+			return $query->result();
+		}
+
 		public function getLimitedEventsByUser($id,$page){
 			$this->db->select("*");
 			$this->db->select("DATE_FORMAT(event_info.event_date_start,'%d-%b-%y %H:%m') as dateStart");
