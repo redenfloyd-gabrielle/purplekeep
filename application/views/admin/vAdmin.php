@@ -45,11 +45,13 @@
                                                   </td>
                                                   </tr>";
                                             }else {
-                                             echo "<td>
+                                              if($object->event_status=="Approved") {
+                                                echo "<td>
                                                 <button name='button' data-toggle='modal' data-target='#updateAccount' type='button' class='btn btn-info' data-backdrop='static' data-keyboard='false'>VIEW ATTENDEES </button>
                                                 <input type = 'hidden' value = '".$object->event_id." id = 'pass' name = 'pass'>
                                                 </td>
                                             </tr>";  
+                                              }                                             
                                             }
                                             echo " <div id='updateAccount' class='modal' tabindex'-1' data-width='500'>
                                             <div class='modal-header bg-inverse bd-inverse-darken'>
