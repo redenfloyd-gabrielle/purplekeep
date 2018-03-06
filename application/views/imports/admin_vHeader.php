@@ -118,7 +118,7 @@
 
             <li><a href="<?php echo site_url();?>/admin/CAdmin/viewAnnouncements"><i class="icon  fa fa-bullhorn"></i>  Announcements </a></li>
 
-            <li><a href="<?php echo site_url();?>/admin/CAdmin/viewFinance"><i class="icon  fa fa-money"></i> Finance </a></li>
+            <!--<li><a href="<?//php echo site_url();?>/admin/CAdmin/viewFinance"><i class="icon  fa fa-money"></i> Finances </a></li>-->
 
             <li><a href ="<?php echo site_url();?>/admin/CAdmin/generateCard" data-wow-delay="0.1s"><i class="icon  fa fa-credit-card"></i> Cards </a></li>
 
