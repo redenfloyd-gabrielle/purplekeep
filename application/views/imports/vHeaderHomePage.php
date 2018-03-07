@@ -11,7 +11,7 @@
     <link href="<?php echo base_url('assets/dianeAssets/css/font-awesome.min.css')?>" rel="stylesheet" />
     <!-- <link href="<?php echo base_url('assets/dianeAssets/css/style1.css')?>" rel="stylesheet" /> -->
 		<link href="<?php echo base_url('assets/dianeAssets/css/style1.php')?>" rel="stylesheet" />
-
+    <script src="<?php echo base_url('assets/josephAssets/js/jquery-3.2.1.js')?>" /></script>
 </head>
 
 <body>
