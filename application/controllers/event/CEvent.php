@@ -656,8 +656,13 @@ class CEvent extends CI_Controller {
 			$data['event_date_end'] = mdate("%Y-%m-%d %H:%i:%s", $ts);
 
 			if($data['event_date_start'] < $date3 && $data['event_date_end'] < $date3){
+				$this->session->set_flashdata('error_msg',"Date start and/or date end has already passed");
 				redirect('event/CEvent/viewCreateEvent');
-			}if($data['event_date_start'] > $data['event_date_end'] || $data['event_date_start'] == $data['event_date_end']){
+			}if($data['event_date_start'] > $data['event_date_end']){
+				$this->session->set_flashdata('error_msg',"Inputted date start is greater than inputted date end");
+				redirect('event/CEvent/viewCreateEvent');
+			}if( $data['event_date_start'] == $data['event_date_end']){
+				$this->session->set_flashdata('error_msg',"Inputted dates should not be the same");
 				redirect('event/CEvent/viewCreateEvent');
 			}else{
 			$data['no_tickets_total'] = 0;
