@@ -82,7 +82,7 @@
                       <label for="" class="col-8 control-label">Contact no:</label>
                       <i>(if mobile no.: 09XXXXXXXXX; if telephone no.: XXX-XXXX)</i>
                       <div class="col-8">
-                        <input class="form-control" type="text" pattern="^(09)\d{2}-\d{3}-\d{4}$|^\d{3}-\d{4}$" min="11" name="ucontact" required="" value="<?php echo $updateAdmin->contact_no; ?>">
+                        <input class="form-control" type="text" pattern="^(09)\d{2}-\d{3}-\d{4}$|^\d{3}-\d{4}$" name="ucontact" required="" value="<?php echo $updateAdmin->contact_no; ?>">
                       </div>
                     </div>
 
