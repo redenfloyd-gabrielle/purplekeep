@@ -768,7 +768,7 @@ class CEvent extends CI_Controller {
 			$data = array('event_isActive'=> 0);
 			$v = $this->MUser->updateSpecificEvent($id,$data);
 			if($v){
-				redirect('event/CEvent/viewEvents');
+				redirect('event/CEvent/viewEvents/1');
 			}else{
 				echo "Error...";
 			}
