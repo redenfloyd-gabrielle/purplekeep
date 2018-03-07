@@ -476,7 +476,6 @@
                                 </tr>
                             </thead>
                             <tbody>
-<<<<<<< HEAD
                                 <?php
                                     foreach ($checkout as $c) { ?>
                                         <tr>
@@ -556,7 +555,6 @@
                                             </td>
                                         </tr>
                                     <?php } ?>
-=======
                                 <?php
                                     foreach ($res as $r) {
                                             echo  '<tr>';
@@ -565,7 +563,6 @@
                                             echo '</tr>';
                                     }
                                 ?>
->>>>>>> 03c362790bb2a6abab3e2bb118feb3f90d851f5e
                             </tbody>
                         </table>
                     </div>
