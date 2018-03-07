@@ -139,7 +139,7 @@
                                 <br><br>
                             </div>
 
-                            
+
                         </div>
                     </div>
 
@@ -168,10 +168,10 @@
 
                                         </div>
                                         <!-- /.row -->
-                                        
+
 
                                         <!-- LEGEND -->
-                                        
+
                                         <div class="calendar-legend">
                                             <center><h3>L E G E N D</h3></center>
                                             <ul class="legend">
