@@ -180,16 +180,16 @@ foreach($going as $g){
                                 
                             if($x->event_status == "Approved"){
                                 echo'
-                                <div class="button navbar-right">
+                                <div class="button navbar-left">
                                     <button class="navbar-btn nav-button login"> <a href ="'.site_url("/event/CEvent/editEvent/$e->event_id").'">Edit Event </a></button>
                                 </div>';
                             }else if($x->event_status == "Pending"){
                                 echo'
-                                <div class="button navbar-right">
+                                <div class="button navbar-left">
                                     <button class="navbar-btn nav-button login" style="background-color:gray;" id="confirmdelete"><a>Delete Event</a></button>
                                 </div>
 
-                                <div class="button navbar-right">
+                                <div class="button navbar-left">
                                     <button class="navbar-btn nav-button login"> <a href ="'.site_url("/event/CEvent/editEvent/$e->event_id").'">Edit Event </a></button>
                                 </div>';
                             }
@@ -272,54 +272,45 @@ foreach($going as $g){
                                 </div>
                             </div>
 
-                            <div class="panel panel-default sidebar-menu similar-property-wdg wow fadeInRight animated">
-                                <div class="panel-heading">
-                                    <h3 class="panel-title">Ticket Prices</h3>
+                            <div class="panel panel-default sidebar-menu similar-property-wdg wow fadeInRight animated" >
+                                <!-- <h2 class="property-info-label">CARD LOAD : 
+                                    <strong><span class="property-info-value">
+                                        <?php echo $u->load_amt; ?>
+                                    </span></strong>
+                                </h2>
+ -->                                
+                                <div class="panel-heading" >
+                                    <h3 class="panel-title">CARD LOAD : 
+                                        <strong><span class="property-info-value">
+                                           P <?php echo $u->load_amt; ?>
+                                        </span></strong>
+                                    </h3>
                                 </div>
-                                <div class="panel-body recent-property-widget">
-                                    <ul>
-                                    <h2>Card Load: <span><?php echo $u->load_amt; ?></span></h2>
-                                    <input  id="cLoad" hidden value="<?php echo $u->load_amt; ?>">
+                                <br>
+                                <div class="panel-heading" >
+                                    <h3 class="panel-title">TICKET PRICES</h3>
+                                </div>
+                                <div class="panel-body recent-property-widget" >
+                                    
                                         <?php foreach ($types as $t) { ?>
-                                        <li>
-                                            <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                <a href="single.html"><img src="assets/img/demo/small-property-2.jpg"></a>
+
+                                            <div class="col-md-10 col-sm-10 col-xs-10 blg-entry" >
+                                                <h4><?php echo  $t->ticket_name." : ".$t->ticket_count." left";?></h4>
+                                                <h3><span class="property-price"><?php echo "P"." ".$t->price.".00";?></span></h3>
+                                                    <?php if($e->event_status == "Approved"){
+                                                        $now = new DateTime("now");
+                                                        $end = new DateTime($e->event_date_end);
+                                                        if(!$bought && $now <= $end){ ?>
+                                                            <button class="navbar-btn nav-button wow bounceInRight login myBtn" data-id='<?php echo  $t->ticket_type_id;?>'>Buy Tickets</button>
+                                                        <?php } ?>
+                                                    <?php }?>
                                             </div>
-                                            <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                <h4> <?php echo  $t->ticket_name;?> </h4>
-                                                <span class="property-price"><?php echo "P"." ".$t->price.".00";?></span>
-                                                 <?php if($e->event_status == "Approved"){?>
-                                                 <!-- <span>&nbsp; &nbsp; &nbsp;
-                                                 <form method="post" action="<?php echo site_url();?>/event/CEvent/buyTicket">
-                                                     <input type="text" name="eId" value="<?php echo $e->event_id;?>">
-                                                     <input type="text" name="tId" value="<?php echo $t->ticket_type_id;?>">
 
-                                                 </form> -->
-
-                                                 <?php if(!$bought){?>
-                                                   <a href="<?php echo site_url();?>/event/CEvent/buyTicket/<?php echo $t->ticket_type_id;?>/<?php echo $e->event_id;?>"><input hidden class="val" value="<?php echo $t->price;?>">
-                                                <button   class="buy navbar-btn nav-button wow bounceInRight login animated" >Buy</button></a>
-                                                <?php }?>
-
-                                                </span>                                            <?php }?>
-                                                <!--<span>&nbsp;&nbsp;&nbsp; Sold:
-                                                 <?php $ts->cnt?>
-                                                </span> -->
-                                                <!-- <script>
-   $(document).on('click', 'button.buy', function () {
-        alert("asdasdasd");
-        var val =$("this").closest('input.val').getVal();
-        var cVal = $(document).closest('.cVal').getVal();
-        alert("ASDASDAsd");
-    });
-</script> -->
-                                            </div>
-                                        </li>
                                         <?php } ?>
-
-                                    </ul>
                                 </div>
+                                
                             </div>
+                          </div>
                             <!-- <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
                                 <div class="panel-heading">
                                 <h3 class="panel-title">Search</h3>
