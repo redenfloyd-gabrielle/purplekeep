@@ -227,11 +227,21 @@
 
                                                                 echo '<h3 class="text-center"><a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"> ';
 
+                                                                if(isset($event->prefId)){
+                                                                //echo "<a href='".site_url()."/event/cEvent/interestedRemove/".$user_event_preference_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
+                                                                    echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
+                                                                }else{
+                                                                //echo "<a href='".site_url()."/event/cEvent/interested/".$e->event_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
+                                                                    echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
+                                                                }
+                                                                
+                                                                echo "<center>";
                                                                 if(strlen($event->event_name)>=42){
                                                                     echo substr($event->event_name,0,39)."...";
                                                                 }else{
                                                                     echo $event->event_name;
                                                                 }
+                                                                echo "</center>";
                                                 
                                                                 echo '</a></h3>';
 
