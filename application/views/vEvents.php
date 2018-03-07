@@ -556,13 +556,13 @@
                                         </tr>
                                     <?php } ?>
                                 <?php
-                                    foreach ($res as $r) {
+                                    /*foreach ($res as $r) {
                                             echo  '<tr>';
-                                                    echo '<td>'.$r->dateSold.'</td>';
-                                                    echo '<td>'.$r->ticket_type_id.'</td>';
+                                                    //echo '<td>'.$r->dateSold.'</td>';
+                                                    //echo '<td>'.$r->ticket_type_id.'</td>';
                                             echo '</tr>';
                                     }
-                                ?>
+                                */?>
                             </tbody>
                         </table>
                     </div>
