@@ -26,11 +26,11 @@
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a>
+                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="fa fa-sign-out navbar-btn nav-button wow bounceInRight login"><!-- Logout --></button></a>
                     </div>
 
                     <div class="button navbar-right">
-                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a>
+                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="fa fa-calendar-plus-o navbar-btn nav-button wow bounceInRight login"><!-- Create Event --></button></a>
                     </div>
 
 
@@ -46,11 +46,11 @@
         </nav>
         <!-- End of nav bar -->
 
-        <div class="page-head"> 
+        <div class="page-head">
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">View Cart</h1>               
+                        <h1 class="page-title">View Cart</h1>
                     </div>
                 </div>
             </div>
@@ -62,14 +62,14 @@
              <div class="row">
                 <div class="col-md-12 ">
                     <div id="list-type" class="proerty-th">
-                       
+
                     </div>
                 </div>
              </div><!-- END OF ROW-->
          </div>
       </div>
      <!--- END OF CONTENT AREA-->
-      
+
         <!-- Footer area-->
         <div class="footer-area">
 
@@ -120,4 +120,3 @@
             </div>
 
         </div>
-

@@ -47,11 +47,11 @@
         </nav>
         <!-- End of nav bar -->
 
-        <div class="page-head"> 
+        <div class="page-head">
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">View Cart</h1>               
+                        <h1 class="page-title">View Cart</h1>
                     </div>
                 </div>
             </div>
@@ -63,10 +63,10 @@
          <div class="container">
              <div class="row">
                 <div class="col-md-12 ">
-                  
+
 
                 <div class="col-md-3 p0 padding-top-40">
-                      
+
                 </div>
 
 
@@ -130,7 +130,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
 
 
@@ -171,18 +171,18 @@
                               <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
                               <div id="errLabel"></div>
                           </div>
-                    
+
                       <?php if ($this->session->flashdata('success_msg')): ?>
                           <div class="alert alert-success">
                               <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
                               <?php echo $this->session->flashdata('success_msg'); ?>
                           </div>
-                      <?php endif ?> 
+                      <?php endif ?>
                     </div>
 
                     <div class="col-md-9" style="padding:1%; margin-top: 3%; border-color:  #ecf1f2; border-style: solid; border-width: 1px;">
                       <div id="list-type" class="proerty-th">
-                      <?php 
+                      <?php
                           $attr = array('class' => 'form_horizontal',
                             'id' => 'myform');
                             echo form_open(site_url()."/finance/CCart/checkout", $attr); ?>
@@ -197,10 +197,10 @@
                                             <strong>Event Name :  <?php echo $event[0]->event_name;?></strong>
                                           </span>
                                       </div>
-                                      <div class="panel-body">                                                      
-                                      
+                                      <div class="panel-body">
+
                                      <?php
-                                     foreach ($event as $cart) {                     
+                                     foreach ($event as $cart) {
                                      ?>
                                         <div class="panel panel-default" style="margin-left:3%;">
                                         <input type="hidden" class="cartID" value="<?php echo $cart->cart_id;?>" >
@@ -208,8 +208,8 @@
 
                                                 <input type="checkbox" name="ticket[]" value="<?php echo $cart->cart_id;?>" class="<?php echo 'tix'.key($events);?> indi" id="<?php echo $cart->ticket_type_id;?>" checked="checked">
                                                 <span> Ticket Name:<strong><?php echo $cart->ticket_name;?></strong></span>
-                                                
-                                                <span class="pull-right h5">Total Price:<span id="label<?php echo $cart->cart_id;?>"><b><?php echo $cart->total_price;?></b></span></span>                       
+
+                                                <span class="pull-right h5">Total Price:<span id="label<?php echo $cart->cart_id;?>"><b><?php echo $cart->total_price;?></b></span></span>
                                           </div>
                                          <div class="panel-body">
                                             <table class="table table-sm table-borderless">
@@ -227,17 +227,17 @@
                                                           </div>
                                                       </form>
                                                     </td>
-                                                    <td> 
+                                                    <td>
                                                       <form  method="POST" action="<?php echo site_url(); ?>/finance/CCart/deleteCartItem">
                                                         <input name="id" class="hidden" value="<?php echo $cart->cart_id;?>">
                                                         <button type="submit" class="button btn btn-default pull-right">
                                                           <i class="glyphicon glyphicon-trash delete"></i>
                                                         </button>
                                                       </form>
-                                                    </td>     
+                                                    </td>
                                                   </tr>
                                                 </tbody>
-                                              </table>                                           
+                                              </table>
                                          </div>
                                        </div>
                                      <?php
@@ -258,14 +258,14 @@
                     </div>
                     </div>
                   </div>
-                    
+
                 </div>
              </div><!-- END OF ROW-->
-            
+
          </div>
-        
+
      <!--- END OF CONTENT AREA-->
-      
+
         <!-- Footer area-->
         <div class="footer-area">
             <div class=" footer">
@@ -357,60 +357,60 @@
                           // alert("Load Balance Insufficient");
                         }
                       }
-                    
+
                  });
-                 
+
                 return false;
       });
-      
+
     $(document).ready(function() {
       var id = "";
       $.ajax({
         url: $("#form01").attr('action'),
         method:"POST",
-        success: function(retval){ 
+        success: function(retval){
                   var arr = JSON.parse(retval);
                   for (var i = 0; i < arr.length; i++) {
                     if ($("#"+arr[i]['ticket_id']).attr("checked") == "checked") {
                       id = id+"/"+arr[i]['ticket_id'];
                     }
                   }
-                  $("#i01").val(id); 
+                  $("#i01").val(id);
                   console.log(id);
                 },
         error: function(){
                 alert("error!");
               }
       });
-      
+
 
       $('input.indi').on('ifChecked', function (event){
-          $(this).closest("input").attr('checked', true);          
+          $(this).closest("input").attr('checked', true);
           var id = $(this).closest("input").attr('id');
           // $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").addClass("checked");
           // $(document).find(".tix"+id).attr("checked",true);
 
           var classList = $(this).attr('class').split(/\s+/);
           var temp = classList[0].replace('tix','');
-        
+
 
           var cnt =0;
           var cnt1 =0;
           $.each($(document).find(".tix"+temp),function(index1,item1){
-            
+
                 if(item1.checked){
                   cnt1+=1;
                 }else{
-                  console.log(item1);      
+                  console.log(item1);
                 }
                 cnt+=1;
               });
           if(cnt1 == cnt){
             $(document).find("input#"+temp).iCheck('check');
           }
-          
+
             addId($(this).attr('id'));
-          
+
       });
       $('input.indi').on('ifUnchecked', function (event) {
           $(this).closest("input").attr('checked', false);
@@ -429,14 +429,14 @@
           removeId($(this).attr('id'));
       });
       $('input.evt').on('ifChecked', function (event){
-          $(this).closest("input").attr('checked', true);          
+          $(this).closest("input").attr('checked', true);
           var id = $(this).closest("input").attr('id');
           $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").addClass("checked");
           $(document).find(".tix"+id).attr("checked",true);
 
           var id = $(this).attr('id');
-          
-          
+
+
           // $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").addClass("checked");
           $(document).find(".tix"+id).iCheck('check');
 
@@ -445,14 +445,14 @@
           // });
       });
       $('input.evt').on('ifUnchecked', function (event) {
-          $(this).closest("input").attr('checked', true);          
+          $(this).closest("input").attr('checked', true);
           var id = $(this).closest("input").attr('id');
           $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").removeClass("checked");
           $(document).find(".tix"+id).attr("checked",false);
 
           var id = $(this).attr('id');
-          
-          
+
+
           // $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").removeClass("checked");
           // $(document).find(".tix"+id).attr("checked",false);
           $(document).find(".tix"+id).iCheck('uncheck');
@@ -520,7 +520,7 @@
 
           updateTotal("plus", $(this).closest("tr").find("th.closest").html());
         }
-        
+
       });
 
       //check if more than limit
@@ -586,6 +586,6 @@
       }
 
     } );
-    
-   
+
+
 </script>
