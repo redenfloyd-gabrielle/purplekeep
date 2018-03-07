@@ -36,7 +36,7 @@
 
 			return $query->result_array();
 		}
-	
+
 		public function getEvent_id(){
 			return $this->event_id;
 		}
@@ -148,11 +148,13 @@
 
 		public function updateEvent($event_id,$data){
 			$this->db->trans_begin();
-			$this->update($event_id,$data);
+			$this->db->update($event_id,$data);
 			if ($this->db->trans_status() === FALSE){
         		$this->db->trans_rollback();
 			}else{
         		$this->db->trans_commit();
+				$this->load->model('MTicketType','ticket');
+				$this->ticket->updateTicketInfo($event_id,$ticketdata);
 			}
 		}
 

@@ -48,8 +48,6 @@
         <div class="tools-bar">
             <ul class="nav navbar-nav nav-main-xs">
                 <li><a href="#" class="icon-toolsbar nav-mini"><i class="fa fa-bars"></i></a></li>
-
-                <!-- <li><button class="btn btn-circle btn-header-search" ><i class="fa fa-search"></i></button></li> -->
             </ul>
 
 
@@ -119,7 +117,7 @@
 
             <li><a href="<?php echo site_url();?>/admin/CAdmin/viewAnnouncements"><i class="icon  fa fa-bullhorn"></i>  Announcements </a></li>
 
-            <li><a href="<?php echo site_url();?>/admin/CAdmin/viewFinance"><i class="icon  fa fa-money"></i> Finance </a></li>
+            <!--<li><a href="<?//php echo site_url();?>/admin/CAdmin/viewFinance"><i class="icon  fa fa-money"></i> Finances </a></li>-->
 
             <li><a href ="<?php echo site_url();?>/admin/CAdmin/generateCard" data-wow-delay="0.1s"><i class="icon  fa fa-credit-card"></i> Cards </a></li>
 
