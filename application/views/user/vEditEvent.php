@@ -37,7 +37,7 @@
                             <li class="wow fadeInDown" data-wow-delay="0.1s" title="View Cart"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><span class="fas fa-shopping-cart fa-lg"></span></a></li>
 
                         </ul></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href ="#" >Profile</a></li> -->
+                       
                     </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->

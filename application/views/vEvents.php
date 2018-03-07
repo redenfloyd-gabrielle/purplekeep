@@ -466,7 +466,7 @@
                         <table class="table table-hover table-striped">
                             <thead>
                                 <tr>
-                                    <th>Event Name</th>
+                                    <th>ID</th>
                                     <th>Amount</th>
                                     <th>Date paid</th>
                                     <th>Action</th>
@@ -476,7 +476,7 @@
                                 <?php
                                     foreach ($checkout as $c) { ?>
                                         <tr>
-                                            <td><?php echo $c->event_name?></td>
+                                            <td><?php echo $c->checkId?></td>
                                             <td><?php echo $c->checkTotal?></td>
                                             <td><?php echo $c->checkCreatedOn?></td>
                                             <td>
@@ -655,7 +655,6 @@
                 </div>
                 <div class="text-center">
                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal"><!-- <a href="<?php echo site_url();?>/CEvent/updateProfile"> -->Edit Profile</button>
-                    
                 </div>
 
 

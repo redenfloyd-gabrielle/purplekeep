@@ -74,7 +74,6 @@
 		public function updateUser(){
 			$this->db->where('account_id',$this->account_id);
 			return $this->db->update('user_account', $this); 
-
 		}
 
 		

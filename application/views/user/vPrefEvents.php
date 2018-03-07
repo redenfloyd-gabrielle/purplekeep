@@ -64,7 +64,6 @@
                         <?php
                             $cnt = 0;
                             if(isset($events) && count($events)>0){
-                                // var_dump($events);
                                  foreach ($events as $event) {
                                     date_default_timezone_set('Asia/Manila');
                                     $now = new DateTime("now");

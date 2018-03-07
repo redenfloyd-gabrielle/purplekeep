@@ -185,7 +185,7 @@
                 <div class="col-md-12 ">
                     <div id="list-type" class="proerty-th">
                         <?php
-                            $cnt =0;
+                        $cnt =0;
                             if(isset($events)){
                                  foreach ($events as $event) {
                                     date_default_timezone_set('Asia/Manila');
@@ -209,8 +209,6 @@
                                                                     }
                                                                 }
 
-                                                                echo '<a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'" style="background-color:#CB6C52;"><h3 class="text-center"> ';
-
                                                                 if(isset($event->prefId)){
                                                                 //echo "<a href='".site_url()."/event/cEvent/interestedRemove/".$user_event_preference_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
                                                                     echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
@@ -218,7 +216,8 @@
                                                                 //echo "<a href='".site_url()."/event/cEvent/interested/".$e->event_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
                                                                     echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
                                                                 }
-                                                                
+
+                                                                echo '<a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'" style="background-color:#CB6C52;"><h3 class="text-center"> ';                                                               
                                                                 echo "<center>";
                                                                 if(strlen($event->event_name)>=42){
                                                                     echo substr($event->event_name,0,39)."...";
@@ -256,17 +255,15 @@
                                                         echo '<div class="item-entry overflow" >';
                                                                 echo '<div class="corner-ribbon top-right sticky red">Happening now!</div>';
 
-
-                                                                echo '<a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'" ><h3 class="text-center"> ';
-
-
-                                                                if(isset($event->prefId)){
+                                                                 if(isset($event->prefId)){
                                                                 //echo "<a href='".site_url()."/event/cEvent/interestedRemove/".$user_event_preference_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
                                                                     echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
                                                                 }else{
                                                                 //echo "<a href='".site_url()."/event/cEvent/interested/".$e->event_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
                                                                     echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
                                                                 }
+
+                                                                echo '<a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'" ><h3 class="text-center"> ';
                                                                 
                                                                 echo "<center>";
                                                                 if(strlen($event->event_name)>=42){
@@ -297,7 +294,7 @@
                                 }
                             }
                             if($cnt==0) {
-                                echo "<h2> No approved events as of the moment.</h2>";
+                                echo $msg;
                             }
                         ?>
                         <script type="text/javascript">
