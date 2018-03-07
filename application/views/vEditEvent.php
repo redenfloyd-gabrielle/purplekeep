@@ -58,7 +58,7 @@
                         <input type="text"  value="<?php if(!empty($start)){
                             echo $start;
                         }else{
-                            echo "";
+                            echo "fdmnkdaf";
                         }; 
                         ?>" name="dateStart" id="datetimepicker1" required="">
                     </div>

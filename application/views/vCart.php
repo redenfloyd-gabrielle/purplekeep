@@ -413,6 +413,7 @@
           
       });
       $('input.indi').on('ifUnchecked', function (event) {
+        alert("hey");
           $(this).closest("input").attr('checked', false);
           var id = $(this).closest("input").attr('id');
           // $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").removeClass("checked");

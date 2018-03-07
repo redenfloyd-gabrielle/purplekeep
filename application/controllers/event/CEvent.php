@@ -954,7 +954,7 @@ class CEvent extends CI_Controller {
 			$v['ev'] = $this->MUser->getEventDetails($id)->row();
 			$v['ti'] = $this->MUser->getTicketDetails($id)->result();
 
-			$this->load->view('imports/vHeaderSignUpPage');
+			$this->load->view('imports/vHeaderLandingPage');
 			$this->load->view('user/vEditEvent', $v);
 			$this->load->view('imports/vFooterLandingPage');
 		}
