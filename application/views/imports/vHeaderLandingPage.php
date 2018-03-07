@@ -3,12 +3,8 @@
 <html class="no-js">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<<<<<<< HEAD
-    <title>DailyEvents | <?php echo isset($page_title) ? $page_title : 'Home Page' ; ?></title>
-=======
     <title>Event System</title>
->>>>>>> 9c687a6e766e187932ef12757b1e1187872a9a32
+
     <link rel="icon" href="<?php echo base_url('assets/dianeAssets/img/DE Icon.png')?>">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
