@@ -214,8 +214,8 @@ class CEvent extends CI_Controller {
 		$this->data['custom_js']= '<script type="text/javascript">
                               	$("#user").addClass("active");
                         </script>';
-
-  		$this->load->view('imports/vHeaderSignUpPage');
+        $data['page_title'] = "Create Event Page";
+  		$this->load->view('imports/vHeaderSignUpPage',$data);
 		$this->load->view('vNewEvent',$data);
 		$this->load->view('imports/vFooterLandingPage');
 
@@ -331,8 +331,13 @@ class CEvent extends CI_Controller {
 			$data['ppage'] = 1;
 			$data['npage'] = 1;
     		$data['pages'] = $num;
+<<<<<<< HEAD
+        	$data['page_title'] = "Profile Page";
+		$this->load->view('imports/vHeaderLandingPage',$data);
+=======
 
 		$this->load->view('imports/vHeaderLandingPage');
+>>>>>>> 9c687a6e766e187932ef12757b1e1187872a9a32
 		$this->load->view('vEvents',$data);
 		$this->load->view('imports/vFooterLandingPage');
 	}
@@ -477,6 +482,11 @@ class CEvent extends CI_Controller {
 				}else{
 					$data['interested']	= FALSE;
 				}
+<<<<<<< HEAD
+				$data['page_title'] = "Event Details Page";
+
+				$this->load->view('imports/vHeaderLandingPage',$data);
+=======
 
 				$data['announcements'] = $this->MAnnouncement->getUnviewedOfUser($this->session->userdata['userSession']->userID);
 				$data['announcementCount'] = count($data['announcements']);
@@ -511,6 +521,7 @@ class CEvent extends CI_Controller {
 					$data['announcements'] = $array1;
 
 				$this->load->view('imports/vHeaderLandingPage');
+>>>>>>> 9c687a6e766e187932ef12757b1e1187872a9a32
 				$this->load->view('vEventDetails',$data);
 				$this->load->view('imports/vFooterLandingPage');
 
@@ -954,7 +965,9 @@ class CEvent extends CI_Controller {
 			$v['ev'] = $this->MUser->getEventDetails($id)->row();
 			$v['ti'] = $this->MUser->getTicketDetails($id)->result();
 
-			$this->load->view('imports/vHeaderSignUpPage');
+			$data['page_title'] = "Edit Event Page";
+
+			$this->load->view('imports/vHeaderSignUpPage',$data);
 			$this->load->view('user/vEditEvent', $v);
 			$this->load->view('imports/vFooterLandingPage');
 		}
@@ -1080,7 +1093,8 @@ class CEvent extends CI_Controller {
                               });
 
                         </script>';
-			$this->load->view('imports/vHeaderLandingPage');
+            $data['page_title'] = "Interested Event Page";
+			$this->load->view('imports/vHeaderLandingPage' ,$data);
 			$this->load->view('user/vPrefEvents', $data);
 
 			$this->load->view('imports/vFooterLandingPage');

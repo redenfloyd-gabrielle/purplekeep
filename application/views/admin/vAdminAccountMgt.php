@@ -119,9 +119,9 @@
     </div>
 
     <!-- ADD ADMIN MODAL -->
-	<div id="addAdmin" class="modal" tabindex="-1" data-width="550">
+	<div id="addAdmin" class="modal" tabindex="-1" data-width="550" data-backdrop="static" data-keyboard="false">
 		<div class="modal-header bg-inverse bd-inverse-darken">
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
+                <button type="button" data-backdrop="false" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
                 <h1 class="modal-title" align="center">ADD ADMIN</h1>
         </div>
 
@@ -221,7 +221,7 @@
   
               			<div class="modal-footer">
                         <button id="closeEditAccount" type="button" class="btn btn-danger" data-dismiss="modal" >Close</button>
-                        <input id="" class="btn btn-primary" type="submit"  name="action" value="Add">
+                        <input id="addAccountBtn" class="btn btn-primary" type="submit"  name="action" value="Add">
                     </div>
                 </form>
             </div>
@@ -229,7 +229,7 @@
     </div>
     
 
-
+                            
     <!-- UPDATE ACCOUNT MODAL -->
     <div id="updateAccount" class="modal" tabindex="-1" data-width="550">
         <div class="modal-header bg-inverse bd-inverse-darken">
@@ -328,6 +328,24 @@
     </div>
 
 <script>
+  $(".close").click(function(){
+    $("#addAdmin").modal("hide");
+    $("#updateAdmin").modal("hide");
+  });
+
+  $("#addAccountBtn").click((event)=>{
+    let bdate = $("#bdate").val();
+    const current_year = new Date().getFullYear();
+    let admin_bdate = new Date(bdate);
+    let admin_year = admin_bdate.getFullYear();
+
+    if(current_year - admin_year < 18){
+      alert("Admin must be 18 years old and above.");
+      $("form").submit(function(e){
+        e.preventDefault();
+      });
+    }
+  });
 
   $(".BanBtn").click(function() {
     var res = confirm("Are you sure you want to BAN this admin?");
