@@ -80,6 +80,13 @@
             -moz-box-shadow:    1px 1px 3px 3px #ccc;
             -webkit-box-shadow: 1px 1px 3px 3px #ccc;
             box-shadow:         1px 1px 3px 3px #ccc;
+        }
+
+        .badge-notify {
+           background: red;
+           position: relative;
+           top: -15px;
+           left: -5px;
         }        
 
       .checkoutContainer {

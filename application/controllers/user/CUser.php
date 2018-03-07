@@ -134,10 +134,47 @@ class cUser extends CI_Controller {
 		} else {
 			$this->session->set_flashdata('error_msg','Code invalid.');
 			redirect("event/cEvent/viewEvents/1");
-		}
 
-		//$this->load->view('vLogin', $data);
-		//
+		}
+	}
+
+	public function redeemCodeCalendar(){
+
+		$code = $this->input->post('ccode');
+		echo "Code ID: ".$code;
+		$card = $this->MCardLoad->read_where(array('cardCode'=> $code));
+
+		if($card){
+			$card = json_decode(json_encode($card));
+			$u =  $this->MUser->read($this->session->userdata['userSession']->userID);
+			if($card[0]->cardStatus==1){
+				$cardNew = $u[0]->load_amt + $card[0]->cardAmount;
+				$res = $this->MUser->update($this->session->userdata["userSession"]->userID,array('load_amt'=>$cardNew));
+
+				if($res){
+					$code = $card[0]->cardId;
+					$res1 = $this->MCardLoad->update($code, array('cardStatus'=>0,"updatedBy"=>$this->session->userdata["userSession"]->userID));
+
+					// //add to loadhistory
+					// $lh = array (
+					// 	"account_id" => $this->session->userdata["userSession"]->userID,
+					// 	"cardId" => $code
+					// );
+					// $this->MLoadhistory->insert($lh);
+
+					
+					$this->session->set_flashdata('success_msg',"Your wallet has been added P".$card[0]->cardAmount." ammount of load!");
+
+					redirect("calendar/cCalendar");
+				}
+			} else {
+				$this->session->set_flashdata('error_msg','Code already taken.');
+				redirect("calendar/cCalendar");
+			}
+		} else {
+			$this->session->set_flashdata('error_msg','Code invalid.');
+			redirect("calendar/cCalendar");
+		}
 	}
 	
 	public function redeemCodeInCart(){
@@ -157,12 +194,12 @@ class cUser extends CI_Controller {
 					$code = $card[0]->cardId;
 					$res1 = $this->MCardLoad->update($code, array('cardStatus'=>0,"updatedBy"=>$this->session->userdata["userSession"]->userID));
 
-					//add to loadhistory
-					$lh = array (
-						"account_id" => $this->session->userdata["userSession"]->userID,
-						"cardId" => $code
-					);
-					$this->MLoadhistory->insert($lh);
+					// //add to loadhistory
+					// $lh = array (
+					// 	"account_id" => $this->session->userdata["userSession"]->userID,
+					// 	"cardId" => $code
+					// );
+					// $this->MLoadhistory->insert($lh);
 
 					
 					$this->session->set_flashdata('success_msg',"Your wallet has been added P".$card[0]->cardAmount." ammount of load!");
