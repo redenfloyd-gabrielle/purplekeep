@@ -390,15 +390,38 @@
             //         alert(city);
             //     }
             // });
+         
+
+
             function checkLocation(){
               var form = document.forms["createEventForm"];
               var location = form["event_venue"].value;
 
+              var ext = getExtension( form["userfile"].value);
+             
               if(!location.match(/[a-z]/i)){
                 alert("Invalid Input!" + location.length);
                 return false;
               }
+
+              switch (ext.toLowerCase()) {
+                case 'jpg':
+                case 'gif':
+                case 'bmp':
+                case 'png':
+                    //etc
+                alert("Invalid IMAGE!" + location.length);
+
+                    return false;
+              }
+
+               
               return true;
+            }
+
+            function getExtension(filename) {
+                var parts = filename.split('.');
+                return parts[parts.length - 1];
             }
 
         </script>
