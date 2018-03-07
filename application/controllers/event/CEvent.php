@@ -635,7 +635,18 @@ class CEvent extends CI_Controller {
 			// $this->load->model('events/MEvent','event');
 			$flag = true;
 
-			$event = new mEvent();
+			$rules = "strip_tags|trim|xss_clean";
+			$this->form_validation->set_rules('event_venue', 'Event Location',$rules.'|required|min_length[2]|max_length[50]');
+			$this->form_validation->set_rules('event_name','Event Title',$rules.'|required|min_length[5]|max_length[50]');
+			$this->form_validation->set_rules('region_code', 'Region',$rules.'|required');
+			$this->form_validation->set_rules('municipal-name', 'Municipal',$rules.'|required');
+			$this->form_validation->set_rules('dateStart', 'Start Date',$rules.'|required');
+			$this->form_validation->set_rules('dateEnd', 'End Date',$rules.'|required');
+			$this->form_validation->set_rules('event_category', 'event_category',$rules.'|required');
+			$this->form_validation->set_rules('event_details', 'Event Details',$rules.'|required|min_length[5]|max_length[50]');
+
+			if($this->form_validation->run() != FALSE){
+				$event = new mEvent();
 			$data['event_date_start'] = $this->input->post('dateStart');
 			$data['event_date_end'] = $this->input->post('dateEnd');
 			$date3 = new DateTime('now');
@@ -654,6 +665,7 @@ class CEvent extends CI_Controller {
 			$d = explode ("/", $date2[0]);
 			$ts = strtotime($d[2]."-".$d[0]."-".$d[1]." ".$date2[1].":00 ".$date2[2]);
 			$data['event_date_end'] = mdate("%Y-%m-%d %H:%i:%s", $ts);
+
 
 			if($data['event_date_start'] < $date3 && $data['event_date_end'] < $date3){
 				redirect('event/CEvent/viewCreateEvent');
@@ -754,6 +766,8 @@ class CEvent extends CI_Controller {
 				$this->session->set_flashdata('success_msg',"Event is successfully created!");
 				redirect("event/cEvent/viewEvents/1");
 			}
+			}
+			
 		  
 		}
 
