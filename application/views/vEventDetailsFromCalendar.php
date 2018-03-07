@@ -16,9 +16,6 @@ foreach($going as $g){
 }
 // if($isset($tixStat)){foreach ( as $ts) { }}
     }?>
-<<<<<<< HEAD
-    <body>
-=======
     <head>
 <style>
 /*Gallery */
@@ -89,7 +86,7 @@ div.desc {
 </style>
 </head>
     <body> 
->>>>>>> 0cabc1365a2d2169dff4655ea8e97ca2052fa94e
+
 
        <!-- <div id="preloader">
             <div id="status">&nbsp;</div>
@@ -111,31 +108,17 @@ div.desc {
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-<<<<<<< HEAD
-                        <button class="navbar-btn nav-button wow bounceInRight login"> <a class="fa fa-sign-out" href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><!--Logout--></a></button>
-=======
                         <!-- <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a> -->
                         <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login" title="Logout"><span class="fas fa-sign-out-alt fa-lg"></span></button></a>
->>>>>>> 0cabc1365a2d2169dff4655ea8e97ca2052fa94e
                     </div>
                     <div class="button navbar-right">
-<<<<<<< HEAD
-                        <button class="navbar-btn nav-button wow bounceInRight login"> <a class="fa fa-calendar-plus-o" href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><!--Create Event --></a></button>
-=======
                         <!-- <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a> -->
                         <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login" title="Create Event"><span class="fas fa-calendar-plus fa-lg"></span></button></a>
->>>>>>> 0cabc1365a2d2169dff4655ea8e97ca2052fa94e
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
-<<<<<<< HEAD
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-home" href="<?php echo site_url();?>/CLogin/viewDashBoard"><!--Home--></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents/1"><span class="fas fa-user fa-lg"></span></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><span class="fas fa-bell fa-lg"><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
-=======
-                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Home"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><span class="fas fa-home fa-lg"></span></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents/1"><span class="fas fa-user fa-lg"></span></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><span class="fas fa-bell fa-lg"></a></li>
->>>>>>> 0cabc1365a2d2169dff4655ea8e97ca2052fa94e
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><span class="fas fa-bell fa-lg"><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Interested Events"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><span class="fas fa-star fa-lg"></span></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="View Cart"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><span class="fas fa-shopping-cart fa-lg"></span></a></li>
                     </ul>
@@ -280,9 +263,6 @@ div.desc {
                                 </span>
 
                             </div>
-<<<<<<< HEAD
-
-
                             <!-- .property-meta -->
 
                             <div class="section">
@@ -296,8 +276,6 @@ div.desc {
                             <div class="section additional-details">
 
                                 <h4 class="s-property-title">Additional Details</h4>
-=======
->>>>>>> 0cabc1365a2d2169dff4655ea8e97ca2052fa94e
 
                             <!-- .property-meta -->
 
@@ -323,7 +301,7 @@ div.desc {
                             </div>
                         <?php }?>
                             <!-- End video area  -->
-<<<<<<< HEAD
+
                             <?php foreach($events as $x){ if($id == $x->user_id && $color != "#808080"){
 
                             if($x->event_status == "Approved"){
@@ -336,8 +314,6 @@ div.desc {
                                 <div class="button navbar-right">
                                     <button class="navbar-btn nav-button login" style="background-color:gray;" id="confirmdelete"><a>Delete Event</a></button>
                                 </div>
-=======
->>>>>>> 0cabc1365a2d2169dff4655ea8e97ca2052fa94e
 
                               <?php foreach($events as $x){ if($id == $x->user_id && $color != "#808080"){
 
