@@ -615,9 +615,11 @@ class CEvent extends CI_Controller {
 					  'ticket_type_id' => $tId
 	 				  );
 					$res = $this->MTicket->insert($data);
+				    $cnt = array('ticket_count' =>$res1[0]->ticket_count-1);
+				    $where = array('ticket_type_id' => $tId);
+					$asd = $this->MTicketType->update1($where, $cnt);
 
-					$asd = $this->MTicketType->updTicketCnt($tId, $res1[0]->ticket_count-1);
-					$result = $this->MUser->update1(array("account_id"=>$this->session->userdata['userSession']->userID),array("load_amt"=>$result));
+          $result = $this->MUser->update1(array("account_id"=>$this->session->userdata['userSession']->userID),array("load_amt"=>$result));
 					// $this->success = "Bought ticket for ".$res1[0]->price;
 					// $this->displayEventDetails($eid);
 
@@ -632,69 +634,73 @@ class CEvent extends CI_Controller {
 			}
 		}
 		public function createEvent(){
-			// $this->load->model('events/MEvent','event');
+			if(empty($this->input->post('event_name'))){
+				redirect("event/CEvent/viewCreateEvent");
+			}
+
 			$flag = true;
 
-			$event = new mEvent();
-			$data['event_date_start'] = $this->input->post('dateStart');
-			$data['event_date_end'] = $this->input->post('dateEnd');
-			$date3 = new DateTime('now');
+			$rules = "strip_tags|trim|xss_clean";
+			$this->form_validation->set_rules('event_venue', 'Event Location',$rules.'|required|min_length[2]|max_length[50]');
+			$this->form_validation->set_rules('event_name','Event Title',$rules.'|required|min_length[5]|max_length[50]');
+			$this->form_validation->set_rules('region_code', 'Region',$rules.'|required');
+			$this->form_validation->set_rules('municipal-name', 'Municipal',$rules.'|required');
+			$this->form_validation->set_rules('dateStart', 'Start Date',$rules.'|required');
+			$this->form_validation->set_rules('dateEnd', 'End Date',$rules.'|required');
+			$this->form_validation->set_rules('event_category', 'event_category',$rules.'|required');
+			$this->form_validation->set_rules('event_details', 'Event Details',$rules.'|required|min_length[5]|max_length[50]');
 
-			$date2=explode(" ", $data3);
-			$d = explode ("/", $date2[0]);
-			$ts = strtotime($d[2]."-".$d[0]."-".$d[1]." ".$date2[1].":00 ".$date2[2]);
-			$date3 = mdate("%Y-%m-%d %H:%i:%s", $ts);
+			if($this->form_validation->run() != FALSE){
+				$event = new mEvent();
+				$data['event_date_start'] = $this->input->post('dateStart');
+				$data['event_date_end'] = $this->input->post('dateEnd');
+				$date3 = new DateTime('now');
 
-			$date2=explode(" ", $data['event_date_start']);
-			$d = explode ("/", $date2[0]);
-			$ts = strtotime($d[2]."-".$d[0]."-".$d[1]." ".$date2[1].":00 ".$date2[2]);
-			$data['event_date_start'] = mdate("%Y-%m-%d %H:%i:%s", $ts);
+				$date2=explode(" ", $data3);
+				$d = explode ("/", $date2[0]);
+				$ts = strtotime($d[2]."-".$d[0]."-".$d[1]." ".$date2[1].":00 ".$date2[2]);
+				$date3 = mdate("%Y-%m-%d %H:%i:%s", $ts);
 
-			$date2=explode(" ", $data['event_date_end']);
-			$d = explode ("/", $date2[0]);
-			$ts = strtotime($d[2]."-".$d[0]."-".$d[1]." ".$date2[1].":00 ".$date2[2]);
-			$data['event_date_end'] = mdate("%Y-%m-%d %H:%i:%s", $ts);
+				$date2=explode(" ", $data['event_date_start']);
+				$d = explode ("/", $date2[0]);
+				$ts = strtotime($d[2]."-".$d[0]."-".$d[1]." ".$date2[1].":00 ".$date2[2]);
+				$data['event_date_start'] = mdate("%Y-%m-%d %H:%i:%s", $ts);
 
-			if($data['event_date_start'] < $date3 && $data['event_date_end'] < $date3){
-				redirect('event/CEvent/viewCreateEvent');
-			}if($data['event_date_start'] > $data['event_date_end'] || $data['event_date_start'] == $data['event_date_end']){
-				redirect('event/CEvent/viewCreateEvent');
-			}else{
-			$data['no_tickets_total'] = 0;
-			$data['event_status'] = 'pending';
-			$data['event_name'] = $this->input->post('event_name');
-			$data['user_id'] = $this->session->userdata['userSession']->userID;
-			$data['event_details'] = $this->input->post('event_details');
-			$data['event_category'] = $this->input->post('event_category');
-			// $data['event_picture'] = null;
-			$data['event_venue'] = $this->input->post('event_venue');
-			$data['addedAt'] = date('Y-m-d H:i:s');
+				$date2=explode(" ", $data['event_date_end']);
+				$d = explode ("/", $date2[0]);
+				$ts = strtotime($d[2]."-".$d[0]."-".$d[1]." ".$date2[1].":00 ".$date2[2]);
+				$data['event_date_end'] = mdate("%Y-%m-%d %H:%i:%s", $ts);
 
 
-			//Added location
-			$data['location_id'] = $this->input->post('municipal-name');
+				if($data['event_date_start'] < $date3 && $data['event_date_end'] < $date3){
+					redirect('event/CEvent/viewCreateEvent');
+				}if($data['event_date_start'] > $data['event_date_end'] || $data['event_date_start'] == $data['event_date_end']){
+					redirect('event/CEvent/viewCreateEvent');
+				}else{
+				$data['no_tickets_total'] = 0;
+				$data['event_status'] = 'pending';
+				$data['event_name'] = $this->input->post('event_name');
+				$data['user_id'] = $this->session->userdata['userSession']->userID;
+				$data['event_details'] = $this->input->post('event_details');
+				$data['event_category'] = $this->input->post('event_category');
+				// $data['event_picture'] = null;
+				$data['event_venue'] = $this->input->post('event_venue');
+				$data['addedAt'] = date('Y-m-d H:i:s');
 
-			$constraint = array('event_venue' => $data['event_venue'], 'location_id' => $data['location_id'], 'event_date_start' => $data['event_date_start'], 'event_date_end' => $data['event_date_end']);
-			$res = $this->MEvent->read_where($constraint);
-			}
-			if(count($res) > 0){
-				$flag = false;
+
+				//Added location
+				$data['location_id'] = $this->input->post('municipal-name');
+
+				$constraint = array('event_venue' => $data['event_venue'], 'location_id' => $data['location_id'], 'event_date_start' => $data['event_date_start'], 'event_date_end' => $data['event_date_end']);
+				$res = $this->MEvent->read_where($constraint);
+				}
+				if(count($res) > 0){
+					$flag = false;
+				}
 			}else{
 				$affectedRows = $this->MEvent->insert($data);
 				$evt_id = $this->MEvent->db->insert_id();
-				// print_r($evt_id);
-
-				/*$photo = $this->MEvent->do_upload_event($evt_id);
-				// $this->MEvent->do_upload_event($evt_id);
-
-				if(!$photo) {
-					$photo = $this->MEvent->insertPhotoEvent("events1.jpg",$evt_id);
-				}*/
-
-				//var_dump($photo);
-
-					// print_r($photo);
-
+				
 				$totalNumTix = 0;
 				$data1['ticket_name'] = $this->input->post('ticketType1');
 				$data1['ticket_count'] = $this->input->post('no_tickets_total1');
@@ -736,25 +742,9 @@ class CEvent extends CI_Controller {
 
 			}
 			if($flag){
-				/*echo'
-					<div id="addAdmin" class="modal fade"  data-header-color="#34495e">
-						<div class="modal-header">
-								<h1 class="modal-title" align="center">Create Event Successful</h1>
-						</div>
-					</div>
-
-				echo'
-					<div id="addAdmin" class="modal fade"  data-header-color="#34495e">
-						<div class="modal-header">
-								<h1 class="modal-title" align="center">Create Event Not Successful</h1>
-						</div>
-					</div>
-				';
-				header( "refresh:1; viewCreateEvent" );*/
 				$this->session->set_flashdata('success_msg',"Event is successfully created!");
 				redirect("event/cEvent/viewEvents/1");
-			}
-
+			}			
 		}
 
 
@@ -959,45 +949,59 @@ class CEvent extends CI_Controller {
 			$this->load->view('user/vEditEvent', $v);
 			$this->load->view('imports/vFooterLandingPage');
 		}
-		public function interested($id)
+		public function interested()
 		{
 			$uid = $this->session->userdata['userSession']->userID;
 			$pref = new MPreference();
-
+			$eid = $this->input->post('eid');
+			//print_r($id);
 			$now = NEW DateTime(NULL, new DateTimeZone('UTC'));
-			$data = array('preference_date' => $now->format('Y-m-d H:i:s'),
+			$constraint = array('event_id' => $eid, 'user_id' => $uid);
+			$res = $pref->read_where($constraint);
+
+			if(null != $res && count($res) > 0){
+				$pid = $res[0]->user_event_preference_id;
+				$pref->delete($pid);
+
+				echo json_encode(false);
+			}else{
+				$data = array('preference_date' => $now->format('Y-m-d H:i:s'),
 						  'user_id' => $uid ,
-						  'event_id' => $id
+						  'event_id' => $eid
 		 				  );
-
-			$result = $pref->insert($data);
-
-			if($result){
-				redirect("event/CEvent/viewPreferenceEvents");
-				// $this->viewPreferenceEvents();
+				$result = $pref->insert($data);
+				echo json_encode(true);
 			}
+			// if($result){
+			// 	//redirect("event/CEvent/viewPreferenceEvents");
+			// 	// $this->viewPreferenceEvents();
 
-			# code...
+			// 	echo 1;
+			// }
+			// //echo $id;
+			// # code...
 		}
-		public function interestedRemove($id)
+		public function interestedRemove()
 		{
-			// $uid = $this->session->userdata['userSession']->userID;
-			// $pref = new MPreference();
+			// // $uid = $this->session->userdata['userSession']->userID;
+			// // $pref = new MPreference();
 
-			// $now = NEW DateTime(NULL, new DateTimeZone('UTC'));
-			// $data = array('preference_date' => $now->format('Y-m-d H:i:s'),
-			// 			  'user_id' => $uid ,
-			// 			  'event_id' => $id
-		 // 				  );
+			// // $now = NEW DateTime(NULL, new DateTimeZone('UTC'));
+			// // $data = array('preference_date' => $now->format('Y-m-d H:i:s'),
+			// // 			  'user_id' => $uid ,
+			// // 			  'event_id' => $id
+		 // // 				  );
+			// $id = $this->input->post('check1');
+			// //print_r($id);
+			// $result = $this->MPreference->delete($id);
 
-			$result = $this->MPreference->delete($id);
-
-			if($result){
-				redirect("event/CEvent/viewPreferenceEvents");
-				// $this->viewPreferenceEvents();
-			}
-
-			# code...
+			// if($result){
+			// 	//redirect("event/CEvent/viewPreferenceEvents");
+			// 	// $this->viewPreferenceEvents();
+			// 	echo 1;
+			// }
+			// //echo $id;
+			// # code...
 		}
 		public function viewPreferenceEvents()
 		{

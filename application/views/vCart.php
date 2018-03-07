@@ -64,14 +64,9 @@
              <div class="row">
                 <div class="col-md-12 ">
 
-
                 <div class="col-md-3 p0 padding-top-40">
 
                 </div>
-
-
-
-
 
 
 
@@ -84,7 +79,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="panel-heading">
-                                                <center><h1 style="font-size: 50px;" class="panel-title">Php <?php foreach($user as $u){echo $u->load_amt;}?>.00</h1></center>
+                                                <center><p style="font-size: 3em;word-wrap: break-word; border-bottom: solid 3px #CB6C52;" class="panel-title">Php <?php foreach($user as $u){echo $u->load_amt;}?>.00</p></center>
                                             </div>
                                         </div>
                                     </div>
@@ -184,6 +179,7 @@
                       <div id="list-type" class="proerty-th">
                       <?php
                           $attr = array('class' => 'form_horizontal',
+
                             'id' => 'myform');
                             echo form_open(site_url()."/finance/CCart/checkout", $attr); ?>
                          <?php if(isset($events) && count($events)>0){
@@ -364,6 +360,7 @@
       });
 
     $(document).ready(function() {
+
       var id = "";
       $.ajax({
         url: $("#form01").attr('action'),
@@ -392,7 +389,6 @@
 
           var classList = $(this).attr('class').split(/\s+/);
           var temp = classList[0].replace('tix','');
-
 
           var cnt =0;
           var cnt1 =0;
@@ -498,7 +494,7 @@
 
       $(".minus").click(function(){
         var input = $(this).closest("div.row").find("input");
-        if(input.val() > 1){
+        if(input.val() > 0){
           var get = input.val();
           get-=1;
           input.val(get);
@@ -569,6 +565,7 @@
                 data: { "id":id,"quantity":quantity },
                 type: "POST",
                 success: function(e){
+
                      $(document).find(".plus").attr("disabled", false);
                      $(document).find(".minus").attr("disabled", false);
                      var arr = e.split('||');
@@ -577,6 +574,10 @@
                      // alert($(document).find("input#"+arr[1]).closest("div.panel").find("div.panel-body").find("table.table").find("div#labelrani").text());
                      // $(document).find("input#"+arr[1]).closest("div.panel").find("div.panel-body").find("label").text();
                      // alert(arr[0]+"-"+arr[1]);
+
+                     if(quantity == 0){
+                       location.reload();
+                     }
                 },
                 error: function(e){
                     // console.log(e);

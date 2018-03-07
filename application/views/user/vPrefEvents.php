@@ -62,9 +62,9 @@
                 <div class="col-md-12 ">
                     <div id="list-type" class="proerty-th">
                         <?php
-                            $cnt =1;
+                            $cnt = 0;
                             if(isset($events) && count($events)>0){
-                                var_dump($events);
+                                // var_dump($events);
                                  foreach ($events as $event) {
                                     date_default_timezone_set('Asia/Manila');
                                     $now = new DateTime("now");
@@ -119,7 +119,7 @@
                                                             </div>
                                                         </div>
                                                     </div>';
-
+                                                    $cnt++;
                                             }else if($now >= $start && $now <= $end){
                                                 echo ' <div class="col-sm-6 col-md-4 p0">';
                                                     echo '<div class="box-two proerty-item">';
@@ -154,13 +154,14 @@
                                                             </div>
                                                         </div>
                                                     </div>';
-                                            }else {
-                echo "<center><h2>There are no events interested in.</h2></center>";
-            }
+                                                    $cnt++;
+                                            }
+
                                 }
-                            }else{
-                echo "<center><h2>There are no events interested in.</h2></center>";
-            }
+                            }
+                            if($cnt==0){
+                                echo "<center><h2>There are no events interested in.</h2></center>";
+                            }
                         ?>
                     </div>
                 </div>
