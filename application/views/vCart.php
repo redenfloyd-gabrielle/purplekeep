@@ -364,6 +364,8 @@
       });
       
     $(document).ready(function() {
+
+
       var id = "";
       $.ajax({
         url: $("#form01").attr('action'),
@@ -514,13 +516,16 @@
         var input = $(this).closest("div.row").find("input");
         var get = parseInt(input.val());
         check($(this).closest("div.panel").find("input.cartID").val());
-        if (get != limit) {
+        console.log("limit "+limit);
+        console.log("get "+get);
+        if (get < limit) {
           get++;
-          input.val(get);
+          
           updateTicketCount("plus",$(this).closest("div.panel").find("input.cartID").val(),get);
 
           updateTotal("plus", $(this).closest("tr").find("th.closest").html());
         }
+        input.val(get);
         
       });
 

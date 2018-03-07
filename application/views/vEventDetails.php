@@ -665,7 +665,7 @@ $(document).ready(function(){
 
     check($("#ticID").val());
 
-    if (get != limit) {
+    if (get < limit) {
       get++;
     }
 
