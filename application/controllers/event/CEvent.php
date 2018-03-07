@@ -673,10 +673,15 @@ class CEvent extends CI_Controller {
 
 
 				if($data['event_date_start'] < $date3 && $data['event_date_end'] < $date3){
-					redirect('event/CEvent/viewCreateEvent');
-				}if($data['event_date_start'] > $data['event_date_end'] || $data['event_date_start'] == $data['event_date_end']){
-					redirect('event/CEvent/viewCreateEvent');
-				}else{
+          $this->session->set_flashdata('error_msg',"Date start and/or date end has already passed");
+          redirect('event/CEvent/viewCreateEvent');
+        }if($data['event_date_start'] > $data['event_date_end']){
+          $this->session->set_flashdata('error_msg',"Inputted date start is greater than inputted date end");
+          redirect('event/CEvent/viewCreateEvent');
+        }if( $data['event_date_start'] == $data['event_date_end']){
+          $this->session->set_flashdata('error_msg',"Inputted dates should not be the same");
+          redirect('event/CEvent/viewCreateEvent');
+        }else{
 				$data['no_tickets_total'] = 0;
 				$data['event_status'] = 'pending';
 				$data['event_name'] = $this->input->post('event_name');
@@ -719,6 +724,7 @@ class CEvent extends CI_Controller {
 						$data1['ticket_name'] = $this->input->post('ticketType2');
 						$data1['ticket_count'] = $this->input->post('no_tickets_total2');
 						$data1['price'] = $this->input->post('price_tickets_total2');
+
 
 						$data1['event_id'] = $evt_id;
 						$totalNumTix += $data1['ticket_count'];
