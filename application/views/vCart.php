@@ -252,7 +252,12 @@
                         </div>
                          <?php
                          }else{?>
-                            <h1>Nothing in your cart. Shop for tickets now!</h1>
+                            <h1 align="center">
+                                <br>Nothing in your cart.<br> 
+                                 <div class="button" style="margin:10px;">
+                                    <a href="<?php echo site_url();?>/CLogin/viewDashBoard" class="navbar-btn nav-button login"><span>Shop for tickets now!</span></a>
+                                  </div>   
+                            </h1>
                          <?php }?>
                        <?php echo form_close(); ?>
                     </div>
