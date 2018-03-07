@@ -15,6 +15,7 @@
         <link rel="stylesheet" href="<?php echo base_url('assets/josephAssets/css/bootstrap.min.css')?>">
         <!-- <link href="<?php echo base_url('assets/nikkiAssets/img/aboutusbackground.png')?>" rel="image_src" /> -->
 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
 
@@ -22,7 +23,7 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
-    
+
         <style>
             a{
                 color:	white;
@@ -34,7 +35,7 @@
                 width: 50%;
                 padding: 10px;
             }
-            span{ 
+            span{
                 padding-left: 3.8em;
                 font-size: 16px;
             }
@@ -43,7 +44,7 @@
             }
             .content{
                 padding: 3em;
-                background-color: rgba(255, 255, 255, 0.5); 
+                background-color: rgba(255, 255, 255, 0.5);
             }
             .dailyEvents{
                 text-align: center;
@@ -138,4 +139,3 @@
         
     </body>
 </html>
-
