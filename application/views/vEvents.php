@@ -143,7 +143,7 @@
                             <br><br>
                         </div>
 
-                        
+
                     </div>
                 </div>
 
@@ -197,7 +197,7 @@
             </div>
         </div>
     </div>
-    
+
     <?php if ($this->session->flashdata('success_msg')): ?>
         <div class="alert alert-success">
               <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -228,7 +228,7 @@
     <?php }else{ ?>
         <li role="presentation" class="tab"><a href="#editprofile" aria-controls="editprofile" role="tab" data-toggle="tab">Edit Profile</a></li>
     <?php } ?>
-    
+
 
   </ul>
 
@@ -239,7 +239,7 @@
     <?php }else{ ?>
         <div role="tabpanel" class="tab-pane" id="home">
     <?php } ?>
-    
+
         <div class="col-md-12 clear">
             <div id="list-type" class="proerty-th">
 
@@ -348,7 +348,7 @@
                             <li><a href = '<?php echo site_url()?>/event/CEvent/viewEvents/<?php if($page != $pages){$ppage = $page+1;} echo $ppage?>'>Next</a></li>
 
                         </ul>
-                     
+
                     </div>
                 </div>
             </div>
@@ -476,7 +476,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php 
+<<<<<<< HEAD
+                                <?php
                                     foreach ($checkout as $c) { ?>
                                         <tr>
                                             <td><?php echo $c->event_name?></td>
@@ -555,6 +556,16 @@
                                             </td>
                                         </tr>
                                     <?php } ?>
+=======
+                                <?php
+                                    foreach ($res as $r) {
+                                            echo  '<tr>';
+                                                    echo '<td>'.$r->dateSold.'</td>';
+                                                    echo '<td>'.$r->ticket_type_id.'</td>';
+                                            echo '</tr>';
+                                    }
+                                ?>
+>>>>>>> 03c362790bb2a6abab3e2bb118feb3f90d851f5e
                             </tbody>
                         </table>
                     </div>
@@ -585,14 +596,14 @@
     </div>
     <?php if ($this->session->flashdata('userDetails')){ ?>
         <div role="tabpanel" class="tab-pane active" id="editprofile">
-    <?php 
+    <?php
             $info = array();
          $info[] = json_decode($this->session->flashdata('userDetails'));
 
 }else{ ?>
             <div role="tabpanel" class="tab-pane" id="editprofile">
     <?php } ?>
-     
+
         <h2>Edit Profile</h2>
         <?php foreach($info as $in){ ?>
             <form  method="POST" action="<?php echo site_url()?>/event/CEvent/updateProfile">
@@ -658,7 +669,7 @@
 
             </div>
         </form>
-        
+
         <?php
             }
         ?>
@@ -669,7 +680,7 @@
 
 
   <script type="text/javascript">
-    
+
     /*
     $(document).ready(function(){
         var wrap = $(this).find('.es-wrap');
@@ -813,12 +824,11 @@
     var yyyy = today.getFullYear();
      if(dd<10){
             dd='0'+dd
-        } 
+        }
         if(mm<10){
             mm='0'+mm
-        } 
+        }
 
     today = yyyy+'-'+mm+'-'+dd;
     document.getElementById("bdate").setAttribute("max", today);
 </script>
-
