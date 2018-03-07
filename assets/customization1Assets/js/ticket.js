@@ -15,7 +15,6 @@ $('document').ready(function(){
 		$('#ticketModal').modal('hide');
 		$('#tixContainer').append("<li class=\"w3-bar\" style=\"border:1px solid #f2f2f2;padding:5px\">" + 
 								  "<span id=\"removeTix\" class=\"w3-bar-item w3-button w3-large w3-right\">&times;</span>" +
-								  "<span id=\"editTix\" class=\"w3-bar-item w3-button w3-large w3-right\">&#x270E;</span>" +
                                   "<div class=\"w3-bar-item\"><span class=\"w3-medium\"><b>Ticket Type</b></span><br>" +
                                   "<span>" + ticket.tType + "</span></div><div class=\"w3-bar-item\">" +
                                   "<span class=\"w3-medium\"><b>No of Tickets</b></span><br><span>" + ticket.total + "</span>" +
