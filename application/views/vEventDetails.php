@@ -291,16 +291,16 @@ div.desc {
 
                                 if($x->event_status == "Approved"){
                                     echo'
-                                    <div class="button navbar-right">
+                                    <div class="button navbar-left">
                                         <button class="navbar-btn nav-button login"> <a href ="'.site_url("/event/cEvent/editEvent/$e->event_id").'">Edit Event </a></button>
                                     </div>';
                                 }else if($x->event_status == "Pending"){
                                     echo'
-                                    <div class="button navbar-right">
+                                    <div class="button navbar-left">
                                         <button class="navbar-btn nav-button login" style="background-color:gray;" id="confirmdelete"><a>Delete Event</a></button>
                                     </div>
 
-                                    <div class="button navbar-right">
+                                    <div class="button navbar-left">
                                         <button class="navbar-btn nav-button login"> <a href ="'.site_url("/event/cEvent/editEvent/$e->event_id").'">Edit Event </a></button>
                                     </div>';
                                 }
@@ -334,10 +334,8 @@ div.desc {
                                     <div class="inner-wrapper" >
 
                                         <div class="clear" >
-                                            <div class="col-xs-4 col-sm-4 dealer-face">
-                                                <a href="">
-                                                    <img src="<?php echo base_url('assets/nikkiAssets/img/client-face1.png" class="img-circle')?>" style ="height:100px; height:200px ">
-                                                </a>
+                                            <div class="col-xs-4 col-sm-4 ">
+                                                <img src="<?php echo base_url('assets/nikkiAssets/img/client-face1.png" class="img-circle')?>" style ="height:100px; height:200px ">
                                             </div>
                                             <div class="col-xs-8 col-sm-8 ">
 
@@ -361,57 +359,41 @@ div.desc {
                             </div>
 
                             <div class="panel panel-default sidebar-menu similar-property-wdg wow fadeInRight animated" >
+                                <!-- <h2 class="property-info-label">CARD LOAD : 
+                                    <strong><span class="property-info-value">
+                                        <?php echo $u->load_amt; ?>
+                                    </span></strong>
+                                </h2>
+ -->                                
                                 <div class="panel-heading" >
-                                    <h3 class="panel-title">Ticket Prices</h3>
+                                    <h3 class="panel-title">CARD LOAD : 
+                                        <strong><span class="property-info-value">
+                                           P <?php echo $u->load_amt; ?>
+                                        </span></strong>
+                                    </h3>
+                                </div>
+                                <br>
+                                <div class="panel-heading" >
+                                    <h3 class="panel-title">TICKET PRICES</h3>
                                 </div>
                                 <div class="panel-body recent-property-widget" >
-                                    <ul>
-                                    <input  id="cLoad" hidden value="<?php echo $u->load_amt; ?>">
+                                    
                                         <?php foreach ($types as $t) { ?>
-                                        <li>
-                                            <div class="col-md-8 col-sm-8 col-xs-8 blg-entry" >
-                                                <h4> <?php echo  $t->ticket_name.": ".$t->ticket_count." left";?>
-
-                                                <br>
-                                                <span class="property-price"><?php echo "P"." ".$t->price.".00";?></span>
-                                                 <?php if($e->event_status == "Approved"){?>
-                                                 <!-- <span>&nbsp; &nbsp; &nbsp;
-                                                 <form method="post" action="<?php echo site_url();?>/event/cEvent/buyTicket">
-                                                     <input type="text" name="eId" value="<?php echo $e->event_id;?>">
-                                                     <input type="text" name="tId" value="<?php echo $t->ticket_type_id;?>">
-
-                                                 </form> -->
-
-                                                 <?php
-                                                $now = new DateTime("now");
-                                                $end = new DateTime($e->event_date_end);
-
-                                                 if(!$bought && $now <= $end){?>
-                                                   <?php if($e->event_status == "Approved"){?>
-                                                    <button class="myBtn" data-id='<?php echo  $t->ticket_type_id;?>'>Buy More Tickets</button></h4>
-                                                   <?php }?>
-                                                   <a href="<?php echo site_url();?>/event/cEvent/buyTicket/<?php echo $t->ticket_type_id;?>/<?php echo $e->event_id;?>"><input hidden class="val" value="<?php echo $t->price;?>">
-                                                <button   class="buy navbar-btn nav-button wow bounceInRight login animated" >Buy</button></a>
-                                                <?php }?>
-
-                                                </span>                                            <?php }?>
-                                                <!--<span>&nbsp;&nbsp;&nbsp; Sold:
-                                                 <?php $ts->cnt?>
-                                                </span> -->
-                                                <!-- <script>
-   $(document).on('click', 'button.buy', function () {
-        alert("asdasdasd");
-        var val =$("this").closest('input.val').getVal();
-        var cVal = $(document).closest('.cVal').getVal();
-        alert("ASDASDAsd");
-    });
-</script> -->
+                                            <div class="col-md-10 col-sm-10 col-xs-10 blg-entry" >
+                                                <h4><?php echo  $t->ticket_name." : ".$t->ticket_count." left";?></h4>
+                                                <h3><span class="property-price"><?php echo "P"." ".$t->price.".00";?></span></h3>
+                                                    <?php if($e->event_status == "Approved"){
+                                                        $now = new DateTime("now");
+                                                        $end = new DateTime($e->event_date_end);
+                                                        if(!$bought && $now <= $end){ ?>
+                                                            <button class="navbar-btn nav-button wow bounceInRight login myBtn" data-id='<?php echo  $t->ticket_type_id;?>'>Buy Tickets</button>
+                                                        <?php } ?>
+                                                    <?php }?>
                                             </div>
-                                        </li>
+
                                         <?php } ?>
-                                    </ul>
                                 </div>
-                                <h1>Card Load: <span><?php echo $u->load_amt; ?></span></h1>
+                                
                             </div>
                           </div>
                             
@@ -606,13 +588,13 @@ div.desc {
             <form method="POST" id="cartForm" action="<?php echo site_url('finance/cCart/addToCart'); ?>">
                 <div class="row">
                     <div class="col-md-4">
-                        <button class="btn" id="unaM" type="button"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                        <button class="btn" id="unaM" type="button" style="float: right;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                     </div>
                     <div class="col-md-4">
                         <input type="text" id="qty1" name="qty1" class="form-control" value="1" aria-label="Quantity">
                     </div>
                     <div class="col-md-4">
-                        <button class="btn" id="unaP" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        <button class="btn" id="unaP" type="button" style="float: left;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                     </div>
                 </div>
 
@@ -620,8 +602,8 @@ div.desc {
                 <input type="hidden" id="ticID" name="ticket" class="form-control col-8" placeholder="Quantity" aria-label="Quantity">
         </div>
         <div class="modal-footer">
-            <button class="btn btn-success" id="addToCart"  type="submit">Add to Cart</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button class="btn btn-success" id="addToCart"  type="submit">Add to Cart</button>
         </form>
         </div>
       </div>
@@ -637,6 +619,9 @@ $(document).ready(function(){
   $(".myBtn").click(function(){
     $("#myModal").modal();
     $("#ticID").val($(this).data('id')) ;
+  });
+  $("#confirmdelete").click(function(){
+    $("#deletemodal").modal("show");
   });
   $("#unaM").click(function(){
     if($('#qty1').val() > 1){

@@ -13,6 +13,7 @@ class cUser extends CI_Controller {
 	  $this->load->model('MNotificationItem');
 	  $this->load->model('MLoadhistory');
 	  $this->load->model('location/MLocation');
+	  $this->load->model('user/MPreference');
       $this->load->library('session');
       $this->load->library('form_validation');
 	  $this->load->helper('security');
@@ -22,6 +23,8 @@ class cUser extends CI_Controller {
 	{
 		$data['users'] = $this->MUser->getAllUsers();
 		$result_data = $this->MEvent->getAllApprovedEvents();
+		$pref = new MPreference();
+		$uid = $this->session->userdata['userSession']->userID;
 		//////////////////////////////////////////////////////////////////////////////
 		//================INTERFACE MODULE - DATA-LAYOUT FILTERING CODE============//
 		/////////////////////////////////////////////////////////////////////////////
@@ -41,6 +44,15 @@ class cUser extends CI_Controller {
 					$arrObj->region_code = $value->region_code;
 					
 					$arrObj->tix = $this->MEvent->getTicketsOfEvent($value->event_id);
+					
+					$res = $pref->checkIfInterestedAlready($this->session->userdata['userSession']->userID,$arrObj->event_id);
+
+					if($res){
+						$arrObj->interested= TRUE;
+						$arrObj->prefId = $res[0]->user_event_preference_id;
+					}else{
+						$arrObj->interested	= FALSE;
+					}
 					$array[] = $arrObj;
 			}
 		}

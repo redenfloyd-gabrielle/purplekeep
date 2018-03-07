@@ -48,6 +48,8 @@ class CEvent extends CI_Controller {
 	{
 		$data['users'] = $this->MUser->getAllUsers();
 		$result_data = $this->MEvent->getSearchEvents($_POST['searchWord'], $_POST['searchDateMonth'], $_POST['searchDateYear'],$_POST['region_code'],$_POST['municipal_name']);
+		$pref = new MPreference();
+		$uid = $this->session->userdata['userSession']->userID;
 		//////////////////////////////////////////////////////////////////////////////
 		//================INTERFACE MODULE - DATA-LAYOUT FILTERING CODE============//
 		/////////////////////////////////////////////////////////////////////////////
@@ -68,6 +70,16 @@ class CEvent extends CI_Controller {
 					$arrObj->location_name =$value->location_name;
 					$arrObj->region_code = $value->region_code;
 					$arrObj->tix = $this->MEvent->getTicketsOfEvent($value->event_id);
+
+					$res = $pref->checkIfInterestedAlready($this->session->userdata['userSession']->userID,$arrObj->event_id);
+
+					if($res){
+						$arrObj->interested= TRUE;
+						$arrObj->prefId = $res[0]->user_event_preference_id;
+					}else{
+						$arrObj->interested	= FALSE;
+					}
+
 					$array[] = $arrObj;
 			}
 		}else{
@@ -116,6 +128,8 @@ class CEvent extends CI_Controller {
                               });
 
                         </script>';
+
+		
 
 		$this->load->view('imports/vHeaderLandingPage');
 

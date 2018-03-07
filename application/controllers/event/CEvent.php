@@ -75,8 +75,8 @@ class CEvent extends CI_Controller {
 									<div class="box-two proerty-item">
 										<div class="item-entry overflow">
 										'.($now < $start?($interval->days == 0? "<div class='corner-ribbon top-right sticky red'>Less than a day!</div>": "<div class='corner-ribbon top-right sticky red'>".$interval->days." day/s left!</div>"):"").'
-										
-												<h3 class="text-center"><a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'"> 
+
+												<h3 class="text-center"><a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'">
 													'.$title.'
 												</a></h3>
 												<div class="item-thumb">
@@ -99,7 +99,7 @@ class CEvent extends CI_Controller {
 								<div class="box-two proerty-item">
 									<div class="item-entry overflow">
 										<div class="corner-ribbon top-right sticky red">Happening now!</div>
-										
+
 										<h3 class="text-center">
 										<a href="'.site_url().'/event/cEvent/displayEventDetails/'.$event->event_id.'">
 										'.$title.'
@@ -123,7 +123,7 @@ class CEvent extends CI_Controller {
 							</div>
 					';
                 }
-				
+
 			}
 			echo $ht;
 		}else{
@@ -225,7 +225,7 @@ class CEvent extends CI_Controller {
 	{
 
 		$userid = $this->session->userdata['userSession']->userID;
-     
+
 		//////////////////////////////////////////////////////////////////////////////
 		//================Sprint 3 SPRINT 3 INTERFACE MODULE============//
 		/////////////////////////////////////////////////////////////////////////////
@@ -250,7 +250,7 @@ class CEvent extends CI_Controller {
 
 			$array[] = $arrObj;
 		}
-		
+
 
 		$strEventSelect1 = "*, DATE_FORMAT(event_info.event_date_start,'%d-%b-%y %H:%m') as dateStart, DATE_FORMAT(event_info.event_date_end,'%d-%b-%y %H:%m') as dateEnd";
 		$strEventWhere1 = array("user_id" => $userid,
@@ -290,8 +290,8 @@ class CEvent extends CI_Controller {
 		$data['hist']   = $this->MEventInfo->getTransHistory($this->session->userdata['userSession']->userID);
 		////////////STOPS HERE///////////////////////////////////////////////////
 		$data['checkout'] = $this->MCheckout->showCheckout($this->session->userdata['userSession']->userID);
-		
-		for ($i=0; $i < count($data['checkout']) ; $i++) { 
+
+		for ($i=0; $i < count($data['checkout']) ; $i++) {
 			$data['checkout'][$i]->checkoutDetails = $this->MCart->getChekDetails($data['checkout'][$i]->checkId);;
 		}
 		$data['userid'] = $userid;
@@ -331,14 +331,14 @@ class CEvent extends CI_Controller {
 			$data['ppage'] = 1;
 			$data['npage'] = 1;
     		$data['pages'] = $num;
-        
+
 		$this->load->view('imports/vHeaderLandingPage');
 		$this->load->view('vEvents',$data);
 		$this->load->view('imports/vFooterLandingPage');
 	}
 
 	//redirect View Events Page from Redeem Code error
-	public function viewEventsFromCodeError($dataError) 
+	public function viewEventsFromCodeError($dataError)
 	{
 		$userid = $this->session->userdata['userSession']->userID;
 
@@ -483,7 +483,7 @@ class CEvent extends CI_Controller {
 				if(count($data['announcements']) == 0){
 					$data['announcements'] = NULL;
 				}
-				
+
 					$array1 = array();
 					if($data['announcements']){
 						foreach ($data['announcements'] as $value) {
@@ -493,31 +493,31 @@ class CEvent extends CI_Controller {
 								$arrObj->first_name = $value->first_name;
 								$arrObj->last_name = $value->last_name;
 								if($value->sec){
-									$arrObj->ago =$value->sec;  
-									$arrObj->agoU ="seconds ago";  
+									$arrObj->ago =$value->sec;
+									$arrObj->agoU ="seconds ago";
 								}else if($value->min){
-									$arrObj->ago =$value->min; 
-									$arrObj->agoU ="minutes ago";   
+									$arrObj->ago =$value->min;
+									$arrObj->agoU ="minutes ago";
 								}else if($value->hr){
-									$arrObj->ago =$value->hr;  
-									$arrObj->agoU ="hours ago";  
+									$arrObj->ago =$value->hr;
+									$arrObj->agoU ="hours ago";
 								}else if($value->day){
-									$arrObj->ago =$value->day; 
-									$arrObj->agoU ="days ago";   
+									$arrObj->ago =$value->day;
+									$arrObj->agoU ="days ago";
 								}
 								$array1[] = $arrObj;
 						}
 					}
 					$data['announcements'] = $array1;
-			
+
 				$this->load->view('imports/vHeaderLandingPage');
 				$this->load->view('vEventDetails',$data);
 				$this->load->view('imports/vFooterLandingPage');
-	
+
 		}else{
 			redirect("CLogin/viewDashboard");
 		}
-		
+
 
 		// $this->load->view('imports/vHeader');
 		// $this->load->view('user/vEventRegistration', $data);
@@ -685,6 +685,10 @@ class CEvent extends CI_Controller {
 		}
 		public function createEvent(){
 			// $this->load->model('events/MEvent','event');
+			if(empty($this->input->post('event_name'))){
+				redirect("event/CEvent/viewCreateEvent");
+			}
+
 			$flag = true;
 
 			$event = new mEvent();
@@ -742,7 +746,7 @@ class CEvent extends CI_Controller {
 				if(!$photo) {
 					$photo = $this->MEvent->insertPhotoEvent("events1.jpg",$evt_id);
 				}*/
-				
+
 				//var_dump($photo);
 
 					// print_r($photo);
@@ -759,9 +763,9 @@ class CEvent extends CI_Controller {
 				$datetime1 = new DateTime($this->input->post('dateStart'));
 				$datetime2 = new DateTime($this->input->post('dateEnd'));
 				$interv = date_diff($datetime2, $datetime1);
-	
+
 				$no = $interv->format('%H:%I:%S');
-			
+
 				if($this->input->post('ticketType2')||$this->input->post('no_tickets_total2')||$this->input->post('no_tickets_total2')){
 					$data1['ticket_name'] = $this->input->post('ticketType2');
 					$data1['ticket_count'] = $this->input->post('no_tickets_total2');
@@ -785,7 +789,7 @@ class CEvent extends CI_Controller {
 				$where =  array('no_tickets_total' => $totalNumTix );
 				$res = $this->MEvent->update($evt_id,$where);
 				$flag = $res;
-				
+
 			}
 			if($flag){
 				/*echo'
@@ -806,7 +810,7 @@ class CEvent extends CI_Controller {
 				$this->session->set_flashdata('success_msg',"Event is successfully created!");
 				redirect("event/cEvent/viewEvents/1");
 			}
-		  
+
 		}
 
 
@@ -816,7 +820,7 @@ class CEvent extends CI_Controller {
 			$data = array('event_isActive'=> 0);
 			$v = $this->MUser->updateSpecificEvent($id,$data);
 			if($v){
-				redirect('event/CEvent/viewEvents');
+				redirect('event/CEvent/viewEvents/1');
 			}else{
 				echo "Error...";
 			}
@@ -910,7 +914,7 @@ class CEvent extends CI_Controller {
 		$this->form_validation->set_rules('uname','first name',$rules.'|required|min_length[6]|max_length[50]');
 		$this->form_validation->set_rules('password','Password','required|min_length[8]');
 		$this->form_validation->set_rules('cpassword','Confirm password','required|matches[password]');
-		
+
 		$this->form_validation->set_rules('fname','First Name',$rules.'|required|max_length[50]');
 		$this->form_validation->set_rules('lname','Last Name',$rules.'|required|min_length[2]|max_length[50]');
 		$this->form_validation->set_rules('midname','Middle initial',$rules.'|required|min_length[1]');
@@ -933,13 +937,13 @@ class CEvent extends CI_Controller {
 		{
 			$now = NEW DateTime(NULL, new DateTimeZone('UTC'));
 
-			
+
 
 				$res = $this->MUser->read_where(array('user_name' => $data['user_name']));
 				$res1 = $this->MUser->read_where(array('email' => $data['email']));
-				
+
 				$data['OldPassword'] = hash('sha512',$data['OldPassword']);
-				
+
 				$res2 = $this->MUser->read_where(array('account_id' => $this->session->userdata['userSession']->userID,
 														"password"=>$data['OldPassword']));
 				// echo "<pre>";
@@ -948,32 +952,32 @@ class CEvent extends CI_Controller {
 				if(!$res2){
 					$this->session->set_flashdata('error_msg','Password does not match the current password.');
 					$this->data = $data;
-					$this->session->set_flashdata('userDetails',json_encode($data));	
+					$this->session->set_flashdata('userDetails',json_encode($data));
 					redirect("event/CEvent/viewEvents/1");
 				}else if($res && $res[0]->account_id != $this->session->userdata['userSession']->userID){
 						$this->session->set_flashdata('error_msg','Username taken');
 						$this->data = $data;
-						$this->session->set_flashdata('userDetails',json_encode($data));	
+						$this->session->set_flashdata('userDetails',json_encode($data));
 						redirect("event/CEvent/viewEvents/1");
 				}else if($res1 && $res1[0]->account_id != $this->session->userdata['userSession']->userID){
 					$this->session->set_flashdata('error_msg','Email taken');
 						$this->data = $data;
-						$this->session->set_flashdata('userDetails',json_encode($data));	
+						$this->session->set_flashdata('userDetails',json_encode($data));
 						redirect("event/CEvent/viewEvents/1");
 
 
 				}else{
-					
+
 					$data['password'] = hash('sha512',$data['password']);
 					unset($data['cpassword']);
 					unset($data['OldPassword']);
-					 
+
 					$result = $user->update($this->session->userdata['userSession']->userID,$data);
 
 					if($result){
 						$this->session->set_flashdata('success_msg',"User Profile updated!");
 						redirect("event/CEvent/viewEvents/1");
-					}	
+					}
 
 				}
 
@@ -981,7 +985,7 @@ class CEvent extends CI_Controller {
 			$this->session->set_flashdata('error_msg',validation_errors());
 			// redirect("user/cUser/viewSignUp");
 			$this->data = $data;
-					$this->session->set_flashdata('userDetails',json_encode($data));	
+					$this->session->set_flashdata('userDetails',json_encode($data));
 					redirect("event/CEvent/viewEvents/1");
 		}
 
@@ -1010,45 +1014,59 @@ class CEvent extends CI_Controller {
 			$this->load->view('user/vEditEvent', $v);
 			$this->load->view('imports/vFooterLandingPage');
 		}
-		public function interested($id)
+		public function interested()
 		{
 			$uid = $this->session->userdata['userSession']->userID;
 			$pref = new MPreference();
-
+			$eid = $this->input->post('eid');
+			//print_r($id);
 			$now = NEW DateTime(NULL, new DateTimeZone('UTC'));
-			$data = array('preference_date' => $now->format('Y-m-d H:i:s'),
+			$constraint = array('event_id' => $eid, 'user_id' => $uid);
+			$res = $pref->read_where($constraint);
+
+			if(null != $res && count($res) > 0){
+				$pid = $res[0]->user_event_preference_id;
+				$pref->delete($pid);
+
+				echo json_encode(false);
+			}else{
+				$data = array('preference_date' => $now->format('Y-m-d H:i:s'),
 						  'user_id' => $uid ,
-						  'event_id' => $id
+						  'event_id' => $eid
 		 				  );
-
-			$result = $pref->insert($data);
-
-			if($result){
-				redirect("event/CEvent/viewPreferenceEvents");
-				// $this->viewPreferenceEvents();
+				$result = $pref->insert($data);
+				echo json_encode(true);
 			}
+			// if($result){
+			// 	//redirect("event/CEvent/viewPreferenceEvents");
+			// 	// $this->viewPreferenceEvents();
 
-			# code...
+			// 	echo 1;
+			// }
+			// //echo $id;
+			// # code...
 		}
-		public function interestedRemove($id)
+		public function interestedRemove()
 		{
-			// $uid = $this->session->userdata['userSession']->userID;
-			// $pref = new MPreference();
+			// // $uid = $this->session->userdata['userSession']->userID;
+			// // $pref = new MPreference();
 
-			// $now = NEW DateTime(NULL, new DateTimeZone('UTC'));
-			// $data = array('preference_date' => $now->format('Y-m-d H:i:s'),
-			// 			  'user_id' => $uid ,
-			// 			  'event_id' => $id
-		 // 				  );
+			// // $now = NEW DateTime(NULL, new DateTimeZone('UTC'));
+			// // $data = array('preference_date' => $now->format('Y-m-d H:i:s'),
+			// // 			  'user_id' => $uid ,
+			// // 			  'event_id' => $id
+		 // // 				  );
+			// $id = $this->input->post('check1');
+			// //print_r($id);
+			// $result = $this->MPreference->delete($id);
 
-			$result = $this->MPreference->delete($id);
-
-			if($result){
-				redirect("event/CEvent/viewPreferenceEvents");
-				// $this->viewPreferenceEvents();
-			}
-
-			# code...
+			// if($result){
+			// 	//redirect("event/CEvent/viewPreferenceEvents");
+			// 	// $this->viewPreferenceEvents();
+			// 	echo 1;
+			// }
+			// //echo $id;
+			// # code...
 		}
 		public function viewPreferenceEvents()
 		{

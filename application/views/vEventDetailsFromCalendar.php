@@ -287,7 +287,8 @@ div.desc {
                             </div>
                         <?php }?>
                             <!-- End video area  -->
-                            <?php foreach($events as $x){ if($id == $x->user_id && $x->event_status != "Expired"){
+
+                              <?php foreach($events as $x){ if($id == $x->user_id && $color != "#808080"){
 
                                 if($x->event_status == "Approved"){
                                     echo'
@@ -305,6 +306,7 @@ div.desc {
                                     </div>';
                                 }
                             }} ?>
+
                         </div>
                     </div>
                     <div class="modal fade bd-example" id="deletemodal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -368,31 +370,20 @@ div.desc {
                                     <ul>
                                     <input  id="cLoad" hidden value="<?php echo $u->load_amt; ?>">
                                         <?php foreach ($types as $t) { ?>
-                                        <li>
-                                            <div class="col-md-8 col-sm-8 col-xs-8 blg-entry" >
-                                                <h4> <?php echo  $t->ticket_name.": ".$t->ticket_count." left";?>
 
-                                                <br>
-                                                <span class="property-price"><?php echo "P"." ".$t->price.".00";?></span>
-                                                 <?php if($e->event_status == "Approved"){?>
-                                                 <!-- <span>&nbsp; &nbsp; &nbsp;
-                                                 <form method="post" action="<?php echo site_url();?>/event/cEvent/buyTicket">
-                                                     <input type="text" name="eId" value="<?php echo $e->event_id;?>">
-                                                     <input type="text" name="tId" value="<?php echo $t->ticket_type_id;?>">
+                                            <div class="col-md-10 col-sm-10 col-xs-10 blg-entry" >
+                                                <h4><?php echo  $t->ticket_name." : ".$t->ticket_count." left";?></h4>
+                                                <h3><span class="property-price"><?php echo "P"." ".$t->price.".00";?></span></h3>
+                                                    <?php if($e->event_status == "Approved"){
+                                                        $now = new DateTime("now");
+                                                        $end = new DateTime($e->event_date_end);
+                                                        if(!$bought && $now <= $end){ ?>
+                                                            <button class="navbar-btn nav-button wow bounceInRight login myBtn" data-id='<?php echo  $t->ticket_type_id;?>'>Buy Tickets</button>
+                                                        <?php } ?>
+                                                    <?php }?>
+                                            </div>
 
-                                                 </form> -->
-
-                                                 <?php
-                                                $now = new DateTime("now");
-                                                $end = new DateTime($e->event_date_end);
-
-                                                 if(!$bought && $now <= $end){?>
-                                                   <?php if($e->event_status == "Approved"){?>
-                                                    <button class="myBtn" data-id='<?php echo  $t->ticket_type_id;?>'>Buy More Tickets</button></h4>
-                                                   <?php }?>
-                                                   <a href="<?php echo site_url();?>/event/cEvent/buyTicket/<?php echo $t->ticket_type_id;?>/<?php echo $e->event_id;?>"><input hidden class="val" value="<?php echo $t->price;?>">
-                                                <button   class="buy navbar-btn nav-button wow bounceInRight login animated" >Buy</button></a>
-                                                <?php }?>
+                                        <?php } ?>
 
                                                 </span>                                            <?php }?>
                                                 <!--<span>&nbsp;&nbsp;&nbsp; Sold:
@@ -415,6 +406,7 @@ div.desc {
                             </div>
                           </div>
                             
+
                             <!-- <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
                                 <div class="panel-heading">
                                 <h3 class="panel-title">Search</h3>

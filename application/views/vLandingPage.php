@@ -1,4 +1,13 @@
 
+<style>
+.star{
+    height: 35px;
+    width: 35px;
+    margin-top:5px;
+    margin-left:-180px;
+       
+}
+</style>
 <!-- Add these lines below to pages with customizable elements -->
 <?php
   require('assets/CustomizationManager.php');
@@ -202,11 +211,21 @@
 
                                                                 echo '<a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'" style="background-color:#CB6C52;"><h3 class="text-center"> ';
 
+                                                                if(isset($event->prefId)){
+                                                                //echo "<a href='".site_url()."/event/cEvent/interestedRemove/".$user_event_preference_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
+                                                                    echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
+                                                                }else{
+                                                                //echo "<a href='".site_url()."/event/cEvent/interested/".$e->event_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
+                                                                    echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
+                                                                }
+                                                                
+                                                                echo "<center>";
                                                                 if(strlen($event->event_name)>=42){
                                                                     echo substr($event->event_name,0,39)."...";
                                                                 }else{
                                                                     echo $event->event_name;
                                                                 }
+                                                                echo "</center>";
                                                 
                                                                 echo '</h3></a>';
 
@@ -236,18 +255,28 @@
                                                     echo '<div class="box-two proerty-item">';
                                                         echo '<div class="item-entry overflow" >';
                                                                 echo '<div class="corner-ribbon top-right sticky red">Happening now!</div>';
-                                                                    
+
 
                                                                 echo '<a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'" ><h3 class="text-center"> ';
 
+
+                                                                if(isset($event->prefId)){
+                                                                //echo "<a href='".site_url()."/event/cEvent/interestedRemove/".$user_event_preference_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
+                                                                    echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
+                                                                }else{
+                                                                //echo "<a href='".site_url()."/event/cEvent/interested/".$e->event_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
+                                                                    echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
+                                                                }
+                                                                
+                                                                echo "<center>";
                                                                 if(strlen($event->event_name)>=42){
                                                                     echo substr($event->event_name,0,39)."...";
                                                                 }else{
                                                                     echo $event->event_name;
                                                                 }
+
                                                 
                                                                 echo '</h3></a>';
-
                                                                 // echo '<div class="item-thumb">
                                                                 // <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
 
@@ -273,6 +302,31 @@
                                 echo $msg;
                             }
                         ?>
+                        <script type="text/javascript">
+    $(document).ready(function(e){                                        
+        $('.star').on("click", function(e){
+            e.preventDefault();
+            var id = $(this).parent().data("value");
+            var imgObj = $(this);
+            $.ajax({
+                url:'<?php echo site_url()."/event/cEvent/interested";?>',
+                method: "POST",
+                dataType: 'json',
+                data:{'eid':id},
+                success: function(e){
+                    var pic1 = <?php $pass = site_url().'../../assets/neilAssets/img/star.png'; echo json_encode($pass); ?>;
+                    var pic2 = <?php $pass = site_url().'../../assets/neilAssets/img/white-star.png'; echo json_encode($pass); ?>;
+                    var img = document.getElementById("star").src;
+                    if (e){
+                        imgObj.attr("src", pic1);
+                    }else{
+                        imgObj.attr("src", pic2);
+                    }
+                }
+            });
+        });
+    });
+</script>
                     </div>
                 </div>
              </div><!-- END OF ROW-->
