@@ -371,9 +371,6 @@ div.desc {
                                         <li>
                                             <div class="col-md-8 col-sm-8 col-xs-8 blg-entry" >
                                                 <h4> <?php echo  $t->ticket_name.": ".$t->ticket_count." left";?>
-                                                <?php if($e->event_status == "Approved"){?>
-                                                    <button class="myBtn" data-id='<?php echo  $t->ticket_type_id;?>'>Buy More Tickets</button></h4>
-                                                <?php }?>
 
                                                 <br>
                                                 <span class="property-price"><?php echo "P"." ".$t->price.".00";?></span>
@@ -390,6 +387,9 @@ div.desc {
                                                 $end = new DateTime($e->event_date_end);
 
                                                  if(!$bought && $now <= $end){?>
+                                                   <?php if($e->event_status == "Approved"){?>
+                                                    <button class="myBtn" data-id='<?php echo  $t->ticket_type_id;?>'>Buy More Tickets</button></h4>
+                                                   <?php }?>
                                                    <a href="<?php echo site_url();?>/event/cEvent/buyTicket/<?php echo $t->ticket_type_id;?>/<?php echo $e->event_id;?>"><input hidden class="val" value="<?php echo $t->price;?>">
                                                 <button   class="buy navbar-btn nav-button wow bounceInRight login animated" >Buy</button></a>
                                                 <?php }?>
