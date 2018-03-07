@@ -379,7 +379,6 @@ div.desc {
                                 <div class="panel-body recent-property-widget" >
                                     
                                         <?php foreach ($types as $t) { ?>
-
                                             <div class="col-md-10 col-sm-10 col-xs-10 blg-entry" >
                                                 <h4><?php echo  $t->ticket_name." : ".$t->ticket_count." left";?></h4>
                                                 <h3><span class="property-price"><?php echo "P"." ".$t->price.".00";?></span></h3>
