@@ -7,6 +7,18 @@
 			
 		}
 
+		public function getTotal ($id) {
+
+	      $this->db->select("sum(total_price) as total");
+	      $this->db->from("cart");
+	      $this->db->where("account_id", $id);
+	      $this->db->where("status","active");
+
+	      $query = $this->db->get();
+
+	      return $query->result();
+	    }
+
 		public function getCart(){
 			$arr =array();
 			$events = $this->getEvents();
@@ -62,6 +74,17 @@
 			
 			// return $query;
 
+
+		}
+		public function getChekDetails($id){
+			$this->db->select("tt.ticket_name,c.quantity,c.total_price");
+			$this->db->from("cart as c");
+			$this->db->from("ticket_type as tt");
+			$this->db->where("tt.ticket_type_id = c.ticket_id");
+			$this->db->where("c.checkoutId",$id);
+			
+			$query = $this->db->get();
+			return $query->result();
 
 		}
 			

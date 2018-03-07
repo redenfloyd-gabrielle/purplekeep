@@ -38,6 +38,8 @@
 			return $query->result();
 		}
 
+		
+
 
 		public function getTicket_type_id(){
 			return $this->ticket_id;
