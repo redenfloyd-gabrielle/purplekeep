@@ -29,7 +29,7 @@
                 <div class="container">
                     <ul class="nav navbar-navx navbar-right inline-navbar">
                         <li><a href="<?php echo site_url();?>/CLogin/viewDashboard">Home</a></li>
-                        <li class="Active"><a href="<?php echo site_url();?>/CLogin/viewEvents">Events</a></li>
+                        <li class="Active"><a href="<?php echo site_url();?>/CLogin/viewEvents/1">Events</a></li>
                         <li><a href="contact.html">Contact Us</a></li>
                     </ul>
                 </div>

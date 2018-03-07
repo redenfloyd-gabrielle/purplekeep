@@ -11,12 +11,15 @@ class CEvent extends CI_Controller {
     	$this->load->model('user/MTicketType');
     	$this->load->model('user/MTicket');
     	$this->load->model('MNotification');
-	  $this->load->model('MAnnouncement'); //admin module functionalit
+    	$this->load->model('MCheckout');
+	  	$this->load->model('MAnnouncement'); //admin module functionalit
     	$this->load->helper('date');
 		$this->load->model('MEventInfo');
 		$this->load->model('location/MLocation');
     	$this->error = "";
     	$this->success = "";
+    	$this->load->library('form_validation');
+	    $this->load->helper('security');
     }
 
 
@@ -218,22 +221,24 @@ class CEvent extends CI_Controller {
 
 	}
 
-	public function viewEvents()
+	public function viewEvents($page)
 	{
 
 		$userid = $this->session->userdata['userSession']->userID;
-
+     
 		//////////////////////////////////////////////////////////////////////////////
 		//================Sprint 3 SPRINT 3 INTERFACE MODULE============//
 		/////////////////////////////////////////////////////////////////////////////
-		$strEventSelect = "*, DATE_FORMAT(event_info.event_date_start,'%d-%b-%y %H:%m') as dateStart, DATE_FORMAT(event_info.event_date_end,'%d-%b-%y %H:%m') as dateEnd";
-		$strEventWhere = array("user_id" => $userid,
-													 "event_isActive" => TRUE
-													);
-		$result = $this->MEvent->select_certain_where_isDistinct_hasOrderBy_hasGroupBy_isArray($strEventSelect,
-							$strEventWhere,FALSE,FALSE,FALSE,FALSE);
+		// $strEventSelect = "*, DATE_FORMAT(event_info.event_date_start,'%d-%b-%y %H:%m') as dateStart, DATE_FORMAT(event_info.event_date_end,'%d-%b-%y %H:%m') as dateEnd";
+		// $strEventWhere = array("user_id" => $userid,
+		// 				"event_isActive" => TRUE);
+		// $result = $this->MEvent->select_certain_where_isDistinct_hasOrderBy_hasGroupBy_isArray($strEventSelect,
+		// 					$strEventWhere,FALSE,FALSE,FALSE,FALSE);
 		// echo"<pre>";
 		// var_dump($result);
+
+		$npages = ($page * 9)-9;
+		$result = $this->MEvent->getLimitedEventsByUser($userid,$npages);
 		$array = array();
 		foreach ($result as $value) {
 			$arrObj = new stdClass;
@@ -245,6 +250,20 @@ class CEvent extends CI_Controller {
 
 			$array[] = $arrObj;
 		}
+		
+
+		$strEventSelect1 = "*, DATE_FORMAT(event_info.event_date_start,'%d-%b-%y %H:%m') as dateStart, DATE_FORMAT(event_info.event_date_end,'%d-%b-%y %H:%m') as dateEnd";
+		$strEventWhere1 = array("user_id" => $userid,
+						"event_isActive" => TRUE);
+		$result1 = $this->MEvent->select_certain_where_isDistinct_hasOrderBy_hasGroupBy_isArray($strEventSelect1,
+							$strEventWhere1,FALSE,FALSE,FALSE,FALSE);
+		$x = 0;
+		foreach ($result1 as $value) {
+			$x++;
+		}
+		$num = $x/9;
+     	$num = ceil($num);
+
 
 		$val = array();
 		foreach ($array as $key) {
@@ -270,7 +289,11 @@ class CEvent extends CI_Controller {
 		/////////////////////////////////////////////////////////////////////////////
 		$data['hist']   = $this->MEventInfo->getTransHistory($this->session->userdata['userSession']->userID);
 		////////////STOPS HERE///////////////////////////////////////////////////
-
+		$data['checkout'] = $this->MCheckout->showCheckout($this->session->userdata['userSession']->userID);
+		
+		for ($i=0; $i < count($data['checkout']) ; $i++) { 
+			$data['checkout'][$i]->checkoutDetails = $this->MCart->getChekDetails($data['checkout'][$i]->checkId);;
+		}
 		$data['userid'] = $userid;
 
 		$data['announcements'] = $this->MAnnouncement->getUnviewedOfUser($this->session->userdata['userSession']->userID);
@@ -304,7 +327,11 @@ class CEvent extends CI_Controller {
 				}
 			}
 			$data['announcements'] = $array1;
-
+			$data['page'] = $page;
+			$data['ppage'] = 1;
+			$data['npage'] = 1;
+    		$data['pages'] = $num;
+        
 		$this->load->view('imports/vHeaderLandingPage');
 		$this->load->view('vEvents',$data);
 		$this->load->view('imports/vFooterLandingPage');
@@ -318,6 +345,11 @@ class CEvent extends CI_Controller {
 		//////////////////////////////////////////////////////////////////////////////
 		//================Sprint 3 SPRINT 3 INTERFACE MODULE============//
 		/////////////////////////////////////////////////////////////////////////////
+		$gID = $data1 ['events']  = $this->MEvent->read_where('event_id = '.$id.'');
+		////////////STOPS HERE///////////////////////////////////////////////////
+
+		$result = $this->MEvent->getLimitedEventsByUser($userid,$page);
+
 		$strEventSelect = "*, DATE_FORMAT(event_info.event_date_start,'%d-%b-%y %H:%m') as dateStart, DATE_FORMAT(event_info.event_date_end,'%d-%b-%y %H:%m') as dateEnd";
 		$strEventWhere = array("user_id" => $userid,
 													 "event_isActive" => TRUE
@@ -445,6 +477,39 @@ class CEvent extends CI_Controller {
 				}else{
 					$data['interested']	= FALSE;
 				}
+
+				$data['announcements'] = $this->MAnnouncement->getUnviewedOfUser($this->session->userdata['userSession']->userID);
+				$data['announcementCount'] = count($data['announcements']);
+				if(count($data['announcements']) == 0){
+					$data['announcements'] = NULL;
+				}
+				
+					$array1 = array();
+					if($data['announcements']){
+						foreach ($data['announcements'] as $value) {
+								$arrObj = new stdClass;
+								$arrObj->announcementID = $value->announcementID;
+								$arrObj->announcementDetails = $value->announcementDetails;
+								$arrObj->first_name = $value->first_name;
+								$arrObj->last_name = $value->last_name;
+								if($value->sec){
+									$arrObj->ago =$value->sec;  
+									$arrObj->agoU ="seconds ago";  
+								}else if($value->min){
+									$arrObj->ago =$value->min; 
+									$arrObj->agoU ="minutes ago";   
+								}else if($value->hr){
+									$arrObj->ago =$value->hr;  
+									$arrObj->agoU ="hours ago";  
+								}else if($value->day){
+									$arrObj->ago =$value->day; 
+									$arrObj->agoU ="days ago";   
+								}
+								$array1[] = $arrObj;
+						}
+					}
+					$data['announcements'] = $array1;
+			
 				$this->load->view('imports/vHeaderLandingPage');
 				$this->load->view('vEventDetails',$data);
 				$this->load->view('imports/vFooterLandingPage');
@@ -577,6 +642,12 @@ class CEvent extends CI_Controller {
 			$event = new mEvent();
 			$data['event_date_start'] = $this->input->post('dateStart');
 			$data['event_date_end'] = $this->input->post('dateEnd');
+			$date3 = new DateTime('now');
+
+			$date2=explode(" ", $data3);
+			$d = explode ("/", $date2[0]);
+			$ts = strtotime($d[2]."-".$d[0]."-".$d[1]." ".$date2[1].":00 ".$date2[2]);
+			$date3 = mdate("%Y-%m-%d %H:%i:%s", $ts);
 
 			$date2=explode(" ", $data['event_date_start']);
 			$d = explode ("/", $date2[0]);
@@ -588,6 +659,11 @@ class CEvent extends CI_Controller {
 			$ts = strtotime($d[2]."-".$d[0]."-".$d[1]." ".$date2[1].":00 ".$date2[2]);
 			$data['event_date_end'] = mdate("%Y-%m-%d %H:%i:%s", $ts);
 
+			if($data['event_date_start'] < $date3 && $data['event_date_end'] < $date3){
+				redirect('event/CEvent/viewCreateEvent');
+			}if($data['event_date_start'] > $data['event_date_end'] || $data['event_date_start'] == $data['event_date_end']){
+				redirect('event/CEvent/viewCreateEvent');
+			}else{
 			$data['no_tickets_total'] = 0;
 			$data['event_status'] = 'pending';
 			$data['event_name'] = $this->input->post('event_name');
@@ -611,12 +687,14 @@ class CEvent extends CI_Controller {
 				$affectedRows = $this->MEvent->insert($data);
 				$evt_id = $this->MEvent->db->insert_id();
 				// print_r($evt_id);
-				$photo = $this->MEvent->do_upload_event($evt_id);
+
+				/*$photo = $this->MEvent->do_upload_event($evt_id);
 				// $this->MEvent->do_upload_event($evt_id);
 
 				if(!$photo) {
 					$photo = $this->MEvent->insertPhotoEvent("events1.jpg",$evt_id);
-				}
+				}*/
+				
 				//var_dump($photo);
 
 					// print_r($photo);
@@ -668,14 +746,7 @@ class CEvent extends CI_Controller {
 								<h1 class="modal-title" align="center">Create Event Successful</h1>
 						</div>
 					</div>
-				';*/
-				// header( "refresh:1; viewEvents" );
-				$this->session->set_flashdata('success_msg',"Your event has been successfully submitted. Please wait for the confirmation.");
-				redirect("event/CEvent/viewEvents");
-				//redirect("event/CEvent/viewEvents");
-			}else{
-				$this->load->view('error_404');
-				/*
+
 				echo'
 					<div id="addAdmin" class="modal fade"  data-header-color="#34495e">
 						<div class="modal-header">
@@ -684,8 +755,12 @@ class CEvent extends CI_Controller {
 					</div>
 				';
 				header( "refresh:1; viewCreateEvent" );*/
+				$this->session->set_flashdata('success_msg',"Event is successfully created!");
+				redirect("event/cEvent/viewEvents/1");
 			}
-		  }
+		  
+			}
+		}
 
 
 
@@ -728,7 +803,6 @@ class CEvent extends CI_Controller {
 		$event_venue = 'Consolacion Central Elementary School, Consolacion, Central Visayas, Philippines';
 		*/
 		//end of code snippet
-
 		$data = array('event_date_start'=>$event_date_start,
 					  'event_date_end'=>$event_date_end,
 					  'event_name'=>$event_name,
@@ -736,7 +810,29 @@ class CEvent extends CI_Controller {
 					  'event_category'=>$event_category,
 					  'event_venue'=>$event_venue);
 
-		$v = $this->MUser->updateSpecificEvent($event_id,$data);
+			$date3 = new DateTime('now');
+
+			$date2=explode(" ", $date3);
+			$d = explode ("/", $date2[0]);
+			$ts = strtotime($d[2]."-".$d[0]."-".$d[1]." ".$date2[1].":00 ".$date2[2]);
+			$date3 = mdate("%Y-%m-%d %H:%i:%s", $ts);
+
+			$date2=explode(" ", $data['event_date_start']);
+			$d = explode ("/", $date2[0]);
+			$ts = strtotime($d[2]."-".$d[0]."-".$d[1]." ".$date2[1].":00 ".$date2[2]);
+			$data['event_date_start'] = mdate("%Y-%m-%d %H:%i:%s", $ts);
+
+			$date2=explode(" ", $data['event_date_end']);
+			$d = explode ("/", $date2[0]);
+			$ts = strtotime($d[2]."-".$d[0]."-".$d[1]." ".$date2[1].":00 ".$date2[2]);
+			$data['event_date_end'] = mdate("%Y-%m-%d %H:%i:%s", $ts);
+
+			if($data['event_date_start'] < $date3 && $data['event_date_end'] < $date3){
+				redirect('event/CEvent/editEvent/'.$event_id);
+			}if($data['event_date_start'] > $data['event_date_end'] || $data['event_date_start'] == $data['event_date_end']){
+				redirect('event/CEvent/editEvent/'.$event_id);
+			}else{
+			$v = $this->MUser->updateSpecificEvent($event_id,$data);
 
 		if($v){
 			for($temp = 0; $temp < $this->input->post('totalshit'); $temp++){
@@ -755,44 +851,93 @@ class CEvent extends CI_Controller {
 		}else{
 			echo "Error...";
 		}
+	  }
 
 
 	}
 
 	public function updateProfile(){
 		$user = new MUser();
+		
+		$rules = "strip_tags|trim|xss_clean";
+		$this->form_validation->set_rules('uname','first name',$rules.'|required|min_length[6]|max_length[50]');
+		$this->form_validation->set_rules('password','Password','required|min_length[8]');
+		$this->form_validation->set_rules('cpassword','Confirm password','required|matches[password]');
+		
+		$this->form_validation->set_rules('fname','First Name',$rules.'|required|max_length[50]');
+		$this->form_validation->set_rules('lname','Last Name',$rules.'|required|min_length[2]|max_length[50]');
+		$this->form_validation->set_rules('midname','Middle initial',$rules.'|required|min_length[1]');
+		$this->form_validation->set_rules('email','email',$rules.'|required|min_length[2]|max_length[50]|valid_email');
+		$this->form_validation->set_rules('bdate','birthday',$rules.'|required');
+		$data = array('user_name' => $this->input->post('uname'),
+						  'password' => $this->input->post('password'),
+						  'OldPassword' => $this->input->post('OldPassword'),
+						  'cpassword' => $this->input->post('cpassword'),
+						  'first_name' => $this->input->post('fname'),
+						  'last_name' => $this->input->post('lname'),
+						  'middle_initial' => $this->input->post('midname'),
+						  'email' => $this->input->post('email'),
+						  'birthdate' => $this->input->post('bdate'),
+						  'gender' => $this->input->post('gender'),
+						  'contact_no' => $this->input->post('contact'),
+						  'user_type' => 'Regular'
+						);
+		if ($this->form_validation->run() != FALSE )
+		{
+			$now = NEW DateTime(NULL, new DateTimeZone('UTC'));
 
-		/* $data = array('event_date_start'=>$event_date_start,
-					  'event_date_end'=>$event_date_end,
-					  'event_name'=>$event_name,
-					  'event_details'=>$event_details,
-					  'event_category'=>$event_category,
-					  'event_venue'=>$event_venue); */
+			
 
-		$user->setAccount_id($this->input->post('$sessionData->userID'));
-		$user->setUser_name($this->input->post('uname'));
-		$user->setUser_password(hash('sha512',$this->input->post('password')));
-		$user->setFirst_name($this->input->post('fname'));
-		$user->setMiddle_initial($this->input->post('midname'));
-		$user->setLast_name($this->input->post('lname'));
-		$user->setEmail($this->input->post('email'));
-		$user->setBirthdate($this->input->post('bdate'));
-		$user->setGender($this->input->post('gender'));
-		$user->setContact_no($this->input->post('contact'));
 
-		if(isset($user)){
-			$user->updateUser();
+				$res = $this->MUser->read_where(array('user_name' => $data['user_name']));
+				$res1 = $this->MUser->read_where(array('email' => $data['email']));
+				
+				$data['OldPassword'] = hash('sha512',$data['OldPassword']);
+				
+				$res2 = $this->MUser->read_where(array('account_id' => $this->session->userdata['userSession']->userID,
+														"password"=>$data['OldPassword']));
+				// echo "<pre>";
+				// var_dump($res1);
+				// die();
+				if(!$res2){
+					$this->session->set_flashdata('error_msg','Password does not match the current password.');
+					$this->data = $data;
+					$this->session->set_flashdata('userDetails',json_encode($data));	
+					redirect("event/CEvent/viewEvents/1");
+				}else if($res && $res[0]->account_id != $this->session->userdata['userSession']->userID){
+						$this->session->set_flashdata('error_msg','Username taken');
+						$this->data = $data;
+						$this->session->set_flashdata('userDetails',json_encode($data));	
+						redirect("event/CEvent/viewEvents/1");
+				}else if($res1 && $res1[0]->account_id != $this->session->userdata['userSession']->userID){
+					$this->session->set_flashdata('error_msg','Email taken');
+						$this->data = $data;
+						$this->session->set_flashdata('userDetails',json_encode($data));	
+						redirect("event/CEvent/viewEvents/1");
 
-			//$this->load->view('imports/vHeaderLandingPage');
 
+				}else{
+					
+					$data['password'] = hash('sha512',$data['password']);
+					unset($data['cpassword']);
+					unset($data['OldPassword']);
+					 
+					$result = $user->update($this->session->userdata['userSession']->userID,$data);
+
+					if($result){
+						$this->session->set_flashdata('success_msg',"User Profile updated!");
+						redirect("event/CEvent/viewEvents/1");
+					}	
+
+				}
 
 		}else{
-
+			$this->session->set_flashdata('error_msg',validation_errors());
+			// redirect("user/cUser/viewSignUp");
+			$this->data = $data;
+					$this->session->set_flashdata('userDetails',json_encode($data));	
+					redirect("event/CEvent/viewEvents/1");
 		}
-
-		$this->load->view('event/CEvent/viewEvents');
-
-
 
 	}
 

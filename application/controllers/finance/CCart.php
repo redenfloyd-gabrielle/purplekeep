@@ -12,9 +12,31 @@ class CCart extends CI_Controller {
 	 	$this->load->model('MAnnouncement');
 	 	$this->load->library('form_validation');
 		$this->load->helper('security');
+		$this->load->model('MCheckout');
 	}
 
 	public function index() {
+	}
+
+	public function getCart () {
+		$mc = new MCart();
+
+		echo json_encode($mc->read_where(array("account_id" => $this->session->userdata['userSession']->userID, "status"=> "active")));
+		// $carts = $this->input->post('cart');
+		// echo $carts;
+		
+	}
+
+	public function getLimit () {
+		$tm = new MTicketType();
+
+		$id = $this->input->post('id');
+
+		$data = $tm->read_where(array("ticket_type_id" => $id));
+
+		foreach($data as $d) {
+			echo $d->ticket_count;
+		}
 	}
 
 	public function addToCart () {
@@ -135,6 +157,7 @@ class CCart extends CI_Controller {
                         </script>';
 
         $data['user'] = $this->MUser->read($this->session->userdata['userSession']->userID);
+        $data['total'] = $this->MCart->getTotal($this->session->userdata['userSession']->userID);
 		
 		$this->load->view('imports/vHeaderLandingPage');
 		$this->load->view('vCart',$data);	
@@ -205,20 +228,55 @@ class CCart extends CI_Controller {
 
 	}
 	public function checkout(){
-		$checked = $this->input->post('ticket');
-		$cnt = 0;
-		$retval =0;
-		if($checked){
-			foreach ($checked as $key) {
-				$query = $this->MCart->read_where(array('cart_id' => $key));
-				$retval += $query[0]->total_price; 
+		$idchecked = $this->input->post('input01');
+		$idchecked = explode("/", $idchecked);
+		$finalChecked = array();
+		//get all white spaces
+		foreach ($idchecked as $id) {
+			if ($id != 0) {
+				array_push($finalChecked,$id);
+			}
+		}
+
+		if (empty($finalChecked)) {
+			$this->session->set_flashdata('error_msg',"No Cart item selected!");
+		 	redirect("finance/CCart/viewCart");
+		}
+
+		$total = 0;
+		foreach ($finalChecked as $key) {
+
+			$query = $this->MCart->read_where(array('ticket_id' => $key, "status" => "active"));
+			
+
+			$query = $this->MCart->read_where(array('ticket_id' => $key,"status"=>"active","account_id"=>$this->session->userdata['userSession']->userID));
+
+			foreach($query as $q) {
+				$total += $q->total_price;
 			}
 			
-			$user = $this->MUser->read($this->session->userdata['userSession']->userID);
-			
-			if($user[0]->load_amt >= $retval){
-				foreach ($checked as $key) {
-					$query = $this->MCart->read_where(array('cart_id' => $key));
+		}
+
+		$user = $this->MUser->read($this->session->userdata['userSession']->userID);
+		$loadamount = 0;
+		foreach ($user as $u) {
+			$loadamount = $u->load_amt;
+		}
+
+		echo $loadamount;
+		echo $total;
+		if($loadamount >= $total){
+			//update cart status
+			//nya add checkout
+			$checkout = new MCheckout();
+
+			$chck = array ("account_id" => $this->session->userdata['userSession']->userID,
+						   "checkTotal" => $total);
+			$checkout->insert($chck);
+
+			$checkId = $checkout->db->insert_id();
+			foreach ($finalChecked as $d) {
+				$query = $this->MCart->read_where(array('cart_id' => $d));
 					for ($i=0; $i < $query[0]->quantity; $i++) { 
 							$now = NEW DateTime(NULL, new DateTimeZone('UTC'));
 							$data = array('date_sold' => $now->format('Y-m-d H:i:s'),
@@ -228,21 +286,85 @@ class CCart extends CI_Controller {
 							$res = $this->MTicket->insert($data);
 
 					}
-					$this->MCart->update($key,array("status"=>"deleted"));
+
+				$cart = array ("status" => "paid");
+				$where = array ("ticket_id" => $d);
+
+				$this->MCart->update1($where, $cart);
+
+				$cart = array ("checkoutId" => $checkId);
+				$where = array ("ticket_id" => $d);
+				$this->MCart->update1($where, $cart);
+
+				//get cart quantity
+				$cartData = $this->MCart->read_where(array("ticket_id" => $d));
+				$qauntity = 0;
+				foreach($cartData as $cart) {
+					$quantity = $cart->quantity;
 				}
-				$newLoad = $user[0]->load_amt - $retval;
-				$result = $this->MUser->update($this->session->userdata['userSession']->userID,array("load_amt"=>$newLoad));
-				$this->session->set_flashdata('success_msg',"Successfully Checkedout!");
-				redirect("finance/CCart/viewCart");
-			}else{
-				$this->session->set_flashdata('error_msg',"Insufficient balance!");
-				redirect("finance/CCart/viewCart");
+
+				$tickettype = $this->MTicketType->read_where(array ("ticket_type_id" => $d));
+				$currentqty = 0;
+				foreach ($tickettype as $tt) {
+					$currentqty = $tt->ticket_count;
+				}
+
+				$currentqty -= $quantity;
+
+				//update ticket type count
+				$this->MTicketType->update1(array("ticket_type_id" => $d), array("ticket_count" => $currentqty));
+
+				$newload = $loadamount - $total;
+				$this->MUser->update($this->session->userdata['userSession']->userID, array("load_amt" => $newload));
+
 			}
+			$this->session->set_flashdata('success_msg',"Successfully Checkedout!");
+				redirect("finance/CCart/viewCart");
 		}else{
-			$this->session->set_flashdata('error_msg',"No Cart item selected!");
+			$this->session->set_flashdata('error_msg',"Insufficient balance!");
 			redirect("finance/CCart/viewCart");
-		
 		}
+
+
+
+		// $checked = $this->input->post('ticket');
+		// $cnt = 0;
+		// $retval =0;
+		// if($checked){
+		// 	foreach ($checked as $key) {
+		// 		$query = $this->MCart->read_where(array('cart_id' => $key));
+		// 		$retval += $query[0]->total_price; 
+		// 	}
+			
+		// 	$user = $this->MUser->read($this->session->userdata['userSession']->userID);
+			
+		// 	if($user[0]->load_amt >= $retval){
+		// 		foreach ($checked as $key) {
+		// 			$query = $this->MCart->read_where(array('cart_id' => $key));
+		// 			for ($i=0; $i < $query[0]->quantity; $i++) { 
+		// 					$now = NEW DateTime(NULL, new DateTimeZone('UTC'));
+		// 					$data = array('date_sold' => $now->format('Y-m-d H:i:s'),
+		// 							  'user_id' => $this->session->userdata['userSession']->userID ,
+		// 							  'ticket_type_id' => $query[0]->ticket_id
+		//  				  				);
+		// 					$res = $this->MTicket->insert($data);
+
+		// 			}
+		// 			$this->MCart->update($key,array("status"=>"deleted"));
+		// 		}
+		// 		$newLoad = $user[0]->load_amt - $retval;
+		// 		$result = $this->MUser->update($this->session->userdata['userSession']->userID,array("load_amt"=>$newLoad));
+		// 		$this->session->set_flashdata('success_msg',"Successfully Checkedout!");
+		// 		redirect("finance/CCart/viewCart");
+		// 	}else{
+		// 		$this->session->set_flashdata('error_msg',"Insufficient balance!");
+		// 		redirect("finance/CCart/viewCart");
+		// 	}
+		// }else{
+		// 	$this->session->set_flashdata('error_msg',"No Cart item selected!");
+		// 	redirect("finance/CCart/viewCart");
+		
+		// }
 
 	}
 	public function checkBalance(){
