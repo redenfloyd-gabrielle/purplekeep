@@ -31,7 +31,7 @@
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <ul class="main-nav nav navbar-nav navbar-right">
                       <!-- <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cInitialize">Home</a></li> -->
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cInitialize"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_NAV_HOME ?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cInitialize"><span class="fas fa-home fa-lg" title="HOME"></span></a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -59,7 +59,12 @@
                     <div class="box-for overflow">
                         <div class="col-md-12 col-xs-12 register-blocks">
                             <h2><?php echo CustomizationManager::$strings->SIGNUP_PAGE_NEW_ACCOUNT ?></h2>
-
+                            <?php if ($this->session->flashdata('success_msg')): ?>
+                                <div class="alert alert-success" style="margin-top: 15px;">
+                                    <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                                    <?php echo $this->session->flashdata('success_msg'); ?>
+                                </div>
+                            <?php endif ?>
                             <?php if ($this->session->flashdata('error_msg')): ?>
                                 <div class="alert alert-danger" style="margin-top: 15px;">
                                     <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -91,7 +96,7 @@
                                     <!-- <label for="email">Birthdate</label> -->
                                     <label for="email"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_BIRTHDATE ?></label>
 
-                                    <input type="date"  <?php  if(isset($birthdate)){echo 'value="'.$birthdate.'"';}?> name="bdate" required="">
+                                    <input type="date"  <?php  if(isset($birthdate)){echo 'value="'.$birthdate.'"';}?> name="bdate" required="" id="bdate">
 
 
 
@@ -215,4 +220,20 @@
         });
     });
             
+</script>
+
+<script type="text/javascript">
+       var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+ if(dd<10){
+        dd='0'+dd
+    } 
+    if(mm<10){
+        mm='0'+mm
+    } 
+
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("bdate").setAttribute("max", today);
 </script>

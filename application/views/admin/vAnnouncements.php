@@ -20,13 +20,18 @@
                     </header>
 
                     <div class="panel-body">
-                      
-                        <?php if ($this->session->flashdata('error_msg')): ?>
-                                <div class="alert alert-danger" style="margin-top: 15px;">
-                                    <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                                    <?php echo $this->session->flashdata('error_msg'); ?>
-                                </div>
-                            <?php endif ?>
+                      <?php if ($this->session->flashdata('success_msg')): ?>
+                          <div class="alert alert-success">
+                              <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                              <?php echo $this->session->flashdata('success_msg') ?>
+                          </div>
+                      <?php endif ?>
+                      <?php if ($this->session->flashdata('error_msg')): ?>
+                              <div class="alert alert-danger" style="margin-top: 15px;">
+                                  <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                                  <?php echo $this->session->flashdata('error_msg'); ?>
+                              </div>
+                      <?php endif ?>
                         
 
                          <button class="btn btn-outline-primary" style="margin-bottom:25px;" type="button" name="button" data-toggle="modal" data-target="#createAnnouncement" data-backdrop="static" data-keyboard="false">Create Announcement</button>
@@ -35,6 +40,7 @@
                 <thead class="">
                     <tr>
                       <th>#</th>
+                      <th>Title</th>
                       <th>Details</th>
                       <th>Date Posted</th>
                       <th>Status</th>
@@ -50,6 +56,7 @@
                                 $date = date("m-d-Y", strtotime($announcement->addedAt));
                                 echo  "<tr>
                                 <td id='announcementID'>".$announcement->announcementID."</td>
+                                <td>".strtoupper($announcement->announcementTitle)."</td>
                                 <td>".$announcement->announcementDetails."</td>
                                 <td>".$date."</td>
                                 <td>".$announcement->announcementStatus."</td>
@@ -92,12 +99,23 @@
             <div class="panel-body">
 
       <!-- Modal content-->
-          <form class="form-horizontal" method="POST" action="<?php echo site_url()?>/admin/CAdmin/createAnnouncement">
+      <?php echo form_open(site_url()."/admin/cAdmin/createAnnouncement", 'class="form-horizontal"'); ?>
+          <!-- <form class="form-horizontal" method="POST" action="<?php echo site_url()?>/admin/cAdmin/createAnnouncement"> -->
+
+                <div class="form-group" >
+                  <label for="announcement-title" class="col-8 control-label">Title:</label>
+                  <div class="col-8">
+
+                    <input class="form-control"  title="Only valid characters are allowed." type="text" name="announcementTitle" placeholder="Enter Announcement Title" maxlength="100" required style="resize:none; overflow:hidden;"> 
+
+              <!--      <input class="form-control" pattern="^[a-zA-Z0-9@,.;:_'\\s-]+$" title="Only valid characters are allowed." type="text" name="announcementTitle" placeholder="Enter Announcement Title" maxlength="100" required style="resize:none; overflow:hidden;">  -->
+                  </div>
+                </div>
 
                 <div class="form-group" >
                   <label for="" class="col-8 control-label">Announcement:</label>
                   <div class="col-8">
-                    <textarea class="form-control" type="text" name="announcementDetails" required="" style="resize:none; overflow:hidden; min-height: 300px; max-height: 300px;"></textarea> 
+                    <textarea class="form-control" pattern="^[a-zA-Z0-9@,.;:_'\\s-]+$" title="Only valid characters are allowed." type="text" name="announcementDetails" required style="resize:none; overflow:hidden; min-height: 300px; max-height: 300px;"></textarea> 
                   </div>
                 </div>
 
@@ -112,7 +130,8 @@
                         <button id="closeEditAccount" type="button" class="btn btn-danger" data-dismiss="modal" >Close</button>
                         <input id="" class="btn btn-primary" type="submit"  name="action" value="Announce">
                     </div>
-                </form>
+                <!-- </form> -->
+                <?php echo form_close(); ?>
             </div>
         </div>
     </div>

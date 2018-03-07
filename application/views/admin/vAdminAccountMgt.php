@@ -156,14 +156,14 @@
                     	<label for="" class="col-8 control-label">Email:</label>
                       <i>(example: johndoe@XXXX.com)</i>
                     	<div class="col-8">
-                    		<input class="form-control" type="text" name="email" required="">
+                    		<input class="form-control" type="email" name="email" required="">
                     	</div>
                     </div>
 
                     <div class="form-group" >
                     	<label for="" class="col-8 control-label">Birthdate:</label>
                     	<div class="col-8">
-                    		<input class="form-control" type="date" name="bdate" required="">
+                    		<input class="form-control" id="bdate" type="date" name="bdate" required="">
                     	</div>
                     </div>
 
@@ -218,9 +218,8 @@
                     		<input class="form-control" pattern="[a-zA-Z0-9]{8,}" type="password" name="password" required="">
                     	</div>
                     </div>
-
-
-        			<div class="modal-footer">
+  
+              			<div class="modal-footer">
                         <button id="closeEditAccount" type="button" class="btn btn-danger" data-dismiss="modal" >Close</button>
                         <input id="" class="btn btn-primary" type="submit"  name="action" value="Add">
                     </div>
@@ -228,6 +227,7 @@
             </div>
         </div>
     </div>
+    
 
 
     <!-- UPDATE ACCOUNT MODAL -->
@@ -347,3 +347,20 @@
 </script>
 
 </div>
+
+
+<script type="text/javascript">
+  var today = new Date();
+  var dd = today.getDate();
+  var mm = today.getMonth()+1; //January is 0!
+  var yyyy = today.getFullYear();
+   if(dd<10){
+          dd='0'+dd
+      } 
+      if(mm<10){
+          mm='0'+mm
+      } 
+
+  today = yyyy+'-'+mm+'-'+dd;
+  document.getElementById("bdate").setAttribute("max", today);
+</script>

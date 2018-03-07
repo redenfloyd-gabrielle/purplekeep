@@ -20,24 +20,21 @@
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a>
+                        <!-- <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a> -->
+                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login" title="Logout"><span class="fas fa-sign-out-alt fa-lg"></span></button></a>
                     </div>
-
                     <div class="button navbar-right">
-                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a>
+                        <!-- <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a> -->
+                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login" title="Create Event"><span class="fas fa-calendar-plus fa-lg"></span></button></a>
                     </div>
-
-
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewDashBoard">Home</a></li>
 
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents">Profile</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements">Announcements</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents">Interested Events</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/CCart/viewCart">View Cart</a></li>
-                        <!--
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" >Contact</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href ="#" >Profile</a></li> -->
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Home"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><span class="fas fa-home fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents/1"><span class="fas fa-user fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><span class="fas fa-bell fa-lg"></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Interested Events"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><span class="fas fa-star fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="View Cart"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><span class="fas fa-shopping-cart fa-lg"></span></a></li>
+
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -54,41 +51,58 @@
             </div>
         </div>
         <!-- End page header -->
+
  
         <?php
             if($announcements!=FALSE){
                 foreach ($announcements as $announcement) {
                     if($announcement->announcementStatus != "Finished") {
                         $date = date("m-d-Y", strtotime($announcement->addedAt));
-                        echo  "
-                            <div class='box-container'>
-                                <div class='box-header'>
-                                    <div class='box-author--no-cover'  id='".$announcement->announcementID."'>
-                                        <h3>".$announcement->first_name." ".$announcement->last_name."</h3>
-                                    </div>
-                                  </div>
+                    ?>
+                    
+                        <div class='card'>
+                            <div class='thumbnail'><img src="<?php echo base_url('assets/nikkiAssets/img/default_user.png')?>">'</div>
 
-                                  <div class='box-body'>
-                                    <div class='box-title'>
-                                      <h1><a href='#''>This Post Has No Heading</a></h1>
-                                    </div>
-                                    <div class='box-summary'>
-                                      <p>".$announcement->announcementDetails."</p>
-                                    </div>
-                                  </div>
+                            <?php
+                                echo "
+                                    <div class='right'>
+                                        <div id='".$announcement->announcementID."'>
+                                        </div>
 
-                                   <div class='box-footer'>
-                                    <ul>
-                                      <li class='published-date'>".$date."</li>
-                                    </ul>
-                                </div>
-                            </div>"
-                            ;
-                        }
+                                        <p class='title'>
+                                          ".(($announcement->announcementTitle)?strtoupper($announcement->announcementTitle):'THIS ANNOUNCEMENT HAS NO TITLE')."
+                                        </p>
+                                        
+                                        <div class='separator'></div>
+
+                                        <p>".$announcement->announcementDetails."</p>
+
+                                        <div class='author'>
+                                          <span class='box-text'>".$announcement->first_name." ".$announcement->last_name."</span>
+                                        </div>
+
+                                        <div class='date'>
+                                         <span class='box-text'>".$date."</span>
+                                        </div>
+                                    
+                                     </div>
+
+                                "
+                            ?>
+                                
+                            </div>
+                        </div>
+
+                    <?php 
+                        ;
                     }
                 }
-            ?>
-
+            }else{
+                echo "<center><h2>No announcements this time.</h2></center>";
+            }
+        ?>
+                           
+       
 
 
 

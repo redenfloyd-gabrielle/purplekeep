@@ -27,4 +27,51 @@
         var str = slideEvt.value.toString().replace(/\,/g, ' - ');;
         $("#price-value-slider").text(str);
     });
+
+    $(document).ready(function(){
+        <?php if(isset($announcements)){
+        foreach ($announcements as $key) {
+            ?>
+             $.notify({
+              title: "<?php echo '<strong>'.substr(trim(str_replace("\"", "\'",(preg_replace( "/\r|\n/", "", $key->announcementDetails )))),0,25).'</strong><br>';?>",
+              icon: 'glyphicon glyphicon-info-sign',
+              message: '<?php echo $key->ago." ".$key->agoU;?><a style="color:#494c53;" href="<?php echo site_url();?>/user/CUser/viewClickedAnnouncement/<?php echo $key->announcementID; ?>" > Click here...</a> '
+            },{
+              type: 'danger',
+              animate: {
+                    enter: 'animated fadeInUp',
+                exit: 'animated fadeOutDown'
+              },
+              placement: {
+                from: "bottom",
+                align: "left"
+              },
+              offset: 20,
+              spacing: 10,
+              z_index: 1031,
+            });
+            <?php
+        }
+       
+       
+    }
+    ?>
+    $(document).on('click', '#aDropdown', function(){
+        var id = $(this).data('id');
+        $.ajax({
+            url: "<?php echo site_url()?>/user/CUser/updateAnnounce/"+id,
+            data: { id:id },
+            type: "POST",
+            success: function(data){
+                var d=data.split('/');
+                $('#bdg').remove();
+                // alert(d[0].trim());
+               
+            },
+            error: function(data){
+                alert("error");
+            }
+        });
+    });
+    });
 </script>

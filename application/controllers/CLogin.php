@@ -29,6 +29,11 @@ class CLogin extends CI_Controller {
 	public function index(){
 		$this->load->view('vLogin');
 	}
+	public function viewLoginEvent($event){
+			$data['event'] = $event;
+
+			$this->load->view('vLogin',$data);
+	}
 
 
 
@@ -46,6 +51,7 @@ class CLogin extends CI_Controller {
 
 
 
+
 		$result = $user->attemptLogin();
 
 
@@ -55,9 +61,11 @@ class CLogin extends CI_Controller {
 			if($result[0]->user_status == "Active"){
 
 				$this->createSession($result);
-
-				$this->viewDashBoard();
-
+				if(is_numeric($this->input->post('event'))){
+					redirect('event/CEvent/displayEventDetails/'.$this->input->post('event'));
+				}else{
+					$this->viewDashBoard();
+				}
 			}else {
 				$data = array(
 					"errorTitle" => "Account not yet activated!",
