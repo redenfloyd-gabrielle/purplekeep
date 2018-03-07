@@ -471,13 +471,17 @@ class CAdmin extends CI_Controller {
 			$result = $user->update($this->session->userdata['adminSession']->userID, $data);
 
 			if($result){
-				$message = "Succesful update";
-				echo "<script type='text/javascript'>alert('$message');</script>";
-				header('refresh:1;viewAdminAccountMgt');
+// 				$message = "Succesful update";
+// 				echo "<script type='text/javascript'>alert('$message');</script>";
+// 				header('refresh:1;viewAdminAccountMgt');
+				$this->session->set_flashdata('succes_msg',"Update succesful");
+				redirect('admin/CAdmin/viewAdminAccountMgt');
 			}else{
-				$message = "Update fail";
-				echo "<script type='text/javascript'>alert('$message');</script>";
-				header('refresh:;viewAdminAccountMgt');
+// 				$message = "Update fail";
+// 				echo "<script type='text/javascript'>alert('$message');</script>";
+// 				header('refresh:;viewAdminAccountMgt');
+				$this->session->set_flashdata('error_msg',"Update failed");
+				redirect('admin/CAdmin/viewAdminAccountMgt');
 			}
 		}else{
 			$this->session->set_flashdata('error_msg',validation_errors());
