@@ -226,7 +226,7 @@
                                                     <td>
                                                       <form  method="POST" action="<?php echo site_url(); ?>/finance/CCart/deleteCartItem">
                                                         <input name="id" class="hidden" value="<?php echo $cart->cart_id;?>">
-                                                        <button type="submit" class="button btn btn-default pull-right">
+                                                        <button type="submit" class="button btn btn-default pull-right" data-toggle="modal" data-target="#myModal">
                                                           <i class="glyphicon glyphicon-trash delete"></i>
                                                         </button>
                                                       </form>
@@ -259,7 +259,25 @@
              </div><!-- END OF ROW-->
 
          </div>
+      <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <center><p>Successfully Deleted the item!</p></center>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
      <!--- END OF CONTENT AREA-->
 
         <!-- Footer area-->

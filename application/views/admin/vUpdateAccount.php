@@ -63,7 +63,7 @@
                     <div class="form-group" >
                       <label for="" class="col-8 control-label">Birthdate:</label>
                       <div class="col-8">
-                        <input class="form-control" type="date" name="ubdate" id="bdate" required="" value="<?php echo $updateAdmin->birthdate; ?>">
+                        <input class="form-control" type="date" name="ubdate" id="bdayt" required="" value="<?php echo $updateAdmin->birthdate; ?>">
                       </div>
                     </div>
 
@@ -227,6 +227,18 @@
     var mname = form["uminame"].value;
     var lname = form["ulname"].value;
     var regex = /\d/;
+
+    var bdate = document.getElementById("bdayt").value;
+    var date = new Date(bdate);
+    var year = date.getFullYear() + 18;
+    var validateDate = new Date();
+    var validateYear = validateDate.getFullYear();
+    if(year < validateYear){
+      return true;
+    }else{
+      alert("You are below 18");
+      return false;
+    }
 
     if(regex.test(fname) || regex.test(mname) || regex.test(lname)){
       alert("Invalid Input.");
