@@ -528,68 +528,119 @@ class CEvent extends CI_Controller {
 	public function displayEventDetailsFromCalendar()
 	{
 
-		$uid = null; //to get organize name
-		$eid = null;
+		
 		$id = $_POST['id'];
 
+
+
+		$uid = null; //to get organize name
+		$eid = null;
+		$location_id = null; //get location ID
 		//////////////////////////////////////////////////////////////////////////////
 		//================SPRINT 3 SPRINT 3 INTERFACE MODULE============//
 		/////////////////////////////////////////////////////////////////////////////
 		$gID = $data1 ['events']  = $this->MEvent->read_where('event_id = '.$id.'');
 		////////////STOPS HERE///////////////////////////////////////////////////
+		if($gID){
+				foreach ($gID as $k) {
+					$eid = $k->event_id;
+					$uid = $k->user_id; //retrieve
+					$location_id = $k->location_id;
+				}
 
-		foreach ($gID as $k) {
-			$eid = $k->event_id;
-			$uid = $k->user_id; //retrieve
+
+
+				//////////////////////////////////////////////////////////////////////////////
+				//================SPRINT 3 INTERFACE MODULE============//
+				/////////////////////////////////////////////////////////////////////////////
+				$data2['organizer'] = $this->MUser->read_where('account_id = '.$uid.'');
+				////////////STOPS HERE////////////////////////////////////////////////////
+
+				$result_data = $this->MTicketType->loadType($eid);
+				//////////////////////////////////////////////////////////////////////////////
+				//================SPRINT 3 INTERFACE MODULE============//
+				/////////////////////////////////////////////////////////////////////////////
+				$data3['types'] = $this->MTicketType->read_where('event_id = '.$eid.'');
+				////////////STOPS HERE////////////////////////////////////////////////////
+
+				// $data4['tixStat'] = $this->MTicketType->getTicketStatus($eid);
+				// if(isset($data4['tixStat'])){
+				// 	$data = array_merge($data1,$data2,$data3,$data4);
+				// }else{
+
+				// }
+				$data = array_merge($data1,$data2,$data3);
+				//////////////////////////////////////////////////////////////////////////////
+				//================SPRINT 3 INTERFACE MODULE============//
+				/////////////////////////////////////////////////////////////////////////////
+				$data['going'] = $this->MEvent->getGoingToEvent($id);
+				////////////STOPS HERE////////////////////////////////////////////////////
+
+				//================SPRINT 3 INTERFACE MODULE============//
+				/////////////////////////////////////////////////////////////////////////////
+				$data['user'] = $this->MUser->read_where( array('account_id' =>$this->session->userdata['userSession']->userID));
+				$data['location'] = $this->MLocation->read_where('location_id ='.$location_id.'');
+				////////////STOPS HERE////////////////////////////////////////////////////
+
+				//////////////////////////////////////////////////////////////////////////////
+				$data['id'] = $this->session->userdata['userSession']->userID;
+				if($this->error != ""){
+					$data['errorMsg']= $this->error;
+				 // print_r($data);
+				}
+
+				if($this->success != ""){
+					$data['successMsg']= $this->success;
+				 // print_r($data);
+				}
+				$result = $this->MPreference->checkIfInterestedAlready($this->session->userdata['userSession']->userID,$eid);
+
+				if($result){
+					$data['interested']	= TRUE;
+					$data['user_event_preference_id'] = $result[0]->user_event_preference_id;
+				}else{
+					$data['interested']	= FALSE;
+				}
+
+				$data['announcements'] = $this->MAnnouncement->getUnviewedOfUser($this->session->userdata['userSession']->userID);
+				$data['announcementCount'] = count($data['announcements']);
+				if(count($data['announcements']) == 0){
+					$data['announcements'] = NULL;
+				}
+				
+					$array1 = array();
+					if($data['announcements']){
+						foreach ($data['announcements'] as $value) {
+								$arrObj = new stdClass;
+								$arrObj->announcementID = $value->announcementID;
+								$arrObj->announcementDetails = $value->announcementDetails;
+								$arrObj->first_name = $value->first_name;
+								$arrObj->last_name = $value->last_name;
+								if($value->sec){
+									$arrObj->ago =$value->sec;  
+									$arrObj->agoU ="seconds ago";  
+								}else if($value->min){
+									$arrObj->ago =$value->min; 
+									$arrObj->agoU ="minutes ago";   
+								}else if($value->hr){
+									$arrObj->ago =$value->hr;  
+									$arrObj->agoU ="hours ago";  
+								}else if($value->day){
+									$arrObj->ago =$value->day; 
+									$arrObj->agoU ="days ago";   
+								}
+								$array1[] = $arrObj;
+						}
+					}
+					$data['announcements'] = $array1;
+					$data['color'] = $_POST['color'];
+			
+				$result = $this->load->view("vEventDetailsFromCalendar",$data,true);
+				echo $result;
+	
+		}else{
+			redirect("CLogin/viewDashboard");
 		}
-
-		//////////////////////////////////////////////////////////////////////////////
-		//================SPRINT 3 INTERFACE MODULE============//
-		/////////////////////////////////////////////////////////////////////////////
-		$data2['organizer'] = $this->MUser->read_where('account_id = '.$uid.'');
-		////////////STOPS HERE////////////////////////////////////////////////////
-
-		$result_data = $this->MTicketType->loadType($eid);
-		//////////////////////////////////////////////////////////////////////////////
-		//================SPRINT 3 INTERFACE MODULE============//
-		/////////////////////////////////////////////////////////////////////////////
-		$data3['types'] = $this->MTicketType->read_where('event_id = '.$eid.'');
-		////////////STOPS HERE////////////////////////////////////////////////////
-
-		// $data4['tixStat'] = $this->MTicketType->getTicketStatus($eid);
-		// if(isset($data4['tixStat'])){
-		// 	$data = array_merge($data1,$data2,$data3,$data4);
-		// }else{
-
-		// }
-		$data = array_merge($data1,$data2,$data3);
-		//////////////////////////////////////////////////////////////////////////////
-		//================SPRINT 3 INTERFACE MODULE============//
-		/////////////////////////////////////////////////////////////////////////////
-		$data['going'] = $this->MEvent->getGoingToEvent($id);
-		////////////STOPS HERE////////////////////////////////////////////////////
-
-		//================SPRINT 3 INTERFACE MODULE============//
-		/////////////////////////////////////////////////////////////////////////////
-		$data['user'] = $this->MUser->read_where( array('account_id' =>$this->session->userdata['userSession']->userID));
-		////////////STOPS HERE////////////////////////////////////////////////////
-
-		//////////////////////////////////////////////////////////////////////////////
-		$data['id'] = $this->session->userdata['userSession']->userID;
-		if($this->error != ""){
-			$data['errorMsg']= $this->error;
-		 // print_r($data);
-		}
-
-		if($this->success != ""){
-			$data['successMsg']= $this->success;
-		 // print_r($data);
-		}
-		$data['color'] = $_POST['color'];
-
-		$result = $this->load->view("vEventDetailsFromCalendar",$data,true);
-
-		echo $result;
 	}
 
 
