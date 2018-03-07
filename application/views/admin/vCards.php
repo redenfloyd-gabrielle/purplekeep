@@ -158,7 +158,7 @@
     <section class="panel">
             <div class="panel-body">
 
-              <form id="gForm" class="form inline" method="POST" action="<?php echo site_url('finance/CCard/card'); ?>">
+              <form onsubmit="return validateCards()" name="gForm" id="gForm" class="form inline" method="POST" action="<?php echo site_url('finance/CCard/card'); ?>">
                   <table cellpadding="0" cellspacing="0" border="0" class="table table-striped table-hover" id="toggle-column table-example">
                       <thead>
                           <tr>
@@ -215,7 +215,7 @@
                   </table>
 
                   <center>
-                      <button id="generate" class="btn btn-inverse btn-transparent" type="submit">
+                      <button onclick="return validateCards()" id="generate" class="btn btn-inverse btn-transparent" type="submit">
                           <strong>GENERATE</strong>
                       </button>
                   </center>
@@ -225,6 +225,21 @@
   </div>
 
 </div>     
+<script type="text/javascript">
+   function validateCards(){
+    var form = document.forms["gForm"];
+    var card1 = form["qty1"].value;
+    var card2 = form["qty2"].value;
+    var card3 = form["qty3"].value;
+    var card4 = form["qty4"].value;
+  
+    if(card1 == 0 && card2 == 0 && card3 == 0 && card4 == 0){
+      alert("Must Not Generate Cards with 0 Quantity");
+      return false;
+    }
+    return true;
+  }
+</script>
 
 <script type="text/javascript">
 var value = 0 ;

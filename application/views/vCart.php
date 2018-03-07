@@ -63,8 +63,9 @@
          <div class="container">
              <div class="row">
                 <div class="col-md-12 ">
+
                 <div class="col-md-3 p0 padding-top-40">
-                      
+
                 </div>
 
 
@@ -124,7 +125,7 @@
                                 </div>
                             </div>
                         </div>
-                        
+
                     </div>
 
 
@@ -165,18 +166,18 @@
                               <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
                               <div id="errLabel"></div>
                           </div>
-                    
+
                       <?php if ($this->session->flashdata('success_msg')): ?>
                           <div class="alert alert-success">
                               <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
                               <?php echo $this->session->flashdata('success_msg'); ?>
                           </div>
-                      <?php endif ?> 
+                      <?php endif ?>
                     </div>
 
                     <div class="col-md-9" style="padding:1%; margin-top: 3%; border-color:  #ecf1f2; border-style: solid; border-width: 1px;">
                       <div id="list-type" class="proerty-th">
-                      <?php 
+                      <?php
                           $attr = array('class' => 'form_horizontal',
 
                             'id' => 'myform');
@@ -192,8 +193,8 @@
                                             <strong>Event Name :  <?php echo $event[0]->event_name;?></strong>
                                           </span>
                                       </div>
-                                      <div class="panel-body">                                                      
-                                      
+                                      <div class="panel-body">
+
                                      <?php
                                      foreach ($event as $cart) {
                                      ?>
@@ -225,7 +226,7 @@
                                                     <td>
                                                       <form  method="POST" action="<?php echo site_url(); ?>/finance/CCart/deleteCartItem">
                                                         <input name="id" class="hidden" value="<?php echo $cart->cart_id;?>">
-                                                        <button type="submit" class="button btn btn-default pull-right">
+                                                        <button type="submit" class="button btn btn-default pull-right" data-toggle="modal" data-target="#myModal">
                                                           <i class="glyphicon glyphicon-trash delete"></i>
                                                         </button>
                                                       </form>
@@ -247,7 +248,12 @@
                         </div>
                          <?php
                          }else{?>
-                            <h1>Nothing in your cart. Shop for tickets now!</h1>
+                            <h1 align="center">
+                                <br>Nothing in your cart.<br> 
+                                 <div class="button" style="margin:10px;">
+                                    <a href="<?php echo site_url();?>/CLogin/viewDashBoard" class="navbar-btn nav-button login"><span>Shop for tickets now!</span></a>
+                                  </div>   
+                            </h1>
                          <?php }?>
                        <?php echo form_close(); ?>
                     </div>
@@ -258,7 +264,25 @@
              </div><!-- END OF ROW-->
 
          </div>
-        
+      <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <center><p>Successfully Deleted the item!</p></center>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
      <!--- END OF CONTENT AREA-->
 
         <!-- Footer area-->
@@ -283,8 +307,9 @@
                                 <h4>Contact Us</h4>
                                 <div class="footer-title-line"></div>
                                 <ul class="footer-adress">
-                                    <li><i class="pe-7s-mail strong"> </i> dailyEvents@gmail.com</li>
-                                    <li><i class="pe-7s-call strong"> </i> 253-2753</li>
+                                    <li><i class="pe-7s-map-marker strong"> </i> USC TC - Nasipit Talamban Cebu City</li>
+                                    <li><i class="pe-7s-mail strong"> </i> dailyevents@gmail.com</li>
+                                    <li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
                                 </ul>
 
                             </div>
@@ -364,47 +389,48 @@
       $.ajax({
         url: $("#form01").attr('action'),
         method:"POST",
-        success: function(retval){ 
+        success: function(retval){
                   var arr = JSON.parse(retval);
                   for (var i = 0; i < arr.length; i++) {
                     if ($("#"+arr[i]['ticket_id']).attr("checked") == "checked") {
                       id = id+"/"+arr[i]['ticket_id'];
                     }
                   }
-                  $("#i01").val(id); 
+                  $("#i01").val(id);
                   console.log(id);
                 },
         error: function(){
                 alert("error!");
               }
       });
-      
+
 
       $('input.indi').on('ifChecked', function (event){
-          $(this).closest("input").attr('checked', true);          
+          $(this).closest("input").attr('checked', true);
           var id = $(this).closest("input").attr('id');
           // $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").addClass("checked");
           // $(document).find(".tix"+id).attr("checked",true);
 
           var classList = $(this).attr('class').split(/\s+/);
           var temp = classList[0].replace('tix','');
+
           var cnt =0;
           var cnt1 =0;
           $.each($(document).find(".tix"+temp),function(index1,item1){
-            
+
                 if(item1.checked){
                   cnt1+=1;
                 }else{
-                  console.log(item1);      
+                  console.log(item1);
                 }
                 cnt+=1;
               });
           if(cnt1 == cnt){
             $(document).find("input#"+temp).iCheck('check');
           }
-          
+
             addId($(this).attr('id'));
-          
+            updateTotalByCheck("single-ch",$(this).parent().siblings('.h5'));
       });
       $('input.indi').on('ifUnchecked', function (event) {
           $(this).closest("input").attr('checked', false);
@@ -421,38 +447,42 @@
 
           });
           removeId($(this).attr('id'));
+          updateTotalByCheck("single-unch",$(this).parent().siblings('.h5'));
       });
       $('input.evt').on('ifChecked', function (event){
-          $(this).closest("input").attr('checked', true);          
+          $(this).closest("input").attr('checked', true);
           var id = $(this).closest("input").attr('id');
           $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").addClass("checked");
           $(document).find(".tix"+id).attr("checked",true);
 
           var id = $(this).attr('id');
-          
-          
+
+
           // $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").addClass("checked");
           $(document).find(".tix"+id).iCheck('check');
 
           // $.each($(document).find(".tix"+id),function(index1,item1){
           //     addId(item1.id);
           // });
+          // updateTotalByCheck("all-ch",$(this).parent().parent().siblings('.panel-body').find('.h5'));
       });
       $('input.evt').on('ifUnchecked', function (event) {
-          $(this).closest("input").attr('checked', true);          
+          $(this).closest("input").attr('checked', true);
           var id = $(this).closest("input").attr('id');
           $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").removeClass("checked");
           $(document).find(".tix"+id).attr("checked",false);
 
           var id = $(this).attr('id');
-          
-          
+
+
           // $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").removeClass("checked");
           // $(document).find(".tix"+id).attr("checked",false);
           $(document).find(".tix"+id).iCheck('uncheck');
           $.each($(document).find(".tix"+id),function(index1,item1){
                 removeId(item1.id);
               });
+
+          updateTotalByCheck("all-unch",$(this).parent().parent().siblings('.panel-body').find('.h5'));
       });
       function checkID (id) {
         var s = $("#i01").val();
@@ -514,7 +544,7 @@
 
           updateTotal("plus", $(this).closest("tr").find("th.closest").html());
         }
-        
+
       });
 
       //check if more than limit
@@ -547,6 +577,55 @@
         var total = parseInt(t);
 
         $("#total").text("Php "+(total+price)+".00");
+      }
+
+      function updateTotalByCheck (typeCheck,container) {
+        //p = p.replace("Price:", "");
+        // p = p.replace("Price:", "");
+        // var price;
+        // if(type == "plus"){
+        //   price = parseInt(p);
+        // }else{
+        //   price = parseInt(p);
+        //   price = -price;
+        // }
+
+        // var t = $("#total").text();
+        // t = t.replace("Php ", "");
+        // var total = parseInt(t);
+
+        // $("#total").text("Php "+(total+price)+".00");
+        var checkArr = ["all-unch","single-ch","single-unch"],
+            totalDiv = $('#total'),
+            total = parseInt(totalDiv.html().replace("Php ","")),
+            x = (typeCheck == "all-unch")? 0 : parseInt(container.children().text());
+        if($.inArray(typeCheck,checkArr) > -1){
+         if(typeCheck == "single-ch"){
+           total += x;
+
+          }else if(typeCheck == "single-unch"){
+            total -= x;
+          }else if(typeCheck == "all-unch"){
+            if(container.length > 1){
+              $.each(container,function(key, value){
+                x += parseInt(value.children[0].innerText);
+              });
+              
+            }else{
+              x = parseInt(container.children().text());
+            }
+            total -= x;
+          }
+        // var x = parseInt($("#total").text()),
+        //     y = parseInt(container.children().text()),
+        //     result = x -;
+          
+          totalDiv.text("Php "+(total)+".00");
+        }else{
+          console.log("Please do not change the name.");  
+        }
+
+        
       }
 
       function updateTicketCount(type,id,quantity){

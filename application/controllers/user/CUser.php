@@ -92,6 +92,7 @@ class cUser extends CI_Controller {
 				}
 			}
 			$data['announcements'] = $array1;
+			$data['msg'] = "<h2> No approved events as of the moment.</h2>";
 			
 		$this->data['custom_js']= '<script type="text/javascript">
 
@@ -381,14 +382,20 @@ class cUser extends CI_Controller {
 	
 	public function viewSignUp()
 	{
-		if(!$this->data){
-			$this->load->view('imports/vHeaderSignUpPage');
-			$this->load->view('vSignUp');
-			$this->load->view('imports/vFooterLandingPage');
+		if (isset($this->session->userdata['adminSession']) || isset($this->session->userdata['userSession'])) {
+			redirect('cLogin/viewDashBoard');
 		}else{
-			$this->load->view('imports/vHeaderSignUpPage');
-			$this->load->view('vSignUp',$this->data);
-			$this->load->view('imports/vFooterLandingPage');
+			$data['page_title'] = "Registration Page";
+
+			if(!$this->data){
+				$this->load->view('imports/vHeaderSignUpPage',$data);
+				$this->load->view('vSignUp');
+				$this->load->view('imports/vFooterLandingPage');
+			}else{
+				$this->load->view('imports/vHeaderSignUpPage',$data);
+				$this->load->view('vSignUp',$this->data);
+				$this->load->view('imports/vFooterLandingPage');
+			}
 		}
 
 	}
@@ -408,7 +415,8 @@ class cUser extends CI_Controller {
 	public function viewAnnouncements()
 	{
 		$data['announcements'] = $this->MAnnouncement->loadAllAnnouncementDetails();
-		$this->load->view('imports/vHeaderSignUpPage');
+		$data['page_title'] = "Announcement Page";
+		$this->load->view('imports/vHeaderSignUpPage', $data);
 		$this->load->view('user/vAnnouncementPage.php', $data);
 		$this->load->view('imports/vFooterLandingPage');
 

@@ -69,7 +69,7 @@ class CCalendar extends CI_Controller {
 			$data['announcements'] = $array1;
 		
 		$this->load->helper('url');
-		$this->load->view('imports/vHeaderLandingPage');
+		$this->load->view('imports/vHeaderLandingPage',$data);
 		$this->load->view('calendar/vCalendar',$data);
 		$this->load->view('imports/vFooterLandingPage',$this->data);
 	}

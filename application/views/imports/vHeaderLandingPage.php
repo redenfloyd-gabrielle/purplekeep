@@ -3,8 +3,8 @@
 <html class="no-js">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Event System</title>
+
     <link rel="icon" href="<?php echo base_url('assets/dianeAssets/img/DE Icon.png')?>">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">

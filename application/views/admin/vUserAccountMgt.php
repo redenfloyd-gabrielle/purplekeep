@@ -59,10 +59,10 @@
                                           <td>";                        
                                         if($object->user_status == "Active"){
                                           echo "<a  href='".site_url()."/admin/CAdmin/Ban/".$object->account_id."/user'>
-                                            <button  type='button' class='btn btn-inverse'>Update Status</button></a>";
+                                            <button  type='button' class='btn btn-inverse'>Ban User</button></a>";
                                         }else{
                                           echo "<a  href='".site_url()."/admin/CAdmin/Unban/".$object->account_id."/user'>
-                                            <button  type='button' class='btn btn-inverse'>Update Status</button></a>";
+                                            <button  type='button' class='btn btn-inverse'>Unban User</button></a>";
                                         }
                                         echo "</td></tr>";
                                          

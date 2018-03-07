@@ -140,7 +140,7 @@
                             <br><br>
                         </div>
 
-                        
+
                     </div>
                 </div>
 
@@ -194,7 +194,7 @@
             </div>
         </div>
     </div>
-    
+
     <?php if ($this->session->flashdata('success_msg')): ?>
         <div class="alert alert-success">
               <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -225,7 +225,7 @@
     <?php }else{ ?>
         <li role="presentation" class="tab"><a href="#editprofile" aria-controls="editprofile" role="tab" data-toggle="tab">Edit Profile</a></li>
     <?php } ?>
-    
+
 
   </ul>
 
@@ -236,7 +236,7 @@
     <?php }else{ ?>
         <div role="tabpanel" class="tab-pane" id="home">
     <?php } ?>
-    
+
         <div class="col-md-12 clear">
             <div id="list-type" class="proerty-th">
 
@@ -345,7 +345,7 @@
                             <li><a href = '<?php echo site_url()?>/event/CEvent/viewEvents/<?php if($page != $pages){$ppage = $page+1;} echo $ppage?>'>Next</a></li>
 
                         </ul>
-                     
+
                     </div>
                 </div>
             </div>
@@ -466,17 +466,17 @@
                         <table class="table table-hover table-striped">
                             <thead>
                                 <tr>
-                                    <th>Event Name</th>
+                                    <th>ID</th>
                                     <th>Amount</th>
                                     <th>Date paid</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php 
+                                <?php
                                     foreach ($checkout as $c) { ?>
                                         <tr>
-                                            <td><?php echo $c->event_name?></td>
+                                            <td><?php echo $c->checkId?></td>
                                             <td><?php echo $c->checkTotal?></td>
                                             <td><?php echo $c->checkCreatedOn?></td>
                                             <td>
@@ -552,6 +552,14 @@
                                             </td>
                                         </tr>
                                     <?php } ?>
+                                <?php
+                                    /*foreach ($res as $r) {
+                                            echo  '<tr>';
+                                                    //echo '<td>'.$r->dateSold.'</td>';
+                                                    //echo '<td>'.$r->ticket_type_id.'</td>';
+                                            echo '</tr>';
+                                    }
+                                */?>
                             </tbody>
                         </table>
                     </div>
@@ -582,21 +590,21 @@
     </div>
     <?php if ($this->session->flashdata('userDetails')){ ?>
         <div role="tabpanel" class="tab-pane active" id="editprofile">
-    <?php 
+    <?php
             $info = array();
          $info[] = json_decode($this->session->flashdata('userDetails'));
 
 }else{ ?>
             <div role="tabpanel" class="tab-pane" id="editprofile">
     <?php } ?>
-     
+
         <h2>Edit Profile</h2>
         <?php foreach($info as $in){ ?>
-            <form  method="POST" action="<?php echo site_url()?>/event/CEvent/updateProfile">
+            <form  method="POST" onsubmit="return validate()" action="<?php echo site_url()?>/event/CEvent/updateProfile">
             <div class="col-md-8">
                 <div class="form-group">
                     <label for="first name">First Name</label>
-                    <input type="text" <?php  echo 'value="'.$in->first_name.'"';?> class="form-control" pattern="[a-zA-Z]+" name="fname" id="fname" required="">
+                    <input type="text" <?php  echo 'value="'.$in->first_name.'"';?> class="form-control" pattern="[a-zA-Z\s]+" name="fname" id="fname" required="">
                 </div>
 
                 <div class="form-group">
@@ -606,7 +614,7 @@
 
                 <div class="form-group">
                     <label for="last name">Last Name</label>
-                    <input type="text"  <?php  echo 'value="'.$in->last_name.'"';?> class="form-control" pattern="[a-zA-Z]+" name="lname" id="lname" required="">
+                    <input type="text"  <?php  echo 'value="'.$in->last_name.'"';?> class="form-control" pattern="[a-zA-Z\s]+" name="lname" id="lname" required="">
                 </div>
 
             <div class="form-group">
@@ -616,7 +624,7 @@
 
             <div class="form-group">
                     <label for="birthdate">Birthdate</label>
-                    <input type="date"  <?php  echo 'value="'.$in->birthdate.'"';?> name="bdate" required="" id="bdate">
+                    <input type="date"  <?php  echo 'value="'.$in->birthdate.'"';?> name="bdate" required="" id="bdayt">
             </div>
 
                 <div class="form-group">
@@ -629,33 +637,54 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="contact no">Contact Number (09XXXXXXXXX) </label>
-                    <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{9}$" class="form-control" name="contact" id="contact" required="">
+                    <label for="contact no">Contact Number (09XX-XXX-XXXX) </label>
+                    <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{2}-\d{3}-\d{4}$|^\d{3}-\d{4}$" class="form-control" name="contact" id="contact" required="">
+
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" minlength="6"<?php  echo 'value="'.$in->user_name.'"';?> required="" class="form-control" pattern="[a-zA-Z0-9]+" name="uname" id="uname">
                 </div>
                 <div class="form-group">
-                    <label for="password">Old Password</label>
+                    <label for="password">Password</label>
                     <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="OldPassword" id="OldPassword">
                 </div>
-                <div class="form-group">
-                    <label for="password">New Password</label>
-                    <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="password" id="password">
-                </div>
-                <div class="form-group">
-                    <label for="password">Confirm Password</label>
-                    <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="cpassword" id="cpassword">
-                </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-default"><!-- <a href="<?php echo site_url();?>/CEvent/updateProfile"> -->Edit Profile</button>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal"><!-- <a href="<?php echo site_url();?>/CEvent/updateProfile"> -->Edit Profile</button>
                 </div>
 
 
             </div>
+            <div class="container">
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h2 class="modal-title">Edit Profile Confirmation</h2>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="password" id="password">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Confirm Password</label>
+                                <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="cpassword" id="cpassword">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" onclick="validate()" class="btn btn-default">Submit</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                  </div>
+                </div>
+              </div> 
+            </div>
         </form>
-        
         <?php
             }
         ?>
@@ -666,7 +695,7 @@
 
 
   <script type="text/javascript">
-    
+
     /*
     $(document).ready(function(){
         var wrap = $(this).find('.es-wrap');
@@ -729,8 +758,8 @@
                                 <h4><?php echo CustomizationManager::$strings->CONTACT_US_HEADER ?></h4>
                                 <div class="footer-title-line"></div>
                                 <ul class="footer-adress">
-                                    <li><i class="pe-7s-map-marker strong"> </i> 9089 your adress her</li>
-                                    <li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
+                                    <li><i class="pe-7s-map-marker strong"> </i> USC TC - Nasipit Talamban Cebu City</li>
+                                    <li><i class="pe-7s-mail strong"> </i> dailyevents@gmail.com</li>
                                     <li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
                                 </ul>
                             </div>
@@ -804,18 +833,33 @@
 ?>
 
 <script type="text/javascript">
+    function validate(){
+        var bdate = document.getElementById("bdayt").value;
+        var date = new Date(bdate);
+        var year = date.getFullYear() + 18;
+        var validateDate = new Date();
+        var validateYear = validateDate.getFullYear();
+        if(year < validateYear){
+          return true;
+        }else{
+          alert("You are below 18");
+          return false;
+        }
+    }
+</script>
+
+<script type="text/javascript">
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!
     var yyyy = today.getFullYear();
      if(dd<10){
             dd='0'+dd
-        } 
+        }
         if(mm<10){
             mm='0'+mm
-        } 
+        }
 
     today = yyyy+'-'+mm+'-'+dd;
     document.getElementById("bdate").setAttribute("max", today);
 </script>
-

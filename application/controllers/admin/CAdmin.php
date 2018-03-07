@@ -442,8 +442,17 @@ class CAdmin extends CI_Controller {
 	public function updateAdmin() {
 		$user = new MUserInfo();
 
-		$now = NEW DateTime(NULL, new DateTimeZone('UTC'));
+		$rules = "strip_tags|trim|xss_clean";
+		$this->form_validation->set_rules('uuname', 'username', $rules.'|required|min_length[6]|max_length[50]');
+		$this->form_validation->set_rules('upassword','password',$rules.'|required|min_length[8]');
+		
+		$this->form_validation->set_rules('ufname','First Name',$rules.'|required|max_length[50]');
+		$this->form_validation->set_rules('ulname','Last Name',$rules.'|required|min_length[2]|max_length[50]');
+		$this->form_validation->set_rules('uminame','Middle initial',$rules.'|required|min_length[1]');
+		$this->form_validation->set_rules('uemail','email',$rules.'|required|min_length[2]|max_length[50]|valid_email');
+		$this->form_validation->set_rules('ubdate','birthday',$rules.'|required');
 
+		$now = NEW DateTime(NULL, new DateTimeZone('UTC'));
 		$data = array('user_name' => $this->input->post('uuname'),
 					  'password' => $this->input->post('upassword'),
 					  'first_name' => $this->input->post('ufname'),
@@ -457,16 +466,28 @@ class CAdmin extends CI_Controller {
 					  'addedAt	' => $now->format('Y-m-d H:i:s')
 					);
 
-		$result = $user->update($this->session->userdata['adminSession']->userID, $data);
+		if($this->form_validation->run() != FALSE){
 
-		if($result){
-			$message = "Succesful update";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-			header('refresh:1;viewAdminAccountMgt');
+			$result = $user->update($this->session->userdata['adminSession']->userID, $data);
+
+			if($result){
+// 				$message = "Succesful update";
+// 				echo "<script type='text/javascript'>alert('$message');</script>";
+// 				header('refresh:1;viewAdminAccountMgt');
+				$this->session->set_flashdata('succes_msg',"Update succesful");
+				redirect('admin/CAdmin/viewAdminAccountMgt');
+			}else{
+// 				$message = "Update fail";
+// 				echo "<script type='text/javascript'>alert('$message');</script>";
+// 				header('refresh:;viewAdminAccountMgt');
+				$this->session->set_flashdata('error_msg',"Update failed");
+				redirect('admin/CAdmin/viewAdminAccountMgt');
+			}
 		}else{
-			$message = "Update fail";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-			header('refresh:;viewAdminAccountMgt');
+			$this->session->set_flashdata('error_msg',validation_errors());
+			$this->data = $data;
+			$this->session->set_flashdata('userDetails',json_encode($data));	
+			redirect("event/CEvent/viewEvents/1");
 		}
 
 	}

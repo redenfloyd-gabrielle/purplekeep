@@ -41,25 +41,25 @@
         </nav>
         <!-- End of nav bar -->
 
-        <div class="page-head"> 
+        <div class="page-head">
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">Announcements</h1>               
+                        <h1 class="page-title">Announcements</h1>
                     </div>
                 </div>
             </div>
         </div>
         <!-- End page header -->
 
- 
+
         <?php
             if($announcements!=FALSE){
                 foreach ($announcements as $announcement) {
                     if($announcement->announcementStatus != "Finished") {
                         $date = date("m-d-Y", strtotime($announcement->addedAt));
                     ?>
-                    
+
                         <div class='card'>
                             <div class='thumbnail'><img src="<?php echo base_url('assets/nikkiAssets/img/default_user.png')?>">'</div>
 
@@ -72,7 +72,7 @@
                                         <p class='title'>
                                           ".(($announcement->announcementTitle)?strtoupper($announcement->announcementTitle):'THIS ANNOUNCEMENT HAS NO TITLE')."
                                         </p>
-                                        
+
                                         <div class='separator'></div>
 
                                         <p>".$announcement->announcementDetails."</p>
@@ -84,16 +84,16 @@
                                         <div class='date'>
                                          <span class='box-text'>".$date."</span>
                                         </div>
-                                    
+
                                      </div>
 
                                 "
                             ?>
-                                
+
                             </div>
                         </div>
 
-                    <?php 
+                    <?php
                         ;
                     }
                 }
@@ -101,8 +101,8 @@
                 echo "<center><h2>No announcements this time.</h2></center>";
             }
         ?>
-                           
-       
+
+
 
 
 
@@ -140,7 +140,7 @@
                 </div>
             </div>
         </div>
-   
+
         <!-- Footer area-->
         <div class="footer-area">
 
@@ -164,8 +164,9 @@
                                 <h4>Contact Us</h4>
                                 <div class="footer-title-line"></div>
                                 <ul class="footer-adress">
-                                    <li><i class="pe-7s-mail strong"> </i> dailyEvents@gmail.com</li>
-                                    <li><i class="pe-7s-call strong"> </i> 253-2753</li>
+                                    <li><i class="pe-7s-map-marker strong"> </i> USC TC - Nasipit Talamban Cebu City</li>
+                                    <li><i class="pe-7s-mail strong"> </i> dailyevents@gmail.com</li>
+                                    <li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
                                 </ul>
 
                             </div>
@@ -184,7 +185,7 @@
                         <div class="bottom-menu pull-right">
                             <ul>
                                 <li><a class="wow fadeInUp animated" href="<?php echo site_url();?>/CLogin/viewDashBoard" data-wow-delay="0.2s">Home</a></li>
-                                
+
                             </ul>
                         </div>
                     </div>
@@ -194,8 +195,7 @@
         </div>
 
 <script>
-    $(document).ready(function() { 
+    $(document).ready(function() {
         $('html, body').animate({ scrollTop: $('#<?php echo $clickedAnnouncement; ?>').offset().top}, 'slow');
     });
 </script>
-

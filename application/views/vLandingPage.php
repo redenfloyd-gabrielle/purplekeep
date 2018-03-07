@@ -30,7 +30,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
 
-                    </button>    
+                    </button>
                     <a class="navbar-brand" href="<?php echo site_url();?>/CLogin/viewDashBoard"><img src="<?php echo base_url(CustomizationManager::$images->LOGO_DARK)?>"></a>
                 </div>
 
@@ -56,7 +56,7 @@
             </div><!-- /.container-fluid -->
         </nav> <! -- END OF NAV -->
 
-    <div class="page-head" style="height: 400px;"> 
+    <div class="page-head" style="height: 400px;">
             <div class="container">
                     <div class="row">
                         <div class="page-head-content">
@@ -133,7 +133,7 @@
                                                     <select class="form-control" id="municipal-name" name="municipal_name">
                                                         <option style="color: gray;">Municipal</option>
                                                     </select></div>';
-                                                
+
                                                 ?>
                                                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                                                     <button class="btn search-btn" type="submit" style="float: left;"><i class="fa fa-search"></i></button>
@@ -141,13 +141,13 @@
                                         </form>
                                     </div>
                                 </div>
-                                
-                            
-                            
+
+
+
                         </div>
                     </div>
                 </div>
-            </div>         
+            </div>
                         </div>
                     </div>
                 </div>
@@ -175,17 +175,17 @@
                                             <option value="60">60</option>
                                         </select>
                                     </div><!--/ .sel-->
-                        <!--  </div> --><!--/ .items-per-page--> 
+                        <!--  </div> --><!--/ .items-per-page-->
                    <!--  <div class="col-xs-2 layout-switcher">
                             <a class="layout-list" href="javascript:void(0);"> <i class="fa fa-th-list"></i>  </a>
                             <a class="layout-grid active" href="javascript:void(0);"> <i class="fa fa-th"></i> </a>
-                    </div><!--/ .layout-switcher--> 
+                    </div><!--/ .layout-switcher-->
                 </div>
 
                 <div class="col-md-12 ">
                     <div id="list-type" class="proerty-th">
                         <?php
-                            $cnt =0;
+                        $cnt =0;
                             if(isset($events)){
                                  foreach ($events as $event) {
                                     date_default_timezone_set('Asia/Manila');
@@ -205,11 +205,9 @@
                                                                     }else{
                                                                         echo '<div class="corner-ribbon top-right sticky red">'.$interval->days;
                                                                         echo ' day/s left!';
-                                                                        echo '</div>';      
+                                                                        echo '</div>';
                                                                     }
-                                                                }   
-
-                                                                echo '<a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'" style="background-color:#CB6C52;"><h3 class="text-center"> ';
+                                                                }
 
                                                                 if(isset($event->prefId)){
                                                                 //echo "<a href='".site_url()."/event/cEvent/interestedRemove/".$user_event_preference_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
@@ -218,7 +216,8 @@
                                                                 //echo "<a href='".site_url()."/event/cEvent/interested/".$e->event_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
                                                                     echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
                                                                 }
-                                                                
+
+                                                                echo '<a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'" style="background-color:#CB6C52;"><h3 class="text-center"> ';                                                               
                                                                 echo "<center>";
                                                                 if(strlen($event->event_name)>=42){
                                                                     echo substr($event->event_name,0,39)."...";
@@ -226,25 +225,25 @@
                                                                     echo $event->event_name;
                                                                 }
                                                                 echo "</center>";
-                                                
+
                                                                 echo '</h3></a>';
 
                                                                 // echo '<div class="item-thumb">
-                                                                // <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
-                                                                
+                                                                // <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>';
+
                                                                 echo '<div style="height:130px;"><h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
 
                                                                 $dateS = date_create($event->dateStart);
                                                                 $dateE = date_create($event->dateEnd);
                                                                 echo '<h5>When: '.date_format($dateS, 'M d Y').' - '.date_format($dateE, 'M d Y').'</h5>';
 
-                                                                                                              
-                                                    
+
+
                                                                 $mintix = $event->tix;
                                                                 foreach ($event->tix as $key) {
                                                                     $mintix = ($key->price <= $mintix)? $key->price : $mintix;
                                                                 }
-                                                                echo '<h5>Event Tickets as low as Php '.$mintix.'!!!</h5></div>';          
+                                                                echo '<h5>Event Tickets as low as Php '.$mintix.'!!!</h5></div>';
                                                                 echo '<div class="dot-hr"></div>
                                                             </div>
                                                         </div>
@@ -256,17 +255,15 @@
                                                         echo '<div class="item-entry overflow" >';
                                                                 echo '<div class="corner-ribbon top-right sticky red">Happening now!</div>';
 
-
-                                                                echo '<a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'" ><h3 class="text-center"> ';
-
-
-                                                                if(isset($event->prefId)){
+                                                                 if(isset($event->prefId)){
                                                                 //echo "<a href='".site_url()."/event/cEvent/interestedRemove/".$user_event_preference_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
                                                                     echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
                                                                 }else{
                                                                 //echo "<a href='".site_url()."/event/cEvent/interested/".$e->event_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
                                                                     echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
                                                                 }
+
+                                                                echo '<a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'" ><h3 class="text-center"> ';
                                                                 
                                                                 echo "<center>";
                                                                 if(strlen($event->event_name)>=42){
@@ -274,11 +271,9 @@
                                                                 }else{
                                                                     echo $event->event_name;
                                                                 }
-
-                                                
                                                                 echo '</h3></a>';
                                                                 // echo '<div class="item-thumb">
-                                                                // <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
+                                                                // <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>';
 
                                                                 echo '<div style="height:130px;"><h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
 
@@ -299,7 +294,7 @@
                                 }
                             }
                             if($cnt==0) {
-                                echo "<h2> No approved events as of the moment.</h2>";
+                                echo $msg;
                             }
                         ?>
                         <script type="text/javascript">
@@ -358,10 +353,10 @@
                                 <h4><?php echo CustomizationManager::$strings->CONTACT_US_HEADER ?></h4>
                                 <div class="footer-title-line"></div>
                                 <ul class="footer-adress">
-                                    <li><i class="pe-7s-map-marker strong"> </i> 9089 your adress her</li>
-                                    <li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
+                                    <li><i class="pe-7s-map-marker strong"> </i> USC TC - Nasipit Talamban Cebu City</li>
+                                    <li><i class="pe-7s-mail strong"> </i> dailyevents@gmail.com</li>
                                     <li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
-                                </ul>        
+                                </ul>
                             </div>
                         </div>
 
@@ -448,4 +443,3 @@
 </script>
 
 <!--END OF  SCRIPT-->
-

@@ -379,7 +379,6 @@ div.desc {
                                 <div class="panel-body recent-property-widget" >
                                     
                                         <?php foreach ($types as $t) { ?>
-
                                             <div class="col-md-10 col-sm-10 col-xs-10 blg-entry" >
                                                 <h4><?php echo  $t->ticket_name." : ".$t->ticket_count." left";?></h4>
                                                 <h3><span class="property-price"><?php echo "P"." ".$t->price.".00";?></span></h3>
@@ -397,7 +396,7 @@ div.desc {
                                 
                             </div>
                           </div>
-                            
+
                             <!-- <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
                                 <div class="panel-heading">
                                 <h3 class="panel-title">Search</h3>
@@ -545,8 +544,9 @@ div.desc {
                                 <h4>Contact Us</h4>
                                 <div class="footer-title-line"></div>
                                 <ul class="footer-adress">
-                                    <li><i class="pe-7s-mail strong"> </i> dailyEvents@gmail.com</li>
-                                    <li><i class="pe-7s-call strong"> </i> 253-2753</li>
+                                    <li><i class="pe-7s-map-marker strong"> </i> USC TC - Nasipit Talamban Cebu City</li>
+                                    <li><i class="pe-7s-mail strong"> </i> dailyevents@gmail.com</li>
+                                    <li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
                                 </ul>
 
                             </div>

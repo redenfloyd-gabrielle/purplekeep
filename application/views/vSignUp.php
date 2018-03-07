@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
-                    <ul class="main-nav nav navbar-nav navbar-right">
+                    <ul class="main-nav nav navbar-nav navbar-right ">
                       <!-- <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cInitialize">Home</a></li> -->
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cInitialize"><span class="fas fa-home fa-lg" title="HOME"></span></a></li>
                     </ul>
@@ -71,7 +71,7 @@
                                     <?php echo $this->session->flashdata('error_msg'); ?>
                                 </div>
                             <?php endif ?>
-                            <form id="signup" action="<?php echo site_url();?>/user/cUser/signup" method="post" >
+                            <form id="signup" onsubmit="return validate()" action="<?php echo site_url();?>/user/cUser/signup" method="post" >
                                 <div class="form-group">
                                     <!-- <label for="name">First Name</label> -->
                                     <label for="name"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_FIRST_NAME ?></label>
@@ -96,7 +96,7 @@
                                     <!-- <label for="email">Birthdate</label> -->
                                     <label for="email"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_BIRTHDATE ?></label>
 
-                                    <input type="date"  <?php  if(isset($birthdate)){echo 'value="'.$birthdate.'"';}?> name="bdate" required="" id="bdate">
+                                    <input type="date"  <?php  if(isset($birthdate)){echo 'value="'.$birthdate.'"';}?> name="bdate" required="" id="bdayt">
 
 
 
@@ -131,7 +131,7 @@
                                     <input type="password" class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="cpassword" id="cpassword"><h4 id="message"></h4>
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-default"><!-- <a href="<?php echo site_url();?>/cLogin/viewEvents"> --><?php echo CustomizationManager::$strings->SIGNUP_PAGE_SIGNUP_BUTTON ?></button>
+                                    <button type="submit" onclick="validate()" class="btn btn-default"><!-- <a href="<?php echo site_url();?>/cLogin/viewEvents"> --><?php echo CustomizationManager::$strings->SIGNUP_PAGE_SIGNUP_BUTTON ?></button>
                                 </div>
                             </form>
                         </div>
@@ -195,17 +195,17 @@
         $('#cpassword').on('keyup', function () {
             if ($(this).val() == $('#password').val()) {
                 $('#message').html('password matched').css('color', 'green');
-                $("#sub").removeAttr("disabled");      
+                $("#sub").removeAttr("disabled");
             } else {
                $('#message').html('password mismatch').css('color', 'red');
-               $('#sub').prop('disabled',true); 
-            } 
+               $('#sub').prop('disabled',true);
+            }
         });
 
-       
+
 
         $('#uname').on('keyup', function () {
-            
+
             $.ajax({
             url: "<?php echo site_url()?>/user/cUser/checkAllUsername",
             data:'username='+$("#uname").val(),
@@ -219,7 +219,23 @@
            });
         });
     });
-            
+
+</script>
+
+<script type="text/javascript">
+    function validate(){
+        var bdate = document.getElementById("bdayt").value;
+        var date = new Date(bdate);
+        var year = date.getFullYear() + 18;
+        var validateDate = new Date();
+        var validateYear = validateDate.getFullYear();
+        if(year < validateYear){
+          return true;
+        }else{
+          alert("You are below 18");
+          return false;
+        }
+    }
 </script>
 
 <script type="text/javascript">
@@ -229,10 +245,10 @@ var mm = today.getMonth()+1; //January is 0!
 var yyyy = today.getFullYear();
  if(dd<10){
         dd='0'+dd
-    } 
+    }
     if(mm<10){
         mm='0'+mm
-    } 
+    }
 
 today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("bdate").setAttribute("max", today);

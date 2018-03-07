@@ -70,7 +70,7 @@
                                     <button  type='button' class='btn btn-primary'>Update Status</button></a>";
                                 }*/
                                 
-                                  echo "<a  href='".site_url()."/admin/CAdmin/deleteAnnouncement/".$announcement->announcementID."'>
+                                  echo "<a  href='".site_url()."/admin/CAdmin/deleteAnnouncement/".$announcement->announcementID."' class='confirmation'>
                                   <button  type='button' class='btn btn-danger'>Delete Announcement</button></a>";
                                 }
                             }
@@ -172,4 +172,10 @@
     </footer>
 
   </body>
+
+<script type="text/javascript">
+    $('.confirmation').on('click', function () {
+        return confirm('Are you sure?');
+    });
+</script>
 </html>
