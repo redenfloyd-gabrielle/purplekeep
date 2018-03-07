@@ -637,25 +637,46 @@
                     <input type="text" minlength="6"<?php  echo 'value="'.$in->user_name.'"';?> required="" class="form-control" pattern="[a-zA-Z0-9]+" name="uname" id="uname">
                 </div>
                 <div class="form-group">
-                    <label for="password">Old Password</label>
+                    <label for="password">Password</label>
                     <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="OldPassword" id="OldPassword">
                 </div>
-                <div class="form-group">
-                    <label for="password">New Password</label>
-                    <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="password" id="password">
-                </div>
-                <div class="form-group">
-                    <label for="password">Confirm Password</label>
-                    <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="cpassword" id="cpassword">
-                </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-default"><!-- <a href="<?php echo site_url();?>/CEvent/updateProfile"> -->Edit Profile</button>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal"><!-- <a href="<?php echo site_url();?>/CEvent/updateProfile"> -->Edit Profile</button>
+                    
                 </div>
 
 
             </div>
+            <div class="container">
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h2 class="modal-title">Edit Profile Confirmation</h2>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="password" id="password">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Confirm Password</label>
+                                <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="cpassword" id="cpassword">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-default">Submit</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                  </div>
+                </div>
+              </div> 
+            </div>
         </form>
-        
         <?php
             }
         ?>
