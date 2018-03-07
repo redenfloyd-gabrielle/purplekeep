@@ -66,10 +66,7 @@
                                               $result = $this->MReports->nameAttendees( $object->event_id);
                                               foreach($result as $obj){
                                                   echo"
-                                                      <tr>
-                                                      
-                                                      <td>".$obj['user_name']."</td>
-                                                      <tr>
+                                                      <p>".$obj['user_name']."</p>
                                                   ";
                                               }
                                               $num = $this->MReports->countAttendees( $object->event_id);
