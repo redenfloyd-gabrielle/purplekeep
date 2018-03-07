@@ -20,21 +20,33 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-inverse">
-            <div class="container container-fluid">
+        <nav class="navbar navbar-default ">
+            <div class="container">
+                <!-- Brand and toggle get grouped for better mobile display -->
                 <div class="navbar-header">
-                    <a href="#" class="navbar-brand"><img src="<?php echo base_url('assets/dianeAssets/img/dailyEvents.png" class="eventLogo')?>"></a>
+                    
+                    <a class="navbar-brand" href="<?php echo site_url();?>/CLogin/viewDashBoard"><img src="<?php echo base_url(CustomizationManager::$images->LOGO_DARK)?>"></a>
                 </div>
-                
-                <div class="container">
-                    <ul class="nav navbar-navx navbar-right inline-navbar">
-                        <li><a href="<?php echo site_url();?>/CLogin/viewDashboard">Home</a></li>
-                        <li class="Active"><a href="<?php echo site_url();?>/CLogin/viewEvents/1">Events</a></li>
-                        <li><a href="contact.html">Contact Us</a></li>
+
+                <div class="collapse navbar-collapse yamm" id="navigation">
+                    <div class="button navbar-right">
+                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login" title="Logout"><span class="fas fa-sign-out-alt fa-lg"></span></button></a>
+                    </div>
+                    <div class="button navbar-right">
+                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login" title="Create Event"><span class="fas fa-calendar-plus fa-lg"></span></button></a>
+                    </div>
+                    <ul class="main-nav nav navbar-nav navbar-right">
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Home"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><span class="fas fa-home fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents/1"><span class="fas fa-user fa-lg"></span></a></li>
+
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/cUser/viewAnnouncements"><span><i class="fas fa-bell fa-lg"></i></span><?php if($announcementCount>0) {?><span id="bdg" class="badge badge-notify"><?php echo $announcementCount;?></span><?php }?></a></li>
+
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Interested Events"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><span class="fas fa-star fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="View Cart"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><span class="fas fa-shopping-cart fa-lg"></span></a></li>
                     </ul>
-                </div>
-            </div>
-        </nav>
+                </div><!-- /.navbar-collapse -->
+            </div><!-- /.container-fluid -->
+        </nav> <! -- END OF NAV -->
     <form method="post" action="<?php echo site_url();?>/event/CEvent/createEvent ">
         <div class ="createYourEvent">
             <h1> EDIT YOUR EVENT! </h1> <br>
