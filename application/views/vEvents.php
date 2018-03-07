@@ -650,7 +650,6 @@
                 </div>
                 <div class="text-center">
                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal"><!-- <a href="<?php echo site_url();?>/CEvent/updateProfile"> -->Edit Profile</button>
-                    
                 </div>
 
 
