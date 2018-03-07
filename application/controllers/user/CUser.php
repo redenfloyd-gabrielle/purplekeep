@@ -92,6 +92,7 @@ class cUser extends CI_Controller {
 				}
 			}
 			$data['announcements'] = $array1;
+			$data['msg'] = "<h2> No approved events as of the moment.</h2>";
 			
 		$this->data['custom_js']= '<script type="text/javascript">
 
