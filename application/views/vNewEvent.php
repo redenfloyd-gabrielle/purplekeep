@@ -26,16 +26,20 @@
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
                         <!-- <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a> -->
-                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login" title="Logout"><span class="fas fa-sign-out-alt fa-lg"></span></button></a>
+                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login" title="Create Event"><span class="fas fa-sign-out-alt fa-lg"></span></button></a>
                     </div>
                     <div class="button navbar-right">
                         <!-- <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a> -->
-                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login" title="Create Event"><span class="fas fa-calendar-plus fa-lg"></span></button></a>
+                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login" title="Logout"><span class="fas fa-calendar-plus fa-lg"></span></button></a>
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Home"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><span class="fas fa-home fa-lg"></span></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents/1"><span class="fas fa-user fa-lg"></span></a></li>
+<<<<<<< HEAD
                         <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><span class="fas fa-bell fa-lg"><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
+=======
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/cUser/viewAnnouncements"><span><i class="fas fa-bell fa-lg"></i></span><?php if($announcementCount>0) {?><span id="bdg" class="badge badge-notify"><?php echo $announcementCount;?></span><?php }?></a></li>
+>>>>>>> 9c687a6e766e187932ef12757b1e1187872a9a32
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Interested Events"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><span class="fas fa-star fa-lg"></span></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="View Cart"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><span class="fas fa-shopping-cart fa-lg"></span></a></li>
                     </ul>
@@ -62,6 +66,18 @@
             <div class="container">
                 <div class="col-md-3"></div>
                 <div class="col-md-6 ">
+                     <?php if ($this->session->flashdata('success_msg')): ?>
+                        <div class="alert alert-success">
+                              <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                              <?php echo $this->session->flashdata('success_msg') ?>
+                          </div>
+                      <?php endif ?>
+                    <?php if ($this->session->flashdata('error_msg')): ?>
+                        <div class="alert alert-danger" style="margin-top: 15px;">
+                            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                            <?php echo $this->session->flashdata('error_msg'); ?>
+                        </div>
+                    <?php endif ?>
                     <div class="box-for overflow">
                         <div class="col-md-12 col-xs-12 register-blocks">
                             <h2><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_DETAILS ?></h2>
@@ -391,15 +407,38 @@
             //         alert(city);
             //     }
             // });
+         
+
+
             function checkLocation(){
               var form = document.forms["createEventForm"];
               var location = form["event_venue"].value;
 
+              var ext = getExtension( form["userfile"].value);
+             
               if(!location.match(/[a-z]/i)){
                 alert("Invalid Input!" + location.length);
                 return false;
               }
+
+              switch (ext.toLowerCase()) {
+                case 'jpg':
+                case 'gif':
+                case 'bmp':
+                case 'png':
+                    //etc
+                alert("Invalid IMAGE!" + location.length);
+
+                    return false;
+              }
+
+               
               return true;
+            }
+
+            function getExtension(filename) {
+                var parts = filename.split('.');
+                return parts[parts.length - 1];
             }
 
         </script>

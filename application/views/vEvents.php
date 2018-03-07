@@ -38,7 +38,7 @@
 
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Home"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><span class="fas fa-home fa-lg"></span></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents/1"><span class="fas fa-user fa-lg"></span></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><span class="fas fa-bell fa-lg"><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/cUser/viewAnnouncements"><span><i class="fas fa-bell fa-lg"></i></span><?php if($announcementCount>0) {?><span id="bdg" class="badge badge-notify"><?php echo $announcementCount;?></span><?php }?></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Interested Events"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><span class="fas fa-star fa-lg"></span></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="View Cart"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><span class="fas fa-shopping-cart fa-lg"></span></a></li>
 
@@ -73,15 +73,12 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="panel-heading">
-                                                <center><h1 style="font-size: 50px;" class="panel-title">Php <?php foreach($user as $u){echo $u->load_amt;}?>.00</h1></center>
+                                                <center><p style="font-size: 3em;word-wrap: break-word; border-bottom: solid 3px #CB6C52;" class="panel-title">Php <?php foreach($user as $u){echo $u->load_amt;}?>.00</p></center>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
-
-                                        <!-- <p>Insufficient balance?
-                                             <a style=" color: #e2624b; cursor:pointer; border-bottom: 1.5px solid #e2624b;padding-bottom: 2px"  onMouseOver="this.style.color='#ffcec0';this.style.paddingBottom='8px';this.style.borderBottom='3px solid #e2624b';"    onMouseOut="this.style.color='#e2624b' ;this.style.paddingBottom='2px';" type="button" class="dbutton " id="load" >Load Now</a> -->
-                                           <p><?php echo CustomizationManager::$strings->PROFILE_PAGE_INSUFFICIENT_BALANCE ?>
+                                           <p ><?php echo CustomizationManager::$strings->PROFILE_PAGE_INSUFFICIENT_BALANCE ?>
                                                 <a style=" color: #e2624b; cursor:pointer; border-bottom: 1.5px solid #e2624b;padding-bottom: 2px"  onMouseOver="this.style.color='#ffcec0';this.style.paddingBottom='8px';this.style.borderBottom='3px solid #e2624b';"    onMouseOut="this.style.color='#e2624b' ;this.style.paddingBottom='2px';" type="button" class="dbutton " id="load" ><?php echo CustomizationManager::$strings->PROFILE_PAGE_LOAD_NOW ?></a>
 
 
@@ -97,7 +94,7 @@
 
                                                 <div class="col-xs-12" id="some" hidden="">
                                                     <form action="<?php echo site_url(); ?>/user/CUser/redeemCode" method="post">
-                                                        <input type="text" class="form-control" name="ccode" placeholder="Enter code">
+                                                        <input type="text" class="form-control" name="ccode" placeholder="Enter code" required="">
                                                         <!-- <button type="submit" class="navbar-btn nav-button pull-right"   >Redeem Code</button> -->
                                                         <button type="submit" class="navbar-btn nav-button pull-right"   ><?php echo CustomizationManager::$strings->PROFILE_PAGE_REDEEM_CODE ?></button>
                                                     </form>
@@ -143,7 +140,7 @@
                             <br><br>
                         </div>
 
-                        
+
                     </div>
                 </div>
 
@@ -197,7 +194,7 @@
             </div>
         </div>
     </div>
-    
+
     <?php if ($this->session->flashdata('success_msg')): ?>
         <div class="alert alert-success">
               <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -211,18 +208,35 @@
         </div>
     <?php endif ?>
 
+
+
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" id="myTabs" role="tablist">
-    <li role="presentation" class="tab active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_EVENTS ?></a></li>
+    <?php if (!$this->session->flashdata('userDetails')){ ?>
+        <li role="presentation" class="tab active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_EVENTS ?></a></li>
+    <?php }else{ ?>
+        <li role="presentation" class="tab"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_EVENTS ?></a></li>
+    <?php } ?>
+
     <li role="presentation" class="tab"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_REPORTS ?></a></li>
     <li role="presentation" class="tab"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_PAYMENT_HISTORY ?></a></li>
-    <li role="presentation" class="tab"><a href="#editprofile" aria-controls="editprofile" role="tab" data-toggle="tab">Edit Profile</a></li>
+    <?php if ($this->session->flashdata('userDetails')){ ?>
+        <li role="presentation" class="tab active"><a href="#editprofile" aria-controls="editprofile" role="tab" data-toggle="tab">Edit Profile</a></li>
+    <?php }else{ ?>
+        <li role="presentation" class="tab"><a href="#editprofile" aria-controls="editprofile" role="tab" data-toggle="tab">Edit Profile</a></li>
+    <?php } ?>
+
 
   </ul>
 
   <!-- Tab panes -->
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="home">
+     <?php if (!$this->session->flashdata('userDetails')){ ?>
+            <div role="tabpanel" class="tab-pane active" id="home">
+    <?php }else{ ?>
+        <div role="tabpanel" class="tab-pane" id="home">
+    <?php } ?>
+
         <div class="col-md-12 clear">
             <div id="list-type" class="proerty-th">
 
@@ -331,7 +345,7 @@
                             <li><a href = '<?php echo site_url()?>/event/CEvent/viewEvents/<?php if($page != $pages){$ppage = $page+1;} echo $ppage?>'>Next</a></li>
 
                         </ul>
-                     
+
                     </div>
                 </div>
             </div>
@@ -459,17 +473,93 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php 
+                                <?php
                                     foreach ($checkout as $c) { ?>
                                         <tr>
                                             <td><?php echo $c->event_name?></td>
                                             <td><?php echo $c->checkTotal?></td>
                                             <td><?php echo $c->checkCreatedOn?></td>
                                             <td>
-                                                <button>VIEW DETAILS</button>
+                                                <div class="panel-body search-widget">
+                                                    <fieldset >
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <!-- <a href="<?php echo site_url();?>/reports/cReports/generateRevenue/<?php echo $e->event_id;?>"><button class="button btn largesearch-btn " id="<?php echo $e->event_id;?>">Generate Revenue</button></a> -->
+
+<!-- Button HTML (to Trigger Modal) -->
+<a href="#paymentHistory<?php echo $c->checkId;?>" role="button" class="button btn largesearch-btn" data-toggle="modal">View Details</a>
+
+<!-- Modal HTML -->
+<div id="paymentHistory<?php echo $c->checkId;?>" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h1 class="modal-title"></h1>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-hover table-striped">
+                    <tbody>
+                        <thead>
+                            <tr>
+                                <th style="text-align:center;">Ticket Name</th>
+                                <th style="text-align:center;">Quantity Bought</th>
+                                <th style="text-align:center;">Price</th>
+                                <th style="text-align:center;">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $grandTotal = 0;
+                            foreach ($c->checkoutDetails as $cd) {
+                            ?>
+                            <tr style="text-align:center;">
+                                <td><?php echo $cd->ticket_name;?></td>
+                                <td><?php echo $cd->quantity;?></td>
+                                <td><?php echo $cd->total_price / $cd->quantity;?></td>
+                                <td><?php echo $cd->total_price; $grandTotal+= $cd->total_price;?></td>
+                            </tr>
+
+                        <?php }
+                            ?>
+                            <tr><td></td><td></td>
+                                <td><h3 style="font-size: 20px; text-align: right; font-weight: 600; padding: 10px;"> Total Revenue: </h3></td>
+                                <td>
+
+                                    <div class="panel-heading">
+                                        <center><h2 class="panel-title" style="font-size: 30px; font-weight: 600; border-bottom: 3px solid #e2624b; padding: 10px;"> <?php echo $grandTotal; ?> </h2></center>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
                                             </td>
                                         </tr>
                                     <?php } ?>
+                                <?php
+                                    /*foreach ($res as $r) {
+                                            echo  '<tr>';
+                                                    //echo '<td>'.$r->dateSold.'</td>';
+                                                    //echo '<td>'.$r->ticket_type_id.'</td>';
+                                            echo '</tr>';
+                                    }
+                                */?>
                             </tbody>
                         </table>
                     </div>
@@ -498,24 +588,33 @@
 
 
     </div>
-     <div role="tabpanel" class="tab-pane" id="editprofile">
+    <?php if ($this->session->flashdata('userDetails')){ ?>
+        <div role="tabpanel" class="tab-pane active" id="editprofile">
+    <?php
+            $info = array();
+         $info[] = json_decode($this->session->flashdata('userDetails'));
+
+}else{ ?>
+            <div role="tabpanel" class="tab-pane" id="editprofile">
+    <?php } ?>
+
         <h2>Edit Profile</h2>
         <?php foreach($info as $in){ ?>
-            <form  method="POST" action="<?php echo site_url()?>/CEvent/updateProfile">
+            <form  method="POST" action="<?php echo site_url()?>/event/CEvent/updateProfile">
             <div class="col-md-8">
                 <div class="form-group">
                     <label for="first name">First Name</label>
-                    <input type="text" <?php  echo 'value="'.$in->first_name.'"';?> class="form-control" pattern="[a-zA-Z]+" name="fname" id="name" required="">
+                    <input type="text" <?php  echo 'value="'.$in->first_name.'"';?> class="form-control" pattern="[a-zA-Z\s]+" name="fname" id="fname" required="">
                 </div>
 
                 <div class="form-group">
                     <label for="middle initial">Middle Initial</label>
-                    <input type="text"  <?php  echo 'value="'.$in->middle_initial.'"';?> class="form-control" pattern="[a-zA-Z]+" name="midname" id="name" required="">
+                    <input type="text"  <?php  echo 'value="'.$in->middle_initial.'"';?> class="form-control" pattern="[a-zA-Z]+" name="midname" id="midname" required="">
                 </div>
 
                 <div class="form-group">
                     <label for="last name">Last Name</label>
-                    <input type="text"  <?php  echo 'value="'.$in->last_name.'"';?> class="form-control" pattern="[a-zA-Z]+" name="lname" id="name" required="">
+                    <input type="text"  <?php  echo 'value="'.$in->last_name.'"';?> class="form-control" pattern="[a-zA-Z\s]+" name="lname" id="lname" required="">
                 </div>
 
             <div class="form-group">
@@ -538,8 +637,13 @@
                 </div>
 
                 <div class="form-group">
+<<<<<<< HEAD
                     <label for="contact no">Contact Number (09XXXXXXXXX) <i>(if mobile no.: 09XXXXXXXXX; if telephone no.: XXX-XXXX)</i> </label>
                     <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{2}-\d{3}-\d{4}$|^\d{3}-\d{4}$" class="form-control" name="contact" id="email" required="">
+=======
+                    <label for="contact no">Contact Number (09XX-XXX-XXXX) </label>
+                    <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{2}-\d{3}-\d{4}$|^\d{3}-\d{4}$" class="form-control" name="contact" id="contact" required="">
+>>>>>>> 9c687a6e766e187932ef12757b1e1187872a9a32
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -547,16 +651,45 @@
                 </div>
                 <div class="form-group">
                     <label for="password">Password</label>
-                    <input type="password" <?php  echo 'value="'.$in->password.'"';?> class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="password" id="password">
+                    <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="OldPassword" id="OldPassword">
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-default"><!-- <a href="<?php echo site_url();?>/CEvent/updateProfile"> -->Edit Profile</button>
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal"><!-- <a href="<?php echo site_url();?>/CEvent/updateProfile"> -->Edit Profile</button>
+                    
                 </div>
 
 
             </div>
+            <div class="container">
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+                
+                    <!-- Modal content-->
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                            <h2 class="modal-title">Edit Profile Confirmation</h2>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label for="password">Password</label>
+                                <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="password" id="password">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Confirm Password</label>
+                                <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="cpassword" id="cpassword">
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-default">Submit</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                        </div>
+                  </div>
+                </div>
+              </div> 
+            </div>
         </form>
-        
         <?php
             }
         ?>
@@ -711,12 +844,11 @@
     var yyyy = today.getFullYear();
      if(dd<10){
             dd='0'+dd
-        } 
+        }
         if(mm<10){
             mm='0'+mm
-        } 
+        }
 
     today = yyyy+'-'+mm+'-'+dd;
     document.getElementById("bdate").setAttribute("max", today);
 </script>
-

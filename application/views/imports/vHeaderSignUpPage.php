@@ -4,7 +4,11 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+<<<<<<< HEAD
     <title>DailyEvents | <?php echo isset($page_title) ? $page_title : 'Home Page' ; ?></title>
+=======
+    <title>Event System</title>
+>>>>>>> 9c687a6e766e187932ef12757b1e1187872a9a32
     <link rel="icon" href="<?php echo base_url('assets/dianeAssets/img/DE Icon.png')?>">
 
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800' rel='stylesheet' type='text/css'>
@@ -20,6 +24,7 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 
     <!--start of datetime picker styling -------->
+
     <link href="<?php echo base_url('assets/nikkiAssets/bootstrap/css/bootstrap.css')?>" rel="stylesheet" />
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/css/bootstrap-datetimepicker.min.css" />
@@ -30,8 +35,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datetimepicker/4.17.37/js/bootstrap-datetimepicker.min.js"></script>
 
     <!--end of datetime picker styling -------->
-    
-    <link href="<?php echo base_url('assets/nikkiAssets/css/announcement.css')?>" rel="stylesheet" />
+            <link href="<?php echo base_url('assets/nikkiAssets/css/announcement2.css')?>" rel="stylesheet" />
+
     <link href="<?php echo base_url('assets/nikkiAssets/css/normalize.css')?>" rel="stylesheet" />
     <link href="<?php echo base_url('assets/nikkiAssets/css/font-awesome.min.css')?>" rel="stylesheet" />
     <link href="<?php echo base_url('assets/nikkiAssets/css/fontello.css')?>" rel="stylesheet" />

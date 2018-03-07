@@ -5,10 +5,10 @@
 		private $ticket_name;
 		private $price;
 		private $event_id;
-		private $addedBy; 
-		private $updatedBy; 
-		private $addedAt; 
-		private $updateAt; 
+		private $addedBy;
+		private $updatedBy;
+		private $addedAt;
+		private $updateAt;
 
 
 		const DB_TABLE = "ticket_type";
@@ -17,6 +17,18 @@
     	public function __construct(){
 
 		}
+
+		public function updateTicketInfo($id,$info)
+		{
+			/*$data = array(
+				'ticket_name' => $info['ticket_name'],
+				'price' => $info['price']
+			);*/
+
+			$this->db->where('event_id', $id);
+			$this->db->update('ticket_type', $info);
+		}
+
 		public function getTicketPrice($ticket_type_id)
 		{
 			$this->db->select('price');
@@ -37,6 +49,8 @@
 			$query = $this->db->get();
 			return $query->result();
 		}
+
+		
 
 
 		public function getTicket_type_id(){

@@ -76,6 +76,17 @@
 
 
 		}
+		public function getChekDetails($id){
+			$this->db->select("tt.ticket_name,c.quantity,c.total_price");
+			$this->db->from("cart as c");
+			$this->db->from("ticket_type as tt");
+			$this->db->where("tt.ticket_type_id = c.ticket_id");
+			$this->db->where("c.checkoutId",$id);
+			
+			$query = $this->db->get();
+			return $query->result();
+
+		}
 			
 	}
 ?>

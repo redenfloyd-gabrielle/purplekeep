@@ -29,9 +29,9 @@
                 </div>
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
-                    <ul class="main-nav nav navbar-nav navbar-right">
+                    <ul class="main-nav nav navbar-nav navbar-right ">
                       <!-- <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cInitialize">Home</a></li> -->
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cInitialize"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_NAV_HOME ?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cInitialize"><span class="fas fa-home fa-lg" title="HOME"></span></a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -195,17 +195,17 @@
         $('#cpassword').on('keyup', function () {
             if ($(this).val() == $('#password').val()) {
                 $('#message').html('password matched').css('color', 'green');
-                $("#sub").removeAttr("disabled");      
+                $("#sub").removeAttr("disabled");
             } else {
                $('#message').html('password mismatch').css('color', 'red');
-               $('#sub').prop('disabled',true); 
-            } 
+               $('#sub').prop('disabled',true);
+            }
         });
 
-       
+
 
         $('#uname').on('keyup', function () {
-            
+
             $.ajax({
             url: "<?php echo site_url()?>/user/cUser/checkAllUsername",
             data:'username='+$("#uname").val(),
@@ -219,7 +219,7 @@
            });
         });
     });
-            
+
 </script>
 
 <script type="text/javascript">
@@ -229,10 +229,10 @@ var mm = today.getMonth()+1; //January is 0!
 var yyyy = today.getFullYear();
  if(dd<10){
         dd='0'+dd
-    } 
+    }
     if(mm<10){
         mm='0'+mm
-    } 
+    }
 
 today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("bdate").setAttribute("max", today);

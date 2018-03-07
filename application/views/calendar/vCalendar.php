@@ -38,8 +38,10 @@
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Home"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><span class="fas fa-home fa-lg"></span></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents"><span class="fas fa-user fa-lg"></span></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><span class="fas fa-bell fa-lg"></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents/1"><span class="fas fa-user fa-lg"></span></a></li>
+
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><span class="fas fa-bell fa-lg"><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
+
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Interested Events"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><span class="fas fa-star fa-lg"></span></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="View Cart"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><span class="fas fa-shopping-cart fa-lg"></span></a></li>
                     </ul>
@@ -73,7 +75,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="panel-heading">
-                                                    <center><h1 style="font-size: 50px;" class="panel-title">P<?php foreach($user as $u){echo $u->load_amt;}?>.00</h1></center>
+                                                    <center><p style="font-size: 3em;word-wrap: break-word; border-bottom: solid 3px #CB6C52;" class="panel-title">Php <?php foreach($user as $u){echo $u->load_amt;}?>.00</p></center>
                                                 </div>
                                             </div>
                                         </div>
@@ -90,8 +92,8 @@
                                             <div class="row">
 
                                                     <div class="col-xs-12" id="some" hidden="">
-                                                        <form action="<?php echo site_url(); ?>/user/CUser/redeemCode" method="post">
-                                                            <input type="text" class="form-control" name="ccode" placeholder="Enter code">
+                                                        <form action="<?php echo site_url(); ?>/user/CUser/redeemCodeCalendar" method="post">
+                                                            <input type="text" class="form-control" name="ccode" placeholder="Enter code" required="">
                                                             <!-- <button type="submit" class="navbar-btn nav-button pull-right"   >Redeem Code</button> -->
                                                             <button type="submit" class="navbar-btn nav-button pull-right"   ><?php echo CustomizationManager::$strings->PROFILE_PAGE_REDEEM_CODE ?></button>
                                                         </form>
@@ -137,12 +139,24 @@
                                 <br><br>
                             </div>
 
-                            
+
                         </div>
                     </div>
 
                     <div class="col-md-9  pr0 padding-top-40 properties-page">
                         <div class="col-md-12 clear">
+                          <?php if ($this->session->flashdata('success_msg')): ?>
+                            <div class="alert alert-success">
+                                  <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                                  <?php echo $this->session->flashdata('success_msg') ?>
+                              </div>
+                          <?php endif ?>
+                        <?php if ($this->session->flashdata('error_msg')): ?>
+                            <div class="alert alert-danger" style="margin-top: 15px;">
+                                <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                                <?php echo $this->session->flashdata('error_msg'); ?>
+                            </div>
+                        <?php endif ?>
                             <div class="col-xs-10 page-subheader sorting pl0">
                                     <div class="content">
                                         <div class="row">
@@ -154,10 +168,10 @@
 
                                         </div>
                                         <!-- /.row -->
-                                        
+
 
                                         <!-- LEGEND -->
-                                        
+
                                         <div class="calendar-legend">
                                             <center><h3>L E G E N D</h3></center>
                                             <ul class="legend">

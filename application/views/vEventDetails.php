@@ -107,24 +107,19 @@ div.desc {
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                        <button class="navbar-btn nav-button wow bounceInRight login"> <a href ="<?php echo site_url();?>/cLogin/userLogout" data-wow-delay="0.1s">Logout </a></button>
+                        <!-- <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a> -->
+                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login" title="Logout"><span class="fas fa-sign-out-alt fa-lg"></span></button></a>
                     </div>
-
                     <div class="button navbar-right">
-                        <button class="navbar-btn nav-button wow bounceInRight login"> <a href ="<?php echo site_url();?>/event/cEvent/viewCreateEvent" data-wow-delay="0.4s">Create Event </a></button>
+                        <!-- <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a> -->
+                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login" title="Create Event"><span class="fas fa-calendar-plus fa-lg"></span></button></a>
                     </div>
-
-
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cLogin/viewDashBoard">Home</a></li>
-
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/cEvent/viewEvents">Profile</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/user/cUser/viewAnnouncements">Announcements</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/cEvent/viewPreferenceEvents">Interested Events</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/cCart/viewCart">View Cart</a></li>
-                        <!--
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href ="<?php echo site_url();?>/event/cEvent/viewCreateEvent" >Contact</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href ="#" >Profile</a></li> -->
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Home"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><span class="fas fa-home fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents/1"><span class="fas fa-user fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><span class="fas fa-bell fa-lg"></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Interested Events"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><span class="fas fa-star fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="View Cart"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><span class="fas fa-shopping-cart fa-lg"></span></a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -213,11 +208,35 @@ div.desc {
                                 <h1 class="property-title pull-left"><?php echo $e->event_name; ?></h1>
 
                                 <?php if(isset($user_event_preference_id)){
-                                    echo "<a href='".site_url()."/event/cEvent/interestedRemove/".$user_event_preference_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
+                                    //echo "<a href='".site_url()."/event/cEvent/interestedRemove/".$user_event_preference_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
+                                    echo "<a href=\"#\" data-value='".$interested."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
                                 }else{
-                                    echo "<a href='".site_url()."/event/cEvent/interested/".$e->event_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
+                                    //echo "<a href='".site_url()."/event/cEvent/interested/".$e->event_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
+                                    echo "<a href=\"#\" data-value='".$interested."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
                                 }
                                 ?>
+                                <script type="text/javascript">
+                                    $(document).ready(function(e){                                        
+                                        $('.star').on("click", function(){
+                                            $.ajax({
+                                                url:'<?php echo site_url()."/event/cEvent/interested";?>',
+                                                method: "POST",
+                                                dataType: 'json',
+                                                data:{'eid':<?php echo $e->event_id?>},
+                                                success: function(e){
+                                                    var pic1 = <?php $pass = site_url().'../../assets/neilAssets/img/star.png'; echo json_encode($pass); ?>;
+                                                    var pic2 = <?php $pass = site_url().'../../assets/neilAssets/img/white-star.png'; echo json_encode($pass); ?>;
+                                                    var img = document.getElementById("star").src;
+                                                    if (e){
+                                                        $(".star").attr("src", pic1);
+                                                    }else{
+                                                        $(".star").attr("src", pic2);
+                                                    }
+                                                }
+                                            });
+                                        });
+                                    });
+                                </script>
                                 <?php if($this->session->userdata['userSession']->userID == $e->user_id){?>
                                 <span class="property-price pull-right"><?php echo $e->event_status; ?></span>
                                 <?php } ?>
@@ -359,18 +378,6 @@ div.desc {
                                                         <li><i class="pe-7s-call strong"> </i> <?php echo $o->contact_no;?></li>
                                                     </ul>
                                                 </div>
-
-                                                <div class="dealer-social-media">
-                                                  <a class="twitter" target="_blank" href="">
-                                                      <i class="fa fa-twitter"></i>
-                                                  </a>
-                                                  <a class="facebook" target="_blank" href="">
-                                                      <i class="fa fa-facebook"></i>
-                                                  </a>
-                                                  <a class="instagram" target="_blank" href="">
-                                                      <i class="fa fa-instagram"></i>
-                                                  </a>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -387,8 +394,12 @@ div.desc {
                                         <?php foreach ($types as $t) { ?>
                                         <li>
                                             <div class="col-md-8 col-sm-8 col-xs-8 blg-entry" >
-                                                <h4> <?php echo  $t->ticket_name." ".$t->ticket_count." left";?><button class="myBtn" data-id='<?php echo  $t->ticket_type_id;?>'>Buy More Tickets</button></h4>
+                                                <h4> <?php echo  $t->ticket_name.": ".$t->ticket_count." left";?>
+                                                <?php if($e->event_status == "Approved"){?>
+                                                    <button class="myBtn" data-id='<?php echo  $t->ticket_type_id;?>'>Buy More Tickets</button></h4>
+                                                <?php }?>
 
+                                                <br>
                                                 <span class="property-price"><?php echo "P"." ".$t->price.".00";?></span>
                                                  <?php if($e->event_status == "Approved"){?>
                                                  <!-- <span>&nbsp; &nbsp; &nbsp;
@@ -427,7 +438,7 @@ div.desc {
                                 <h1>Card Load: <span><?php echo $u->load_amt; ?></span></h1>
                             </div>
                           </div>
-                            
+
                             <!-- <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
                                 <div class="panel-heading">
                                 <h3 class="panel-title">Search</h3>
@@ -659,15 +670,50 @@ $(document).ready(function(){
       $('#qty1').val(get);
     }
   });
+
+  $("#qty1").on("keyup", function () {
+    var get = parseInt($('#qty1').val());
+    check($("#ticID").val());
+
+    console.log("get" +get);
+    console.log("limit "+limit);
+    if (get > limit) {
+        console.log("im in");
+        $('#qty1').val(limit);
+    }
+  });
+
+  var limit = 0;
   $("#unaP").click(function(){
     var get = parseInt($('#qty1').val());
-    get+=1;
+
+
+    check($("#ticID").val());
+
+    if (get != limit) {
+      get++;
+    }
+
     $('#qty1').val(get);
   });
 
   $("#intrstd").click(function(){
     $(this).attr("disabled",true);
   });
+
+  //check if more than limit
+  function check (id) {
+    $.ajax ({
+      url : "<?php echo site_url()?>/finance/CCart/getLimit",
+      data : {"id" : id},
+      method : "POST",
+      success: function(e){
+                limit = e;
+            },
+            error: function(e){
+            }
+    });
+  }
 
   // btn.onclick = function() {
   //   modal.style.display = "block";

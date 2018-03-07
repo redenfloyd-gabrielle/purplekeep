@@ -100,7 +100,7 @@
                       <label for="" class="col-8 control-label">Password:</label>
                       <i>(must contain at least 8 characters, maximum of 50 characters)</i>
                       <div class="col-8">
-                        <input class="form-control" type="password" name="upassword" required="" value="<?php echo $updateAdmin->password; ?>">
+                        <input class="form-control" type="password" name="upassword" required="">
                       </div>
                         <input class="form-control hidden" type="text" name="uuserType" required="" value="<?php echo $updateAdmin->user_type; ?>">
                       </div>
@@ -108,7 +108,7 @@
 
                     <div class="modal-footer">
                         <button id="closeEditAccount" type="button" class="btn btn-danger" data-dismiss="modal" >Close</button>
-                        <input onclick="return formValidate()" id="" class="btn btn-primary" type="submit"  name="action" value="Updatse">
+                        <input onclick="return formValidate()" id="" class="btn btn-primary" type="submit"  name="action" value="Update">
                     </div>
                 </form>
                                     </div>

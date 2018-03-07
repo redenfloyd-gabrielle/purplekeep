@@ -36,7 +36,7 @@
                     <ul class="main-nav nav navbar-nav navbar-right">
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Home"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><span class="fas fa-home fa-lg"></span></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents/1"><span class="fas fa-user fa-lg"></span></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><span class="fas fa-bell fa-lg"><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/cUser/viewAnnouncements"><span><i class="fas fa-bell fa-lg"></i></span><?php if($announcementCount>0) {?><span id="bdg" class="badge badge-notify"><?php echo $announcementCount;?></span><?php }?></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Interested Events"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><span class="fas fa-star fa-lg"></span></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="View Cart"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><span class="fas fa-shopping-cart fa-lg"></span></a></li>
                     </ul>
@@ -45,11 +45,11 @@
         </nav>
         <!-- End of nav bar -->
 
-        <div class="page-head"> 
+        <div class="page-head">
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">Interested Events</h1>               
+                        <h1 class="page-title">Interested Events</h1>
                     </div>
                 </div>
             </div>
@@ -62,8 +62,9 @@
                 <div class="col-md-12 ">
                     <div id="list-type" class="proerty-th">
                         <?php
-                            $cnt =1;
-                            if(isset($events)){
+                            $cnt = 0;
+                            if(isset($events) && count($events)>0){
+                                // var_dump($events);
                                  foreach ($events as $event) {
                                     date_default_timezone_set('Asia/Manila');
                                     $now = new DateTime("now");
@@ -82,9 +83,9 @@
                                                                     }else{
                                                                         echo '<div class="corner-ribbon top-right sticky red">'.$interval->days;
                                                                         echo ' day/s left!';
-                                                                        echo '</div>';      
+                                                                        echo '</div>';
                                                                     }
-                                                                }   
+                                                                }
 
                                                                 echo '<h3 class="text-center"><a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"> ';
 
@@ -93,11 +94,13 @@
                                                                 }else{
                                                                     echo $event->event_name;
                                                                 }
-                                                
+
                                                                 echo '</a></h3>';
 
-                                                                echo '<div class="item-thumb">
-                                                                <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
+
+                                                                // echo '<div class="item-thumb">
+                                                                // <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>';
+
 
                                                                 echo '<h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
 
@@ -105,24 +108,24 @@
                                                                 $dateE = date_create($event->dateEnd);
                                                                 echo '<h5>When: '.date_format($dateS, 'M d Y').' - '.date_format($dateE, 'M d Y').'</h5>';
 
-                                                                                                              
-                                                    
+
+
                                                                 $mintix = $event->tix;
                                                                 foreach ($event->tix as $key) {
                                                                     $mintix = ($key->price <= $mintix)? $key->price : $mintix;
                                                                 }
-                                                                echo '<h5>Event Tickets as low as Php '.$mintix.'!!!</h5>';          
+                                                                echo '<h5>Event Tickets as low as Php '.$mintix.'!!!</h5>';
                                                                 echo '<div class="dot-hr"></div>
                                                             </div>
                                                         </div>
                                                     </div>';
-
+                                                    $cnt++;
                                             }else if($now >= $start && $now <= $end){
                                                 echo ' <div class="col-sm-6 col-md-4 p0">';
                                                     echo '<div class="box-two proerty-item">';
                                                         echo '<div class="item-entry overflow" >';
                                                                 echo '<div class="corner-ribbon top-right sticky red">Happening now!</div>';
-                                                                    
+
 
                                                                 echo '<h3 class="text-center"><a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"> ';
 
@@ -131,11 +134,11 @@
                                                                 }else{
                                                                     echo $event->event_name;
                                                                 }
-                                                
+
                                                                 echo '</a></h3>';
 
-                                                                echo '<div class="item-thumb">
-                                                                <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
+                                                                // echo '<div class="item-thumb">
+                                                                // <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>';
 
                                                                 echo '<h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
 
@@ -151,8 +154,13 @@
                                                             </div>
                                                         </div>
                                                     </div>';
+                                                    $cnt++;
                                             }
+
                                 }
+                            }
+                            if($cnt==0){
+                                echo "<center><h2>There are no events interested in.</h2></center>";
                             }
                         ?>
                     </div>
@@ -161,7 +169,7 @@
          </div>
       </div>
      <!--- END OF CONTENT AREA-->
-      
+
         <!-- Footer area-->
         <div class="footer-area">
 
