@@ -632,8 +632,8 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="contact no">Contact Number (09XXXXXXXXX) </label>
-                    <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{9}$" class="form-control" name="contact" id="contact" required="">
+                    <label for="contact no">Contact Number (09XX-XXX-XXXX) </label>
+                    <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{2}-\d{3}-\d{4}$|^\d{3}-\d{4}$" class="form-control" name="contact" id="contact" required="">
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>
