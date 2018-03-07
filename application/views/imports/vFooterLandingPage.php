@@ -35,9 +35,9 @@
              $.notify({
               title: "<?php echo '<strong>'.substr(trim(str_replace("\"", "\'",(preg_replace( "/\r|\n/", "", $key->announcementDetails )))),0,25).'</strong><br>';?>",
               icon: 'glyphicon glyphicon-info-sign',
-              message: '<?php echo $key->ago." ".$key->agoU;?><a href="<?php echo site_url();?>/user/CUser/viewClickedAnnouncement/<?php echo $key->announcementID; ?>" >Click here...</a> '
+              message: '<?php echo $key->ago." ".$key->agoU;?><a style="color:#494c53;" href="<?php echo site_url();?>/user/CUser/viewClickedAnnouncement/<?php echo $key->announcementID; ?>" > Click here...</a> '
             },{
-              type: 'info',
+              type: 'danger',
               animate: {
                     enter: 'animated fadeInUp',
                 exit: 'animated fadeOutDown'
