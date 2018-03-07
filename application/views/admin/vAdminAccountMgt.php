@@ -205,7 +205,7 @@
 
                     <div class="form-group" >
                     	<label for="" class="col-8 control-label">Username:</label>
-                      <i>(must contain at least 3 characters, maximum of 50 characters)</i>
+                      <i>(must contain at least 6 characters, maximum of 50 characters)</i>
                     	<div class="col-8">
                     		<input class="form-control" pattern="[a-zA-Z0-9]{6,}" type="text" name="uname" required="">
                     	</div>
@@ -302,9 +302,9 @@
 
                     <div class="form-group" >
                       <label for="" class="col-8 control-label">Username:</label>
-                      <i>(must contain at least 3 characters, maximum of 50 characters)</i>
+                      <i>(must contain at least 6 characters, maximum of 50 characters)</i>
                       <div class="col-8">
-                        <input class="form-control" type="text" name="uuname" required="" value="<?php echo $updateAdmin->user_name; ?>">
+                        <input class="form-control" type="text" pattern="[a-zA-Z0-9]{6,}" name="uuname" required="" value="<?php echo $updateAdmin->user_name; ?>">
                       </div>
                     </div>
 
