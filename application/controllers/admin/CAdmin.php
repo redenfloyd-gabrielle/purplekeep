@@ -11,6 +11,7 @@ class CAdmin extends CI_Controller {
 		$this->load->model('MEventInfo');
 		$this->load->model('MReports');
 		$this->load->model('MUser');
+		$this->load->model('MAdminDT');
 		$this->load->model('MAnnouncement');
 		$this->load->model('MCardLoad');
 		$this->load->library('form_validation');
@@ -411,9 +412,21 @@ class CAdmin extends CI_Controller {
 
 	}
 
+	public function readAllCards(){
+		//Continue
+		$result= $this->MAdminDT->fetchCardModel();
+
+		if($result){
+			return $result;
+		}else{
+			return false;
+		}
+	}
+
 	public function generateCard() {
+		$data2['dtCards']=$this->readAllCards();
 		$this->load->view('imports/admin_vHeader');
-		$this->load->view('admin/vCards');
+		$this->load->view('admin/vCards',$data2);
 		$this->load->view('imports/admin_vFooter');
 
 	}
@@ -604,7 +617,8 @@ class CAdmin extends CI_Controller {
 	public function createAnnouncement() {
 		
 		$rules = "strip_tags|trim|xss_clean";
-		$this->form_validation->set_rules('announcementDetails','Announcement Details',$rules.'|required|min_length[5]|max_length[50]');
+		$this->form_validation->set_rules('announcementDetails','Announcement Details',$rules.'|required|min_length[5]|max_length[150]');
+		$this->form_validation->set_rules('announcementTitle','Announcement Title',$rules.'|required|min_length[5]|max_length[150]');
         
 		if ($this->form_validation->run() != FALSE )
 		{
@@ -612,7 +626,8 @@ class CAdmin extends CI_Controller {
 
 			// $now = NEW DateTime(NULL, new DateTimeZone('UTC'));
 
-			$data = array('announcementDetails' => $this->input->post('announcementDetails'),
+			$data = array('announcementTitle' => $this->input->post('announcementTitle'),
+						  'announcementDetails' => $this->input->post('announcementDetails'),
 						  'announcementStatus' => 'OnGoing',
 						  'addedBy' => $this->input->post('postedBy'),
 						  // 'addedAt' => $now->format('Y-m-d H:i:s')
@@ -697,6 +712,47 @@ public function updateAccount() {
 
 
 	}
+
+	//Datatable function for Generating cards starts here
+	public function fetchCardData(){
+        // $DT = new MAdminDT();
+
+        $fetch_data_card = $this->MAdminDT->make_datatables_card();
+        $data = array();
+
+        foreach($fetch_data_card as $row){
+          $sub_array = array();
+
+        //   $sub_array[] ="<a data-toggle='modal' href='#modalCompEdit' data='".$row->c_id."' class='btn btn-sm btn-warning deskEdit' rel='tooltip' title='Edit Desktop' data-placement='auto'><span class='glyphicon glyphicon-edit'></span></a>"
+		//   ."<a href='javascript:;' data='".$row->c_id."' class='btn btn-sm btn-danger deskDelete' rel='tooltip' title='Delete Desktop'><span class='glyphicon glyphicon-trash'></span></a>";
+		$searchColumn = array("cardId",
+									"cardCode",
+									"cardAmount",
+									"cardStatus",
+									"first_name",
+									"last_name",
+									"addedAt",
+									"updatedAt");
+		  $sub_array[] = $row->cardId;
+		  $sub_array[] = $row->cardCode;
+		  $sub_array[] = $row->cardAmount;
+			$sub_array[] = ($row->cardStatus == 1)?'<span class="label label-danger">Used</span>':'<span class="label label-success">Available</span>';
+			$sub_array[] = $row->first_name . " " . $row->last_name;
+			$sub_array[] = $row->addedAt;
+			$sub_array[] = $row->updatedAt;
+    
+
+          $data[] = $sub_array;
+        }
+
+        $output = array(
+          "draw"             => intval($_POST["draw"]),
+          "recordsTotal"     => $this->Dashboard_model->get_all_data_card(),
+          "recordsFiltered"  => $this->Dashboard_model->get_filtered_data_card(),
+          "data"             => $data
+        );
+        echo json_encode($output);
+      }
 }
 
 

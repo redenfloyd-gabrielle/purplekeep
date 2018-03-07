@@ -17,7 +17,15 @@
     	public function __construct(){
 
 		}
+		public function getTicketPrice($ticket_type_id)
+		{
+			$this->db->select('price');
+			$this->db->from($this::DB_TABLE);
+			$this->db->where('ticket_type_id', $ticket_type_id);
 
+			$query = $this->db->get();
+			return $query->result();
+		}
 
 
 		public function loadType($id)
@@ -29,6 +37,8 @@
 			$query = $this->db->get();
 			return $query->result();
 		}
+
+		
 
 
 		public function getTicket_type_id(){

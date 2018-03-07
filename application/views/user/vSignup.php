@@ -15,7 +15,7 @@
 	  	email: <br>
 	  	<input type="email" name="email" required=""> <br>
 	  	birthdate: <br>
-	  	<input type="text" name="bdate" required=""> <br>
+	  	<input type="text" name="bdate" min="1920-01-01" required=""> <br>
 	  	gender: <br>
 	  	<select name="gender" required=""> <br>
 	  		<option selected="" value="Male">select gender</option>

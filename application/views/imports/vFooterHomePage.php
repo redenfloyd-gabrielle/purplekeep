@@ -17,6 +17,7 @@
 				</div>
 			</div>
 		</footer> -->	
+
 	</body>
 </html>
 
@@ -27,3 +28,18 @@
 
 <script src="<?php echo base_url('assets/js/jquery.min.js')?>"></script>
 <script src="<?php echo base_url('assets/js/bootstrap.min.js')?>"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+	<script>
+	$(function() {
+	    $('a[href*=#]:not([href=#])').click(function() {
+	        var target = $(this.hash);
+	        target = target.length ? target : $('[name=' + this.hash.substr(1) +']');
+	        if (target.length) {
+	            $('html,body').animate({
+	              scrollTop: target.offset().top
+	            }, 1000, 'easeOutExpo');
+	            return false;
+	        }
+	    });
+	});
+	</script>

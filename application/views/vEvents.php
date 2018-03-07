@@ -28,19 +28,20 @@
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
                         <!-- <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a> -->
-                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->PROFILE_PAGE_LOGOUT_BUTTON ?> </button></a>
+                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login" title="Logout"><span class="fas fa-sign-out-alt fa-lg"></span></button></a>
                     </div>
                     <div class="button navbar-right">
                         <!-- <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a> -->
-                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->PROFILE_PAGE_CREATE_EVENT_BUTTON ?> </button></a>
+                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login" title="Create Event"><span class="fas fa-calendar-plus fa-lg"></span></button></a>
                     </div>
-
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_HOME ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_PROFILE ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements">Announcements</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents">Interested Events</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/CCart/viewCart">View Cart</a></li>
+
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Home"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><span class="fas fa-home fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents/1"><span class="fas fa-user fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/cUser/viewAnnouncements"><span><i class="fas fa-bell fa-lg"></i></span><?php if($announcementCount>0) {?><span id="bdg" class="badge badge-notify"><?php echo $announcementCount;?></span><?php }?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Interested Events"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><span class="fas fa-star fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="View Cart"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><span class="fas fa-shopping-cart fa-lg"></span></a></li>
+
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -58,8 +59,7 @@
                 </div>
             </div>
         </div>
-
-        <!-- End page header -->
+                <!-- End page header -->
 
         <!-- property area -->
         <div class="properties-area recent-property" style="background-color: #FFF;">
@@ -73,11 +73,12 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <div class="panel-heading">
-                                                <center><h1 style="font-size: 50px;" class="panel-title">P<?php foreach($user as $u){echo $u->load_amt;}?>.00</h1></center>
+                                                <center><h1 style="font-size: 50px;" class="panel-title">Php <?php foreach($user as $u){echo $u->load_amt;}?>.00</h1></center>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
+
                                         <!-- <p>Insufficient balance?
                                              <a style=" color: #e2624b; cursor:pointer; border-bottom: 1.5px solid #e2624b;padding-bottom: 2px"  onMouseOver="this.style.color='#ffcec0';this.style.paddingBottom='8px';this.style.borderBottom='3px solid #e2624b';"    onMouseOut="this.style.color='#e2624b' ;this.style.paddingBottom='2px';" type="button" class="dbutton " id="load" >Load Now</a> -->
                                            <p><?php echo CustomizationManager::$strings->PROFILE_PAGE_INSUFFICIENT_BALANCE ?>
@@ -95,10 +96,10 @@
                                         <div class="row">
 
                                                 <div class="col-xs-12" id="some" hidden="">
-                                                    <form onsubmit="return redeemCodeValidate()" name="form_redeem_code" id="form_redeem_code" action="<?php echo site_url(); ?>/user/CUser/redeemCode" method="post">
-                                                        <input type="text" class="form-control" id="ccode" name="ccode" placeholder="Enter code">
+                                                    <form action="<?php echo site_url(); ?>/user/CUser/redeemCode" method="post">
+                                                        <input type="text" class="form-control" name="ccode" placeholder="Enter code" required="">
                                                         <!-- <button type="submit" class="navbar-btn nav-button pull-right"   >Redeem Code</button> -->
-                                                        <button onclick="return redeemCodeValidate()" type="submit" class="navbar-btn nav-button pull-right"   ><?php echo CustomizationManager::$strings->PROFILE_PAGE_REDEEM_CODE ?></button>
+                                                        <button type="submit" class="navbar-btn nav-button pull-right"   ><?php echo CustomizationManager::$strings->PROFILE_PAGE_REDEEM_CODE ?></button>
                                                     </form>
                                                 </div>
 
@@ -138,65 +139,11 @@
                                         </div>
                                     </div>
                                 </fieldset>
-                                <fieldset >
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <!-- <button class = "button btn largesearch-btn">Payment Summary</button> -->
-                                            <button class = "button btn largesearch-btn"><?php echo CustomizationManager::$strings->PROFILE_PAGE_PAYMENT_SUMMARY_BUTTON ?></button>
-                                        </div>
-                                    </div>
-                                </fieldset>
                             </div>
                             <br><br>
                         </div>
 
-                        <div class="panel panel-default sidebar-menu wow fadeInRight animated">
-                            <div class="panel-heading">
-                                <!-- <h3 class="panel-title">Recommended</h3> -->
-                                <h3 class="panel-title"><?php echo CustomizationManager::$strings->PROFILE_PAGE_RECOMMENDED_HEADER ?></h3>
-                            </div>
-                            <div class="panel-body recent-property-widget">
-                                        <ul>
-                                        <li>
-                                            <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                <a href="single.html"><img src="<?php echo base_url('assets/nikkiAssets/img/demo/small-property-2.jpg');?>"></a>
-                                            </div>
-                                            <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                <h6> <a href="single.html"> JS Workshop </a></h6>
-                                                <span class="property-price">P 200.00</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                <a href="single.html"><img src="<?php echo base_url('assets/nikkiAssets/img/demo/small-property-2.jpg');?>"></a>
-                                            </div>
-                                            <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                <h6> <a href="single.html"> Music Concert </a></h6>
-                                                <span class="property-price">P 250.00</span>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                <a href="single.html"><img src="<?php echo base_url('assets/nikkiAssets/img/demo/small-property-2.jpg');?>"></a>
-                                            </div>
-                                            <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                <h6> <a href="single.html"> Some Party </a></h6>
-                                                <span class="property-price">P 600.00</span>
-                                            </div>
-                                        </li>
-                                       <li>
-                                            <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                <a href="single.html"><img src="<?php echo base_url('assets/nikkiAssets/img/demo/small-property-2.jpg');?>"></a>
-                                            </div>
-                                            <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                <h6> <a href="single.html"> Food Bazaar </a></h6>
-                                                <span class="property-price">P 100.00</span>
-                                            </div>
-                                        </li>
-
-                                    </ul>
-                            </div>
-                        </div>
+                        
                     </div>
                 </div>
 
@@ -212,7 +159,7 @@
                             <div class="col-xs-4 col-lg-4">
                                 <input type="text" class="form-control" placeholder="Key word">
                             </div>
-                            <div class="col-xs-4 col-lg-2">
+<!--                             <div class="col-xs-4 col-lg-2">
                                 <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Category">
                                     <option>Attraction</option>
                                     <option>Appearance</option>
@@ -231,8 +178,8 @@
                                     <option>Tour</option>
                                     <option>Others</option>
                                 </select>
-                            </div>
-                            <div class="col-xs-2 col-lg-2">
+                            </div> -->
+                            <!-- <div class="col-xs-2 col-lg-2">
                                 <div class="price-range-wrap">
                                     <label for="price-range" style="color:#000">Price range (P):</label>
                                         <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="10000" data-slider-step="5"
@@ -240,7 +187,7 @@
                                         <b class="pull-left color" style="color:#000">P0.00</b>
                                         <b class="pull-right color" style="color:#000" >P10,000.00</b>
                                 </div>
-                            </div>
+                            </div> -->
                             <div class="col-xs-2 col-lg-2">
                                 <input class="button btn smallsearch-btn" value="Search" type="submit">
                              </div>
@@ -250,44 +197,82 @@
             </div>
         </div>
     </div>
+    
+    <?php if ($this->session->flashdata('success_msg')): ?>
+        <div class="alert alert-success">
+              <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+              <?php echo $this->session->flashdata('success_msg') ?>
+          </div>
+      <?php endif ?>
+    <?php if ($this->session->flashdata('error_msg')): ?>
+        <div class="alert alert-danger" style="margin-top: 15px;">
+            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+            <?php echo $this->session->flashdata('error_msg'); ?>
+        </div>
+    <?php endif ?>
+
+
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" id="myTabs" role="tablist">
-    <li role="presentation" class="tab active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_EVENTS ?></a></li>
+    <?php if (!$this->session->flashdata('userDetails')){ ?>
+        <li role="presentation" class="tab active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_EVENTS ?></a></li>
+    <?php }else{ ?>
+        <li role="presentation" class="tab"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_EVENTS ?></a></li>
+    <?php } ?>
+
     <li role="presentation" class="tab"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_REPORTS ?></a></li>
     <li role="presentation" class="tab"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_PAYMENT_HISTORY ?></a></li>
-    <li role="presentation" class="tab"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_SETTINGS ?></a></li>
-    <li role="presentation" class="tab"><a href="#editprofile" aria-controls="editprofile" role="tab" data-toggle="tab">Edit Profile</a></li>
+    <?php if ($this->session->flashdata('userDetails')){ ?>
+        <li role="presentation" class="tab active"><a href="#editprofile" aria-controls="editprofile" role="tab" data-toggle="tab">Edit Profile</a></li>
+    <?php }else{ ?>
+        <li role="presentation" class="tab"><a href="#editprofile" aria-controls="editprofile" role="tab" data-toggle="tab">Edit Profile</a></li>
+    <?php } ?>
+    
 
   </ul>
 
   <!-- Tab panes -->
   <div class="tab-content">
-    <div role="tabpanel" class="tab-pane active" id="home">
+     <?php if (!$this->session->flashdata('userDetails')){ ?>
+            <div role="tabpanel" class="tab-pane active" id="home">
+    <?php }else{ ?>
+        <div role="tabpanel" class="tab-pane" id="home">
+    <?php } ?>
+    
         <div class="col-md-12 clear">
-           
-
             <div id="list-type" class="proerty-th">
 
                         <?php
                             if(isset($events)){
                                 $cnt =1;
                                 foreach ($events as $event) {
-                                   ?>
-                            <div class="col-sm-6 col-md-4 p0">
-                                <div class="box-two proerty-item">
-                                    <div class="item-thumb">
+                                    $cntTx = count($event->tix);
+                                    $cHeight = "76px";
+
+                                    if($cntTx > 2){
+                                        $cHeight = "0px";
+                                    }else if($cntTx > 1){
+                                        $cHeight = "17px";
+                                    }
+
+                        ?>
+                            <div class="col-sm-6 col-md-4 p0" >
+                                <div class="box-two proerty-item" style="height:398px;">
+                                    <!-- <div class="item-thumb">
                                         <a href="<?php echo site_url();?>/event/CEvent/displayEventDetails/<?php echo $event->event_id;?>"><img  style="max-height: 50px;" src="<?php echo base_url();?><?php echo $event->event_picture; ?>"></a>
-                                    </div>
+                                    </div> -->
                                        <div class="item-entry overflow">
-                                        <h5><a href="<?php echo site_url();?>/event/CEvent/displayEventDetails/<?php echo $event->event_id;?>"> <?php
+                                       <a href="<?php echo site_url();?>/event/CEvent/displayEventDetails/<?php echo $event->event_id;?>">
+                                            <h3 class="text-center" style="padding:50px;background-color:#CB6C52;"> <?php
                                                 if(strlen($event->event_name)>=26){
                                                     echo substr($event->event_name,0,23)."...";
                                                 }else{
                                                         echo $event->event_name;
                                                 }
                                                 ?>
-                                        </a></h5>
+                                            </h3>
+                                        </a>
                                         <?php
                                                 if($event->event_status == 'Approved'){
                                                         date_default_timezone_set('Asia/Manila');
@@ -315,10 +300,11 @@
 
 
                                                 ?>
-                                             <table class="table-condensed table-responsive">
+                                            <div style="margin-bottom:<?php echo $cHeight;?>;">
+                                             <table class="table-condensed table-responsive" >
                                                                 <thead>
-                                                                    <th>Ticket Name</th>
-                                                                    <th>Ticket Price</th>
+                                                                    <th><center>Ticket Name</center></th>
+                                                                    <th><center>Ticket Price</center></th>
                                                                 </thead>
                                                                 <tbody>
                                                                     <?php
@@ -332,14 +318,13 @@
                                                                     ?>
                                                                 </tbody>
                                                             </table>
+                                            </div>
                                             <div class="dot-hr"></div>
-                                            <span class="pull-left"><b> Date: </b> <?php echo $event->dateStart;?>  </span>
-                                            <span class="proerty-price pull-right"><?php echo $event->event_status;?> </span>
+                                            <div>
+                                                <span class="pull-left"><b> Date: </b> <?php echo $event->dateStart;?>  </span>
+                                                 <span class="proerty-price pull-right"><?php echo $event->event_status;?> </span>
+                                            </div>
                                             <br>
-                                            <!-- <p max="30" style="overflow: hidden;"><?php echo $event->event_details;?> </p> -->
-                                            <!-- <div class="property-icon pull-right">
-                                                <a>Read More</a>
-                                            </div> -->
                                         </div>
                                 </div>
                             </div>
@@ -354,13 +339,16 @@
                 <div class="pull-right">
                     <div class="pagination">
                         <ul>
-                            <li><a href="#">Prev</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">Next</a></li>
+                            <li><a href = '<?php echo site_url()?>/event/CEvent/viewEvents/<?php if($page !=1){$ppage = $page-1;} echo $ppage?>'>Prev</a></li>
+                            <?php
+                            for($n=1; $n<=$pages; $n++){
+                                echo "<li><a href='".site_url()."/event/CEvent/viewEvents/".$n."'>".$n."</a></li>";
+                            }
+                            ?>
+                            <li><a href = '<?php echo site_url()?>/event/CEvent/viewEvents/<?php if($page != $pages){$ppage = $page+1;} echo $ppage?>'>Next</a></li>
+
                         </ul>
+                     
                     </div>
                 </div>
             </div>
@@ -484,35 +472,144 @@
                                     <th>Event Name</th>
                                     <th>Amount</th>
                                     <th>Date paid</th>
+                                    <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php 
+                                    foreach ($checkout as $c) { ?>
+                                        <tr>
+                                            <td><?php echo $c->event_name?></td>
+                                            <td><?php echo $c->checkTotal?></td>
+                                            <td><?php echo $c->checkCreatedOn?></td>
+                                            <td>
+                                                <div class="panel-body search-widget">
+                                                    <fieldset >
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <!-- <a href="<?php echo site_url();?>/reports/cReports/generateRevenue/<?php echo $e->event_id;?>"><button class="button btn largesearch-btn " id="<?php echo $e->event_id;?>">Generate Revenue</button></a> -->
 
+<!-- Button HTML (to Trigger Modal) -->
+<a href="#paymentHistory<?php echo $c->checkId;?>" role="button" class="button btn largesearch-btn" data-toggle="modal">View Details</a>
+
+<!-- Modal HTML -->
+<div id="paymentHistory<?php echo $c->checkId;?>" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h1 class="modal-title"></h1>
+            </div>
+            <div class="modal-body">
+
+                <table class="table table-hover table-striped">
+                    <tbody>
+                        <thead>
+                            <tr>
+                                <th style="text-align:center;">Ticket Name</th>
+                                <th style="text-align:center;">Quantity Bought</th>
+                                <th style="text-align:center;">Price</th>
+                                <th style="text-align:center;">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php
+                            $grandTotal = 0;
+                            foreach ($c->checkoutDetails as $cd) {
+                            ?>
+                            <tr style="text-align:center;">
+                                <td><?php echo $cd->ticket_name;?></td>
+                                <td><?php echo $cd->quantity;?></td>
+                                <td><?php echo $cd->total_price / $cd->quantity;?></td>
+                                <td><?php echo $cd->total_price; $grandTotal+= $cd->total_price;?></td>
+                            </tr>
+
+                        <?php }
+                            ?>
+                            <tr><td></td><td></td>
+                                <td><h3 style="font-size: 20px; text-align: right; font-weight: 600; padding: 10px;"> Total Revenue: </h3></td>
+                                <td>
+
+                                    <div class="panel-heading">
+                                        <center><h2 class="panel-title" style="font-size: 30px; font-weight: 600; border-bottom: 3px solid #e2624b; padding: 10px;"> <?php echo $grandTotal; ?> </h2></center>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+                                                            </div>
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    <?php } ?>
                             </tbody>
                         </table>
                     </div>
+
+                    <!--view details modal-->
+                    <div class="modal fade" id="lmodal">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h3><img src="img/credit-card.png" class="elogo"> eLoad</h3>
+                                </div>
+                                <div class="modal-body">
+
+                                    <label class="label-control">Card Number</label>
+                                    <input type="text" class="form-control" name="" placeholder="Enter Card Number">
+
+                                    <h6 class="note">*Note: you only have 3 attemps to enter correct values</h6>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
     </div>
-    <!-- <div role="tabpanel" class="tab-pane" id="settings">
-    </div>
- -->
-     <div role="tabpanel" class="tab-pane" id="editprofile">
+    <?php if ($this->session->flashdata('userDetails')){ ?>
+        <div role="tabpanel" class="tab-pane active" id="editprofile">
+    <?php 
+            $info = array();
+         $info[] = json_decode($this->session->flashdata('userDetails'));
+
+}else{ ?>
+            <div role="tabpanel" class="tab-pane" id="editprofile">
+    <?php } ?>
+     
         <h2>Edit Profile</h2>
         <?php foreach($info as $in){ ?>
-            <form  method="POST" action="<?php echo site_url()?>/CEvent/updateProfile">
+            <form  method="POST" action="<?php echo site_url()?>/event/CEvent/updateProfile">
             <div class="col-md-8">
                 <div class="form-group">
                     <label for="first name">First Name</label>
-                    <input type="text" <?php  echo 'value="'.$in->first_name.'"';?> class="form-control" pattern="[a-zA-Z]+" name="fname" id="name" required="">
+                    <input type="text" <?php  echo 'value="'.$in->first_name.'"';?> class="form-control" pattern="[a-zA-Z]+" name="fname" id="fname" required="">
                 </div>
 
                 <div class="form-group">
                     <label for="middle initial">Middle Initial</label>
-                    <input type="text"  <?php  echo 'value="'.$in->middle_initial.'"';?> class="form-control" pattern="[a-zA-Z]+" name="midname" id="name" required="">
+                    <input type="text"  <?php  echo 'value="'.$in->middle_initial.'"';?> class="form-control" pattern="[a-zA-Z]+" name="midname" id="midname" required="">
                 </div>
 
                 <div class="form-group">
                     <label for="last name">Last Name</label>
-                    <input type="text"  <?php  echo 'value="'.$in->last_name.'"';?> class="form-control" pattern="[a-zA-Z]+" name="lname" id="name" required="">
+                    <input type="text"  <?php  echo 'value="'.$in->last_name.'"';?> class="form-control" pattern="[a-zA-Z]+" name="lname" id="lname" required="">
                 </div>
 
             <div class="form-group">
@@ -522,29 +619,37 @@
 
             <div class="form-group">
                     <label for="birthdate">Birthdate</label>
-                    <input type="date"  <?php  echo 'value="'.$in->birthdate.'"';?> name="bdate" required="">
-                </div>
+                    <input type="date"  <?php  echo 'value="'.$in->birthdate.'"';?> name="bdate" required="" id="bdate">
+            </div>
 
                 <div class="form-group">
                     <label for="gender">Gender</label>
                     <select class="form-control" name="gender">
-                        <option value="Male" <?php  if(isset($gender) && $gender=="Male"){echo 'selected';}?>>Male</option>
-                        <option value="Female" <?php  if(isset($gender) && $gender=="Female"){echo 'selected';}?>>Female</option>
-                        <option value="Other" <?php  if(isset($gender) && $gender=="Other"){echo 'selected';}?>>Other</option>
+                        <option value="Male" <?php  if(isset($in->gender) && $in->gender=="Male"){echo 'selected';}?>>Male</option>
+                        <option value="Female" <?php  if(isset($in->gender) && $in->gender=="Female"){echo 'selected';}?>>Female</option>
+                        <option value="Other" <?php  if(isset($in->gender) && $in->gender=="Other"){echo 'selected';}?>>Other</option>
                     </select>
                 </div>
 
                 <div class="form-group">
                     <label for="contact no">Contact Number (09XXXXXXXXX) </label>
-                    <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{9}$" class="form-control" name="contact" id="email" pattern="^(09)\d{9}$" required="">
+                    <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{9}$" class="form-control" name="contact" id="contact" required="">
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input type="text" minlength="6"<?php  echo 'value="'.$in->user_name.'"';?> required="" class="form-control" pattern="[a-zA-Z0-9]+" name="uname" id="uname">
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" <?php  echo 'value="'.$in->password.'"';?> class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="password" id="password">
+                    <label for="password">Old Password</label>
+                    <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="OldPassword" id="OldPassword">
+                </div>
+                <div class="form-group">
+                    <label for="password">New Password</label>
+                    <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="password" id="password">
+                </div>
+                <div class="form-group">
+                    <label for="password">Confirm Password</label>
+                    <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="cpassword" id="cpassword">
                 </div>
                 <div class="text-center">
                     <button type="submit" class="btn btn-default"><!-- <a href="<?php echo site_url();?>/CEvent/updateProfile"> -->Edit Profile</button>
@@ -564,7 +669,7 @@
 
 
   <script type="text/javascript">
-
+    
     /*
     $(document).ready(function(){
         var wrap = $(this).find('.es-wrap');
@@ -654,15 +759,66 @@
             </div>
 
         </div>
-<script type="text/javascript">
-    function redeemCodeValidate(){
-        var form = document.forms["form_redeem_code"];
-        var code = form["ccode"].value;
 
-        if(code == "" || code.length == 0){
-            alert("Field Must Not Be Empty.");
-            return false;
-        }
-        return true;
+<div id="errorModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h3 class="modal-title" id="errorTitle"></h3>
+      </div>
+      <div class="modal-body">
+        <p id="errorMessage"></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<?php
+  if(isset($dataError)){
+    if($dataError == "CodeInvalid") {
+        echo "<script type = 'text/javascript'>
+                $(document).ready(function(){
+                  $('#errorModal').modal('show');
+
+                  document.getElementById('errorTitle').innerHTML = 'CODE INVALID';
+                  document.getElementById('errorMessage').innerHTML = 'The code you entered is not found. Please make sure you entered a valid code.';
+
+                });
+              </script>";
+    } else if ($dataError == "CodeUsed") {
+        echo "<script type = 'text/javascript'>
+                $(document).ready(function(){
+                  $('#errorModal').modal('show');
+
+                  document.getElementById('errorTitle').innerHTML = 'CODE ALREADY USED';
+                  document.getElementById('errorMessage').innerHTML = 'The code you entered has already been used. Please use a new one.';
+
+                });
+              </script>";
     }
+  }
+?>
+
+<script type="text/javascript">
+    var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+     if(dd<10){
+            dd='0'+dd
+        } 
+        if(mm<10){
+            mm='0'+mm
+        } 
+
+    today = yyyy+'-'+mm+'-'+dd;
+    document.getElementById("bdate").setAttribute("max", today);
 </script>
+

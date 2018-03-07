@@ -24,40 +24,34 @@ class CCard extends CI_Controller {
 		 			   $this->input->post('qty3'),
 		 			   $this->input->post('qty4'),
 		 			 );
-		echo 'qty'.$qty[0];
 		for ($i = 0; $i < 4; $i++) {
-
 			$this->card1($amount[$i], $qty[$i]);
 		}
+		$this->session->set_flashdata('success_msg',"Cards Generate!");
+		redirect("admin/CAdmin/generateCard");
+		// redirect('admin/CAdmin/viewReport');
 	}
-
 	public function card1 ($amount, $qty) {
 		for ($i = 0; $i < $qty; $i++) {
 			$this->addCard($amount);
 		}
 	}
-
 	//generates and returns random alpha numeric strings
 	public function randomCode () {
 		$rand = '';
 		$c = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-
 		for ($i = 0; $i < 10; $i++) {
 			$rand .= $c[rand (0, strlen($c)-1)];
 		}
-
 		return $rand;
 	}
-
 	//checks if the code is unique in the database
 	public function isCodeUnique ($rand) {
 		///////////////////////////////////////
 		///////Interface New Implementation////
 		///////////////////////////////////////
 		$card = new MCardLoad();
-
 		$data = array('cardCode' => $rand);
-
 		if ($card->read_where($data) == null) {
 			return true;
 		} else {
@@ -66,25 +60,23 @@ class CCard extends CI_Controller {
 		///////////////////////////////////////
 		///////////////////////////////////////
 	}
-
 	public function addCard($amount) {
 		///////////////////////////////////////
 		///////Interface New Implementation////
 		///////////////////////////////////////
 		$card = new MCardLoad();
 		$random = '';
-
 		//the loop will not stop until it make sure that the code is unique
 		do {
 			$random = $this->randomCode();
 		} while ($this->isCodeUnique($random) != true);
-
 		$data = array('cardId' => null,
 					'cardCode' => $random,
 					'cardAmount' => $amount,
-					'cardCreatedOn' => null,
-					'cardStatus' => 1);
-
+					'cardStatus' => 1,
+					'addedBy' => $this->session->userdata['adminSession']->userID,
+					'updatedBy' => 0);
+			
 		$query = $card->insert($data);
 		///////////////////////////////////////
 		///////////////////////////////////////

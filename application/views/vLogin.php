@@ -10,6 +10,7 @@ if (!isset($this->session->userdata['userSession']) && !isset($this->session->us
 <html>
 <head>
   <title>DailyEvents </title>
+  <link rel="icon" href="<?php echo base_url('assets/dianeAssets/img/DE Icon.png')?>">
   <!-- Custom Theme files -->
   <link href="<?php echo base_url('assets/josephAssets/"css/font-awesome.css')?>" rel="stylesheet">
     <link href="<?php echo base_url('assets/josephAssets/"css/font-awesome.min.css')?>" rel="stylesheet">
@@ -43,9 +44,11 @@ if (!isset($this->session->userdata['userSession']) && !isset($this->session->us
               </div>
               <div>
                 <input type="password" id="#{label}" name="Password" placeholder="Password" required>
+                <input type="text" style='display: none'  name="event" value=<?php if(isset($event)){echo $event;} ?>>
                 <!-- <span class="fa fa-lock" aria-hidden="true"></span> -->
               </div>
-                <input type="submit" name="" value=<?php echo CustomizationManager::$strings->LOGIN_PAGE_LOGIN_BUTTON ?>>
+                <!--<input type="submit" name="" value=<?php echo CustomizationManager::$strings->LOGIN_PAGE_LOGIN_BUTTON ?>>-->
+                <input type="submit" name="" value="Log In">
                   <a href="<?php echo base_url('index.php/CLogin/forgotPassword'); ?>"><?php echo CustomizationManager::$strings->LOGIN_PAGE_FORGOT_PASSWORD ?></a>
                   <br><?php echo CustomizationManager::$strings->LOGIN_PAGE_DONT_HAVE_AN_ACCOUNT ?> <a href="<?php echo site_url();?>/user/cUser/viewSignUp"><?php echo CustomizationManager::$strings->LOGIN_PAGE_SIGNUP_HERE ?></a>
             </form>

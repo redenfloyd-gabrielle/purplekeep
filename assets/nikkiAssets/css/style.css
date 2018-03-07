@@ -1010,7 +1010,8 @@ label small{
 
 .slider-area{
     position: relative;
-    height: 630px
+    height: 250px;
+    background-color: #444343;
 }
 #bg-slider .item img{
     width: 100%;
@@ -1019,7 +1020,6 @@ label small{
 
 .slider-content{
     position: absolute;
-    top: 20%;
     text-align: center;
     color: #FFF;
     width: 100%;
@@ -2476,7 +2476,8 @@ count-area
     color: #000;
 }
 .item-entry a:hover ,.item-entry a:focus {
-    color: #999696;
+    /* color: #999696; */
+    color:#eee;
 }
 .search-form .search-toggle {
     margin-top: 20px;
