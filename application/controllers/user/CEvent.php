@@ -52,6 +52,7 @@ class CEvent extends CI_Controller {
 		//================INTERFACE MODULE - DATA-LAYOUT FILTERING CODE============//
 		/////////////////////////////////////////////////////////////////////////////
 		$array = array();
+		$msg = "";
 		if($result_data){
 			foreach ($result_data as $value) {
 					$arrObj = new stdClass;
@@ -69,7 +70,10 @@ class CEvent extends CI_Controller {
 					$arrObj->tix = $this->MEvent->getTicketsOfEvent($value->event_id);
 					$array[] = $arrObj;
 			}
+		}else{
+			$msg = "<h2> No events found.</h2>";
 		}
+        $data['msg'] = $msg;
 		$data['events'] = $array;
 		$data['announcements'] = $this->MAnnouncement->getUnviewedOfUser($this->session->userdata['userSession']->userID);
 		$data['announcementCount'] = count($data['announcements']);

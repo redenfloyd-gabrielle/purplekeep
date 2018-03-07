@@ -176,7 +176,7 @@
                 <div class="col-md-12 ">
                     <div id="list-type" class="proerty-th">
                         <?php
-                            $cnt =0;
+                        $cnt =0;
                             if(isset($events)){
                                  foreach ($events as $event) {
                                     date_default_timezone_set('Asia/Manila');
@@ -270,7 +270,7 @@
                                 }
                             }
                             if($cnt==0) {
-                                echo "<h2> No approved events as of the moment.</h2>";
+                                echo $msg;
                             }
                         ?>
                     </div>
