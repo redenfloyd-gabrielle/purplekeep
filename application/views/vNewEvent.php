@@ -65,34 +65,122 @@
         <!-- register-area -->
         <div class="register-area" style="background-color: rgb(249, 249, 249);">
             <div class="container">
-                <div class="col-md-3"></div>
-                <div class="col-md-6 ">
-                    <div class="box-for overflow">
-                        <div class="col-md-12 col-xs-12 register-blocks">
-                            <h2><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_DETAILS ?></h2>
-                            <form name="createEventForm" id="createEventForm" action="<?php echo site_url();?>/event/CEvent/createEvent " method="post" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return checkLocation()">
-                                <div class="form-group">
+                <div class="col-md-2"></div>
+                <!-- MultiStep Form -->
+                <div class="row">
+                    <div class="col-lg-8 col-md-offset-2">
+                        <form id="msform">
+                            <div id="formsteps" class="ui three steps">
+                              <div class="active step">
+                                <i class="ticket alternate icon"></i>   
+                                <div class="content">
+                                  <div class="title">Event Details</div>
+                                  <div class="description">Tell us something about your event</div>
+                                </div>
+                              </div>
+                              <div class="step">
+                                <i class="compass alternate icon"></i>
+                                <div class="content">
+                                  <div class="title">Venue Details</div>
+                                  <div class="description">Let others know the location of your event</div>
+                                </div>
+                              </div>
+                              <div class="step">
+                                <i class="ticket alternate icon"></i>
+                                <div class="content">
+                                  <div class="title">Tickets</div>
+                                  <div class="description">Add tickcets for your event</div>
+                                </div>
+                              </div>
+                            </div>
+                            <!-- fieldsets -->
+                            <fieldset>
+                                <h2 class="fs-title">Event Details</h2>
+                                <h3 class="fs-subtitle">Tell us something about your event</h3>
+                                <div class="form-group" style="text-align:left">
+
                                     <!-- <label for="name">Event Picture</label> -->
                                     <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_PICTURE ?></label>
                                    <input type="file" name="userfile"  id="fileToUpload" accept="image/*">
                                 </div>
-                                <div class="form-group">
+                                <div class="form-group" style="text-align:left">
                                     <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_TITLE ?></label>
 
                                     <input type="text" class="form-control" name="event_name" required="">
                                 </div>
+                                <div class="form-group" style="text-align:left">
+                                    <!-- <label for="email">Category</label> -->
+                                    <label for="email"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_CATEGORY ?></label>
+                                        <select Class="form-control" name="event_category" required>
+                                            <option></option>
+                                            <option>Attraction</option>
+                                            <option>Appearance</option>
+                                            <option>Competition</option>
+                                            <option>Concert</option>
+                                            <option>Conference</option>
+                                            <option>Convention</option>
+                                            <option>Festival</option>
+                                            <option>Gala</option>
+                                            <option>Meeting</option>
+                                            <option>Party</option>
+                                            <option>Rally</option>
+                                            <option>Retreat</option>
+                                            <option>Screening</option>
+                                            <option>Seminar</option>
+                                            <option>Tour</option>
+                                            <option>Others</option>
+                                        </select>
+                                </div>
+                                <div class="form-group" style="text-align:left">
+                                    <!-- <label for="name">STARTS</label> -->
+                                    <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_START ?></label>
 
-                                <div class="form-group">
+                                    <input  class="form-control" type="text"  value="<?php if(!empty($start_date)){
+                                        echo $start_date." ".$start_time;
+                                    }else{
+                                        echo "";
+                                    };
+                                    ?>" name="dateStart" id="datetimepicker1" required="">
+
+                                    <script>
+                                        $("#datetimepicker1").datetimepicker();
+                                    </script>
+                                </div>
+
+                                <div class="form-group" style="text-align:left">
+                                    <!-- <label for="name">ENDS</label> -->
+                                    <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_END ?></label>
+                                    <input  class="form-control" type="text" value="<?php if(!empty($end_date)){
+                                        echo $end_date." ".$end_time;
+                                    }else{
+                                        echo "";
+                                    };
+                                    ?>" name="dateEnd" id="datetimepicker2" required="">
+
+                                    <script>
+                                        $("#datetimepicker2").datetimepicker();
+                                    </script>
+                                </div>
+                                <div class="form-group" style="text-align:left">
+                                    <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_DESCRIPTION ?></label>
+                                    <textarea class="form-control" name="event_details" required="" rows="3"></textarea>
+                                </div>
+                                <input type="button" name="next" class="next action-button" value="Next"/>
+                            </fieldset>
+                            <fieldset>
+                                <h2 class="fs-title">Venue Details</h2>
+                                <h3 class="fs-subtitle">Let others know the location of your event</h3>
+                                <div class="form-group" style="text-align:left">
                                     <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_LOCATION ?></label>
                                     <input type="text" class="form-control" name="event_venue" required="">
                                 </div>
 
-                                <div class="form-group">
+                                <div class="form-group" style="text-align:left">
                                     <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_CAPACITY ?></label>
                                     <input type="number" min="1" class="form-control" name="venue_capacity" required="">
                                 </div>
                                 <!-- Added a location_code -->
-                                <div class="form-group">
+                                <div class="form-group" style="text-align:left">
 
                                     <!-- <label for="email">Location_code</label> -->
                                     <label for="region_code">Region Code</label>
@@ -119,75 +207,17 @@
                                 </div>
 
                                 <!-- Added a city group -->
-                                <div class="form-group">
+                                <div class="form-group"  style="text-align:left">
                                     <!-- <label for="email">Location_code</label> -->
                                     <label for="municipal-name">CITY/MUNICIPAL</label>
                                         <select Class="form-control" id="municipal-name" name="municipal-name" required>
                                         </select>
                                 </div>
-
-                                <div class="form-group">
-                                    <!-- <label for="name">STARTS</label> -->
-                                    <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_START ?></label>
-
-                                    <input  class="form-control" type="text"  value="<?php if(!empty($start_date)){
-                                        echo $start_date." ".$start_time;
-                                    }else{
-                                        echo "";
-                                    };
-                                    ?>" name="dateStart" id="datetimepicker1" required="">
-
-                                    <script>
-                                        $("#datetimepicker1").datetimepicker();
-                                    </script>
-                                </div>
-
-                                <div class="form-group">
-                                    <!-- <label for="name">ENDS</label> -->
-                                    <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_END ?></label>
-                                    <input  class="form-control" type="text" value="<?php if(!empty($end_date)){
-                                        echo $end_date." ".$end_time;
-                                    }else{
-                                        echo "";
-                                    };
-                                    ?>" name="dateEnd" id="datetimepicker2" required="">
-
-                                    <script>
-                                        $("#datetimepicker2").datetimepicker();
-                                    </script>
-                                </div>
-
-
-                                <div class="form-group">
-                                    <!-- <label for="email">Category</label> -->
-                                    <label for="email"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_CATEGORY ?></label>
-                                        <select Class="form-control" name="event_category" required>
-                                            <option></option>
-                                            <option>Attraction</option>
-                                            <option>Appearance</option>
-                                            <option>Competition</option>
-                                            <option>Concert</option>
-                                            <option>Conference</option>
-                                            <option>Convention</option>
-                                            <option>Festival</option>
-                                            <option>Gala</option>
-                                            <option>Meeting</option>
-                                            <option>Party</option>
-                                            <option>Rally</option>
-                                            <option>Retreat</option>
-                                            <option>Screening</option>
-                                            <option>Seminar</option>
-                                            <option>Tour</option>
-                                            <option>Others</option>
-                                        </select>
-                                </div>
-
-                                <div class="form-group">
-                                    <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_DESCRIPTION ?></label>
-                                    <textarea class="form-control" name="event_details" required="" rows="3"></textarea>
-                                </div>
-                                <br>
-                                <h2><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_DETAILS ?></h2>
+                                <input type="button" name="next" class="next action-button" value="Next"/>
+                            </fieldset>
+                            <fieldset>
+                                <h2 class="fs-title">Tickets</h2>
+                                <h3 class="fs-subtitle">Add tickets for your event</h3>
                                 <div class="text-right">
                                     <button id="openModal" type="button" class="btn btn-default" data-backdrop="false" data-keyboard="false">Add Tix</button>
                                 </div>
@@ -196,21 +226,20 @@
 
                                    </ul>
                                 </div>
-                                <div class="text-center">
-                                    <!-- <button type="submit" class="btn btn-default" value="Create Event"> <a href="<?php echo site_url();?>/CLogin/viewEvents"> Register</button> -->
-                                    <button type="submit" class="btn btn-default" value="Create Event" onclick="return checkLocation()"><!-- <a href="<?php echo site_url();?>/CLogin/viewEvents"> --><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_SUBMIT_BUTTON ?></button>
-                                </div>
+                                <input type="submit" name="submit" class="submit action-button" value="Submit"/>
+                            </fieldset>
+                        </form>
 
-                                <br><br>
-                            </form>
-                        </div>
                     </div>
                 </div>
-                <div class="col-md-3"></div>
+                <!-- /.MultiStep Form -->
+                <div class="col-md-2"></div>
             </div>
         </div>
+
         <!-- Audio -->
         <audio id = "audio-event" src = "../../../assets/customization1Assets/audio/event.wav"></audio>
+
 
          <!-- Footer area-->
          <div class="footer-area">
