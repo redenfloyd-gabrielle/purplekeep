@@ -467,7 +467,6 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
-                                    <th>Event Name</th>
                                     <th>Amount</th>
                                     <th>Date paid</th>
                                     <th>Action</th>
@@ -478,7 +477,6 @@
                                     foreach ($checkout as $c) { ?>
                                         <tr>
                                             <td><?php echo $c->checkId?></td>
-                                            <td><?php echo $c->event_name?></td>
                                             <td><?php echo $c->checkTotal?></td>
                                             <td><?php echo $c->checkCreatedOn?></td>
                                             <td>
