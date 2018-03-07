@@ -406,7 +406,7 @@
           }
 
             addId($(this).attr('id'));
-
+            updateTotalByCheck("single-ch",$(this).parent().siblings('.h5'));
       });
       $('input.indi').on('ifUnchecked', function (event) {
           $(this).closest("input").attr('checked', false);
@@ -423,6 +423,7 @@
 
           });
           removeId($(this).attr('id'));
+          updateTotalByCheck("single-unch",$(this).parent().siblings('.h5'));
       });
       $('input.evt').on('ifChecked', function (event){
           $(this).closest("input").attr('checked', true);
@@ -439,6 +440,7 @@
           // $.each($(document).find(".tix"+id),function(index1,item1){
           //     addId(item1.id);
           // });
+          // updateTotalByCheck("all-ch",$(this).parent().parent().siblings('.panel-body').find('.h5'));
       });
       $('input.evt').on('ifUnchecked', function (event) {
           $(this).closest("input").attr('checked', true);
@@ -455,6 +457,8 @@
           $.each($(document).find(".tix"+id),function(index1,item1){
                 removeId(item1.id);
               });
+
+          updateTotalByCheck("all-unch",$(this).parent().parent().siblings('.panel-body').find('.h5'));
       });
       function checkID (id) {
         var s = $("#i01").val();
@@ -549,6 +553,55 @@
         var total = parseInt(t);
 
         $("#total").text("Php "+(total+price)+".00");
+      }
+
+      function updateTotalByCheck (typeCheck,container) {
+        //p = p.replace("Price:", "");
+        // p = p.replace("Price:", "");
+        // var price;
+        // if(type == "plus"){
+        //   price = parseInt(p);
+        // }else{
+        //   price = parseInt(p);
+        //   price = -price;
+        // }
+
+        // var t = $("#total").text();
+        // t = t.replace("Php ", "");
+        // var total = parseInt(t);
+
+        // $("#total").text("Php "+(total+price)+".00");
+        var checkArr = ["all-unch","single-ch","single-unch"],
+            totalDiv = $('#total'),
+            total = parseInt(totalDiv.html().replace("Php ","")),
+            x = (typeCheck == "all-unch")? 0 : parseInt(container.children().text());
+        if($.inArray(typeCheck,checkArr) > -1){
+         if(typeCheck == "single-ch"){
+           total += x;
+
+          }else if(typeCheck == "single-unch"){
+            total -= x;
+          }else if(typeCheck == "all-unch"){
+            if(container.length > 1){
+              $.each(container,function(key, value){
+                x += parseInt(value.children[0].innerText);
+              });
+              
+            }else{
+              x = parseInt(container.children().text());
+            }
+            total -= x;
+          }
+        // var x = parseInt($("#total").text()),
+        //     y = parseInt(container.children().text()),
+        //     result = x -;
+          
+          totalDiv.text("Php "+(total)+".00");
+        }else{
+          console.log("Please do not change the name.");  
+        }
+
+        
       }
 
       function updateTicketCount(type,id,quantity){
