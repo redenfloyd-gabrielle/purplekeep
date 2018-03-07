@@ -396,7 +396,7 @@ div.desc {
                                 
                             </div>
                           </div>
-                            
+
                             <!-- <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
                                 <div class="panel-heading">
                                 <h3 class="panel-title">Search</h3>
