@@ -1,4 +1,13 @@
 
+<style>
+.star{
+    height: 35px;
+    width: 35px;
+    margin-top:5px;
+    margin-left:-180px;
+       
+}
+</style>
 <!-- Add these lines below to pages with customizable elements -->
 <?php
   require('assets/CustomizationManager.php');
@@ -21,7 +30,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
 
-                    </button>    
+                    </button>
                     <a class="navbar-brand" href="<?php echo site_url();?>/CLogin/viewDashBoard"><img src="<?php echo base_url(CustomizationManager::$images->LOGO_DARK)?>"></a>
                 </div>
 
@@ -47,7 +56,7 @@
             </div><!-- /.container-fluid -->
         </nav> <! -- END OF NAV -->
 
-    <div class="page-head" style="height: 400px;"> 
+    <div class="page-head" style="height: 400px;">
             <div class="container">
                     <div class="row">
                         <div class="page-head-content">
@@ -124,7 +133,7 @@
                                                     <select class="form-control" id="municipal-name" name="municipal_name">
                                                         <option style="color: gray;">Municipal</option>
                                                     </select></div>';
-                                                
+
                                                 ?>
                                                 <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
                                                     <button class="btn search-btn" type="submit" style="float: left;"><i class="fa fa-search"></i></button>
@@ -132,13 +141,13 @@
                                         </form>
                                     </div>
                                 </div>
-                                
-                            
-                            
+
+
+
                         </div>
                     </div>
                 </div>
-            </div>         
+            </div>
                         </div>
                     </div>
                 </div>
@@ -166,11 +175,11 @@
                                             <option value="60">60</option>
                                         </select>
                                     </div><!--/ .sel-->
-                        <!--  </div> --><!--/ .items-per-page--> 
+                        <!--  </div> --><!--/ .items-per-page-->
                    <!--  <div class="col-xs-2 layout-switcher">
                             <a class="layout-list" href="javascript:void(0);"> <i class="fa fa-th-list"></i>  </a>
                             <a class="layout-grid active" href="javascript:void(0);"> <i class="fa fa-th"></i> </a>
-                    </div><!--/ .layout-switcher--> 
+                    </div><!--/ .layout-switcher-->
                 </div>
 
                 <div class="col-md-12 ">
@@ -196,36 +205,46 @@
                                                                     }else{
                                                                         echo '<div class="corner-ribbon top-right sticky red">'.$interval->days;
                                                                         echo ' day/s left!';
-                                                                        echo '</div>';      
+                                                                        echo '</div>';
                                                                     }
-                                                                }   
+                                                                }
 
                                                                 echo '<a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'" style="background-color:#CB6C52;"><h3 class="text-center"> ';
 
+                                                                if(isset($event->prefId)){
+                                                                //echo "<a href='".site_url()."/event/cEvent/interestedRemove/".$user_event_preference_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
+                                                                    echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
+                                                                }else{
+                                                                //echo "<a href='".site_url()."/event/cEvent/interested/".$e->event_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
+                                                                    echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
+                                                                }
+                                                                
+                                                                echo "<center>";
                                                                 if(strlen($event->event_name)>=42){
                                                                     echo substr($event->event_name,0,39)."...";
                                                                 }else{
                                                                     echo $event->event_name;
                                                                 }
-                                                
+                                                                echo "</center>";
+
                                                                 echo '</h3></a>';
 
                                                                 // echo '<div class="item-thumb">
-                                                                // <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
-                                                                
+                                                                // <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>';
+
                                                                 echo '<div style="height:130px;"><h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
 
                                                                 $dateS = date_create($event->dateStart);
                                                                 $dateE = date_create($event->dateEnd);
                                                                 echo '<h5>When: '.date_format($dateS, 'M d Y').' - '.date_format($dateE, 'M d Y').'</h5>';
 
-                                                                                                              
-                                                    
+
+
                                                                 $mintix = $event->tix;
                                                                 foreach ($event->tix as $key) {
                                                                     $mintix = ($key->price <= $mintix)? $key->price : $mintix;
                                                                 }
-                                                                echo '<h5>Event Tickets as low as Php '.$mintix.'!!!</h5></div>';          
+                                                                echo '<h5>Event Tickets as low as Php '.$mintix.'!!!</h5></div>';
                                                                 echo '<div class="dot-hr"></div>
                                                             </div>
                                                         </div>
@@ -236,20 +255,28 @@
                                                     echo '<div class="box-two proerty-item">';
                                                         echo '<div class="item-entry overflow" >';
                                                                 echo '<div class="corner-ribbon top-right sticky red">Happening now!</div>';
-                                                                    
+
 
                                                                 echo '<a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'" ><h3 class="text-center"> ';
 
+
+                                                                if(isset($event->prefId)){
+                                                                //echo "<a href='".site_url()."/event/cEvent/interestedRemove/".$user_event_preference_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
+                                                                    echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
+                                                                }else{
+                                                                //echo "<a href='".site_url()."/event/cEvent/interested/".$e->event_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
+                                                                    echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
+                                                                }
+                                                                
+                                                                echo "<center>";
                                                                 if(strlen($event->event_name)>=42){
                                                                     echo substr($event->event_name,0,39)."...";
                                                                 }else{
                                                                     echo $event->event_name;
                                                                 }
-                                                
                                                                 echo '</h3></a>';
-
                                                                 // echo '<div class="item-thumb">
-                                                                // <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
+                                                                // <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>';
 
                                                                 echo '<div style="height:130px;"><h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
 
@@ -273,6 +300,31 @@
                                 echo "<h2> No approved events as of the moment.</h2>";
                             }
                         ?>
+                        <script type="text/javascript">
+    $(document).ready(function(e){                                        
+        $('.star').on("click", function(e){
+            e.preventDefault();
+            var id = $(this).parent().data("value");
+            var imgObj = $(this);
+            $.ajax({
+                url:'<?php echo site_url()."/event/cEvent/interested";?>',
+                method: "POST",
+                dataType: 'json',
+                data:{'eid':id},
+                success: function(e){
+                    var pic1 = <?php $pass = site_url().'../../assets/neilAssets/img/star.png'; echo json_encode($pass); ?>;
+                    var pic2 = <?php $pass = site_url().'../../assets/neilAssets/img/white-star.png'; echo json_encode($pass); ?>;
+                    var img = document.getElementById("star").src;
+                    if (e){
+                        imgObj.attr("src", pic1);
+                    }else{
+                        imgObj.attr("src", pic2);
+                    }
+                }
+            });
+        });
+    });
+</script>
                     </div>
                 </div>
              </div><!-- END OF ROW-->
@@ -307,7 +359,7 @@
                                     <li><i class="pe-7s-map-marker strong"> </i> 9089 your adress her</li>
                                     <li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
                                     <li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
-                                </ul>        
+                                </ul>
                             </div>
                         </div>
 
@@ -394,4 +446,3 @@
 </script>
 
 <!--END OF  SCRIPT-->
-

@@ -75,7 +75,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="panel-heading">
-                                                    <center><h1 style="font-size: 50px;" class="panel-title">P<?php foreach($user as $u){echo $u->load_amt;}?>.00</h1></center>
+                                                    <center><p style="font-size: 3em;word-wrap: break-word; border-bottom: solid 3px #CB6C52;" class="panel-title">Php <?php foreach($user as $u){echo $u->load_amt;}?>.00</p></center>
                                                 </div>
                                             </div>
                                         </div>
@@ -139,7 +139,7 @@
                                 <br><br>
                             </div>
 
-                            
+
                         </div>
                     </div>
 
@@ -168,10 +168,10 @@
 
                                         </div>
                                         <!-- /.row -->
-                                        
+
 
                                         <!-- LEGEND -->
-                                        
+
                                         <div class="calendar-legend">
                                             <center><h3>L E G E N D</h3></center>
                                             <ul class="legend">
