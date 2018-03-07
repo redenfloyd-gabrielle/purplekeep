@@ -637,8 +637,13 @@
                 </div>
 
                 <div class="form-group">
+<<<<<<< HEAD
+                    <label for="contact no">Contact Number (09XXXXXXXXX) <i>(if mobile no.: 09XXXXXXXXX; if telephone no.: XXX-XXXX)</i> </label>
+                    <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{2}-\d{3}-\d{4}$|^\d{3}-\d{4}$" class="form-control" name="contact" id="email" required="">
+=======
                     <label for="contact no">Contact Number (09XX-XXX-XXXX) </label>
                     <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{2}-\d{3}-\d{4}$|^\d{3}-\d{4}$" class="form-control" name="contact" id="contact" required="">
+>>>>>>> 9c687a6e766e187932ef12757b1e1187872a9a32
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -757,8 +762,8 @@
                                 <h4><?php echo CustomizationManager::$strings->CONTACT_US_HEADER ?></h4>
                                 <div class="footer-title-line"></div>
                                 <ul class="footer-adress">
-                                    <li><i class="pe-7s-map-marker strong"> </i> 9089 your adress her</li>
-                                    <li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
+                                    <li><i class="pe-7s-map-marker strong"> </i> USC TC - Nasipit Talamban Cebu City</li>
+                                    <li><i class="pe-7s-mail strong"> </i> dailyevents@gmail.com</li>
                                     <li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
                                 </ul>
                             </div>

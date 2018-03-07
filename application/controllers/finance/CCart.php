@@ -158,8 +158,8 @@ class CCart extends CI_Controller {
 
         $data['user'] = $this->MUser->read($this->session->userdata['userSession']->userID);
         $data['total'] = $this->MCart->getTotal($this->session->userdata['userSession']->userID);
-		
-		$this->load->view('imports/vHeaderLandingPage');
+		$data['page_title'] = "View Cart Page";
+		$this->load->view('imports/vHeaderLandingPage',$data);
 		$this->load->view('vCart',$data);	
 		$this->load->view('imports/vFooterLandingPage');
 		}else{
