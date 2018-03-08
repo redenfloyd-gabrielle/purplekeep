@@ -4,7 +4,6 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
     <title>DailyEvents | <?php echo isset($page_title) ? $page_title : 'Home Page' ; ?></title>
     <link rel="icon" href="<?php echo base_url('assets/dianeAssets/img/DE Icon.png')?>">
 

@@ -85,12 +85,9 @@ div.desc {
 }
 </style>
 </head>
+
     <body> 
 
-
-       <!-- <div id="preloader">
-            <div id="status">&nbsp;</div>
-        </div> -->
         <!-- Body content -->
 
         <nav class="navbar navbar-default ">
@@ -116,9 +113,9 @@ div.desc {
                         <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login" title="Create Event"><span class="fas fa-calendar-plus fa-lg"></span></button></a>
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a class="fa fa-home" href="<?php echo site_url();?>/CLogin/viewDashBoard"><!--Home--></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Home"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><span class="fas fa-home fa-lg"></span></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents/1"><span class="fas fa-user fa-lg"></span></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><span class="fas fa-bell fa-lg"><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><span class="fas fa-bell fa-lg"></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Interested Events"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><span class="fas fa-star fa-lg"></span></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="View Cart"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><span class="fas fa-shopping-cart fa-lg"></span></a></li>
                     </ul>
@@ -276,7 +273,6 @@ div.desc {
                             <div class="section additional-details">
 
                                 <h4 class="s-property-title">Additional Details</h4>
-
                             <!-- .property-meta -->
 
                         <?php if($this->session->userdata['userSession']->userID == $e->user_id){?>
@@ -301,39 +297,25 @@ div.desc {
                             </div>
                         <?php }?>
                             <!-- End video area  -->
-
                             <?php foreach($events as $x){ if($id == $x->user_id && $color != "#808080"){
 
-                            if($x->event_status == "Approved"){
-                                echo'
-                                <div class="button navbar-right">
-                                    <button class="navbar-btn nav-button login"> <a href ="'.site_url("/event/CEvent/editEvent/$e->event_id").'">Edit Event </a></button>
-                                </div>';
-                            }else if($x->event_status == "Pending"){
-                                echo'
-                                <div class="button navbar-right">
-                                    <button class="navbar-btn nav-button login" style="background-color:gray;" id="confirmdelete"><a>Delete Event</a></button>
-                                </div>
-
-                              <?php foreach($events as $x){ if($id == $x->user_id && $color != "#808080"){
 
                                 if($x->event_status == "Approved"){
                                     echo'
-                                    <div class="button navbar-right">
+                                    <div class="button navbar-left">
                                         <button class="navbar-btn nav-button login"> <a href ="'.site_url("/event/cEvent/editEvent/$e->event_id").'">Edit Event </a></button>
                                     </div>';
                                 }else if($x->event_status == "Pending"){
                                     echo'
-                                    <div class="button navbar-right">
+                                    <div class="button navbar-left">
                                         <button class="navbar-btn nav-button login" style="background-color:gray;" id="confirmdelete"><a>Delete Event</a></button>
                                     </div>
 
-                                    <div class="button navbar-right">
+                                    <div class="button navbar-left">
                                         <button class="navbar-btn nav-button login"> <a href ="'.site_url("/event/cEvent/editEvent/$e->event_id").'">Edit Event </a></button>
                                     </div>';
                                 }
                             }} ?>
-
                         </div>
                     </div>
                     <div class="modal fade bd-example" id="deletemodal" tabindex="-1" role="dialog" aria-hidden="true">
@@ -363,10 +345,8 @@ div.desc {
                                     <div class="inner-wrapper" >
 
                                         <div class="clear" >
-                                            <div class="col-xs-4 col-sm-4 dealer-face">
-                                                <a href="">
-                                                    <img src="<?php echo base_url('assets/nikkiAssets/img/client-face1.png" class="img-circle')?>" style ="height:100px; height:200px ">
-                                                </a>
+                                            <div class="col-xs-4 col-sm-4 ">
+                                                <img src="<?php echo base_url('assets/nikkiAssets/img/client-face1.png" class="img-circle')?>" style ="height:100px; height:200px ">
                                             </div>
                                             <div class="col-xs-8 col-sm-8 ">
 
@@ -390,14 +370,26 @@ div.desc {
                             </div>
 
                             <div class="panel panel-default sidebar-menu similar-property-wdg wow fadeInRight animated" >
+                                <!-- <h2 class="property-info-label">CARD LOAD : 
+                                    <strong><span class="property-info-value">
+                                        <?php echo $u->load_amt; ?>
+                                    </span></strong>
+                                </h2>
+ -->                                
                                 <div class="panel-heading" >
-                                    <h3 class="panel-title">Ticket Prices</h3>
+                                    <h3 class="panel-title">CARD LOAD : 
+                                        <strong><span class="property-info-value">
+                                           P <?php echo $u->load_amt; ?>
+                                        </span></strong>
+                                    </h3>
+                                </div>
+                                <br>
+                                <div class="panel-heading" >
+                                    <h3 class="panel-title">TICKET PRICES</h3>
                                 </div>
                                 <div class="panel-body recent-property-widget" >
-                                    <ul>
-                                    <input  id="cLoad" hidden value="<?php echo $u->load_amt; ?>">
+                                    
                                         <?php foreach ($types as $t) { ?>
-
                                             <div class="col-md-10 col-sm-10 col-xs-10 blg-entry" >
                                                 <h4><?php echo  $t->ticket_name." : ".$t->ticket_count." left";?></h4>
                                                 <h3><span class="property-price"><?php echo "P"." ".$t->price.".00";?></span></h3>
@@ -411,29 +403,11 @@ div.desc {
                                             </div>
 
                                         <?php } ?>
-
-                                                </span>                                            <?php }?>
-                                                <!--<span>&nbsp;&nbsp;&nbsp; Sold:
-                                                 <?php $ts->cnt?>
-                                                </span> -->
-                                                <!-- <script>
-   $(document).on('click', 'button.buy', function () {
-        alert("asdasdasd");
-        var val =$("this").closest('input.val').getVal();
-        var cVal = $(document).closest('.cVal').getVal();
-        alert("ASDASDAsd");
-    });
-</script> -->
-                                            </div>
-                                        </li>
-                                        <?php } ?>
-                                    </ul>
                                 </div>
-                                <h1>Card Load: <span><?php echo $u->load_amt; ?></span></h1>
+                                
                             </div>
                           </div>
                             
-
                             <!-- <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
                                 <div class="panel-heading">
                                 <h3 class="panel-title">Search</h3>
@@ -625,13 +599,13 @@ div.desc {
             <form method="POST" id="cartForm" action="<?php echo site_url('finance/cCart/addToCart'); ?>">
                 <div class="row">
                     <div class="col-md-4">
-                        <button class="btn" id="unaM" type="button"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                        <button class="btn" id="unaM" type="button" style="float: right;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                     </div>
                     <div class="col-md-4">
                         <input type="text" id="qty1" name="qty1" class="form-control" value="1" aria-label="Quantity">
                     </div>
                     <div class="col-md-4">
-                        <button class="btn" id="unaP" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        <button class="btn" id="unaP" type="button" style="float: left;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                     </div>
                 </div>
 
@@ -639,8 +613,8 @@ div.desc {
                 <input type="hidden" id="ticID" name="ticket" class="form-control col-8" placeholder="Quantity" aria-label="Quantity">
         </div>
         <div class="modal-footer">
-            <button class="btn btn-success" id="addToCart"  type="submit">Add to Cart</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button class="btn btn-success" id="addToCart"  type="submit">Add to Cart</button>
         </form>
         </div>
       </div>
@@ -656,6 +630,9 @@ $(document).ready(function(){
   $(".myBtn").click(function(){
     $("#myModal").modal();
     $("#ticID").val($(this).data('id')) ;
+  });
+  $("#confirmdelete").click(function(){
+    $("#deletemodal").modal("show");
   });
   $("#unaM").click(function(){
     if($('#qty1').val() > 1){
