@@ -27,10 +27,11 @@
 <script type="text/javascript" src="<?php echo base_url('assets/adminAssets/plugins/miscellaneous/miscellaneous.js')?>"></script>
 <!-- Library Themes Customize-->
 <script type="text/javascript" src="<?php echo base_url('assets/adminAssets/js/caplet.custom.js')?>"></script>
+<script src="<?php echo base_url('assets/adminAssets/js/datatables.min.js')?>"></script>
 <script type="text/javascript">
 
   function fnShowHide( iCol , table){
-      var oTable = $(table).dataTable(); 
+      var oTable = $(table).DataTable(); 
       var bVis = oTable.fnSettings().aoColumns[iCol].bVisible;
       oTable.fnSetColumnVis( iCol, bVis ? false : true );
   }
@@ -55,9 +56,34 @@
     });
 
     // Call dataTable in this page only
-    $('#table-example').dataTable();
+    // $('#table-example').dataTable();
     $('table[data-provide="data-table"]').dataTable();
   });
+
+  /*var dataTable_card = $("#card-table").dataTable({
+    "processing":true,
+			"lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
+			"language": {
+				search: "_INPUT_",
+		        searchPlaceholder: "Search Card",
+		        // "processing": "<img src='<?php /*echo base_url('/pics/loader-spinner-2-2.svg');*/?>'/>" //add a loading image,simply putting <img src="loader.gif" /> tag.
+		    },
+			"serverSide":true,
+			"order":[],
+			"ajax":{
+				url: $('#card-table').data('card-url'),
+				type:"POST"
+			},
+			"columnDefs":[
+				{
+					"targets":[0],
+					"orderable":false,
+				}
+			]
+
+		});*/
+
+    var dataTable_card = $("#card-table").dataTable();
 </script>
 
 
