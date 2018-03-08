@@ -1,7 +1,7 @@
 <!-- Add these lines below to pages with customizable elements -->
 <?php
   require('assets/CustomizationManager.php');
-  CustomizationManager::SetTheme("configurations 0");
+  CustomizationManager::SetTheme("configurations 2");
 ?>
 <!-- Up to here -->
 <body>
@@ -24,7 +24,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <div class="navbar-brand">
-                        <img src="<?php echo base_url('assets/dianeAssets/img/logoBlack.png')?>">
+                    <img src= "<?php echo base_url(CustomizationManager::$images->LOGO_DARK)?>">
                     </div>
                 </div>
 

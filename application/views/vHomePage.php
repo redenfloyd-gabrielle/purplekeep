@@ -1,4 +1,4 @@
-	<div class="container-box">
+<div class="container-box">
 		<div class="container-content"></div>
 		<div class="container" >
 			<div class="col-md-12" id="eventsList">
@@ -10,8 +10,8 @@
 	                            foreach ($events as $event) {
 	                    ?>
 		                            <div class="event-box">
-					        		 	<a href="<?php echo site_url();?>/CLogin/viewLoginEvent/<?php echo $event->event_id;?>">
-					                		<div class="event-box-overlay">
+									<a href="<?php echo site_url();?>/CLogin/viewLoginEvent/<?php echo $event->event_id;?>">
+										 	<div class="event-box-overlay">
 						                		<span class="fa-stack fa-lg">
 						    						<i class="glyphicon glyphicon-eye-open"></i>
 												</span>

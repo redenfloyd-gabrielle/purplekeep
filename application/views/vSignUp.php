@@ -1,7 +1,7 @@
 <!-- Add these lines below to pages with customizable elements -->
 <?php
   require('assets/CustomizationManager.php');
-  CustomizationManager::SetTheme("configurations 0");
+  CustomizationManager::SetTheme("configurations 2");
 ?>
 <!-- Up to here -->
 <body>
@@ -24,14 +24,14 @@
                         <span class="icon-bar"></span>
                     </button>
                     <div class="navbar-brand">
-                        <img src="<?php echo base_url('assets/dianeAssets/img/logoBlack.png')?>">
+                    <img src= "<?php echo base_url(CustomizationManager::$images->LOGO_DARK)?>">
                     </div>
                 </div>
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
-                    <ul class="main-nav nav navbar-nav navbar-right ">
+                    <ul class="main-nav nav navbar-nav navbar-right">
                       <!-- <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cInitialize">Home</a></li> -->
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cInitialize"><span class="fas fa-home fa-lg" title="HOME"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cInitialize"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_NAV_HOME ?></a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -43,7 +43,7 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_TITLE ?></h1>
+                    <h1 class="page-title"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_TITLE ?></h1>
                     </div>
                 </div>
             </div>
@@ -113,14 +113,14 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="email"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_CONTACT_NUMBER ?> eg. (09XX-XXX-XXXX) | (XXX-XXXX)</label>
-                                    <input type="text" <?php  if(isset($contact_no)){echo 'value="'.$contact_no.'"';}?>  pattern="^(09)\d{2}-\d{3}-\d{4}$|^\d{3}-\d{4}$" class="form-control" name="contact" id="email" required="">
+                                <label for="email"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_CONTACT_NUMBER ?> eg. (09XX-XXX-XXXX) | (XXX-XXXX)</label>
+                                <input type="text" <?php  if(isset($contact_no)){echo 'value="'.$contact_no.'"';}?>  pattern="^(09)\d{2}-\d{3}-\d{4}$|^\d{3}-\d{4}$" class="form-control" name="contact" id="email" required="">
                                 </div>
                                 <div class="form-group">
                                     <!-- <label for="email">Username</label> -->
                                     <label for="email"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_USERNAME ?></label>
                                     <input type="text" minlength="6" <?php  if(isset($user_name)){echo 'value="'.$user_name.'"';}?> required="" class="form-control" pattern="[a-zA-Z0-9]+" name="uname" id="email">
-                                </div>
+                                                                </div>
                                 <div class="form-group">
                                     <!-- <label for="password">Password</label> -->
                                     <label for="password"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_PASSWORD ?></label>
@@ -131,7 +131,7 @@
                                     <input type="password" class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="cpassword" id="cpassword"><h4 id="message"></h4>
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" onclick="validate()" class="btn btn-default"><!-- <a href="<?php echo site_url();?>/cLogin/viewEvents"> --><?php echo CustomizationManager::$strings->SIGNUP_PAGE_SIGNUP_BUTTON ?></button>
+                                <button type="submit" onclick="validate()" class="btn btn-default"><!-- <a href="<?php echo site_url();?>/cLogin/viewEvents"> --><?php echo CustomizationManager::$strings->SIGNUP_PAGE_SIGNUP_BUTTON ?></button>
                                 </div>
                             </form>
                         </div>
@@ -152,7 +152,7 @@
                                 <!-- <h4>About us </h4> -->
                                 <h4><?php echo CustomizationManager::$strings->ABOUT_HEADER ?></h4>
                                 <div class="footer-title-line"></div>
-                               <img src= "<?php echo base_url(CustomizationManager::$images->LOGO_DARK)?>" alt="" class="wow pulse" data-wow-delay="1s" >
+                                <img src= "<?php echo base_url(CustomizationManager::$images->LOGO_DARK)?>" alt="" class="wow pulse" data-wow-delay="1s" >
                                 <p><?php echo CustomizationManager::$strings->ABOUT_MESSAGE ?></p>
                             </div>
                         </div>
@@ -195,17 +195,17 @@
         $('#cpassword').on('keyup', function () {
             if ($(this).val() == $('#password').val()) {
                 $('#message').html('password matched').css('color', 'green');
-                $("#sub").removeAttr("disabled");
+                $("#sub").removeAttr("disabled");      
             } else {
                $('#message').html('password mismatch').css('color', 'red');
-               $('#sub').prop('disabled',true);
-            }
+               $('#sub').prop('disabled',true); 
+            } 
         });
 
-
+       
 
         $('#uname').on('keyup', function () {
-
+            
             $.ajax({
             url: "<?php echo site_url()?>/user/cUser/checkAllUsername",
             data:'username='+$("#uname").val(),
@@ -219,7 +219,7 @@
            });
         });
     });
-
+            
 </script>
 
 <script type="text/javascript">
