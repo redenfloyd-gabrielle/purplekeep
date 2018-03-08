@@ -122,7 +122,7 @@ class CAdmin extends CI_Controller {
 	}
 
 	public function Ban($id,$frm){
-		if(!isset($id) || $isset($frm)){
+		if(!isset($id) || !isset($frm)){
 			redirect('admin/CAdmin/viewUserAccountMgt');
 		}
 
@@ -146,7 +146,7 @@ class CAdmin extends CI_Controller {
 	}
 
 	public function Unban($id,$frm){
-		if(!isset($id) || $isset($frm)){
+		if(!isset($id) || !isset($frm)){
 			redirect('admin/CAdmin/viewUserAccountMgt');
 		}
 
