@@ -27,7 +27,7 @@
 			return $query;
 		}
 
-		
+
 		public function nameAttendees($event_id){
 			$statement = "SELECT DISTINCT U.user_name
 				FROM user_account U, ticket_type TT, event_info E, ticket T

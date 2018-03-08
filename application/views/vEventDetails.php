@@ -1,4 +1,8 @@
 <?php
+  require('assets/CustomizationManager.php');
+  CustomizationManager::SetTheme("configurations 2");
+?>
+<?php
 if(isset($events) ){
     $bought = FALSE;
     // print_r($events);
@@ -102,20 +106,18 @@ div.desc {
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<?php echo site_url();?>/cLogin/viewDashBoard"><img src="<?php echo base_url('assets/dianeAssets/img/logoBlack.png')?>"></a>
+                    <a class="navbar-brand" href="<?php echo site_url();?>/cLogin/viewDashBoard"><img src="<?php echo base_url(CustomizationManager::$images->LOGO_DARK)?>"></a>
                 </div>
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                        <!-- <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a> -->
-                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login" title="Logout"><span class="fas fa-sign-out-alt fa-lg"></span></button></a>
+                    <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login" title="Logout"><span class="fas fa-sign-out-alt fa-lg"></span></button></a>
                     </div>
                     <div class="button navbar-right">
-                        <!-- <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a> -->
-                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login" title="Create Event"><span class="fas fa-calendar-plus fa-lg"></span></button></a>
+                    <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login" title="Create Event"><span class="fas fa-calendar-plus fa-lg"></span></button></a>
                     </div>
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Home"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><span class="fas fa-home fa-lg"></span></a></li>
+                    <li class="wow fadeInDown" data-wow-delay="0.1s" title="Home"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><span class="fas fa-home fa-lg"></span></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents/1"><span class="fas fa-user fa-lg"></span></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><span class="fas fa-bell fa-lg"></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Interested Events"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><span class="fas fa-star fa-lg"></span></a></li>
@@ -127,7 +129,7 @@ div.desc {
         <!-- End of nav bar -->
 
         <div class="page-head">
-            <div class="container">
+        <div class="container">
                 <div class="row overflow">
                     <?php
                         //<div class="corner-ribbon top-right sticky red">Shibal</div>
@@ -160,8 +162,8 @@ div.desc {
                         }else{
                             echo "<div class='corner-ribbon top-left sticky black'>Event has passed</div>";
                         }
-                    ?>
-                    <div class="page-head-content">
+                        ?>
+                            <div class="page-head-content">
                         <h1 class="page-title">EVENT DETAILS</h1>
                     </div>
                 </div>
@@ -254,7 +256,8 @@ div.desc {
                                 </div>
                                 <!-- End description area  -->
                             </div>
-
+                            <button class="navbar-btn nav-button login"> <a href="<?php echo site_url();?>/event/CEvent/displayEventReviews/<?php echo $e->event_id; ?>" style="color:white;">Reviews <span class="	fa fa-star"></span> </a></button>
+                
                             <div class="property-meta entry-meta clearfix ">
                                 <span class="property-info-entry">
                                     <span class="property-info-label">Ticket Sale Status</span>
@@ -335,7 +338,7 @@ div.desc {
 
                                         <div class="clear" >
                                             <div class="col-xs-4 col-sm-4 ">
-                                                <img src="<?php echo base_url('assets/nikkiAssets/img/client-face1.png" class="img-circle')?>" style ="height:100px; height:200px ">
+                                                    <img src="<?php echo base_url('assets/nikkiAssets/img/client-face1.png" class="img-circle')?>" style ="height:100px; height:200px ">
                                             </div>
                                             <div class="col-xs-8 col-sm-8 ">
 
@@ -377,25 +380,25 @@ div.desc {
                                     <h3 class="panel-title">TICKET PRICES</h3>
                                 </div>
                                 <div class="panel-body recent-property-widget" >
-                                    
-                                        <?php foreach ($types as $t) { ?>
-                                            <div class="col-md-10 col-sm-10 col-xs-10 blg-entry" >
-                                                <h4><?php echo  $t->ticket_name." : ".$t->ticket_count." left";?></h4>
-                                                <h3><span class="property-price"><?php echo "P"." ".$t->price.".00";?></span></h3>
-                                                    <?php if($e->event_status == "Approved"){
-                                                        $now = new DateTime("now");
-                                                        $end = new DateTime($e->event_date_end);
-                                                        if(!$bought && $now <= $end){ ?>
-                                                            <button class="navbar-btn nav-button wow bounceInRight login myBtn" data-id='<?php echo  $t->ticket_type_id;?>'>Buy Tickets</button>
-                                                        <?php } ?>
-                                                    <?php }?>
-                                            </div>
+                                  
+                                    <?php foreach ($types as $t) { ?>
+                                        <div class="col-md-10 col-sm-10 col-xs-10 blg-entry" >
+                                            <h4><?php echo  $t->ticket_name." : ".$t->ticket_count." left";?></h4>
+                                            <h3><span class="property-price"><?php echo "P"." ".$t->price.".00";?></span></h3>
+                                                <?php if($e->event_status == "Approved"){
+                                                    $now = new DateTime("now");
+                                                    $end = new DateTime($e->event_date_end);
+                                                    if(!$bought && $now <= $end){ ?>
+                                                        <button class="navbar-btn nav-button wow bounceInRight login myBtn" data-id='<?php echo  $t->ticket_type_id;?>'>Buy Tickets</button>
+                                                    <?php } ?>
+                                                <?php }?>
+                                        </div>
 
-                                        <?php } ?>
-                                </div>
-                                
+                                    <?php } ?>
                             </div>
-                          </div>
+                            
+                        </div>
+                      </div>
 
                             <!-- <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
                                 <div class="panel-heading">
@@ -533,7 +536,7 @@ div.desc {
                                 <h4>About us </h4>
                                 <div class="footer-title-line"></div>
 
-                               <img src= "<?php echo base_url('assets/dianeAssets/img/logoBlack.png')?>" alt="" class="wow pulse" data-wow-delay="1s" >
+                               <img src="<?php echo base_url(CustomizationManager::$images->LOGO_DARK)?>" alt="" class="wow pulse" data-wow-delay="1s" >
                                 <p>We help you reach out to the most interesting events anywhere they may be. The events you’ve always wanted to join and create will be in your hands with just a few clicks. Worry not because we’re here to help you discover the latest events this planet will ever have.</p>
 
                             </div>
@@ -544,7 +547,7 @@ div.desc {
                                 <h4>Contact Us</h4>
                                 <div class="footer-title-line"></div>
                                 <ul class="footer-adress">
-                                    <li><i class="pe-7s-map-marker strong"> </i> USC TC - Nasipit Talamban Cebu City</li>
+                                <li><i class="pe-7s-map-marker strong"> </i> USC TC - Nasipit Talamban Cebu City</li>
                                     <li><i class="pe-7s-mail strong"> </i> dailyevents@gmail.com</li>
                                     <li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
                                 </ul>
@@ -587,7 +590,7 @@ div.desc {
         </div>
         <div class="modal-body">
             <form method="POST" id="cartForm" action="<?php echo site_url('finance/cCart/addToCart'); ?>">
-                <div class="row">
+            <div class="row">
                     <div class="col-md-4">
                         <button class="btn" id="unaM" type="button" style="float: right;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                     </div>

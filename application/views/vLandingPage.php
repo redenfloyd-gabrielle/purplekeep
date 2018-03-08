@@ -11,7 +11,7 @@
 <!-- Add these lines below to pages with customizable elements -->
 <?php
   require('assets/CustomizationManager.php');
-  CustomizationManager::SetTheme("configurations ");
+  CustomizationManager::SetTheme("configurations 2");
 ?>
 <!-- Up to here -->
 
@@ -30,7 +30,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
 
-                    </button>
+                    </button>    
                     <a class="navbar-brand" href="<?php echo site_url();?>/CLogin/viewDashBoard"><img src="<?php echo base_url(CustomizationManager::$images->LOGO_DARK)?>"></a>
                 </div>
 
@@ -51,12 +51,12 @@
 
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Interested Events"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><span class="fas fa-star fa-lg"></span></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="View Cart"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><span class="fas fa-shopping-cart fa-lg"></span></a></li>
-                    </ul>
+                        </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav> <! -- END OF NAV -->
 
-    <div class="page-head" style="height: 400px;">
+<div class="page-head" style="height: 400px;">
             <div class="container">
                     <div class="row">
                         <div class="page-head-content">
@@ -66,14 +66,14 @@
                         <!-- <h2>See Events Near You</h2> -->
                         <h2><?php echo CustomizationManager::$strings->LANDING_PAGE_CAROUSEL_MESSAGE ?></h2>
 
-                        <div class="search-form wow pulse" data-wow-delay="0.8s" style="height: 125px;">
+<div class="search-form wow pulse" data-wow-delay="0.8s" style="height: 125px;">
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 pull-left" style="padding-left: 50px;" >
                                       <span class="h6 pull-left" style="color: gray;"><?php echo CustomizationManager::$strings->LANDING_PAGE_SEARCH_BOX_LABEL ?></span>
-                                    </div>
-                                </div>
-                                <div class="row">
-                                    <div class="col-sm-12 col-md-12 col-lg-12" style="padding-left: 25px;align-content: center;-webkit-align-content: center;">
+                </div>
+            </div>
+                <div class="row">
+                <div class="col-sm-12 col-md-12 col-lg-12" style="padding-left: 25px;align-content: center;-webkit-align-content: center;">
                                         <form action="<?php echo site_url();?>/user/CEvent/searchEvent" class="form" method="POST">
                                                 <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
                                                     <select name="searchDateMonth" class="form-control">
@@ -93,60 +93,60 @@
 
                                                     </select>
                                                 </div>
-                                                <?php
-                                                if(!isset($_POST['searchDateYear'])){
-                                                    echo '<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><input name="searchDateYear" type="text" class="form-control" placeholder="Year" ></div>';
+                                    <?php
+                                    if(!isset($_POST['searchDateYear'])){
+                                        echo '<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><input name="searchDateYear" type="text" class="form-control" placeholder="Year" ></div>';
                                                 } else {
                                                     echo '<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2"><input name="searchDateYear" type="text" class="form-control" placeholder="Year"  value="'.$_POST['searchDateYear'].'"></div>';
-                                                }
-                                                ?>
+                                    }
+                                    ?>
 
-                                                <?php
-                                                if(!isset($_POST['searchWord'])){
+                                    <?php
+                                    if(!isset($_POST['searchWord'])){
 
-                                                    echo '<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><input name="searchWord" type="text" class="form-control" placeholder="Key word" pattern="[\sa-zA-z0-9]+"  value=""></div>';
-                                                } else {
-                                                    echo '<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><input name="searchWord" type="text" class="form-control" placeholder="Key word" value="'.$_POST['searchWord'].'" pattern="[\sa-zA-z0-9]+"></div>';
-                                                }
-                                                    echo'<div class="col-sm-2 col-md-2 col-lg-2"><select Class="form-control" id="region_code" name="region_code" >
-                                                        <option style="color: gray;" value="0">Region</option>
-                                                        <option value="NCR">NCR</option>
-                                                        <option value="CAR">CAR</option>
-                                                        <option value="MIMAROPA">MIMAROPA</option>
-                                                        <option value="ARMM">ARMM</option>
-                                                        <option value="Region I">Region I</option>
-                                                        <option value="Region II">Region II</option>
-                                                        <option value="Region III">Region III</option>
-                                                        <option value="Region IV">Region IV-A</option>
-                                                        <option value="Region V">Region V</option>
-                                                        <option value="Region VI">Region VI</option>
-                                                        <option value="Region VII">Region VII</option>
-                                                        <option value="Region VIII">Region VIII</option>
-                                                        <option value="Region IX">Region IX</option>
-                                                        <option value="Region X">Region X</option>
-                                                        <option value="Region XI">Region XI</option>
-                                                        <option value="Region XII">Region XII</option>
-                                                        <option value="Region XIII">Region XIII</option>
-                                                    </select></div>';
+                                        echo '<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><input name="searchWord" type="text" class="form-control" placeholder="Key word" pattern="[\sa-zA-z0-9]+"  value=""></div>';
+                                    } else {
+                                        echo '<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3"><input name="searchWord" type="text" class="form-control" placeholder="Key word" value="'.$_POST['searchWord'].'" pattern="[\sa-zA-z0-9]+"></div>';
+                                    }
+                                        echo'<div class="col-sm-2 col-md-2 col-lg-2"><select Class="form-control" id="region_code" name="region_code" >
+                                            <option style="color: gray;" value="0">Region</option>
+                                            <option value="NCR">NCR</option>
+                                            <option value="CAR">CAR</option>
+                                            <option value="MIMAROPA">MIMAROPA</option>
+                                            <option value="ARMM">ARMM</option>
+                                            <option value="Region I">Region I</option>
+                                            <option value="Region II">Region II</option>
+                                            <option value="Region III">Region III</option>
+                                            <option value="Region IV">Region IV-A</option>
+                                            <option value="Region V">Region V</option>
+                                            <option value="Region VI">Region VI</option>
+                                            <option value="Region VII">Region VII</option>
+                                            <option value="Region VIII">Region VIII</option>
+                                            <option value="Region IX">Region IX</option>
+                                            <option value="Region X">Region X</option>
+                                            <option value="Region XI">Region XI</option>
+                                            <option value="Region XII">Region XII</option>
+                                            <option value="Region XIII">Region XIII</option>
+                                        </select></div>';
 
-                                                    echo '<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-                                                    <select class="form-control" id="municipal-name" name="municipal_name">
-                                                        <option style="color: gray;">Municipal</option>
-                                                    </select></div>';
+                                        echo '<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                                        <select class="form-control" id="municipal-name" name="municipal_name">
+                                            <option style="color: gray;">Municipal</option>
+                                        </select></div>';
 
-                                                ?>
-                                                <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
-                                                    <button class="btn search-btn" type="submit" style="float: left;"><i class="fa fa-search"></i></button>
-                                                </div>
-                                        </form>
-                                    </div>
+                                    ?>
+                                    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+                                        <button class="btn search-btn" type="submit" style="float: left;"><i class="fa fa-search"></i></button>
                                 </div>
-
-
-
+                            </form>
                         </div>
                     </div>
+
+
+
                 </div>
+            </div>
+        </div>
             </div>
                         </div>
                     </div>
@@ -159,7 +159,7 @@
          <div class="container">
              <div class="row">
                 <div class="col-md-12  padding-top-40 properties-page">
-                         <!-- END OF SORT BY LIST-->
+                    <!-- END OF SORT BY LIST-->
 
                         <!--  <div class="items-per-page">
                                     <label for="items_per_page"><b><?php echo CustomizationManager::$strings->LANDING_PAGE_EVENTS_PER_PAGE ?></b></label>
@@ -175,17 +175,17 @@
                                             <option value="60">60</option>
                                         </select>
                                     </div><!--/ .sel-->
-                        <!--  </div> --><!--/ .items-per-page-->
+                        <!--  </div> --><!--/ .items-per-page--> 
                    <!--  <div class="col-xs-2 layout-switcher">
                             <a class="layout-list" href="javascript:void(0);"> <i class="fa fa-th-list"></i>  </a>
                             <a class="layout-grid active" href="javascript:void(0);"> <i class="fa fa-th"></i> </a>
-                    </div><!--/ .layout-switcher-->
+                    </div><!--/ .layout-switcher--> 
                 </div>
 
                 <div class="col-md-12 ">
                     <div id="list-type" class="proerty-th">
                         <?php
-                        $cnt =0;
+                            $cnt =0;
                             if(isset($events)){
                                  foreach ($events as $event) {
                                     date_default_timezone_set('Asia/Manila');
@@ -205,20 +205,20 @@
                                                                     }else{
                                                                         echo '<div class="corner-ribbon top-right sticky red">'.$interval->days;
                                                                         echo ' day/s left!';
-                                                                        echo '</div>';
+                                                                        echo '</div>';      
                                                                     }
-                                                                }
+                                                                }   
 
                                                                 if(isset($event->prefId)){
-                                                                //echo "<a href='".site_url()."/event/cEvent/interestedRemove/".$user_event_preference_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
-                                                                    echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
-                                                                }else{
-                                                                //echo "<a href='".site_url()."/event/cEvent/interested/".$e->event_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
-                                                                    echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
-                                                                }
-
-                                                                echo '<a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'" style="background-color:#CB6C52;"><h3 class="text-center"> ';                                                               
-                                                                echo "<center>";
+                                                                    //echo "<a href='".site_url()."/event/cEvent/interestedRemove/".$user_event_preference_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
+                                                                        echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
+                                                                    }else{
+                                                                    //echo "<a href='".site_url()."/event/cEvent/interested/".$e->event_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
+                                                                        echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
+                                                                    }
+    
+                                                                    echo '<a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'" style="background-color:#CB6C52;"><h3 class="text-center"> ';                                                               
+                                                                    echo "<center>";
                                                                 if(strlen($event->event_name)>=42){
                                                                     echo substr($event->event_name,0,39)."...";
                                                                 }else{
@@ -237,13 +237,13 @@
                                                                 $dateE = date_create($event->dateEnd);
                                                                 echo '<h5>When: '.date_format($dateS, 'M d Y').' - '.date_format($dateE, 'M d Y').'</h5>';
 
-
-
+                                                                                                              
+                                                    
                                                                 $mintix = $event->tix;
                                                                 foreach ($event->tix as $key) {
                                                                     $mintix = ($key->price <= $mintix)? $key->price : $mintix;
                                                                 }
-                                                                echo '<h5>Event Tickets as low as Php '.$mintix.'!!!</h5></div>';
+                                                                echo '<h5>Event Tickets as low as Php '.$mintix.'!!!</h5></div>';          
                                                                 echo '<div class="dot-hr"></div>
                                                             </div>
                                                         </div>
@@ -254,18 +254,18 @@
                                                     echo '<div class="box-two proerty-item">';
                                                         echo '<div class="item-entry overflow" >';
                                                                 echo '<div class="corner-ribbon top-right sticky red">Happening now!</div>';
-
-                                                                 if(isset($event->prefId)){
-                                                                //echo "<a href='".site_url()."/event/cEvent/interestedRemove/".$user_event_preference_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
-                                                                    echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
-                                                                }else{
-                                                                //echo "<a href='".site_url()."/event/cEvent/interested/".$e->event_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
-                                                                    echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
-                                                                }
-
-                                                                echo '<a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'" ><h3 class="text-center"> ';
                                                                 
-                                                                echo "<center>";
+                                                                if(isset($event->prefId)){
+                                                                    //echo "<a href='".site_url()."/event/cEvent/interestedRemove/".$user_event_preference_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
+                                                                        echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
+                                                                    }else{
+                                                                    //echo "<a href='".site_url()."/event/cEvent/interested/".$e->event_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
+                                                                        echo "<a href=\"#\" data-value='".$event->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
+                                                                    }
+
+                                                                    echo '<a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'" ><h3 class="text-center"> ';
+
+                                                                    echo "<center>";
                                                                 if(strlen($event->event_name)>=42){
                                                                     echo substr($event->event_name,0,39)."...";
                                                                 }else{
@@ -276,7 +276,7 @@
                                                                 // <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>';
 
                                                                 echo '<div style="height:130px;"><h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
-
+                                                
                                                                 $dateS = date_create($event->dateStart);
                                                                 $dateE = date_create($event->dateEnd);
                                                                 echo '<h5>When: '.date_format($dateS, 'M d Y').' - '.date_format($dateE, 'M d Y').'</h5>';
@@ -288,40 +288,40 @@
                                                                 echo '<div class="dot-hr"></div>
                                                             </div>
                                                         </div>
-                                                    </div>';
-                                                    $cnt++;
-                                            }
+                                                        </div>';
+                                                        $cnt++;
+                                                }
+                                    }
                                 }
-                            }
-                            if($cnt==0) {
-                                echo $msg;
-                            }
-                        ?>
-                        <script type="text/javascript">
-    $(document).ready(function(e){                                        
-        $('.star').on("click", function(e){
-            e.preventDefault();
-            var id = $(this).parent().data("value");
-            var imgObj = $(this);
-            $.ajax({
-                url:'<?php echo site_url()."/event/cEvent/interested";?>',
-                method: "POST",
-                dataType: 'json',
-                data:{'eid':id},
-                success: function(e){
-                    var pic1 = <?php $pass = site_url().'../../assets/neilAssets/img/star.png'; echo json_encode($pass); ?>;
-                    var pic2 = <?php $pass = site_url().'../../assets/neilAssets/img/white-star.png'; echo json_encode($pass); ?>;
-                    var img = document.getElementById("star").src;
-                    if (e){
-                        imgObj.attr("src", pic1);
-                    }else{
-                        imgObj.attr("src", pic2);
+                                if($cnt==0) {
+                                    echo $msg;
+                                }
+                            ?>
+                            <script type="text/javascript">
+        $(document).ready(function(e){                                        
+            $('.star').on("click", function(e){
+                e.preventDefault();
+                var id = $(this).parent().data("value");
+                var imgObj = $(this);
+                $.ajax({
+                    url:'<?php echo site_url()."/event/cEvent/interested";?>',
+                    method: "POST",
+                    dataType: 'json',
+                    data:{'eid':id},
+                    success: function(e){
+                        var pic1 = <?php $pass = site_url().'../../assets/neilAssets/img/star.png'; echo json_encode($pass); ?>;
+                        var pic2 = <?php $pass = site_url().'../../assets/neilAssets/img/white-star.png'; echo json_encode($pass); ?>;
+                        var img = document.getElementById("star").src;
+                        if (e){
+                            imgObj.attr("src", pic1);
+                        }else{
+                            imgObj.attr("src", pic2);
+                        }
                     }
-                }
+                });
             });
         });
-    });
-</script>
+    </script>
                     </div>
                 </div>
              </div><!-- END OF ROW-->
@@ -353,10 +353,10 @@
                                 <h4><?php echo CustomizationManager::$strings->CONTACT_US_HEADER ?></h4>
                                 <div class="footer-title-line"></div>
                                 <ul class="footer-adress">
-                                    <li><i class="pe-7s-map-marker strong"> </i> USC TC - Nasipit Talamban Cebu City</li>
+                                <li><i class="pe-7s-map-marker strong"> </i> USC TC - Nasipit Talamban Cebu City</li>
                                     <li><i class="pe-7s-mail strong"> </i> dailyevents@gmail.com</li>
                                     <li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
-                                </ul>
+                                </ul>        
                             </div>
                         </div>
 
