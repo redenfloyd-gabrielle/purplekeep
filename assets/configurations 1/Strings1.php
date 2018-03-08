@@ -56,6 +56,7 @@
     public $NEW_EVENT_PAGE_EVENT_PICTURE = "Imahe";
     public $NEW_EVENT_PAGE_EVENT_TITLE = "Pangalan";
     public $NEW_EVENT_PAGE_EVENT_LOCATION = "Lugar";
+    public $NEW_EVENT_PAGE_EVENT_CAPACITY = "Kapasidad na Laman ng Lugar";
     public $NEW_EVENT_PAGE_EVENT_START = "Simula sa";
     public $NEW_EVENT_PAGE_EVENT_END = "Hanggang sa";
     public $NEW_EVENT_PAGE_EVENT_CATEGORY = "Kategorya";
