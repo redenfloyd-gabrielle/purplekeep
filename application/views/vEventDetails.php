@@ -208,9 +208,9 @@ div.desc {
                                 <h1 class="property-title pull-left"><?php echo $e->event_name; ?></h1>
 
                                 <?php if(isset($user_event_preference_id)){
-                                    echo "<a href='".site_url()."/event/cEvent/interestedRemove/".$user_event_preference_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
+                                    echo "<a href=\"#\" data-value='".$e->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/star.png'."'></a>";
                                 }else{
-                                    echo "<a href='".site_url()."/event/cEvent/interested/".$e->event_id."'><img class='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
+                                    echo "<a href=\"#\" data-value='".$e->event_id."'><img class='star' id='star' src='".site_url().'../../assets/neilAssets/img/white-star.png'."'></a>";
                                 }
                                 ?>
                                 <?php if($this->session->userdata['userSession']->userID == $e->user_id){?>
@@ -611,6 +611,32 @@ div.desc {
 
     </div>
   </div>
+  <script type="text/javascript">
+    $(document).ready(function(e){                                        
+        $('.star').on("click", function(e){
+            e.preventDefault();
+            var id = $(this).parent().data("value");
+            var imgObj = $(this);
+            $.ajax({
+                url:'<?php echo site_url()."/event/cEvent/interested";?>',
+                method: "POST",
+                dataType: 'json',
+                data:{'eid':id},
+                success: function(e){
+                    var pic1 = <?php $pass = site_url().'../../assets/neilAssets/img/star.png'; echo json_encode($pass); ?>;
+                    var pic2 = <?php $pass = site_url().'../../assets/neilAssets/img/white-star.png'; echo json_encode($pass); ?>;
+                    var img = document.getElementById("star").src;
+                    if (e){
+                        imgObj.attr("src", pic1);
+                    }else{
+                        imgObj.attr("src", pic2);
+                    }
+                }
+            });
+        });
+    });
+</script>
+
 <script>
 var value=0;
 $(document).ready(function(){
