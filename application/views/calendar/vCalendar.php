@@ -144,54 +144,6 @@
                                 </div>
                                 <br><br>
                             </div>
-
-                            <div class="panel panel-default sidebar-menu wow fadeInRight animated">
-                                <div class="panel-heading">
-                                  <!-- <h3 class="panel-title">Recommended</h3> -->
-                                  <h3 class="panel-title"><?php echo CustomizationManager::$strings->PROFILE_PAGE_RECOMMENDED_HEADER ?></h3>
-                                </div>
-                                <div class="panel-body recent-property-widget">
-                                            <ul>
-                                            <li>
-                                                <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                    <a href="single.html"><img src="assets/img/demo/small-property-2.jpg"></a>
-                                                </div>
-                                                <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                    <h6> <a href="single.html"> JS Workshop </a></h6>
-                                                    <span class="property-price">P 200.00</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                    <a href="single.html"><img src="assets/img/demo/small-property-2.jpg"></a>
-                                                </div>
-                                                <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                    <h6> <a href="single.html"> Music Concert </a></h6>
-                                                    <span class="property-price">P 250.00</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                    <a href="single.html"><img src="assets/img/demo/small-property-2.jpg"></a>
-                                                </div>
-                                                <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                    <h6> <a href="single.html"> Some Party </a></h6>
-                                                    <span class="property-price">P 600.00</span>
-                                                </div>
-                                            </li>
-                                           <li>
-                                                <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                    <a href="single.html"><img src="assets/img/demo/small-property-2.jpg"></a>
-                                                </div>
-                                                <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                    <h6> <a href="single.html"> Food Bazaar </a></h6>
-                                                    <span class="property-price">P 100.00</span>
-                                                </div>
-                                            </li>
-
-                                        </ul>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
