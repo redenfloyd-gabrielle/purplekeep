@@ -14,6 +14,9 @@
     public $LOGIN_PAGE_DONT_HAVE_AN_ACCOUNT = "Walang account?";
     public $LOGIN_PAGE_SIGNUP_HERE = "Magsign-up dito!";
     public $SIGNUP_PAGE_NAV_HOME = "Tanggapan";
+    public $SIGNUP_PAGE_REQUIRED = "<span style='color:#e53935;'><span class='
+    glyphicon glyphicon-exclamation-sign'></span>&nbsp;&nbsp;&nbsp;Required Field (*)</span>";
+    public $SIGNUP_PAGE_REQUIRED_FIELD = "<span style='color:#e53935;'>*&nbsp;</span>";
     public $SIGNUP_PAGE_TITLE = "Magsign-up";
     public $SIGNUP_PAGE_NEW_ACCOUNT = "Bagong account : ";
     public $SIGNUP_PAGE_FIRST_NAME = "Unang Pangalan";
@@ -48,6 +51,7 @@
     public $LANDING_PAGE_SORT_BY_PRICE = "Isauri ayon sa Presyo";
     public $LANDING_PAGE_EVENTS_PER_PAGE = "Ipakita bawat pahina :";
     public $NEW_EVENT_PAGE_NAV_HOME = "Tanggapan";
+    public $NEW_EVENT_PAGE_REQUIRED = "*";
     public $NEW_EVENT_PAGE_NAV_PROFILE = "Iyong Profile";
     public $NEW_EVENT_PAGE_CREATE_EVENT_BUTTON = "Gumawa ng pangyayari";
     public $NEW_EVENT_PAGE_LOGOUT_BUTTON = "Maglog-out";
