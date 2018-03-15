@@ -600,7 +600,7 @@
 
         <h2>Edit Profile</h2>
         <?php foreach($info as $in){ ?>
-            <form  method="POST" onsubmit="return validate()" action="<?php echo site_url()?>/event/CEvent/updateProfile">
+            <form  method="POST" action="<?php echo site_url()?>/event/CEvent/updateProfile">
             <div class="col-md-8">
                 <div class="form-group">
                     <label for="first name">First Name</label>
@@ -676,7 +676,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" onclick="validate()" class="btn btn-default">Submit</button>
+                            <button type="submit" class="btn btn-default">Submit</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </div>
                   </div>
@@ -830,22 +830,6 @@
     }
   }
 ?>
-
-<script type="text/javascript">
-    function validate(){
-        var bdate = document.getElementById("bdayt").value;
-        var date = new Date(bdate);
-        var year = date.getFullYear() + 18;
-        var validateDate = new Date();
-        var validateYear = validateDate.getFullYear();
-        if(year < validateYear){
-          return true;
-        }else{
-          alert("You are below 18");
-          return false;
-        }
-    }
-</script>
 
 <script type="text/javascript">
     var today = new Date();
