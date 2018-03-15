@@ -44,17 +44,17 @@
         </nav>
         <!-- End of nav bar -->
 
-        <div class="page-head"> 
+        <div class="page-head">
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">Announcements</h1>               
+                        <h1 class="page-title">Announcements</h1>
                     </div>
                 </div>
             </div>
         </div>
         <!-- End page header -->
- 
+
         <?php
             if($announcements!=FALSE){
                 foreach ($announcements as $announcement) {
@@ -126,7 +126,7 @@
                 </div>
             </div>
         </div>
-   
+
         <!-- Footer area-->
         <div class="footer-area">
 
@@ -170,18 +170,18 @@
                         <div class="bottom-menu pull-right">
                             <ul>
                                 <li><a class="wow fadeInUp animated" href="<?php echo site_url();?>/CLogin/viewDashBoard" data-wow-delay="0.2s">Home</a></li>
-                                
+
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-
+            <!-- Audio -->
+            <audio id = "audio-announcement" src = "../../../assets/customization1Assets/audio/announcements.wav"></audio>
         </div>
 
 <script>
-    $(document).ready(function() { 
+    $(document).ready(function() {
         $('html, body').animate({ scrollTop: $('#<?php echo $clickedAnnouncement; ?>').offset().top}, 'slow');
     });
 </script>
-

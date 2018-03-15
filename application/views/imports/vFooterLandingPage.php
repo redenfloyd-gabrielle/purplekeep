@@ -17,9 +17,14 @@
         <script src="<?php echo base_url('assets/jsKyleAssets/fullcalendar.js')?>" rel="stylesheet" /> </script>
 
         <script src="<?php echo base_url('assets/dianeAssets/js/bootstrap-notify.min.js')?>" rel="stylesheet" /> </script>
-
     </body>
 </html>
+
+<script>
+$(document).ready(function(){
+  $('#audio-announcement').trigger('play');
+});
+</script>
 
 <script>
     $("#price-slider").slider();
@@ -52,8 +57,8 @@
             });
             <?php
         }
-       
-       
+
+
     }
     ?>
     $(document).on('click', '#aDropdown', function(){
@@ -66,7 +71,7 @@
                 var d=data.split('/');
                 $('#bdg').remove();
                 // alert(d[0].trim());
-               
+
             },
             error: function(data){
                 alert("error");
