@@ -214,7 +214,7 @@ class CEvent extends CI_Controller {
 
   		$this->load->view('imports/vHeaderSignUpPage');
 		$this->load->view('vNewEvent',$data);
-		$this->load->view('imports/vFooterLandingPage');
+		$this->load->view('imports/vCustomFooter');
 
 	}
 
