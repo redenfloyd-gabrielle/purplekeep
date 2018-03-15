@@ -976,7 +976,8 @@ class CEvent extends CI_Controller {
 
 				}
 			}else{
-				$this->session->set_flashdata('error_msg','You are below 18');
+				$this->session->set_flashdata('userDetails',json_encode($data));
+				$this->session->set_flashdata('error_msg','You must be at least 18 years old.');
 				redirect("event/CEvent/viewEvents/1");
 			}
 
