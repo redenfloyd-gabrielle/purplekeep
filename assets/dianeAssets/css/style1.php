@@ -191,13 +191,12 @@ footer {
 /*module content*/
 .container-content {
     background: linear-gradient(#cb6c52,#363636);
-    /*height: 2500px;
+    min-height: 100%;
     width: 102.5%;
     visibility: visible;
     position: absolute;
     top: 0px;
     left: 0px;
-    margin-left: -15px;
     margin-top: 660px;
     display: inline-block;
     overflow: hidden;*/
@@ -206,7 +205,7 @@ footer {
     background-repeat: no-repeat;
     width: 100%;
     height: 0;
-    padding-top: 66.64%;
+    padding-top: 40%;
 
 
 }

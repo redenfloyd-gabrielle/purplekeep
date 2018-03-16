@@ -77,18 +77,20 @@
                     <div class="box-for overflow">
                         <div class="col-md-12 col-xs-12 register-blocks">
                             <h2><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_DETAILS ?></h2>
+                            <h4><?php echo CustomizationManager::$strings->NEW_EVENT_REQUIRED ?></h4>
                             <form name="createEventForm" id="createEventForm" action="<?php echo site_url();?>/event/CEvent/createEvent " method="post" accept-charset="utf-8" enctype="multipart/form-data" onsubmit="return checkLocation()">
                                 <!-- <div class="form-group">
                                     <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_PICTURE ?></label>
                                    <input type="file" name="userfile"  id="fileToUpload" accept="image/*">
                                 </div> -->
                                 <div class="form-group">
+                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_REQUIRED_FIELD ?></span>
                                     <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_TITLE ?></label>
-
                                     <input type="text" class="form-control" name="event_name" required="">
                                 </div>
 
                                 <div class="form-group">
+                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_REQUIRED_FIELD ?></span>
                                     <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_LOCATION ?></label>
                                     <input type="text" class="form-control" name="event_venue" required="">
                                 </div>
@@ -97,6 +99,7 @@
                                 <div class="form-group">
 
                                     <!-- <label for="email">Location_code</label> -->
+                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_REQUIRED_FIELD ?></span>
                                     <label for="region_code">Region Code</label>
                                         <select Class="form-control" id="region_code" name="region_code" required>
                                             <option></option>
@@ -123,6 +126,7 @@
                                 <!-- Added a city group -->
                                 <div class="form-group">
                                     <!-- <label for="email">Location_code</label> -->
+                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_REQUIRED_FIELD ?></span>
                                     <label for="municipal-name">CITY/MUNICIPAL</label>
                                         <select Class="form-control" id="municipal-name" name="municipal-name" required>
                                         </select>
@@ -130,6 +134,7 @@
 
                                 <div class="form-group">
                                     <!-- <label for="name">STARTS</label> -->
+                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_REQUIRED_FIELD ?></span>
                                     <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_START ?></label>
 
                                     <input  class="form-control" type="text"  value="<?php if(!empty($start_date)){
@@ -146,6 +151,7 @@
 
                                 <div class="form-group">
                                     <!-- <label for="name">ENDS</label> -->
+                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_REQUIRED_FIELD ?></span>
                                     <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_END ?></label>
                                     <input  class="form-control" type="text" value="<?php if(!empty($end_date)){
                                         echo $end_date." ".$end_time;
@@ -162,6 +168,7 @@
 
                                 <div class="form-group">
                                     <!-- <label for="email">Category</label> -->
+                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_REQUIRED_FIELD ?></span>
                                     <label for="email"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_CATEGORY ?></label>
                                         <select Class="form-control" name="event_category" required>
                                             <option></option>
@@ -190,83 +197,99 @@
                                 </div>
                                 <br>
                                 <h2><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_DETAILS ?></h2>
-                                 <div class="ticketContainer">
-                                    <!-- <span>TICKET TYPE </span> <br> -->
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_TYPE ?></span> <br>
-                                    <div class="select-field">
-                                         <input type="text" class="form-control" required="" name="ticketType1" placeholder="Ticket type">
-                                       <!--  <select name="ticketType">
-                                            <option value="">Free</option>
-                                            <option value="">VIP</option>
-                                        </select> -->
+                            <h4><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_DETAILS_REQUIRED?></h4>
+                                 
+                                 <div class="ticketA">
+                                    <div class="ticketContainer">
+                                        <!-- <span>TICKET TYPE </span> <br> -->
+                                        <span><?php echo CustomizationManager::$strings->NEW_EVENT_REQUIRED_FIELD ?></span>
+                                        <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_TYPE ?></span> <br>
+                                        <div class="select-field">
+                                            <input type="text" class="form-control" required="" name="ticketType1" placeholder="Ticket type">
+                                        <!--  <select name="ticketType">
+                                                <option value="">Free</option>
+                                                <option value="">VIP</option>
+                                            </select> -->
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="ticketContainer">
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_QUANTITY ?></span>
-                                    <div class="select-field">
-                                        <input type="number" class="form-control" min="1" required="" name="no_tickets_total1" placeholder="Ticket count">
+                                    <div class="ticketContainer">
+                                        <span><?php echo CustomizationManager::$strings->NEW_EVENT_REQUIRED_FIELD ?></span>
+                                        <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_QUANTITY ?></span>
+                                        <div class="select-field">
+                                            <input type="number" class="form-control" min="1" required="" name="no_tickets_total1" placeholder="Ticket count">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="ticketContainer">
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_PRICE ?></span>
-                                    <div class="select-field">
-                                        <input type="number" class="form-control" min="0" required="" name="price_tickets_total1" placeholder="Ticket price">
+                                    <div class="ticketContainer">
+                                        <span><?php echo CustomizationManager::$strings->NEW_EVENT_REQUIRED_FIELD ?></span>
+                                        <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_PRICE ?></span>
+                                        <div class="select-field">
+                                            <input type="number" class="form-control" min="0" required="" name="price_tickets_total1" placeholder="Ticket price">
+                                        </div>
+                                    </div>
+                                 </div>
+
+
+                                <br><br>
+
+                                <div class="ticketB">
+                                    <div class="ticketContainer">
+                                        <!-- <span>TICKET TYPE </span> <br> -->
+                                        <span><?php echo CustomizationManager::$strings->NEW_EVENT_REQUIRED_FIELD ?></span>
+                                        <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_TYPE ?></span> <br>
+                                        <div class="select-field">
+                                            <input type="text" class="form-control" name="ticketType2" placeholder="Ticket type">
+                                        <!--  <select name="ticketType">
+                                                <option value="">Free</option>
+                                                <option value="">VIP</option>
+                                            </select> -->
+                                        </div>
+                                    </div>
+                                    <div class="ticketContainer">
+                                        <span><?php echo CustomizationManager::$strings->NEW_EVENT_REQUIRED_FIELD ?></span>
+                                        <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_QUANTITY ?></span>
+                                        <div class="select-field">
+                                            <input type="number" min="1" class="form-control" name="no_tickets_total2" placeholder="Ticket count">
+                                        </div>
+                                    </div>
+                                    <div class="ticketContainer">
+                                        <!-- <span>PRICE OF TICKET</span> -->
+                                        <span><?php echo CustomizationManager::$strings->NEW_EVENT_REQUIRED_FIELD ?></span>
+                                        <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_PRICE ?></span>
+                                        <div class="select-field">
+                                            <input type="number" min="1" class="form-control" name="price_tickets_total2" placeholder="Ticket price">
+                                        </div>
                                     </div>
                                 </div>
 
 
                                 <br><br>
 
-                                <div class="ticketContainer">
-                                    <!-- <span>TICKET TYPE </span> <br> -->
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_TYPE ?></span> <br>
-                                    <div class="select-field">
-                                         <input type="text" class="form-control" name="ticketType2" placeholder="Ticket type">
-                                       <!--  <select name="ticketType">
-                                            <option value="">Free</option>
-                                            <option value="">VIP</option>
-                                        </select> -->
+                                <div class="ticketC">
+                                    <div class="ticketContainer">
+                                        <span><?php echo CustomizationManager::$strings->NEW_EVENT_REQUIRED_FIELD ?></span>
+                                        <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_TYPE ?></span> <br>
+                                        <div class="select-field">
+                                            <input type="text" class="form-control" name="ticketType3" placeholder="Ticket type">
+                                        <!--  <select name="ticketType">
+                                                <option value="">Free</option>
+                                                <option value="">VIP</option>
+                                            </select> -->
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="ticketContainer">
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_QUANTITY ?></span>
-                                    <div class="select-field">
-                                        <input type="number" min="1" class="form-control" name="no_tickets_total2" placeholder="Ticket count">
+                                    <div class="ticketContainer">
+                                        <span><?php echo CustomizationManager::$strings->NEW_EVENT_REQUIRED_FIELD ?></span>
+                                        <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_QUANTITY ?></span>
+                                        <div class="select-field">
+                                            <input type="number" min="1" class="form-control" name="no_tickets_total3" placeholder="Ticket count">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="ticketContainer">
-                                    <!-- <span>PRICE OF TICKET</span> -->
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_PRICE ?></span>
-                                    <div class="select-field">
-                                        <input type="number" min="1" class="form-control" name="price_tickets_total2" placeholder="Ticket price">
-                                    </div>
-                                </div>
-
-
-                                <br><br>
-
-                                <div class="ticketContainer">
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_TYPE ?></span> <br>
-                                    <div class="select-field">
-                                         <input type="text" class="form-control" name="ticketType3" placeholder="Ticket type">
-                                       <!--  <select name="ticketType">
-                                            <option value="">Free</option>
-                                            <option value="">VIP</option>
-                                        </select> -->
-                                    </div>
-                                </div>
-                                <div class="ticketContainer">
-
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_QUANTITY ?></span>
-                                    <div class="select-field">
-                                        <input type="number" min="1" class="form-control" name="no_tickets_total3" placeholder="Ticket count">
-                                    </div>
-                                </div>
-                                <div class="ticketContainer">
-                                    <!-- <span>PRICE OF TICKET</span> -->
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_PRICE ?></span>
-                                    <div class="select-field">
-                                        <input type="number" min="1" class="form-control" name="price_tickets_total3" placeholder="Ticket price">
+                                    <div class="ticketContainer">
+                                        <!-- <span>PRICE OF TICKET</span> -->
+                                        <span><?php echo CustomizationManager::$strings->NEW_EVENT_REQUIRED_FIELD ?></span>
+                                        <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_PRICE ?></span>
+                                        <div class="select-field">
+                                            <input type="number" min="1" class="form-control" name="price_tickets_total3" placeholder="Ticket price">
+                                        </div>
                                     </div>
                                 </div>
 
@@ -366,6 +389,10 @@
         </script>
 
         <script>
+            $('.ticketA .signify-required').hide();
+            $('.ticketB .signify-required').hide();
+            $('.ticketC .signify-required').hide();
+
             $('#region_code').on('change', function(){
               $('#municipal-name').empty().append('<option></option>');
                 if(this.value != ""){
@@ -436,5 +463,21 @@
                 var parts = filename.split('.');
                 return parts[parts.length - 1];
             }
+
+            $(".ticketContainer input").focusin(function(){
+                var parent = $(this).parent().parent().parent();
+                var inputs = parent.find('input');
+                var requiredSymbol = parent.find('.signify-required');
+                
+                requiredSymbol.show();
+            });
+
+            $(".ticketContainer input").focusout(function(){
+                var parent = $(this).parent().parent().parent();
+                var inputs = parent.find('input');
+                var requiredSymbol = parent.find('.signify-required');
+                
+                requiredSymbol.hide();
+            });
 
         </script>

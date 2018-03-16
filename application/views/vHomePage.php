@@ -3,7 +3,7 @@
 		<div class="container" >
 			<div class="col-md-12" id="eventsList">
 				<div class="row">
-					<div class="list-of-events"  id="targ2">
+					<div class="list-of-events"  id="targ2" style="margin-top: 10%;">
 						<?php
 							$cnt =1;
 							

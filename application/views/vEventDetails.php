@@ -334,8 +334,10 @@ div.desc {
                                     <div class="inner-wrapper" >
 
                                         <div class="clear" >
-                                            <div class="col-xs-4 col-sm-4 ">
-                                                <img src="<?php echo base_url('assets/nikkiAssets/img/client-face1.png" class="img-circle')?>" style ="height:100px; height:200px ">
+                                            <div class="col-xs-4 col-sm-4 dealer-face">
+                                                <a href="">
+                                                    <img src="<?php echo base_url('assets/nikkiAssets/img/client-face1.png" class="img-circle')?>" style ="height:auto;">
+                                                </a>
                                             </div>
                                             <div class="col-xs-8 col-sm-8 ">
 
