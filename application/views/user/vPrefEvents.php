@@ -46,11 +46,11 @@
         </nav>
         <!-- End of nav bar -->
 
-        <div class="page-head"> 
+        <div class="page-head">
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">Interested Events</h1>               
+                        <h1 class="page-title">Interested Events</h1>
                     </div>
                 </div>
             </div>
@@ -83,9 +83,9 @@
                                                                     }else{
                                                                         echo '<div class="corner-ribbon top-right sticky red">'.$interval->days;
                                                                         echo ' day/s left!';
-                                                                        echo '</div>';      
+                                                                        echo '</div>';
                                                                     }
-                                                                }   
+                                                                }
 
                                                                 echo '<h3 class="text-center"><a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"> ';
 
@@ -94,11 +94,11 @@
                                                                 }else{
                                                                     echo $event->event_name;
                                                                 }
-                                                
+
                                                                 echo '</a></h3>';
 
                                                                 echo '<div class="item-thumb">
-                                                                <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
+                                                                <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>';
 
                                                                 echo '<h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
 
@@ -106,13 +106,13 @@
                                                                 $dateE = date_create($event->dateEnd);
                                                                 echo '<h5>When: '.date_format($dateS, 'M d Y').' - '.date_format($dateE, 'M d Y').'</h5>';
 
-                                                                                                              
-                                                    
+
+
                                                                 $mintix = $event->tix;
                                                                 foreach ($event->tix as $key) {
                                                                     $mintix = ($key->price <= $mintix)? $key->price : $mintix;
                                                                 }
-                                                                echo '<h5>Event Tickets as low as Php '.$mintix.'!!!</h5>';          
+                                                                echo '<h5>Event Tickets as low as Php '.$mintix.'!!!</h5>';
                                                                 echo '<div class="dot-hr"></div>
                                                             </div>
                                                         </div>
@@ -123,7 +123,7 @@
                                                     echo '<div class="box-two proerty-item">';
                                                         echo '<div class="item-entry overflow" >';
                                                                 echo '<div class="corner-ribbon top-right sticky red">Happening now!</div>';
-                                                                    
+
 
                                                                 echo '<h3 class="text-center"><a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"> ';
 
@@ -132,11 +132,11 @@
                                                                 }else{
                                                                     echo $event->event_name;
                                                                 }
-                                                
+
                                                                 echo '</a></h3>';
 
                                                                 echo '<div class="item-thumb">
-                                                                <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>'; 
+                                                                <a href="'.site_url().'/event/CEvent/displayEventDetails/'.$event->event_id.'"><img style="clip: rect(0px,100px,100px,0px); height:100px;" src="'.base_url($event->event_picture).'"></a></div>';
 
                                                                 echo '<h5>Where: '.$event->event_venue.', '.$event->location_name.', '.$event->region_code.'</h5>';
 
@@ -162,7 +162,7 @@
          </div>
       </div>
      <!--- END OF CONTENT AREA-->
-      
+
         <!-- Footer area-->
         <div class="footer-area">
 
@@ -213,3 +213,12 @@
             </div>
 
         </div>
+
+        <!-- Audio -->
+        <audio id = "audio-wishlist" src = "../../../assets/customization1Assets/audio/wishlist.wav"></audio>
+
+        <script>
+        $(document).ready(function(){
+          $('#audio-wishlist').trigger('play');
+        });
+        </script>

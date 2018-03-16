@@ -217,6 +217,9 @@
                 </div>
             </div>
 
+            <!-- Audio -->
+            <audio id = "audio-cart" src = "../../../assets/customization1Assets/audio/cart.wav"></audio>
+
             <?php if(isset($events) && count($events)>0){?>
              <div class="checkoutContainer" style="margin-left:3%;">
                    <input type="checkbox" checked="">
@@ -225,6 +228,12 @@
              </div>
              <?php } ?>
         </div>
+
+<script>
+$(document).ready(function(){
+  $('#audio-cart').trigger('play');
+});
+</script>
 
 <script>
   var panel;
