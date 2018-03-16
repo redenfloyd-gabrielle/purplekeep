@@ -1003,6 +1003,10 @@ class CEvent extends CI_Controller {
 		public function editEvent($id){
 			$data['ev'] = $this->MUser->getEventDetails($id)->row();
 			$data['ti'] = $this->MUser->getTicketDetails($id)->result();
+			//Gaius
+			// $start = $data['ev']->["event_date_start"];
+			// $end = $data['ev']->["event_date_end"];
+			
 
 
 			$data['announcements'] = $this->MAnnouncement->getUnviewedOfUser($this->session->userdata['userSession']->userID);
