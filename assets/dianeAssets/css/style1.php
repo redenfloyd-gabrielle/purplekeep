@@ -229,9 +229,13 @@ footer {
     -webkit-column-count: 3; /* Chrome, Safari, Opera */
     -moz-column-count: 3; /* Firefox */
     column-count: 3;
+    padding-top:10%;
 }
 
-.list-of-events  img{ width: 100%; padding: 7px 0;}
+.list-of-events  img {
+  width: 100%;
+  height:100%; 
+  padding: 7px 0;}
 @media (max-width: 500px) {
     .list-of-events  {
         -webkit-column-count: 1; /* Chrome, Safari, Opera */
@@ -253,9 +257,9 @@ footer {
    background: rgb(0, 0, 0); /* fallback color */
    background: rgba(0, 0, 0, 0.7);
    padding: 5px;
-   margin-top: -107px;
+   margin-top: -140px;
    width: 100%;
-   height: 100px;
+   height: 100% ;
 }
 
 .event-date-category {
