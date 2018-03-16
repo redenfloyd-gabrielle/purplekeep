@@ -595,7 +595,7 @@
          $info[] = json_decode($this->session->flashdata('userDetails'));
 
 }else{ ?>
-            <div role="tabpanel" class="tab-pane" id="editprofile">
+            <div role="tabpanel" class="tab-pane" id="editprofile" style="margin-bottom: 25px;">
     <?php } ?>
 
         <h2>Edit Profile</h2>
