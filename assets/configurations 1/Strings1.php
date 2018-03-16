@@ -66,9 +66,9 @@
     public $NEW_EVENT_PAGE_EVENT_CATEGORY = "Kategorya";
     public $NEW_EVENT_PAGE_EVENT_DESCRIPTION = "Deskripsyon";
     public $NEW_EVENT_PAGE_TICKET_DETAILS = "Mga Detalye sa Tiket :";
-    public $NEW_EVENT_PAGE_TICKET_TYPE = "Klase nang Tiket";
-    public $NEW_EVENT_PAGE_TICKET_QUANTITY = "Dami nang Tiket";
-    public $NEW_EVENT_PAGE_TICKET_PRICE = "Presyo nang Tiket";
+    public $NEW_EVENT_PAGE_TICKET_TYPE = "Klase ng Tiket";
+    public $NEW_EVENT_PAGE_TICKET_QUANTITY = "Dami ng Tiket";
+    public $NEW_EVENT_PAGE_TICKET_PRICE = "Presyo ng Tiket";
     public $NEW_EVENT_PAGE_SUBMIT_BUTTON = "Isumite";
     public $PROFILE_PAGE_NAV_HOME = "Tanggapan";
     public $PROFILE_PAGE_NAV_PROFILE = "Iyong Profile";
