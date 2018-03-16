@@ -41,8 +41,8 @@
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_NAV_HOME ?></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_NAV_PROFILE ?></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>'><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_ANNOUNCEMENTS ?><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents">Interested Events</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/CCart/viewCart">View Cart</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><?php echo CustomizationManager::$strings->NAV_INTERESTED ?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><?php echo CustomizationManager::$strings->NAV_VIEW_CART ?></a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -69,7 +69,7 @@
                 <!-- MultiStep Form -->
                 <div class="row">
                     <div class="col-lg-8 col-md-offset-2">
-                        <form id="msform"  action="<?php echo site_url();?>/event/CEvent/createEvent " method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                        <form id="msform" class="ui fluid form" action="<?php echo site_url();?>/event/CEvent/createEvent " method="post" accept-charset="utf-8" enctype="multipart/form-data">
                             <div id="formsteps" class="ui three steps">
                               <div class="active step">
                                 <i class="ticket alternate icon"></i>   
@@ -89,26 +89,27 @@
                                 <i class="ticket alternate icon"></i>
                                 <div class="content">
                                   <div class="title">Tickets</div>
-                                  <div class="description">Add tickcets for your event</div>
+
+                                  <div class="description">Add tickets for your event</div>
+                                  <div class="description">Add tickets to your event</div>
                                 </div>
                               </div>
                             </div>
                             <!-- fieldsets -->
-                            <fieldset>
+                            <fieldset data-value="1">
                                 <h2 class="fs-title">Event Details</h2>
                                 <h3 class="fs-subtitle">Tell us something about your event</h3>
-                                <div class="form-group" style="text-align:left">
+                                <div class="form-group field" style="text-align:left">
 
                                     <!-- <label for="name">Event Picture</label> -->
                                     <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_PICTURE ?></label>
                                    <input type="file" name="userfile"  id="fileToUpload" accept="image/*">
                                 </div>
-                                <div class="form-group" style="text-align:left">
+                                <div class="form-group field" style="text-align:left">
                                     <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_TITLE ?></label>
-
                                     <input type="text" class="form-control" name="event_name" required="">
                                 </div>
-                                <div class="form-group" style="text-align:left">
+                                <div class="form-group field" style="text-align:left">
                                     <!-- <label for="email">Category</label> -->
                                     <label for="email"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_CATEGORY ?></label>
                                         <select Class="form-control" name="event_category" required>
@@ -131,7 +132,7 @@
                                             <option>Others</option>
                                         </select>
                                 </div>
-                                <div class="form-group" style="text-align:left">
+                                <div class="form-group field" style="text-align:left">
                                     <!-- <label for="name">STARTS</label> -->
                                     <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_START ?></label>
 
@@ -141,13 +142,12 @@
                                         echo "";
                                     };
                                     ?>" name="dateStart" id="datetimepicker1" required="">
-
                                     <script>
                                         $("#datetimepicker1").datetimepicker();
                                     </script>
                                 </div>
 
-                                <div class="form-group" style="text-align:left">
+                                <div class="form-group field" style="text-align:left">
                                     <!-- <label for="name">ENDS</label> -->
                                     <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_END ?></label>
                                     <input  class="form-control" type="text" value="<?php if(!empty($end_date)){
@@ -156,31 +156,30 @@
                                         echo "";
                                     };
                                     ?>" name="dateEnd" id="datetimepicker2" required="">
-
                                     <script>
                                         $("#datetimepicker2").datetimepicker();
                                     </script>
                                 </div>
-                                <div class="form-group" style="text-align:left">
+                                <div class="form-group field" style="text-align:left">
                                     <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_DESCRIPTION ?></label>
                                     <textarea class="form-control" name="event_details" required="" rows="3"></textarea>
                                 </div>
                                 <input type="button" name="next" class="next action-button" value="Next"/>
                             </fieldset>
-                            <fieldset>
+                            <fieldset data-value="2">
                                 <h2 class="fs-title">Venue Details</h2>
                                 <h3 class="fs-subtitle">Let others know the location of your event</h3>
-                                <div class="form-group" style="text-align:left">
+                                <div class="form-group field" style="text-align:left">
                                     <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_LOCATION ?></label>
                                     <input type="text" class="form-control" name="event_venue" required="">
                                 </div>
 
-                                <div class="form-group" style="text-align:left">
+                                <div class="form-group field" style="text-align:left">
                                     <label for="name"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_EVENT_CAPACITY ?></label>
                                     <input type="number" min="1" class="form-control" name="venue_capacity" required="">
                                 </div>
                                 <!-- Added a location_code -->
-                                <div class="form-group" style="text-align:left">
+                                <div class="form-group field" style="text-align:left">
 
                                     <!-- <label for="email">Location_code</label> -->
                                     <label for="region_code">Region Code</label>
@@ -207,7 +206,7 @@
                                 </div>
 
                                 <!-- Added a city group -->
-                                <div class="form-group"  style="text-align:left">
+                                <div class="form-group field"  style="text-align:left">
                                     <!-- <label for="email">Location_code</label> -->
                                     <label for="municipal-name">CITY/MUNICIPAL</label>
                                         <select Class="form-control" id="municipal-name" name="municipal-name" required>
@@ -215,31 +214,21 @@
                                 </div>
                                 <input type="button" name="next" class="next action-button" value="Next"/>
                             </fieldset>
-                            <fieldset>
+                            <fieldset data-value="3">
                                 <h2 class="fs-title">Tickets</h2>
                                 <h3 class="fs-subtitle">Add tickets for your event</h3>
-                                <div class="ticketContainer" style="text-align:left">
+                                <div class="form-group field"  style="text-align:left">
                                     <!-- <span>TICKET TYPE </span> <br> -->
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_TYPE ?></span> <br>
-                                    <div class="select-field">
-                                         <input type="text" class="form-control" required="" name="ticketType1" placeholder="Ticket type">
-                                       <!--  <select name="ticketType">
-                                            <option value="">Free</option>
-                                            <option value="">VIP</option>
-                                        </select> -->
-                                    </div>
+                                    <label><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_TYPE ?></label> <br>     
+                                    <input type="text" class="form-control" name="ticketType1" placeholder="Ticket type">
                                 </div>
-                                <div class="ticketContainer" style="text-align:left">
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_QUANTITY ?></span>
-                                    <div class="select-field">
-                                        <input type="number" class="form-control" min="1" required="" name="no_tickets_total1" placeholder="Ticket count">
-                                    </div>
+                                <div class="form-group field"  style="text-align:left">
+                                    <label><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_QUANTITY ?></label>
+                                    <input type="number" class="form-control" min="1" name="no_tickets_total1" placeholder="Ticket count">
                                 </div>
-                                <div class="ticketContainer" style="text-align:left">
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_PRICE ?></span>
-                                    <div class="select-field">
-                                        <input type="number" class="form-control" min="0" required="" name="price_tickets_total1" placeholder="Ticket price">
-                                    </div>
+                                <div class="form-group field"  style="text-align:left">
+                                    <label><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_PRICE ?></label>
+                                    <input type="number" class="form-control" min="0" name="price_tickets_total1" placeholder="Ticket price">
                                 </div>
 
 
@@ -319,32 +308,27 @@
                  <div class="container">
                      <div class="row">
 
-                         <div class="col-md-3 col-sm-6 wow fadeInRight animated">
-                             <div class="single-footer">
-                               <!-- <h4>About us </h4> -->
-                               <h4><?php echo CustomizationManager::$strings->ABOUT_HEADER ?></h4>
-                               <div class="footer-title-line"></div>
-
-                              <!-- <img src= "<?php echo base_url('assets/dianeAssets/img/logoBlack.png')?>" alt="" class="wow pulse" data-wow-delay="1s" > -->
+                          <div class="col-md-3 col-sm-6 wow fadeInRight animated">
+                            <div class="single-footer">
+                                <h4><?php echo CustomizationManager::$strings->ABOUT_HEADER ?></h4>
+                                <div class="footer-title-line"></div>
                               <img src= "<?php echo base_url(CustomizationManager::$images->LOGO_DARK)?>" alt="" class="wow pulse" data-wow-delay="1s" >
-                               <!-- <p>We help you reach out to the most interesting events anywhere they may be. The events you’ve always wanted to join and create will be in your hands with just a few clicks. Worry not because we’re here to help you discover the latest events this planet will ever have.</p> -->
-                               <p><?php echo CustomizationManager::$strings->ABOUT_MESSAGE ?></p>
+                                <p><?php echo CustomizationManager::$strings->ABOUT_MESSAGE ?></p>
+                            </div>
+                        </div>
 
-                             </div>
-                         </div>
+                        <div class="col-md-3 col-sm-6 wow fadeInRight animated">
+                            <div class="single-footer news-letter">
+                                <h4><?php echo CustomizationManager::$strings->CONTACT_US_HEADER ?></h4>
+                                <div class="footer-title-line"></div>
+                                <ul class="footer-adress">
+                                    <li><i class="pe-7s-map-marker strong"> </i> <?php include ('vAddress.php');?></li>
+                                    <li><i class="pe-7s-mail strong"> </i> <?php include ('vEmail.php');?></li>
+                                    <li><i class="pe-7s-call strong"> </i> <?php include ('vContactNo.php');?></li>
+                                </ul>
 
-                         <div class="col-md-3 col-sm-6 wow fadeInRight animated">
-                             <div class="single-footer news-letter">
-                               <!-- <h4>Contact Us</h4> -->
-                               <h4><?php echo CustomizationManager::$strings->CONTACT_US_HEADER ?></h4>
-                                 <div class="footer-title-line"></div>
-                                 <ul class="footer-adress">
-                                     <li><i class="pe-7s-mail strong"> </i> dailyEvents@gmail.com</li>
-                                     <li><i class="pe-7s-call strong"> </i> 253-2753</li>
-                                 </ul>
-
-                             </div>
-                         </div>
+                            </div>
+                        </div>
 
                      </div>
                  </div>
@@ -452,7 +436,6 @@
                                     $.each(output, function(i, d) {
                                         // You will need to alter the below to get the right values from your json object.  Guessing that d.id / d.modelName are columns in your carModels data
                                         $('#municipal-name').append('<option value="' + d.location_id+ '">' + d.location_name + '</option>');
-
                                     });
                                 }else{
                                     alert("Error");
@@ -464,7 +447,6 @@
                         });
                 }
             });
-
             // $('#municipal-name').on('change', function(){
             //     if(this.value != "Select CITY/MUNICIPAL below..."){
             //         var city = this.value;
@@ -474,12 +456,10 @@
             function checkLocation(){
               var form = document.forms["createEventForm"];
               var location = form["event_venue"].value;
-
               if(!location.match(/[a-z]/i)){
                 alert("Invalid Input!" + location.length);
                 return false;
               }
               return true;
             }
-
         </script>
