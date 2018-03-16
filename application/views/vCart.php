@@ -26,11 +26,11 @@
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a>
+                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"><?php echo CustomizationManager::$strings->LOGOUT_BUTTON ?></button></a>
                     </div>
 
                     <div class="button navbar-right">
-                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a>
+                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->CREATE_EVENT_BUTTON ?></button></a>
                     </div>
 
 
@@ -50,7 +50,7 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">View Cart</h1>
+                        <h1 class="page-title"><?php echo CustomizationManager::$strings->CART_PAGE_VIEW_CART ?></h1>
                     </div>
                 </div>
             </div>
@@ -85,7 +85,7 @@
                     <div class="col-md-3 wow fadeInRight animated" style="padding:1%; margin-top: 2%;">
                       <div class="panel panel-default" style="border-style: solid;border-color: #CB6C52;">
                       <div class="panel-body">
-                          <h2><strong>Load Balance :</strong></h2>
+                          <h2><strong><?php echo CustomizationManager::$strings->LOAD_BALANCE ?> :</strong></h2>
                           <span class="h4" style="color: #CB6C52;">Php <?php foreach($user as $u){echo $u->load_amt;}?>.00</span>
                       </div>
                     </div>
@@ -103,7 +103,7 @@
                                       <div style="padding:1%; margin-top: 2%;">
                                         <input type="checkbox" checked="checked" class="evt" id="<?php echo key($events); ?>"  style="margin-bottom:2%;">
                                         <span class="h4">
-                                          <strong>Event Name :<?php echo $event[0]->event_name;?></strong>
+                                          <strong><?php echo CustomizationManager::$strings->CART_PAGE_EVENT_NAME ?> :<?php echo $event[0]->event_name;?></strong>
                                         </span>
                                       </div>
                                      <?php
@@ -114,15 +114,15 @@
                                          <div class="panel-heading">
 
                                                 <input type="checkbox" name="ticket[]" value="<?php echo $cart->cart_id;?>" class="<?php echo 'tix'.key($events);?> indi" id="<?php echo $cart->ticket_type_id;?>" checked="checked">
-                                                <span> Ticket Name:<strong><?php echo $cart->ticket_name;?></strong></span>
+                                                <span><?php echo CustomizationManager::$strings->CART_PAGE_TICKET_NAME ?>:<strong><?php echo $cart->ticket_name;?></strong></span>
 
-                                                <span class="pull-right h5">Total Price:<span id="label<?php echo $cart->cart_id;?>"><b><?php echo $cart->total_price;?></b></span></span>
+                                                <span class="pull-right h5"><?php echo CustomizationManager::$strings->CART_PAGE_TOTAL_PRICE ?>:<span id="label<?php echo $cart->cart_id;?>"><b><?php echo $cart->total_price;?></b></span></span>
                                           </div>
                                          <div class="panel-body">
                                             <table class="table table-sm table-borderless">
                                                 <tbody>
                                                   <tr>
-                                                    <th scope="row"> Price:<?php echo $cart->price;?> </th>
+                                                    <th scope="row"> <?php echo CustomizationManager::$strings->CART_PAGE_PRICE ?>:<?php echo $cart->price;?> </th>
                                                     <td class="pull-right">
                                                       <form class="offset-md-3">
                                                           <div class="form-group row">
@@ -155,7 +155,7 @@
                                      next($events);
                                 }
                          }else{?>
-                            <h1>Nothing in your cart. Shop for tickets now!</h1>
+                            <h1><?php echo CustomizationManager::$strings->CART_PAGE_EMPTY ?></h1>
                          <?php }?>
                        <?php echo form_close(); ?>
                     </div>
@@ -176,24 +176,26 @@
 
                         <div class="col-md-3 col-sm-6 wow fadeInRight animated">
                             <div class="single-footer">
-                                <h4>About us </h4>
+                                <!-- <h4>About us </h4> -->
+                                <h4><?php echo CustomizationManager::$strings->ABOUT_HEADER ?></h4>
                                 <div class="footer-title-line"></div>
+                               <img src= "<?php echo base_url(CustomizationManager::$images->LOGO_DARK)?>" alt="" class="wow pulse" data-wow-delay="1s" >
+                                <p><?php echo CustomizationManager::$strings->ABOUT_MESSAGE ?></p>
 
-                               <img src= "<?php echo base_url('assets/dianeAssets/img/logoBlack.png')?>" alt="" class="wow pulse" data-wow-delay="1s" >
-                                <p>We help you reach out to the most interesting events anywhere they may be. The events you’ve always wanted to join and create will be in your hands with just a few clicks. Worry not because we’re here to help you discover the latest events this planet will ever have.</p>
-
+                                <img src="assets/img/footer-logo.png" alt="" class="wow pulse" data-wow-delay="1s">
                             </div>
                         </div>
 
                         <div class="col-md-3 col-sm-6 wow fadeInRight animated">
                             <div class="single-footer news-letter">
-                                <h4>Contact Us</h4>
+                                <!-- <h4>Contact Us</h4> -->
+                                <h4><?php echo CustomizationManager::$strings->CONTACT_US_HEADER ?></h4>
                                 <div class="footer-title-line"></div>
                                 <ul class="footer-adress">
-                                    <li><i class="pe-7s-mail strong"> </i> dailyEvents@gmail.com</li>
-                                    <li><i class="pe-7s-call strong"> </i> 253-2753</li>
+                                    <li><i class="pe-7s-map-marker strong"> </i> <?php include 'vAddress.php';?></li>
+                                    <li><i class="pe-7s-mail strong"> </i> <?php include 'vEmail.php';?></li>
+                                    <li><i class="pe-7s-call strong"> </i> <?php include 'vContactNo.php';?></li>
                                 </ul>
-
                             </div>
                         </div>
 

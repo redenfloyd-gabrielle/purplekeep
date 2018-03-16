@@ -28,19 +28,19 @@
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
                         <!-- <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a> -->
-                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->PROFILE_PAGE_LOGOUT_BUTTON ?> </button></a>
+                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->LOGOUT_BUTTON ?> </button></a>
                     </div>
                     <div class="button navbar-right">
                         <!-- <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a> -->
-                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->PROFILE_PAGE_CREATE_EVENT_BUTTON ?> </button></a>
+                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->CREATE_EVENT_BUTTON ?> </button></a>
                     </div>
 
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_HOME ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_PROFILE ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>'><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_ANNOUNCEMENTS ?><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents">Interested Events</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/CCart/viewCart">View Cart</a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><?php echo CustomizationManager::$strings->NAV_HOME ?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents"><?php echo CustomizationManager::$strings->NAV_PROFILE ?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>'><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><?php echo CustomizationManager::$strings->NAV_ANNOUNCEMENTS ?><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><?php echo CustomizationManager::$strings->NAV_INTERESTED ?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><?php echo CustomizationManager::$strings->NAV_VIEW_CART ?></a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -118,11 +118,11 @@
                                             <label class="label-control">Card Number</label>
                                             <input type="text" class="form-control" name="" placeholder="Enter Card Number">
 
-                                            <h6 class="note">*Note: you only have 3 attemps to enter correct values</h6>
+                                            <h6 class="note"><!--*Note: you only have 3 attemps to enter correct values--></h6>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
-                                            <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal"><?php echo CustomizationManager::$strings->PROFILE_PAGE_ELOAD_CANCEL ?></button>
+                                            <button type="button" class="btn btn-primary" data-dismiss="modal"><?php echo CustomizationManager::$strings->PROFILE_PAGE_ELOAD_OK ?></button>
                                         </div>
                                     </div>
                                 </div>
@@ -234,7 +234,7 @@
                             </div>
                             <div class="col-xs-2 col-lg-2">
                                 <div class="price-range-wrap">
-                                    <label for="price-range" style="color:#000">Price range (P):</label>
+                                    <label for="price-range" style="color:#000"><?php echo CustomizationManager::$strings->PROFILE_PAGE_PRICE_RANGE ?></label>
                                         <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="10000" data-slider-step="5"
                                                         data-slider-value="[0,1000]" id="price-range" ><br />
                                         <b class="pull-left color" style="color:#000">P0.00</b>
@@ -242,7 +242,7 @@
                                 </div>
                             </div>
                             <div class="col-xs-2 col-lg-2">
-                                <input class="button btn smallsearch-btn" value="Search" type="submit">
+                                <input class="button btn smallsearch-btn" value="<?php echo CustomizationManager::$strings->SEARCH_BOX_LABEL ?>" type="submit">
                              </div>
                         </fieldset>
                     </form>
@@ -269,7 +269,7 @@
     <li role="presentation" class="tab active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_EVENTS ?></a></li>
     <li role="presentation" class="tab"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_REPORTS ?></a></li>
     <li role="presentation" class="tab"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_PAYMENT_HISTORY ?></a></li>
-    <li role="presentation" class="tab"><a href="#editprofile" aria-controls="editprofile" role="tab" data-toggle="tab">Edit Profile</a></li>
+    <li role="presentation" class="tab"><a href="#editprofile" aria-controls="editprofile" role="tab" data-toggle="tab"><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_EDIT ?></a></li>
 
   </ul>
 
@@ -307,20 +307,20 @@
                                                         $interval = date_diff($now, $start);
 
                                                         if($now > $start && $now > $end){
-                                                            echo "<h5>Expired!</h5>";
+                                                            echo "<h5>"; echo CustomizationManager::$strings->EVENT_EXPIRED; echo"</h5>";
 
                                                         }else if($now < $start){
                                                             if($interval->days == 0){
-                                                                echo "<h5>Less than a day!</h5>";
+                                                                echo "<h5>"; echo CustomizationManager::$strings->EVENT_LESS_DAY; echo "</h5>";
                                                             }else{
-                                                                echo "<h5>$interval->days day/s left!</h5>";
+                                                                echo "<h5>"; echo $interval->days; echo CustomizationManager::$strings->EVENT_INTERVAL; echo "</h5>";
                                                                 }
 
                                                         }else if($now >= $start && $now <= $end){
-                                                            echo "<h5>Happening now!</h5>";
+                                                            echo "<h5>"; echo CustomizationManager::$strings->EVENT_HAPPENING_NOW; echo "</h5>";
                                                         }
                                                     }else{
-                                                        echo "<h5>Not yet Approved!</h5>";
+                                                        echo "<h5>"; echo CustomizationManager::$strings->EVENT_NOT_APPROVED; echo "</h5>";
                                                     }
 
 
@@ -328,8 +328,8 @@
                                             <div style="height:170px;">
                                              <table class="table-condensed table-responsive" >
                                                                 <thead>
-                                                                    <th><center>Ticket Name</center></th>
-                                                                    <th><center>Ticket Price</center></th>
+                                                                    <th><center><?php echo CustomizationManager::$strings->CART_PAGE_TICKET_NAME ?></center></th>
+                                                                    <th><center><?php echo CustomizationManager::$strings->CART_PAGE_PRICE ?></center></th>
                                                                 </thead>
                                                                 <tbody>
                                                                     <?php
@@ -346,7 +346,7 @@
                                             </div>
                                             <div class="dot-hr"></div>
                                             <div>
-                                                <span class="pull-left"><b> Date: </b> <?php echo $event->dateStart;?>  </span>
+                                                <span class="pull-left"><b><?php echo CustomizationManager::$strings->EVENT_DATE ?>: </b> <?php echo $event->dateStart;?>  </span>
                                                  <span class="proerty-price pull-right"><?php echo $event->event_status;?> </span>
                                             </div>
                                             <br>
@@ -381,12 +381,12 @@
                         <table class="table table-hover table-striped">
                             <thead>
                                 <tr>
-                                    <th>Event ID</th>
-                                    <th>Event Name</th>
-                                    <th>Event Date Start</th>
-                                    <th>Event Status</th>
-                                    <th>Event Venue</th>
-                                    <th>Event Category</th>
+                                    <th><?php echo CustomizationManager::$strings->EVENT_ID ?></th>
+                                    <th><?php echo CustomizationManager::$strings->EVENT_TITLE ?></th>
+                                    <th><?php echo CustomizationManager::$strings->EVENT_START ?></th>
+                                    <th><?php echo CustomizationManager::$strings->EVENT_STATUS ?></th>
+                                    <th><?php echo CustomizationManager::$strings->EVENT_LOCATION?></th>
+                                    <th><?php echo CustomizationManager::$strings->EVENT_CATEGORY ?></th>
                                     <th>Option</th>
 
                                 </tr>
@@ -409,7 +409,7 @@
                                                                 <!-- <a href="<?php echo site_url();?>/reports/cReports/generateRevenue/<?php echo $e->event_id;?>"><button class="button btn largesearch-btn " id="<?php echo $e->event_id;?>">Generate Revenue</button></a> -->
 
 <!-- Button HTML (to Trigger Modal) -->
-<a href="#myModal<?php echo $e->event_id;?>" role="button" class="button btn largesearch-btn" data-toggle="modal">Generate Revenue</a>
+<a href="#myModal<?php echo $e->event_id;?>" role="button" class="button btn largesearch-btn" data-toggle="modal"><?php echo CustomizationManager::$strings->GENERATE_REVENUE ?></a>
 
 <!-- Modal HTML -->
 <div id="myModal<?php echo $e->event_id;?>" class="modal fade">
@@ -429,10 +429,10 @@
                     <tbody>
                         <thead>
                             <tr>
-                                <th>Ticket Name</th>
-                                <th>Quantity Sold</th>
-                                <th>Price</th>
-                                <th>Total</th>
+                                <th><?php echo CustomizationManager::$strings->CART_PAGE_TICKET_NAME ?></th>
+                                <th><?php echo CustomizationManager::$strings->QUANTITY_SOLD ?></th>
+                                <th><?php echo CustomizationManager::$strings->CART_PAGE_PRICE ?></th>
+                                <th><?php echo CustomizationManager::$strings->CART_PAGE_TOTAL_PRICE ?></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -453,7 +453,7 @@
                             <tr>
                                 <td></td>
                                 <td></td>
-                                <td><h3 style="font-size: 20px; text-align: right; font-weight: 600; padding: 10px;"> Total Revenue: </h3></td>
+                                <td><h3 style="font-size: 20px; text-align: right; font-weight: 600; padding: 10px;"> <?php echo CustomizationManager::$strings->TOTAL_REVENUE ?>: </h3></td>
                                 <td>
                                     <div class="panel-heading">
                                         <center><h2 class="panel-title" style="font-size: 30px; font-weight: 600; border-bottom: 3px solid #e2624b; padding: 10px;"> <?php echo $gTotal; ?> </h2></center>
@@ -465,7 +465,7 @@
                 </table>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal"><?php echo CustomizationManager::$strings->MODAL_CLOSE ?></button>
             </div>
         </div>
     </div>
@@ -496,9 +496,9 @@
                         <table class="table table-hover table-striped">
                             <thead>
                                 <tr>
-                                    <th>Event Name</th>
-                                    <th>Amount</th>
-                                    <th>Date paid</th>
+                                    <th><?php echo CustomizationManager::$strings->EVENT_TITLE ?></th>
+                                    <th><?php echo CustomizationManager::$strings->TRANS_AMOUNT ?></th>
+                                    <th><?php echo CustomizationManager::$strings->TRANS_DATE_PAID ?></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -515,37 +515,37 @@
                     </div>
     </div>
      <div role="tabpanel" class="tab-pane" id="editprofile">
-        <h2>Edit Profile</h2>
+        <h2><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_EDIT?></h2>
         <?php foreach($info as $in){ ?>
             <form  method="POST" action="<?php echo site_url()?>/CEvent/updateProfile">
             <div class="col-md-8">
                 <div class="form-group">
-                    <label for="first name">First Name</label>
+                    <label for="first name"><?php echo CustomizationManager::$strings->EDIT_PROFILE_FIRST_NAME ?></label>
                     <input type="text" <?php  echo 'value="'.$in->first_name.'"';?> class="form-control" pattern="[a-zA-Z]+" name="fname" id="name" required="">
                 </div>
 
                 <div class="form-group">
-                    <label for="middle initial">Middle Initial</label>
+                    <label for="middle initial"><?php echo CustomizationManager::$strings->EDIT_PROFILE_MIDDLE_INITIAL ?></label>
                     <input type="text"  <?php  echo 'value="'.$in->middle_initial.'"';?> class="form-control" pattern="[a-zA-Z]+" name="midname" id="name" required="">
                 </div>
 
                 <div class="form-group">
-                    <label for="last name">Last Name</label>
+                    <label for="last name"><?php echo CustomizationManager::$strings->EDIT_PROFILE_LAST_NAME ?></label>
                     <input type="text"  <?php  echo 'value="'.$in->last_name.'"';?> class="form-control" pattern="[a-zA-Z]+" name="lname" id="name" required="">
                 </div>
 
             <div class="form-group">
-                    <label for="email">Email</label>
+                    <label for="email"><?php echo CustomizationManager::$strings->EDIT_PROFILE_EMAIL ?></label>
                     <input type="email"  <?php  echo 'value="'.$in->email.'"';?> class="form-control" name="email" id="email" pattern="[^ @]*@[^ @]*" required="">
                 </div>
 
             <div class="form-group">
-                    <label for="birthdate">Birthdate</label>
+                    <label for="birthdate"><?php echo CustomizationManager::$strings->EDIT_PROFILE_BIRTHDATE ?></label>
                     <input type="date"  <?php  echo 'value="'.$in->birthdate.'"';?> name="bdate" required="" id="bdate">
             </div>
 
                 <div class="form-group">
-                    <label for="gender">Gender</label>
+                    <label for="gender"><?php echo CustomizationManager::$strings->EDIT_PROFILE_GENDER ?></label>
                     <select class="form-control" name="gender">
                         <option value="Male" <?php  if(isset($in->gender) && $in->gender=="Male"){echo 'selected';}?>>Male</option>
                         <option value="Female" <?php  if(isset($in->gender) && $in->gender=="Female"){echo 'selected';}?>>Female</option>
@@ -554,19 +554,19 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="contact no">Contact Number (09XXXXXXXXX) </label>
+                    <label for="contact no"><?php echo CustomizationManager::$strings->EDIT_PROFILE_CONTACT_NUMBER ?> (09XXXXXXXXX) </label>
                     <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{9}$" class="form-control" name="contact" id="email" required="">
                 </div>
                 <div class="form-group">
-                    <label for="username">Username</label>
+                    <label for="username"><?php echo CustomizationManager::$strings->EDIT_PROFILE_USERNAME ?></label>
                     <input type="text" minlength="6"<?php  echo 'value="'.$in->user_name.'"';?> required="" class="form-control" pattern="[a-zA-Z0-9]+" name="uname" id="uname">
                 </div>
                 <div class="form-group">
-                    <label for="password">Password</label>
+                    <label for="password"><?php echo CustomizationManager::$strings->EDIT_PROFILE_PASSWORD ?></label>
                     <input type="password" <?php  echo 'value="'.$in->password.'"';?> class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="password" id="password">
                 </div>
                 <div class="text-center">
-                    <button type="submit" class="btn btn-default"><!-- <a href="<?php echo site_url();?>/CEvent/updateProfile"> -->Edit Profile</button>
+                    <button type="submit" class="btn btn-default"><!-- <a href="<?php echo site_url();?>/CEvent/updateProfile"> --><?php echo CustomizationManager::$strings->PROFILE_PAGE_TAB_EDIT?></button>
                 </div>
 
 
@@ -646,9 +646,10 @@
                                 <h4><?php echo CustomizationManager::$strings->CONTACT_US_HEADER ?></h4>
                                 <div class="footer-title-line"></div>
                                 <ul class="footer-adress">
-                                    <li><i class="pe-7s-map-marker strong"> </i> 9089 your adress her</li>
-                                    <li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
-                                    <li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
+                                    <li><i class="pe-7s-map-marker strong"> </i> <?php include 'vAddress.php';?></li>
+                                    <li><i class="pe-7s-mail strong"> </i> <?php include 'vEmail.php';?></li>
+                                    <li><i class="pe-7s-call strong"> </i> <?php include 'vContactNo.php';?></li>
+
                                 </ul>
                             </div>
                         </div>

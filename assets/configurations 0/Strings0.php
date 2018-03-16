@@ -85,5 +85,7 @@
     public $PROFILE_PAGE_TAB_PAYMENT_HISTORY = "Payment History";
     public $PROFILE_PAGE_TAB_SETTINGS = "Settings";
     public $CALENDAR_PAGE_TITLE = "Calendar";
+    public $CART_PAGE_VIEW_CART = "View Cart";
+    public $CART_PAGE_EMPTY = "Nothing in your cart. Shop for tickets now!";
   }
 ?>

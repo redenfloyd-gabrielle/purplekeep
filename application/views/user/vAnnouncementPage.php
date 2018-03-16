@@ -1,3 +1,7 @@
+<?php
+  require('assets/CustomizationManager.php');
+  CustomizationManager::SetTheme("configurations 1");
+?>
 
     <body>
 
@@ -15,40 +19,33 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="<?php echo site_url();?>/CLogin/viewDashBoard"><img src="<?php echo base_url('assets/dianeAssets/img/logoBlack.png')?>"></a>
+                    <a class="navbar-brand" href="<?php echo site_url();?>/CLogin/viewDashBoard"><img src="<?php echo base_url(CustomizationManager::$images->LOGO_DARK)?>"></a>
                 </div>
-
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a>
+                        <!-- <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a> -->
+                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->LOGOUT_BUTTON ?> </button></a>
                     </div>
-
                     <div class="button navbar-right">
-                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a>
+                        <!-- <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a> -->
+                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->CREATE_EVENT_BUTTON ?> </button></a>
                     </div>
-
-
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewDashBoard">Home</a></li>
-
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents">Profile</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements">Announcements</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents">Interested Events</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/CCart/viewCart">View Cart</a></li>
-                        <!--
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" >Contact</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href ="#" >Profile</a></li> -->
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><?php echo CustomizationManager::$strings->NAV_HOME ?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents"><?php echo CustomizationManager::$strings->NAV_PROFILE ?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><?php echo CustomizationManager::$strings->NAV_ANNOUNCEMENTS ?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><?php echo CustomizationManager::$strings->NAV_INTERESTED ?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><?php echo CustomizationManager::$strings->NAV_VIEW_CART ?></a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
-        </nav>
-        <!-- End of nav bar -->
+        </nav> <! -- END OF NAV -->
 
         <div class="page-head"> 
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">Announcements</h1>               
+                        <h1 class="page-title"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_ANNOUNCEMENTS ?> </h1>               
                     </div>
                 </div>
             </div>
@@ -70,7 +67,7 @@
 
                                   <div class='box-body'>
                                     <div class='box-title'>
-                                      <h1><a href='#''>This Post Has No Heading</a></h1>
+                                      <h1><a href='#'>This Post Has No Heading</a></h1>
                                     </div>
                                     <div class='box-summary'>
                                       <p>".$announcement->announcementDetails."</p>
@@ -95,7 +92,7 @@
         <div id="createAnnouncement" class="modal fade" tabindex="-1" data-width="650">
             <div class="modal-header bg-inverse bd-inverse-darken">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="fa fa-times"></i></button>
-                <h1 class="modal-title" align="center">CREATE AN ANNOUNCEMENT</h1>
+                <h1 class="modal-title" align="center"><?php echo CustomizationManager::$strings->ANNOUNCEMENT_PAGE_CREATE?></h1>
             </div>
 
             <div class="modal-body">
@@ -105,7 +102,7 @@
                     <form class="form-horizontal" method="POST" action="<?php echo site_url()?>/admin/CAdmin/createAnnouncement">
 
                         <div class="form-group" >
-                            <label for="" class="col-8 control-label">Announcement:</label>
+                            <label for="" class="col-8 control-label"><?php echo CustomizationManager::$strings->ANNOUNCEMENT_PAGE_ANNOUNCEMENT ?></label>
                             <div class="col-8">
                                 <textarea class="form-control" type="text" name="announcementDetails" required="" style="min-height: 300px; max-height: 300px;"></textarea>
                             </div>
@@ -119,7 +116,7 @@
 
 
                         <div class="modal-footer">
-                            <button id="closeEditAccount" type="button" class="btn btn-danger" data-dismiss="modal" >Close</button>
+                            <button id="closeEditAccount" type="button" class="btn btn-danger" data-dismiss="modal" ><?php echo CustomizationManager::$strings->MODAL_CLOSE ?></button>
                             <input id="" class="btn btn-primary" type="submit"  name="action" value="Announce">
                         </div>
                     </form>
@@ -136,22 +133,21 @@
 
                         <div class="col-md-3 col-sm-6 wow fadeInRight animated">
                             <div class="single-footer">
-                                <h4>About us </h4>
+                                <h4><?php echo CustomizationManager::$strings->ABOUT_HEADER ?></h4>
                                 <div class="footer-title-line"></div>
-
-                               <img src= "<?php echo base_url('assets/dianeAssets/img/logoBlack.png')?>" alt="" class="wow pulse" data-wow-delay="1s" >
-                                <p>We help you reach out to the most interesting events anywhere they may be. The events you’ve always wanted to join and create will be in your hands with just a few clicks. Worry not because we’re here to help you discover the latest events this planet will ever have.</p>
-
+                              <img src= "<?php echo base_url(CustomizationManager::$images->LOGO_DARK)?>" alt="" class="wow pulse" data-wow-delay="1s" >
+                                <p><?php echo CustomizationManager::$strings->ABOUT_MESSAGE ?></p>
                             </div>
                         </div>
 
                         <div class="col-md-3 col-sm-6 wow fadeInRight animated">
                             <div class="single-footer news-letter">
-                                <h4>Contact Us</h4>
+                                <h4><?php echo CustomizationManager::$strings->CONTACT_US_HEADER ?></h4>
                                 <div class="footer-title-line"></div>
                                 <ul class="footer-adress">
-                                    <li><i class="pe-7s-mail strong"> </i> dailyEvents@gmail.com</li>
-                                    <li><i class="pe-7s-call strong"> </i> 253-2753</li>
+                                    <li><i class="pe-7s-map-marker strong"> </i> <?php include ('/../vAddress.php');?></li>
+                                    <li><i class="pe-7s-mail strong"> </i> <?php include ('/../vEmail.php');?></li>
+                                    <li><i class="pe-7s-call strong"> </i> <?php include ('/../vContactNo.php');?></li>
                                 </ul>
 
                             </div>

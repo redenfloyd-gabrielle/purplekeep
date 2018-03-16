@@ -35,9 +35,13 @@
     public $FOOTER_NAV_HOME = "Tanggapan";
     public $FOOTER_NAV_EVENTS = "Mga Pangyayari";
     public $FOOTER_NAV_CONTACT = "Kontak";
+    public $FOOTER_NAV_CONTACT_ADDRESS = "Kontak";
+    public $FOOTER_NAV_CONTACT_EMAIL = "Kontak";
+    public $FOOTER_NAV_CONTACT_PHONE = "Kontak";
     public $LANDING_PAGE_NAV_HOME = "Tanggapan";
     public $LANDING_PAGE_NAV_PROFILE = "Iyong Profile";
     public $LANDING_PAGE_NAV_ANNOUNCEMENTS = "Mga Balita";
+    public $LANDING_PAGE_NAV_INTERESTED = "Mga Nagustuhan";
     public $LANDING_PAGE_NAV_VIEW_CART = "Iyong Cart";
     public $LANDING_PAGE_CREATE_EVENT_BUTTON = "Gumawa ng pangyayari";
     public $LANDING_PAGE_LOGOUT_BUTTON = "Maglog-out";
@@ -83,7 +87,64 @@
     public $PROFILE_PAGE_TAB_EVENTS = "Aking Pangyayari";
     public $PROFILE_PAGE_TAB_REPORTS = "Mga Report";
     public $PROFILE_PAGE_TAB_PAYMENT_HISTORY = "Nakaraang Transaksyon";
+    public $PROFILE_PAGE_TAB_EDIT = "Baguhin ang Profile";
     public $PROFILE_PAGE_TAB_SETTINGS = "Mga Setting";
     public $CALENDAR_PAGE_TITLE = "Kalendaryo";
-  }
+    public $CART_PAGE_VIEW_CART = "Iyong Cart";
+    public $CART_PAGE_EVENT_NAME = "Pangyayari";
+    public $CART_PAGE_TICKET_NAME = "Uri ng Ticket"; 
+    public $CART_PAGE_PRICE = "Halaga";
+    public $CART_PAGE_TOTAL_PRICE= "Kabuuang Halaga"; 
+    public $CART_PAGE_EMPTY = "Walang laman ang iyong cart! Bumili na ng ticket ngayon!"; 
+    public $LOAD_BALANCE = "Natitirang Load";
+    public $CREATE_EVENT_BUTTON = "Gumawa ng pangyayari";
+    public $LOGOUT_BUTTON = "Maglog-out";
+    public $NAV_HOME = "Tanggapan";
+    public $NAV_PROFILE = "Iyong Profile";
+    public $NAV_ANNOUNCEMENTS = "Mga Balita";
+    public $NAV_INTERESTED = "Mga Nagustuhan";
+    public $NAV_VIEW_CART = "Iyong Cart";
+    public $PROFILE_PAGE_ELOAD_OK = "Ok";
+    public $PROFILE_PAGE_ELOAD_CANCEL = "Kanselahin";
+    public $PROFILE_PAGE_ELOAD_NOTE = "*Paalala: Meron ka lamang tatlong pagkakataong magbigay ng tamang halaga";
+    public $SEARCH_BOX_LABEL = "Hanapin";
+    public $EVENT_EXPIRED = "Tapos na!";
+    public $EVENT_LESS_DAY = "Tapos na!";
+    public $EVENT_INTERVAL = "araw bago magsimula!";
+    public $EVENT_HAPPENING_NOW = "Nagsimula na!";
+    public $EVENT_NOT_APPROVED = "Hindi pa inaaprubahan";
+    public $EVENT_DATE = "Petsa";
+    public $EVENT_ID = "ID ng Pangyayari";
+    public $EVENT_TITLE = "Pangalan ng Pangyayari";
+    public $EVENT_LOCATION = "Lugar";
+    public $EVENT_STATUS = "Status ng Pangyayari";
+    public $EVENT_START = "Simula sa";
+    public $EVENT_END = "Hanggang sa";
+    public $EVENT_CATEGORY = "Kategorya";
+    public $GENERATE_REVENUE = "Tingnan ang Kita";
+    public $QUANTITY_SOLD = "Bilang ng Nabenta";
+    public $TOTAL_REVENUE = "Kabuuang Kita";
+    public $MODAL_CLOSE = "Isarado";
+    public $TRANS_DATE_PAID = "Petsa ng Pagbayad";
+    public $TRANS_AMOUNT =  "Halaga";
+    
+    public $EDIT_PROFILE_FIRST_NAME = "Unang Pangalan";
+    public $EDIT_PROFILE_MIDDLE_INITIAL = "Gitnang Letra";
+    public $EDIT_PROFILE_LAST_NAME = "Huling Pangalan";
+    public $EDIT_PROFILE_EMAIL = "Email";
+    public $EDIT_PROFILE_BIRTHDATE = "Araw ng Kaarawan";
+    public $EDIT_PROFILE_GENDER = "Kasarian";
+    public $EDIT_PROFILE_GENDER_MALE = "Lalake";
+    public $EDIT_PROFILE_GENDER_FEMALE = "Babae";
+    public $EDIT_PROFILE_GENDER_OTHER = "Iba";
+    public $EDIT_PROFILE_CONTACT_NUMBER = "Kontak Number";
+    public $EDIT_PROFILE_USERNAME = "Username";
+    public $EDIT_PROFILE_PASSWORD = "Password";
+
+    public $ANNOUNCEMENT_PAGE_CREATE = "Gumawa ng Balita";
+    public $ANNOUNCEMENT_PAGE_ANNOUNCEMENT = "Balita";
+    public $ANNOUNCEMENT_PAGE_NOHEADING = "Ang post na ito ay walang pamagat.";
+
+    public $INTERESTED_PAGE_TITLE = "Mga Nagustuhang Pangyayari";
+    }
 ?>
