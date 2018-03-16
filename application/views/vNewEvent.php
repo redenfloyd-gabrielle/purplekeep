@@ -89,7 +89,6 @@
                                 <i class="ticket alternate icon"></i>
                                 <div class="content">
                                   <div class="title">Tickets</div>
-
                                   <div class="description">Add tickets for your event</div>
                                   <div class="description">Add tickets to your event</div>
                                 </div>

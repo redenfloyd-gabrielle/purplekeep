@@ -45,11 +45,7 @@
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-<<<<<<< HEAD
-                        <h1 class="page-title"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_ANNOUNCEMENTS ?> </h1>               
-=======
-                        <h1 class="page-title">Announcements</h1>
->>>>>>> c408235b974483865721d7ff8b5afb839812b246
+                        <h1 class="page-title"><?php echo CustomizationManager::$strings->LANDING_PAGE_NAV_ANNOUNCEMENTS ?> </h1>              
                     </div>
                 </div>
             </div>
