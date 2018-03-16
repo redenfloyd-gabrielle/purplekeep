@@ -602,6 +602,11 @@
         <?php foreach($info as $in){ ?>
             <form  method="POST" onsubmit="return validate()" action="<?php echo site_url()?>/event/CEvent/updateProfile">
                 <div class="col-md-8">
+                    <div class ="form group">
+                        <label for="password">Password: </label>
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal"><!-- <a href="<?php echo site_url();?>/CEvent/updateProfile"> -->Change Password</button>
+                    </div>
+                    <br>
                     <div class="form-group">
                         <label for="first name">First Name</label>
                         <input type="text" <?php  echo 'value="'.$in->first_name.'"';?> class="form-control" pattern="[a-zA-Z\s]+" name="fname" id="fname" required="">
@@ -646,7 +651,6 @@
                         <input type="text" minlength="6"<?php  echo 'value="'.$in->user_name.'"';?> required="" class="form-control" pattern="[a-zA-Z0-9]+" name="uname" id="uname">
                     </div>
                     <div class="text-center">
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal"><!-- <a href="<?php echo site_url();?>/CEvent/updateProfile"> -->Change Password</button>
                         <button type="submit" onclick="validate()" class="btn btn-default"><!-- <a href="<?php echo site_url();?>/CEvent/updateProfile"> -->Edit Profile</button>
                     </div>
                 <br>

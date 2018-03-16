@@ -969,8 +969,7 @@ class CEvent extends CI_Controller {
             $rules = "strip_tags|trim|xss_clean";
             $this->form_validation->set_rules('password','Password','required|min_length[8]');
             $this->form_validation->set_rules('cpassword','Confirm password','required|matches[password]');
-            if ($this->form_validation->run() != FALSE ){
-                $data = array('user_name' => $this->input->post('unameb'),
+             $data = array('user_name' => $this->input->post('unameb'),
 						  'password' => $this->input->post('password'),
 						  'OldPassword' => $this->input->post('OldPassword'),
 						  'cpassword' => $this->input->post('cpassword'),
@@ -983,13 +982,17 @@ class CEvent extends CI_Controller {
 						  'contact_no' => $this->input->post('contactb'),
 						  'user_type' => 'Regular'
 						);
+            if ($this->form_validation->run() != FALSE ){
 
 				$res2 = $this->MUser->read_where(array('account_id' => $this->session->userdata['userSession']->userID,
-														"password"=>$data['OldPassword']));
+														"password" => hash('sha512', $data['OldPassword'])));
                 if(!$res2){
 					$this->session->set_flashdata('error_msg','Password does not match the current password.');
 					$this->data = $data;
 					$this->session->set_flashdata('userDetails',json_encode($data));
+                    echo $data['password'];
+                    echo $data['OldPassword'];
+                    echo $data['cpassword'];
 					redirect("event/CEvent/viewEvents/1");
                 }else{
 					$data['password'] = hash('sha512',$data['password']);
