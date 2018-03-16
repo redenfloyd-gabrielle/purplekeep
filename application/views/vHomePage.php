@@ -5,10 +5,13 @@
 				<div class="row">
 					<div class="list-of-events"  id="targ2">
 						<?php
-	                    	$cnt =1;
+							$cnt =1;
+							
 	                        if(isset($events)){
 	                            foreach ($events as $event) {
+									
 	                    ?>
+						
 		                            <div class="event-box">
 					        		 	<a href="<?php echo site_url();?>/CLogin/viewLoginEvent/<?php echo $event->event_id;?>">
 					                		<div class="event-box-overlay">
