@@ -56,6 +56,10 @@
     <link href="<?php echo base_url('assets/nikkiAssets/css/responsive.css')?>" rel="stylesheet" />
     <link href="<?php echo base_url('assets/customization1Assets/css/w3.css')?>" rel="stylesheet" />
 
+    <link href="<?php echo base_url('assets/customization1Assets/css/notification.css')?>" rel="stylesheet" />
+</head>
+
+
     <style>
          .ballons {
             float:right;

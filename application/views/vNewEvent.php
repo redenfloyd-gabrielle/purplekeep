@@ -439,7 +439,6 @@
                                     $.each(output, function(i, d) {
                                         // You will need to alter the below to get the right values from your json object.  Guessing that d.id / d.modelName are columns in your carModels data
                                         $('#municipal-name').append('<option value="' + d.location_id+ '">' + d.location_name + '</option>');
-
                                     });
                                 }else{
                                     alert("Error");
@@ -451,7 +450,6 @@
                         });
                 }
             });
-
             // $('#municipal-name').on('change', function(){
             //     if(this.value != "Select CITY/MUNICIPAL below..."){
             //         var city = this.value;
@@ -461,12 +459,10 @@
             function checkLocation(){
               var form = document.forms["createEventForm"];
               var location = form["event_venue"].value;
-
               if(!location.match(/[a-z]/i)){
                 alert("Invalid Input!" + location.length);
                 return false;
               }
               return true;
             }
-
         </script>
