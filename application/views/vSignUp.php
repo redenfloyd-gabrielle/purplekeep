@@ -24,7 +24,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <div class="navbar-brand">
-                        <img src="<?php echo base_url('assets/dianeAssets/img/logoBlack.png')?>">
+                        <img src="<?php echo base_url(CustomizationManager::$images->LOGO_DARK)?>">
                     </div>
                 </div>
 
