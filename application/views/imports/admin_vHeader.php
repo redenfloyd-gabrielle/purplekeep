@@ -64,9 +64,8 @@
                       <em> <?php echo $this->session->userdata['adminSession']->userFName." ".$this->session->userdata['adminSession']->userLName; ?> </em> <i class="dropdown-icon fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown-menu pull-right icon-right arrow">
-                        <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
                         <li><a href="<?php echo site_url();?>/admin/CAdmin/adminSettings"><i class="fa fa-cog"></i> Settings </a></li>
-                        <li><a href ="<?php echo site_url();?>/admin/CAdmin/updateAccount" data-wow-delay="0.1s"><i class="icon  fa fa-cog"></i> Update Profile </a></li>
+                        <li><a href ="<?php echo site_url();?>/admin/CAdmin/updateAccount" data-wow-delay="0.1s"><i class="fa fa-user"></i> Update Profile </a></li>
                         <li class="divider"></li>
                         <li><a href="<?php echo site_url();?>/CLogin/userLogout"><i class="fa fa-sign-out"></i> Signout </a></li>
                     </ul>
