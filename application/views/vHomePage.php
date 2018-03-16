@@ -7,8 +7,11 @@
 						<?php
 	                    	$cnt =1;
 	                        if(count($events) >0){
+
 	                            foreach ($events as $event) {
+									
 	                    ?>
+						
 		                            <div class="event-box">
 					        		 	<a href="<?php echo site_url();?>/CLogin/viewLoginEvent/<?php echo $event->event_id;?>">
 					        		 		
