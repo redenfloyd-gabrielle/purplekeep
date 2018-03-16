@@ -832,6 +832,31 @@
 ?>
 
 <script type="text/javascript">
+    function validate(){
+        var bdate = document.getElementById("bdayt").value;
+        var date = new Date(bdate);
+        // var year = date.getFullYear() + 18;
+        // var validateDate = new Date();
+        // var validateYear = validateDate.getFullYear();
+        // if(year < validateYear){
+        //   return true;
+        // }else{
+        //   alert("You are below 18");
+        //   return false;
+        // }
+        var diffDuration = moment.duration(moment(new Date()).diff(moment(date)));
+        var results = diffDuration.years();
+
+        if(!isNaN(results)){
+            if(results > 17){
+                return true;
+            }else{   
+                alert("You are below 18!");
+                return false;
+            }
+        }
+    }
+
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!

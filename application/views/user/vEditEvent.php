@@ -37,7 +37,7 @@
                             <li class="wow fadeInDown" data-wow-delay="0.1s" title="View Cart"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><span class="fas fa-shopping-cart fa-lg"></span></a></li>
 
                         </ul></a></li>
-                       
+
                     </ul>
                     </div><!-- /.navbar-collapse -->
                 </div><!-- /.container-fluid -->
@@ -60,7 +60,12 @@
             <!-- register-area -->
             <div class="register-area" style="background-color: rgb(249, 249, 249);">
                 <div class="container">
-
+                  <?php if ($this->session->flashdata('error_msg')): ?>
+                      <div class="alert alert-danger" style="margin-top: 15px;">
+                          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                          <?php echo $this->session->flashdata('error_msg'); ?>
+                      </div>
+                  <?php endif ?>
                     <div class="col-md-6">
                         <div class="box-for overflow">
                             <div class="col-md-12 col-xs-12 register-blocks">
