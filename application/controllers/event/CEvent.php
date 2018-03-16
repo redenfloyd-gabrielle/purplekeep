@@ -527,7 +527,7 @@ class CEvent extends CI_Controller {
 	public function displayEventDetailsFromCalendar()
 	{
 
-		
+
 		$id = $_POST['id'];
 
 
@@ -606,7 +606,7 @@ class CEvent extends CI_Controller {
 				if(count($data['announcements']) == 0){
 					$data['announcements'] = NULL;
 				}
-				
+
 					$array1 = array();
 					if($data['announcements']){
 						foreach ($data['announcements'] as $value) {
@@ -616,27 +616,27 @@ class CEvent extends CI_Controller {
 								$arrObj->first_name = $value->first_name;
 								$arrObj->last_name = $value->last_name;
 								if($value->sec){
-									$arrObj->ago =$value->sec;  
-									$arrObj->agoU ="seconds ago";  
+									$arrObj->ago =$value->sec;
+									$arrObj->agoU ="seconds ago";
 								}else if($value->min){
-									$arrObj->ago =$value->min; 
-									$arrObj->agoU ="minutes ago";   
+									$arrObj->ago =$value->min;
+									$arrObj->agoU ="minutes ago";
 								}else if($value->hr){
-									$arrObj->ago =$value->hr;  
-									$arrObj->agoU ="hours ago";  
+									$arrObj->ago =$value->hr;
+									$arrObj->agoU ="hours ago";
 								}else if($value->day){
-									$arrObj->ago =$value->day; 
-									$arrObj->agoU ="days ago";   
+									$arrObj->ago =$value->day;
+									$arrObj->agoU ="days ago";
 								}
 								$array1[] = $arrObj;
 						}
 					}
 					$data['announcements'] = $array1;
 					$data['color'] = $_POST['color'];
-			
+
 				$result = $this->load->view("vEventDetailsFromCalendar",$data,true);
 				echo $result;
-	
+
 		}else{
 			redirect("CLogin/viewDashboard");
 		}
@@ -754,7 +754,7 @@ class CEvent extends CI_Controller {
 				}else{
 					$affectedRows = $this->MEvent->insert($data);
 					$evt_id = $this->MEvent->db->insert_id();
-					
+
 					$totalNumTix = 0;
 					$data1['ticket_name'] = $this->input->post('ticketType1');
 					$data1['ticket_count'] = $this->input->post('no_tickets_total1');
@@ -799,7 +799,7 @@ class CEvent extends CI_Controller {
 				if($flag){
 					$this->session->set_flashdata('success_msg',"Event is successfully created!");
 					redirect("event/cEvent/viewEvents/1");
-				}		
+				}
 			}else{
 				$this->session->set_flashdata('error_msg',validation_errors());
 				redirect("event/CEvent/viewCreateEvent");
@@ -872,6 +872,7 @@ class CEvent extends CI_Controller {
 			$data['event_date_end'] = mdate("%Y-%m-%d %H:%i:%s", $ts);
 
 			if($data['event_date_start'] < $date3 && $data['event_date_end'] < $date3){
+				$this->session->set_flashdata('error_msg',"Date start and/or date end has already passed");
 				redirect('event/CEvent/editEvent/'.$event_id);
 			}if($data['event_date_start'] > $data['event_date_end'] || $data['event_date_start'] == $data['event_date_end']){
 				redirect('event/CEvent/editEvent/'.$event_id);
@@ -1010,7 +1011,7 @@ class CEvent extends CI_Controller {
 			if(count($data['announcements']) == 0){
 				$data['announcements'] = NULL;
 			}
-			
+
 				$array1 = array();
 				if($data['announcements']){
 					foreach ($data['announcements'] as $value) {
@@ -1020,17 +1021,17 @@ class CEvent extends CI_Controller {
 							$arrObj->first_name = $value->first_name;
 							$arrObj->last_name = $value->last_name;
 							if($value->sec){
-								$arrObj->ago =$value->sec;  
-								$arrObj->agoU ="seconds ago";  
+								$arrObj->ago =$value->sec;
+								$arrObj->agoU ="seconds ago";
 							}else if($value->min){
-								$arrObj->ago =$value->min; 
-								$arrObj->agoU ="minutes ago";   
+								$arrObj->ago =$value->min;
+								$arrObj->agoU ="minutes ago";
 							}else if($value->hr){
-								$arrObj->ago =$value->hr;  
-								$arrObj->agoU ="hours ago";  
+								$arrObj->ago =$value->hr;
+								$arrObj->agoU ="hours ago";
 							}else if($value->day){
-								$arrObj->ago =$value->day; 
-								$arrObj->agoU ="days ago";   
+								$arrObj->ago =$value->day;
+								$arrObj->agoU ="days ago";
 							}
 							$array1[] = $arrObj;
 					}
