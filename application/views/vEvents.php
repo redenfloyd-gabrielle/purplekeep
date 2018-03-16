@@ -126,7 +126,7 @@
                                 </div>
                             </div>
 
-                            <div class="panel-body search-widget">
+                            <div class="panel-body search-widget" style="margin-top: 0px;">
                                 <fieldset >
                                     <div class="row">
                                         <div class="col-md-12">
