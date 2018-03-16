@@ -1,5 +1,6 @@
 <?php
   class Strings0{
+    
     public $WELCOME_PAGE_NAV_HOME = "HOME";
     public $WELCOME_PAGE_NAV_EVENTS = "EVENTS";
     public $WELCOME_PAGE_NAV_ABOUT = "ABOUT";
@@ -14,6 +15,9 @@
     public $LOGIN_PAGE_DONT_HAVE_AN_ACCOUNT = "Don't have an account?";
     public $LOGIN_PAGE_SIGNUP_HERE = "Sign up here!";
     public $SIGNUP_PAGE_NAV_HOME = "Home";
+    public $SIGNUP_PAGE_REQUIRED = "<span style='color:#e53935;'><span class='
+    glyphicon glyphicon-exclamation-sign'></span>&nbsp;&nbsp;&nbsp;Required Field (*)</span>";
+    public $SIGNUP_PAGE_REQUIRED_FIELD = "<span style='color:#e53935;'>*&nbsp;</span>";
     public $SIGNUP_PAGE_TITLE = "Sign Up / Sign In";
     public $SIGNUP_PAGE_NEW_ACCOUNT = "New account : ";
     public $SIGNUP_PAGE_FIRST_NAME = "First Name";
@@ -42,12 +46,15 @@
     public $LANDING_PAGE_CREATE_EVENT_BUTTON = "Create Event";
     public $LANDING_PAGE_LOGOUT_BUTTON = "Logout";
     public $LANDING_PAGE_CAROUSEL_MESSAGE = "See Events Near You";
-    public $LANDING_PAGE_SEARCH_BOX_LABEL = "Search Event";
+    public $LANDING_PAGE_SEARCH_BOX_LABEL = "Search Event By:";
     public $LANDING_PAGE_SEARCH_BOX_PLACEHOLDER = "Key word";
     public $LANDING_PAGE_SORT_BY_DATE = "Sort By Date";
     public $LANDING_PAGE_SORT_BY_PRICE = "Sort By Price";
     public $LANDING_PAGE_EVENTS_PER_PAGE = "Events per page :";
     public $NEW_EVENT_PAGE_NAV_HOME = "Home";
+    public $NEW_EVENT_REQUIRED = "<span style='color:#e53935;'><span class='
+    glyphicon glyphicon-exclamation-sign'></span>&nbsp;&nbsp;&nbsp;Required Field (*)</span>";
+    public $NEW_EVENT_REQUIRED_FIELD = "<span class='signify-required' style='color:#e53935;'>*&nbsp;</span>";
     public $NEW_EVENT_PAGE_NAV_PROFILE = "Profile";
     public $NEW_EVENT_PAGE_CREATE_EVENT_BUTTON = "Create Event";
     public $NEW_EVENT_PAGE_LOGOUT_BUTTON = "Logout";
@@ -61,6 +68,8 @@
     public $NEW_EVENT_PAGE_EVENT_CATEGORY = "Category";
     public $NEW_EVENT_PAGE_EVENT_DESCRIPTION = "Event Description";
     public $NEW_EVENT_PAGE_TICKET_DETAILS = "Ticket Details :";
+    public $NEW_EVENT_PAGE_TICKET_DETAILS_REQUIRED = "<span style='color:#e53935;'><span class='
+    glyphicon glyphicon-exclamation-sign'></span>&nbsp;&nbsp;&nbsp;At least 1 section of ticket type and its fields must be fileld up. (*)</span>";
     public $NEW_EVENT_PAGE_TICKET_TYPE = "Ticket Type";
     public $NEW_EVENT_PAGE_TICKET_QUANTITY = "Number of Tickets";
     public $NEW_EVENT_PAGE_TICKET_PRICE = "Price of Ticket";
@@ -84,5 +93,6 @@
     public $PROFILE_PAGE_TAB_PAYMENT_HISTORY = "Payment History";
     public $PROFILE_PAGE_TAB_SETTINGS = "Settings";
     public $CALENDAR_PAGE_TITLE = "Calendar";
+    public $CALENDAR_PAGE_PROFILE_BUTTON = "Profile";
   }
 ?>

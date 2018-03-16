@@ -54,6 +54,18 @@
 			return $query->result();
 		}
 
+		public function generatePaymenets()
+		{
+			$this->db->select('*');
+			$this->db->select('DATE_FORMAT(ticket.date_sold, "%b %d %Y") AS "dateSold"');
+			$this->db->from('ticket');
+			$this->db->join('ticket_type as tt', $this::DB_TABLE.'.ticket_type_id = tt.ticket_type_id');
+			$this->db->where('ticket.user_id', $this->session->userdata['userSession']->userID);
+			$query = $this->db->get();
+
+			return $query->result();
+		}
+
 
 
 

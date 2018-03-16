@@ -1,16 +1,16 @@
 	<div class="container-box">
 		<div class="container-content"></div>
-		<div class="container">
-			<div class="col-md-12">
+		<div class="container" >
+			<div class="col-md-12" id="eventsList">
 				<div class="row">
-					<div class="list-of-events"  id="targ2">
+					<div class="list-of-events"  id="targ2" style="margin-top: 10%;">
 						<?php
 	                    	$cnt =1;
 	                        if(isset($events)){
 	                            foreach ($events as $event) {
 	                    ?>
 		                            <div class="event-box">
-					        		 	<a href="<?php echo site_url();?>/event/CEvent/displayEventDetails/<?php echo $event->event_id;?>">
+					        		 	<a href="<?php echo site_url();?>/CLogin/viewLoginEvent/<?php echo $event->event_id;?>">
 					                		<div class="event-box-overlay">
 						                		<span class="fa-stack fa-lg">
 						    						<i class="glyphicon glyphicon-eye-open"></i>
@@ -52,3 +52,4 @@
 		</div>
 	</div>
 </div>
+
