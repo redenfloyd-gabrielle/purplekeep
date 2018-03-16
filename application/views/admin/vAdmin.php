@@ -57,17 +57,19 @@
                                               <div id='updateAccount<?php echo $object->event_id?>' class='modal' tabindex'-1' data-width='500'>
                                                 <div class='modal-header bg-inverse bd-inverse-darken'>
                                                         <button type='button' class='close' data-dismiss='modal' aria-hidden='true'><i class='fa fa-times'></i></button>
-                                                        <h1 class='modal-title' align='center'>Event: <?php $object->event_name?></h1>
+                                                        <h1 class='modal-title' align='center'>Event: <?php echo $object->event_name?></h1>
                                                 </div>
                                    
                                                 <div class='modal-body'>
                                                   <div class="panel-body">
                                                     <ul class="list-group list-group-flush">
+                                                      <li class="list-group-item bg-inverse bd-inverse-darken active">Attendees</li>
                                                             <?php 
                                                               $result = $this->MReports->nameAttendees( $object->event_id);
+                                                              $cnt=0;
                                                               foreach($result as $obj){
                                                             ?>
-                                                                    <li class="list-group-item"><?php echo  $obj['user_name']; ?></li>
+                                                                    <li class="list-group-item"><span class="badge badge-primary badge-pill pull-left" style="margin-right: 10px;"><?php echo ++$cnt; ?></span><?php echo  $obj['user_name']; ?></li>
                                                             <?php
                                                               }
                                                               $num = $this->MReports->countAttendees($object->event_id); 
