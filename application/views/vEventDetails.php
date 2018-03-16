@@ -107,24 +107,19 @@ div.desc {
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
                     <div class="button navbar-right">
-                        <button class="navbar-btn nav-button wow bounceInRight login"> <a href ="<?php echo site_url();?>/cLogin/userLogout" data-wow-delay="0.1s">Logout </a></button>
+                        <!-- <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a> -->
+                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login" title="Logout"><span class="fas fa-sign-out-alt fa-lg"></span></button></a>
                     </div>
-
                     <div class="button navbar-right">
-                        <button class="navbar-btn nav-button wow bounceInRight login"> <a href ="<?php echo site_url();?>/event/cEvent/viewCreateEvent" data-wow-delay="0.4s">Create Event </a></button>
+                        <!-- <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a> -->
+                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login" title="Create Event"><span class="fas fa-calendar-plus fa-lg"></span></button></a>
                     </div>
-
-
                     <ul class="main-nav nav navbar-nav navbar-right">
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cLogin/viewDashBoard">Home</a></li>
-
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/cEvent/viewEvents">Profile</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/user/cUser/viewAnnouncements">Announcements</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/cEvent/viewPreferenceEvents">Interested Events</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/cCart/viewCart">View Cart</a></li>
-                        <!--
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href ="<?php echo site_url();?>/event/cEvent/viewCreateEvent" >Contact</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href ="#" >Profile</a></li> -->
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Home"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><span class="fas fa-home fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents/1"><span class="fas fa-user fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><span class="fas fa-bell fa-lg"></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Interested Events"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><span class="fas fa-star fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="View Cart"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><span class="fas fa-shopping-cart fa-lg"></span></a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -239,7 +234,7 @@ div.desc {
                                         </li>
                                         <li>
                                             <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Date End</span>
-                                            <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry"><?php echo date('m/d/Y h:i:s a', strtotime("$e->event_date_start"));  ?></span>
+                                            <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry"><?php echo date('m/d/Y h:i:s a', strtotime("$e->event_date_end"));  ?></span>
                                         </li>
 
                                         <!-- <li>
@@ -296,16 +291,16 @@ div.desc {
 
                                 if($x->event_status == "Approved"){
                                     echo'
-                                    <div class="button navbar-right">
+                                    <div class="button navbar-left">
                                         <button class="navbar-btn nav-button login"> <a href ="'.site_url("/event/cEvent/editEvent/$e->event_id").'">Edit Event </a></button>
                                     </div>';
                                 }else if($x->event_status == "Pending"){
                                     echo'
-                                    <div class="button navbar-right">
+                                    <div class="button navbar-left">
                                         <button class="navbar-btn nav-button login" style="background-color:gray;" id="confirmdelete"><a>Delete Event</a></button>
                                     </div>
 
-                                    <div class="button navbar-right">
+                                    <div class="button navbar-left">
                                         <button class="navbar-btn nav-button login"> <a href ="'.site_url("/event/cEvent/editEvent/$e->event_id").'">Edit Event </a></button>
                                     </div>';
                                 }
@@ -359,18 +354,6 @@ div.desc {
                                                         <li><i class="pe-7s-call strong"> </i> <?php echo $o->contact_no;?></li>
                                                     </ul>
                                                 </div>
-
-                                                <div class="dealer-social-media">
-                                                  <a class="twitter" target="_blank" href="">
-                                                      <i class="fa fa-twitter"></i>
-                                                  </a>
-                                                  <a class="facebook" target="_blank" href="">
-                                                      <i class="fa fa-facebook"></i>
-                                                  </a>
-                                                  <a class="instagram" target="_blank" href="">
-                                                      <i class="fa fa-instagram"></i>
-                                                  </a>
-                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -378,56 +361,44 @@ div.desc {
                             </div>
 
                             <div class="panel panel-default sidebar-menu similar-property-wdg wow fadeInRight animated" >
+                                <!-- <h2 class="property-info-label">CARD LOAD : 
+                                    <strong><span class="property-info-value">
+                                        <?php echo $u->load_amt; ?>
+                                    </span></strong>
+                                </h2>
+ -->                                
                                 <div class="panel-heading" >
-                                    <h3 class="panel-title">Ticket Prices</h3>
+                                    <h3 class="panel-title">CARD LOAD : 
+                                        <strong><span class="property-info-value">
+                                           P <?php echo $u->load_amt; ?>
+                                        </span></strong>
+                                    </h3>
+                                </div>
+                                <br>
+                                <div class="panel-heading" >
+                                    <h3 class="panel-title">TICKET PRICES</h3>
                                 </div>
                                 <div class="panel-body recent-property-widget" >
-                                    <ul>
-                                    <input  id="cLoad" hidden value="<?php echo $u->load_amt; ?>">
+                                    
                                         <?php foreach ($types as $t) { ?>
-                                        <li>
-                                            <div class="col-md-8 col-sm-8 col-xs-8 blg-entry" >
-                                                <h4> <?php echo  $t->ticket_name." ".$t->ticket_count." left";?><button class="myBtn" data-id='<?php echo  $t->ticket_type_id;?>'>Buy More Tickets</button></h4>
-
-                                                <span class="property-price"><?php echo "P"." ".$t->price.".00";?></span>
-                                                 <?php if($e->event_status == "Approved"){?>
-                                                 <!-- <span>&nbsp; &nbsp; &nbsp;
-                                                 <form method="post" action="<?php echo site_url();?>/event/cEvent/buyTicket">
-                                                     <input type="text" name="eId" value="<?php echo $e->event_id;?>">
-                                                     <input type="text" name="tId" value="<?php echo $t->ticket_type_id;?>">
-
-                                                 </form> -->
-
-                                                 <?php
-                                                $now = new DateTime("now");
-                                                $end = new DateTime($e->event_date_end);
-
-                                                 if(!$bought && $now <= $end){?>
-                                                   <a href="<?php echo site_url();?>/event/cEvent/buyTicket/<?php echo $t->ticket_type_id;?>/<?php echo $e->event_id;?>"><input hidden class="val" value="<?php echo $t->price;?>">
-                                                <button   class="buy navbar-btn nav-button wow bounceInRight login animated" >Buy</button></a>
-                                                <?php }?>
-
-                                                </span>                                            <?php }?>
-                                                <!--<span>&nbsp;&nbsp;&nbsp; Sold:
-                                                 <?php $ts->cnt?>
-                                                </span> -->
-                                                <!-- <script>
-   $(document).on('click', 'button.buy', function () {
-        alert("asdasdasd");
-        var val =$("this").closest('input.val').getVal();
-        var cVal = $(document).closest('.cVal').getVal();
-        alert("ASDASDAsd");
-    });
-</script> -->
+                                            <div class="col-md-10 col-sm-10 col-xs-10 blg-entry" >
+                                                <h4><?php echo  $t->ticket_name." : ".$t->ticket_count." left";?></h4>
+                                                <h3><span class="property-price"><?php echo "P"." ".$t->price.".00";?></span></h3>
+                                                    <?php if($e->event_status == "Approved"){
+                                                        $now = new DateTime("now");
+                                                        $end = new DateTime($e->event_date_end);
+                                                        if(!$bought && $now <= $end){ ?>
+                                                            <button class="navbar-btn nav-button wow bounceInRight login myBtn" data-id='<?php echo  $t->ticket_type_id;?>'>Buy Tickets</button>
+                                                        <?php } ?>
+                                                    <?php }?>
                                             </div>
-                                        </li>
+
                                         <?php } ?>
-                                    </ul>
                                 </div>
-                                <h1>Card Load: <span><?php echo $u->load_amt; ?></span></h1>
+                                
                             </div>
                           </div>
-                            
+
                             <!-- <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
                                 <div class="panel-heading">
                                 <h3 class="panel-title">Search</h3>
@@ -575,8 +546,9 @@ div.desc {
                                 <h4>Contact Us</h4>
                                 <div class="footer-title-line"></div>
                                 <ul class="footer-adress">
-                                    <li><i class="pe-7s-mail strong"> </i> dailyEvents@gmail.com</li>
-                                    <li><i class="pe-7s-call strong"> </i> 253-2753</li>
+                                    <li><i class="pe-7s-map-marker strong"> </i> USC TC - Nasipit Talamban Cebu City</li>
+                                    <li><i class="pe-7s-mail strong"> </i> dailyevents@gmail.com</li>
+                                    <li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
                                 </ul>
 
                             </div>
@@ -619,13 +591,13 @@ div.desc {
             <form method="POST" id="cartForm" action="<?php echo site_url('finance/cCart/addToCart'); ?>">
                 <div class="row">
                     <div class="col-md-4">
-                        <button class="btn" id="unaM" type="button"><i class="fa fa-minus" aria-hidden="true"></i></button>
+                        <button class="btn" id="unaM" type="button" style="float: right;"><i class="fa fa-minus" aria-hidden="true"></i></button>
                     </div>
                     <div class="col-md-4">
                         <input type="text" id="qty1" name="qty1" class="form-control" value="1" aria-label="Quantity">
                     </div>
                     <div class="col-md-4">
-                        <button class="btn" id="unaP" type="button"><i class="fa fa-plus" aria-hidden="true"></i></button>
+                        <button class="btn" id="unaP" type="button" style="float: left;"><i class="fa fa-plus" aria-hidden="true"></i></button>
                     </div>
                 </div>
 
@@ -633,8 +605,8 @@ div.desc {
                 <input type="hidden" id="ticID" name="ticket" class="form-control col-8" placeholder="Quantity" aria-label="Quantity">
         </div>
         <div class="modal-footer">
-            <button class="btn btn-success" id="addToCart"  type="submit">Add to Cart</button>
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button class="btn btn-success" id="addToCart"  type="submit">Add to Cart</button>
         </form>
         </div>
       </div>
@@ -651,6 +623,9 @@ $(document).ready(function(){
     $("#myModal").modal();
     $("#ticID").val($(this).data('id')) ;
   });
+  $("#confirmdelete").click(function(){
+    $("#deletemodal").modal("show");
+  });
   $("#unaM").click(function(){
     if($('#qty1').val() > 1){
       var get = $('#qty1').val();
@@ -658,15 +633,50 @@ $(document).ready(function(){
       $('#qty1').val(get);
     }
   });
+
+  $("#qty1").on("keyup", function () {
+    var get = parseInt($('#qty1').val());
+    check($("#ticID").val());
+
+    console.log("get" +get);
+    console.log("limit "+limit);
+    if (get > limit) {
+        console.log("im in");
+        $('#qty1').val(limit);
+    }
+  });
+
+  var limit = 0;
   $("#unaP").click(function(){
     var get = parseInt($('#qty1').val());
-    get+=1;
+
+
+    check($("#ticID").val());
+
+    if (get != limit) {
+      get++;
+    }
+
     $('#qty1').val(get);
   });
 
   $("#intrstd").click(function(){
     $(this).attr("disabled",true);
   });
+
+  //check if more than limit
+  function check (id) {
+    $.ajax ({
+      url : "<?php echo site_url()?>/finance/CCart/getLimit",
+      data : {"id" : id},
+      method : "POST",
+      success: function(e){
+                limit = e;
+            },
+            error: function(e){
+            }
+    });
+  }
 
   // btn.onclick = function() {
   //   modal.style.display = "block";

@@ -37,7 +37,7 @@
 
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Home"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><span class="fas fa-home fa-lg"></span></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents/1"><span class="fas fa-user fa-lg"></span></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><span class="fas fa-bell fa-lg"><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/cUser/viewAnnouncements"><span><i class="fas fa-bell fa-lg"></i></span><?php if($announcementCount>0) {?><span id="bdg" class="badge badge-notify"><?php echo $announcementCount;?></span><?php }?></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="Interested Events"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><span class="fas fa-star fa-lg"></span></a></li>
                         <li class="wow fadeInDown" data-wow-delay="0.1s" title="View Cart"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><span class="fas fa-shopping-cart fa-lg"></span></a></li>
 
@@ -47,11 +47,11 @@
         </nav>
         <!-- End of nav bar -->
 
-        <div class="page-head"> 
+        <div class="page-head">
             <div class="container">
                 <div class="row">
                     <div class="page-head-content">
-                        <h1 class="page-title">View Cart</h1>               
+                        <h1 class="page-title">View Cart</h1>
                     </div>
                 </div>
             </div>
@@ -63,46 +63,123 @@
          <div class="container">
              <div class="row">
                 <div class="col-md-12 ">
-                  <?php if ($this->session->flashdata('error_msg')): ?>
-                      <div class="alert alert-danger" style="margin-top: 15px;">
-                          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                          <?php echo $this->session->flashdata('error_msg'); ?>
-                      </div>
-                  <?php endif ?>
-                      <div class="alert alert-danger hidden" id="error" style="margin-top: 15px;">
-                          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                          <div id="errLabel"></div>
-                      </div>
-                  
-                  <?php if ($this->session->flashdata('success_msg')): ?>
-                      <div class="alert alert-success" style="margin-top: 15px;">
-                          <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
-                          <?php echo $this->session->flashdata('success_msg'); ?>
-                      </div>
-                  <?php endif ?>
+
+                <div class="col-md-3 p0 padding-top-40">
+
+                </div>
+
 
 
                   <div class="col-md-12">
-                    <div class="col-md-3 wow fadeInRight animated" style="padding:1%; margin-top: 2%;">
-                      <div class="panel panel-default" style="border-style: solid;border-color: #CB6C52;">
+                    <div class="col-md-3 wow fadeInRight animated" style="padding:1;">
+                      <div class="blog-asside-right pr0">
+                        <div class="panel panel-default sidebar-menu wow fadeInRight animated" >
+                            <div class="panel-body search-widget">
+                               <div class="col-md-12">
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="panel-heading">
+                                                <center><p style="font-size: 3em;word-wrap: break-word; border-bottom: solid 3px #CB6C52;" class="panel-title">Php <?php foreach($user as $u){echo $u->load_amt;}?>.00</p></center>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                      <p><?php echo CustomizationManager::$strings->PROFILE_PAGE_INSUFFICIENT_BALANCE ?>
+                                        <a style=" color: #e2624b; cursor:pointer; border-bottom: 1.5px solid #e2624b;padding-bottom: 2px"  onMouseOver="this.style.color='#ffcec0';this.style.paddingBottom='8px';this.style.borderBottom='3px solid #e2624b';"    onMouseOut="this.style.color='#e2624b' ;this.style.paddingBottom='2px';" type="button" class="dbutton " id="load" ><?php echo CustomizationManager::$strings->PROFILE_PAGE_LOAD_NOW ?></a>
+  <script>
+     $("#load").click(function(){
+        $("#some").toggle(500);
+    });
+ </script>
+                                      </p>
+                                      <div class="row">
+                                        <div class="col-xs-12" id="some" hidden="">
+                                          <form action="<?php echo site_url(); ?>/user/CUser/redeemCodeInCart" method="post">
+                                              <input type="text" class="form-control" name="ccode" placeholder="Enter code">
+                                              <!-- <button type="submit" class="navbar-btn nav-button pull-right"   >Redeem Code</button> -->
+                                              <button type="submit" class="navbar-btn nav-button pull-right"   ><?php echo CustomizationManager::$strings->PROFILE_PAGE_REDEEM_CODE ?></button>
+                                          </form>
+                                        </div>
+                                      </div>
+                                    </div>
+                                </div> <!-- col-md-12 -->
+                            </div> <!--panel body search widget -->
+                        </div>
+                        <div class="modal fade" id="lmodal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h3><img src="img/credit-card.png" class="elogo"> eLoad</h3>
+                                    </div>
+                                    <div class="modal-body">
+
+                                        <label class="label-control">Card Number</label>
+                                        <input type="text" class="form-control" name="" placeholder="Enter Card Number">
+
+                                        <h6 class="note">*Note: you only have 3 attemps to enter correct values</h6>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Cancel</button>
+                                        <button type="button" class="btn btn-primary" data-dismiss="modal">OK</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+
+
+
+
+                      <!-- <div class="panel panel-default" style="border-style: solid;border-color: #CB6C52;">
                         <div class="panel-body">
                             <h2><strong>Load Balance :</strong></h2>
                             <span class="h4" style="color: #CB6C52;">Php <?php foreach($user as $u){echo $u->load_amt;}?>.00</span>
                         </div>
-                      </div>
+                      </div> -->
 
                       <div class="panel panel-default" style="border-style: solid;border-color: #CB6C52;">
                         <div class="panel-body">
                             <h2><strong>Total :</strong></h2>
-                            <span class="h4" style="color: #CB6C52;" id="total">Php <?php foreach($total as $t){echo $t->total;}?>.00</span>
+                            <span class="h4" style="color: #CB6C52;" id="total">Php <?php foreach($total as $t){
+                              if($t->total>0){
+                                echo $t->total;
+                              }else{
+                                echo "0";
+                              }
+                            }?>.00</span>
                         </div>
                       </div>
                     </div>
 
+                    <div class="col-md-9">
+                      <?php if ($this->session->flashdata('error_msg')): ?>
+                        <div class="alert alert-danger">
+                            <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                            <?php echo $this->session->flashdata('error_msg'); ?>
+                        </div>
+                      <?php endif ?>
+                          <div class="alert alert-danger hidden" id="error">
+                              <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                              <div id="errLabel"></div>
+                          </div>
+
+                      <?php if ($this->session->flashdata('success_msg')): ?>
+                          <div class="alert alert-success">
+                              <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                              <?php echo $this->session->flashdata('success_msg'); ?>
+                          </div>
+                      <?php endif ?>
+                    </div>
+
                     <div class="col-md-9" style="padding:1%; margin-top: 3%; border-color:  #ecf1f2; border-style: solid; border-width: 1px;">
                       <div id="list-type" class="proerty-th">
-                      <?php 
+                      <?php
                           $attr = array('class' => 'form_horizontal',
+
                             'id' => 'myform');
                             echo form_open(site_url()."/finance/CCart/checkout", $attr); ?>
                          <?php if(isset($events) && count($events)>0){
@@ -116,10 +193,10 @@
                                             <strong>Event Name :  <?php echo $event[0]->event_name;?></strong>
                                           </span>
                                       </div>
-                                      <div class="panel-body">                                                      
-                                      
+                                      <div class="panel-body">
+
                                      <?php
-                                     foreach ($event as $cart) {                     
+                                     foreach ($event as $cart) {
                                      ?>
                                         <div class="panel panel-default" style="margin-left:3%;">
                                         <input type="hidden" class="cartID" value="<?php echo $cart->cart_id;?>" >
@@ -127,8 +204,8 @@
 
                                                 <input type="checkbox" name="ticket[]" value="<?php echo $cart->cart_id;?>" class="<?php echo 'tix'.key($events);?> indi" id="<?php echo $cart->ticket_type_id;?>" checked="checked">
                                                 <span> Ticket Name:<strong><?php echo $cart->ticket_name;?></strong></span>
-                                                
-                                                <span class="pull-right h5">Total Price:<span id="label<?php echo $cart->cart_id;?>"><b><?php echo $cart->total_price;?></b></span></span>                       
+
+                                                <span class="pull-right h5">Total Price:<span id="label<?php echo $cart->cart_id;?>"><b><?php echo $cart->total_price;?></b></span></span>
                                           </div>
                                          <div class="panel-body">
                                             <table class="table table-sm table-borderless">
@@ -146,17 +223,17 @@
                                                           </div>
                                                       </form>
                                                     </td>
-                                                    <td> 
+                                                    <td>
                                                       <form  method="POST" action="<?php echo site_url(); ?>/finance/CCart/deleteCartItem">
                                                         <input name="id" class="hidden" value="<?php echo $cart->cart_id;?>">
-                                                        <button type="submit" class="button btn btn-default pull-right">
+                                                        <button type="submit" class="button btn btn-default pull-right" data-toggle="modal" data-target="#myModal">
                                                           <i class="glyphicon glyphicon-trash delete"></i>
                                                         </button>
                                                       </form>
-                                                    </td>     
+                                                    </td>
                                                   </tr>
                                                 </tbody>
-                                              </table>                                           
+                                              </table>
                                          </div>
                                        </div>
                                      <?php
@@ -171,20 +248,43 @@
                         </div>
                          <?php
                          }else{?>
-                            <h1>Nothing in your cart. Shop for tickets now!</h1>
+                            <h1 align="center">
+                                <br>Nothing in your cart.<br> 
+                                 <div class="button" style="margin:10px;">
+                                    <a href="<?php echo site_url();?>/CLogin/viewDashBoard" class="navbar-btn nav-button login"><span>Shop for tickets now!</span></a>
+                                  </div>   
+                            </h1>
                          <?php }?>
                        <?php echo form_close(); ?>
                     </div>
                     </div>
                   </div>
-                    
+
                 </div>
              </div><!-- END OF ROW-->
-            
+
          </div>
-        
+      <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Modal Header</h4>
+        </div>
+        <div class="modal-body">
+          <center><p>Successfully Deleted the item!</p></center>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
      <!--- END OF CONTENT AREA-->
-      
+
         <!-- Footer area-->
         <div class="footer-area">
             <div class=" footer">
@@ -207,8 +307,9 @@
                                 <h4>Contact Us</h4>
                                 <div class="footer-title-line"></div>
                                 <ul class="footer-adress">
-                                    <li><i class="pe-7s-mail strong"> </i> dailyEvents@gmail.com</li>
-                                    <li><i class="pe-7s-call strong"> </i> 253-2753</li>
+                                    <li><i class="pe-7s-map-marker strong"> </i> USC TC - Nasipit Talamban Cebu City</li>
+                                    <li><i class="pe-7s-mail strong"> </i> dailyevents@gmail.com</li>
+                                    <li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
                                 </ul>
 
                             </div>
@@ -276,60 +377,60 @@
                           // alert("Load Balance Insufficient");
                         }
                       }
-                    
+
                  });
-                 
+
                 return false;
       });
-      
+
     $(document).ready(function() {
+
       var id = "";
       $.ajax({
         url: $("#form01").attr('action'),
         method:"POST",
-        success: function(retval){ 
+        success: function(retval){
                   var arr = JSON.parse(retval);
                   for (var i = 0; i < arr.length; i++) {
                     if ($("#"+arr[i]['ticket_id']).attr("checked") == "checked") {
                       id = id+"/"+arr[i]['ticket_id'];
                     }
                   }
-                  $("#i01").val(id); 
+                  $("#i01").val(id);
                   console.log(id);
                 },
         error: function(){
                 alert("error!");
               }
       });
-      
+
 
       $('input.indi').on('ifChecked', function (event){
-          $(this).closest("input").attr('checked', true);          
+          $(this).closest("input").attr('checked', true);
           var id = $(this).closest("input").attr('id');
           // $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").addClass("checked");
           // $(document).find(".tix"+id).attr("checked",true);
 
           var classList = $(this).attr('class').split(/\s+/);
           var temp = classList[0].replace('tix','');
-        
 
           var cnt =0;
           var cnt1 =0;
           $.each($(document).find(".tix"+temp),function(index1,item1){
-            
+
                 if(item1.checked){
                   cnt1+=1;
                 }else{
-                  console.log(item1);      
+                  console.log(item1);
                 }
                 cnt+=1;
               });
           if(cnt1 == cnt){
             $(document).find("input#"+temp).iCheck('check');
           }
-          
+
             addId($(this).attr('id'));
-          
+            updateTotalByCheck("single-ch",$(this).parent().siblings('.h5'));
       });
       $('input.indi').on('ifUnchecked', function (event) {
           $(this).closest("input").attr('checked', false);
@@ -346,38 +447,42 @@
 
           });
           removeId($(this).attr('id'));
+          updateTotalByCheck("single-unch",$(this).parent().siblings('.h5'));
       });
       $('input.evt').on('ifChecked', function (event){
-          $(this).closest("input").attr('checked', true);          
+          $(this).closest("input").attr('checked', true);
           var id = $(this).closest("input").attr('id');
           $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").addClass("checked");
           $(document).find(".tix"+id).attr("checked",true);
 
           var id = $(this).attr('id');
-          
-          
+
+
           // $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").addClass("checked");
           $(document).find(".tix"+id).iCheck('check');
 
           // $.each($(document).find(".tix"+id),function(index1,item1){
           //     addId(item1.id);
           // });
+          // updateTotalByCheck("all-ch",$(this).parent().parent().siblings('.panel-body').find('.h5'));
       });
       $('input.evt').on('ifUnchecked', function (event) {
-          $(this).closest("input").attr('checked', true);          
+          $(this).closest("input").attr('checked', true);
           var id = $(this).closest("input").attr('id');
           $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").removeClass("checked");
           $(document).find(".tix"+id).attr("checked",false);
 
           var id = $(this).attr('id');
-          
-          
+
+
           // $(document).find(".tix"+id).closest("div.icheckbox_square-yellow").removeClass("checked");
           // $(document).find(".tix"+id).attr("checked",false);
           $(document).find(".tix"+id).iCheck('uncheck');
           $.each($(document).find(".tix"+id),function(index1,item1){
                 removeId(item1.id);
               });
+
+          updateTotalByCheck("all-unch",$(this).parent().parent().siblings('.panel-body').find('.h5'));
       });
       function checkID (id) {
         var s = $("#i01").val();
@@ -417,7 +522,7 @@
 
       $(".minus").click(function(){
         var input = $(this).closest("div.row").find("input");
-        if(input.val() > 1){
+        if(input.val() > 0){
           var get = input.val();
           get-=1;
           input.val(get);
@@ -439,7 +544,7 @@
 
           updateTotal("plus", $(this).closest("tr").find("th.closest").html());
         }
-        
+
       });
 
       //check if more than limit
@@ -474,6 +579,55 @@
         $("#total").text("Php "+(total+price)+".00");
       }
 
+      function updateTotalByCheck (typeCheck,container) {
+        //p = p.replace("Price:", "");
+        // p = p.replace("Price:", "");
+        // var price;
+        // if(type == "plus"){
+        //   price = parseInt(p);
+        // }else{
+        //   price = parseInt(p);
+        //   price = -price;
+        // }
+
+        // var t = $("#total").text();
+        // t = t.replace("Php ", "");
+        // var total = parseInt(t);
+
+        // $("#total").text("Php "+(total+price)+".00");
+        var checkArr = ["all-unch","single-ch","single-unch"],
+            totalDiv = $('#total'),
+            total = parseInt(totalDiv.html().replace("Php ","")),
+            x = (typeCheck == "all-unch")? 0 : parseInt(container.children().text());
+        if($.inArray(typeCheck,checkArr) > -1){
+         if(typeCheck == "single-ch"){
+           total += x;
+
+          }else if(typeCheck == "single-unch"){
+            total -= x;
+          }else if(typeCheck == "all-unch"){
+            if(container.length > 1){
+              $.each(container,function(key, value){
+                x += parseInt(value.children[0].innerText);
+              });
+              
+            }else{
+              x = parseInt(container.children().text());
+            }
+            total -= x;
+          }
+        // var x = parseInt($("#total").text()),
+        //     y = parseInt(container.children().text()),
+        //     result = x -;
+          
+          totalDiv.text("Php "+(total)+".00");
+        }else{
+          console.log("Please do not change the name.");  
+        }
+
+        
+      }
+
       function updateTicketCount(type,id,quantity){
         var link ="";
         if(type == "plus"){
@@ -488,6 +642,7 @@
                 data: { "id":id,"quantity":quantity },
                 type: "POST",
                 success: function(e){
+
                      $(document).find(".plus").attr("disabled", false);
                      $(document).find(".minus").attr("disabled", false);
                      var arr = e.split('||');
@@ -496,6 +651,10 @@
                      // alert($(document).find("input#"+arr[1]).closest("div.panel").find("div.panel-body").find("table.table").find("div#labelrani").text());
                      // $(document).find("input#"+arr[1]).closest("div.panel").find("div.panel-body").find("label").text();
                      // alert(arr[0]+"-"+arr[1]);
+
+                     if(quantity == 0){
+                       location.reload();
+                     }
                 },
                 error: function(e){
                     // console.log(e);
@@ -505,6 +664,6 @@
       }
 
     } );
-    
-   
+
+
 </script>

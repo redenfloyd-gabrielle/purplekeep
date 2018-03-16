@@ -28,21 +28,23 @@
                 </div>
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
-                  <div class="button navbar-right">
-                      <!-- <a href ="<?php echo site_url();?>/cLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a> -->
-                      <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->PROFILE_PAGE_LOGOUT_BUTTON ?> </button></a>
-                  </div>
-                  <div class="button navbar-right">
-                      <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> <?php echo CustomizationManager::$strings->PROFILE_PAGE_CREATE_EVENT_BUTTON ?> </button></a>
-                  </div>
+                    <div class="button navbar-right">
+                        <!-- <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login"> Logout </button></a> -->
+                        <a href ="<?php echo site_url();?>/CLogin/userLogout" data-wow-delay="0.1s"><button class="navbar-btn nav-button wow bounceInRight login" title="Logout"><span class="fas fa-sign-out-alt fa-lg"></span></button></a>
+                    </div>
+                    <div class="button navbar-right">
+                        <!-- <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login"> Create Event </button></a> -->
+                        <a href ="<?php echo site_url();?>/event/CEvent/viewCreateEvent" data-wow-delay="0.4s"><button class="navbar-btn nav-button wow bounceInRight login" title="Create Event"><span class="fas fa-calendar-plus fa-lg"></span></button></a>
+                    </div>
+                    <ul class="main-nav nav navbar-nav navbar-right">
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Home"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><span class="fas fa-home fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Profile"><a href="<?php echo site_url();?>/event/CEvent/viewEvents/1"><span class="fas fa-user fa-lg"></span></a></li>
 
-                  <ul class="main-nav nav navbar-nav navbar-right">
-                      <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/CLogin/viewDashBoard"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_HOME ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewEvents"><?php echo CustomizationManager::$strings->PROFILE_PAGE_NAV_PROFILE ?></a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements">Announcements</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents">Interested Events</a></li>
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/finance/CCart/viewCart">View Cart</a></li>
-                  </ul>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" id="aDropdown" data-id='<?php echo $this->session->userdata['userSession']->userID; ?>' title="Announcements"><a href="<?php echo site_url();?>/user/CUser/viewAnnouncements"><span class="fas fa-bell fa-lg"><?php if($announcementCount>0) {?><span id="bdg" class="ballons"><?php echo $announcementCount;?></span><?php }?></a></li>
+
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="Interested Events"><a href="<?php echo site_url();?>/event/CEvent/viewPreferenceEvents"><span class="fas fa-star fa-lg"></span></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s" title="View Cart"><a href="<?php echo site_url();?>/finance/CCart/viewCart"><span class="fas fa-shopping-cart fa-lg"></span></a></li>
+                    </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
         </nav>
@@ -73,7 +75,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <div class="panel-heading">
-                                                    <center><h1 style="font-size: 50px;" class="panel-title">P<?php foreach($user as $u){echo $u->load_amt;}?>.00</h1></center>
+                                                    <center><p style="font-size: 3em;word-wrap: break-word; border-bottom: solid 3px #CB6C52;" class="panel-title">Php <?php foreach($user as $u){echo $u->load_amt;}?>.00</p></center>
                                                 </div>
                                             </div>
                                         </div>
@@ -90,8 +92,8 @@
                                             <div class="row">
 
                                                     <div class="col-xs-12" id="some" hidden="">
-                                                        <form action="<?php echo site_url(); ?>/user/CUser/redeemCode" method="post">
-                                                            <input type="text" class="form-control" name="ccode" placeholder="Enter code">
+                                                        <form action="<?php echo site_url(); ?>/user/CUser/redeemCodeCalendar" method="post">
+                                                            <input type="text" class="form-control" name="ccode" placeholder="Enter code" required="">
                                                             <!-- <button type="submit" class="navbar-btn nav-button pull-right"   >Redeem Code</button> -->
                                                             <button type="submit" class="navbar-btn nav-button pull-right"   ><?php echo CustomizationManager::$strings->PROFILE_PAGE_REDEEM_CODE ?></button>
                                                         </form>
@@ -127,9 +129,9 @@
                                     <fieldset >
                                         <div class="row">
                                             <div class="col-md-12">
-                                                 <a href="<?php echo site_url()?>/calendar/CCalendar">
+                                                 <a href="<?php echo site_url();?>/event/CEvent/viewEvents/1">
                                                    <!-- <button class = "button btn largesearch-btn">Calendar</button></a> -->
-                                                   <button class = "button btn largesearch-btn"><?php echo CustomizationManager::$strings->PROFILE_PAGE_CALENDAR_BUTTON ?></button></a>
+                                                   <button class = "button btn largesearch-btn"><?php echo CustomizationManager::$strings->CALENDAR_PAGE_PROFILE_BUTTON ?></button></a>
                                             </div>
                                         </div>
                                     </fieldset>
@@ -137,58 +139,24 @@
                                 <br><br>
                             </div>
 
-                            <div class="panel panel-default sidebar-menu wow fadeInRight animated">
-                                <div class="panel-heading">
-                                  <!-- <h3 class="panel-title">Recommended</h3> -->
-                                  <h3 class="panel-title"><?php echo CustomizationManager::$strings->PROFILE_PAGE_RECOMMENDED_HEADER ?></h3>
-                                </div>
-                                <div class="panel-body recent-property-widget">
-                                            <ul>
-                                            <li>
-                                                <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                    <a href="single.html"><img src="assets/img/demo/small-property-2.jpg"></a>
-                                                </div>
-                                                <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                    <h6> <a href="single.html"> JS Workshop </a></h6>
-                                                    <span class="property-price">P 200.00</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                    <a href="single.html"><img src="assets/img/demo/small-property-2.jpg"></a>
-                                                </div>
-                                                <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                    <h6> <a href="single.html"> Music Concert </a></h6>
-                                                    <span class="property-price">P 250.00</span>
-                                                </div>
-                                            </li>
-                                            <li>
-                                                <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                    <a href="single.html"><img src="assets/img/demo/small-property-2.jpg"></a>
-                                                </div>
-                                                <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                    <h6> <a href="single.html"> Some Party </a></h6>
-                                                    <span class="property-price">P 600.00</span>
-                                                </div>
-                                            </li>
-                                           <li>
-                                                <div class="col-md-3 col-sm-3 col-xs-3 blg-thumb p0">
-                                                    <a href="single.html"><img src="assets/img/demo/small-property-2.jpg"></a>
-                                                </div>
-                                                <div class="col-md-8 col-sm-8 col-xs-8 blg-entry">
-                                                    <h6> <a href="single.html"> Food Bazaar </a></h6>
-                                                    <span class="property-price">P 100.00</span>
-                                                </div>
-                                            </li>
 
-                                        </ul>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
                     <div class="col-md-9  pr0 padding-top-40 properties-page">
                         <div class="col-md-12 clear">
+                          <?php if ($this->session->flashdata('success_msg')): ?>
+                            <div class="alert alert-success">
+                                  <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                                  <?php echo $this->session->flashdata('success_msg') ?>
+                              </div>
+                          <?php endif ?>
+                        <?php if ($this->session->flashdata('error_msg')): ?>
+                            <div class="alert alert-danger" style="margin-top: 15px;">
+                                <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                                <?php echo $this->session->flashdata('error_msg'); ?>
+                            </div>
+                        <?php endif ?>
                             <div class="col-xs-10 page-subheader sorting pl0">
                                     <div class="content">
                                         <div class="row">
@@ -200,10 +168,10 @@
 
                                         </div>
                                         <!-- /.row -->
-                                        
+
 
                                         <!-- LEGEND -->
-                                        
+
                                         <div class="calendar-legend">
                                             <center><h3>L E G E N D</h3></center>
                                             <ul class="legend">

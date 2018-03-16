@@ -11,6 +11,7 @@
 
 <!-- Title-->
 <title>DailyEvents </title>
+<link rel="icon" href="<?php echo base_url('assets/dianeAssets/img/DE Icon.png')?>">
 <!-- Favicons -->
 <link rel="apple-touch-icon-precomposed" href="assets/ico/apple-touch-icon-57-precomposed.png">
 <link rel="shortcut icon" href="assets/ico/logo.png">
@@ -47,8 +48,6 @@
         <div class="tools-bar">
             <ul class="nav navbar-nav nav-main-xs">
                 <li><a href="#" class="icon-toolsbar nav-mini"><i class="fa fa-bars"></i></a></li>
-
-                <li><button class="btn btn-circle btn-header-search" ><i class="fa fa-search"></i></button></li>
             </ul>
 
 
@@ -65,9 +64,8 @@
                       <em> <?php echo $this->session->userdata['adminSession']->userFName." ".$this->session->userdata['adminSession']->userLName; ?> </em> <i class="dropdown-icon fa fa-angle-down"></i>
                     </a>
                     <ul class="dropdown-menu pull-right icon-right arrow">
-                        <li><a href="#"><i class="fa fa-user"></i> Profile</a></li>
                         <li><a href="<?php echo site_url();?>/admin/CAdmin/adminSettings"><i class="fa fa-cog"></i> Settings </a></li>
-                        <li><a href ="<?php echo site_url();?>/admin/CAdmin/updateAccount" data-wow-delay="0.1s"><i class="icon  fa fa-cog"></i> Update Profile </a></li>
+                        <li><a href ="<?php echo site_url();?>/admin/CAdmin/updateAccount" data-wow-delay="0.1s"><i class="fa fa-user"></i> Update Profile </a></li>
                         <li class="divider"></li>
                         <li><a href="<?php echo site_url();?>/CLogin/userLogout"><i class="fa fa-sign-out"></i> Signout </a></li>
                     </ul>
@@ -118,7 +116,7 @@
 
             <li><a href="<?php echo site_url();?>/admin/CAdmin/viewAnnouncements"><i class="icon  fa fa-bullhorn"></i>  Announcements </a></li>
 
-            <li><a href="<?php echo site_url();?>/admin/CAdmin/viewFinance"><i class="icon  fa fa-money"></i> Finance </a></li>
+            <!--<li><a href="<?//php echo site_url();?>/admin/CAdmin/viewFinance"><i class="icon  fa fa-money"></i> Finances </a></li>-->
 
             <li><a href ="<?php echo site_url();?>/admin/CAdmin/generateCard" data-wow-delay="0.1s"><i class="icon  fa fa-credit-card"></i> Cards </a></li>
 

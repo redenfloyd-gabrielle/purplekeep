@@ -3,8 +3,9 @@
 <html class="no-js">
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Event System | Home page</title>
+    <title>Event System</title>
+
+    <link rel="icon" href="<?php echo base_url('assets/dianeAssets/img/DE Icon.png')?>">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -79,6 +80,13 @@
             -moz-box-shadow:    1px 1px 3px 3px #ccc;
             -webkit-box-shadow: 1px 1px 3px 3px #ccc;
             box-shadow:         1px 1px 3px 3px #ccc;
+        }
+
+        .badge-notify {
+           background: red;
+           position: relative;
+           top: -15px;
+           left: -5px;
         }        
 
       .checkoutContainer {

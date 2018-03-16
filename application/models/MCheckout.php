@@ -17,12 +17,13 @@
 		}
 
 		public function showCheckout ($id) {
-			$this->db->select("*");
+			$this->db->select("*,DATE_FORMAT(checkout.checkCreatedOn,'%d-%b-%Y %H:%m') as checkCreatedOn");
 			$this->db->from("checkout");
 			$this->db->join("cart", "cart.checkoutId = checkout.checkId", "right");
 			$this->db->join("ticket_type as tt","tt.ticket_type_id = cart.ticket_id","left");
 			$this->db->join("event_info as ei","tt.event_id = ei.event_id","left");
 			$this->db->where("checkout.account_id", $id);
+			$this->db->group_by("checkout.checkId");
 			
 			$query = $this->db->get();
 			return $query->result();

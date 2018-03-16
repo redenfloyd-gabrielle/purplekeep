@@ -63,7 +63,7 @@
                     <div class="form-group" >
                       <label for="" class="col-8 control-label">Birthdate:</label>
                       <div class="col-8">
-                        <input class="form-control" type="date" name="ubdate" id="bdate" required="" value="<?php echo $updateAdmin->birthdate; ?>">
+                        <input class="form-control" type="date" name="ubdate" id="bdayt" required="" value="<?php echo $updateAdmin->birthdate; ?>">
                       </div>
                     </div>
 
@@ -82,7 +82,7 @@
                       <label for="" class="col-8 control-label">Contact no:</label>
                       <i>(if mobile no.: 09XXXXXXXXX; if telephone no.: XXX-XXXX)</i>
                       <div class="col-8">
-                        <input class="form-control" type="number" min="11" name="ucontact" required="" value="<?php echo $updateAdmin->contact_no; ?>">
+                        <input class="form-control" type="text" pattern="^(09)\d{2}-\d{3}-\d{4}$|^\d{3}-\d{4}$" name="ucontact" required="" value="<?php echo $updateAdmin->contact_no; ?>">
                       </div>
                     </div>
 
@@ -100,7 +100,7 @@
                       <label for="" class="col-8 control-label">Password:</label>
                       <i>(must contain at least 8 characters, maximum of 50 characters)</i>
                       <div class="col-8">
-                        <input class="form-control" type="password" name="upassword" required="" value="<?php echo $updateAdmin->password; ?>">
+                        <input class="form-control" type="password" name="upassword" required="">
                       </div>
                         <input class="form-control hidden" type="text" name="uuserType" required="" value="<?php echo $updateAdmin->user_type; ?>">
                       </div>
@@ -108,7 +108,7 @@
 
                     <div class="modal-footer">
                         <button id="closeEditAccount" type="button" class="btn btn-danger" data-dismiss="modal" >Close</button>
-                        <input onclick="return formValidate()" id="" class="btn btn-primary" type="submit"  name="action" value="Updatse">
+                        <input onclick="return formValidate()" id="" class="btn btn-primary" type="submit"  name="action" value="Update">
                     </div>
                 </form>
                                     </div>
@@ -186,7 +186,7 @@
                       <label for="" class="col-8 control-label">Contact no:</label>
                       <i>(if mobile no.: 09XXXXXXXXX; if telephone no.: XXX-XXXX)</i>
                       <div class="col-8">
-                        <input class="form-control" type="number" min="11" name="ucontact" required="" value="<?php echo $updateAdmin->contact_no; ?>">
+                        <input class="form-control" type="text" min="11" name="ucontact" required="" value="<?php echo $updateAdmin->contact_no; ?>">
                       </div>
                     </div>
 
@@ -227,6 +227,18 @@
     var mname = form["uminame"].value;
     var lname = form["ulname"].value;
     var regex = /\d/;
+
+    var bdate = document.getElementById("bdayt").value;
+    var date = new Date(bdate);
+    var year = date.getFullYear() + 18;
+    var validateDate = new Date();
+    var validateYear = validateDate.getFullYear();
+    if(year < validateYear){
+      return true;
+    }else{
+      alert("You are below 18");
+      return false;
+    }
 
     if(regex.test(fname) || regex.test(mname) || regex.test(lname)){
       alert("Invalid Input.");
