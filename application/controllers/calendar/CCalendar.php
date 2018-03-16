@@ -8,6 +8,7 @@ class CCalendar extends CI_Controller {
 	 	$this->load->model('calendar/MCalendar');
 		$this->load->model('user/MUser');
 	 	$this->load->model('user/MEvent');
+	 	$this->load->model('admin/MAnnouncement');
 	}
 
 	public function index()

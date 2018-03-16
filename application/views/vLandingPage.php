@@ -53,15 +53,13 @@
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
-        </nav> <! -- END OF NAV -->
+        </nav> <!-- END OF NAV -->
 
     <div class="page-head" style="height: 400px;">
-            <div class="container">
-                    <div class="row">
-                        <div class="page-head-content">
-                                   <div class="container slider-content" >
+        <div class="page-head-content">
+            <div class="container slider-content" >
                 <div class="row">
-                    <div class="col-lg-8 col-lg-offset-1 col-md-10 col-md-offset-1 col-sm-12">
+                    <div class="col-md-10 col-md-offset-1 ">
                         <!-- <h2>See Events Near You</h2> -->
                         <h2><?php echo CustomizationManager::$strings->LANDING_PAGE_CAROUSEL_MESSAGE ?></h2>
 
@@ -143,13 +141,11 @@
 
 
 
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-                        </div>
-                    </div>
-                </div>
          </div>
 
 
@@ -377,7 +373,8 @@
                     </div>
                 </div>
             </div>
-        </div> <!-END OF FOOTER -->
+        </div> 
+        <!--END OF FOOTER -->
 </body>
 
 <script>
