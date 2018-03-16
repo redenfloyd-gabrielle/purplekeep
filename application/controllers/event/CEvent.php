@@ -215,7 +215,7 @@ class CEvent extends CI_Controller {
                               	$("#user").addClass("active");
                         </script>';
         $data['page_title'] = "Create Event Page";
-  		$this->load->view('imports/vHeaderSignUpPage',$data);
+  		$this->load->view('imports/vHeaderLandingPage',$data);
 		$this->load->view('vNewEvent',$data);
 		$this->load->view('imports/vFooterLandingPage');
 
