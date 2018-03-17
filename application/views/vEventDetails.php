@@ -176,7 +176,7 @@ div.desc {
                         }
                     ?>
                     <div class="page-head-content">
-                        <h1 class="page-title">EVENT DETAILS</h1>
+                        <h1 class="page-title"><?php echo CustomizationManager::$strings->EVENT_DETAILS_PAGE_TITLE ?></h1>
                     </div>
                 </div>
             </div>
@@ -233,21 +233,21 @@ div.desc {
 
                                 <div class="section additional-details">
 
-                                    <h4 class="s-property-title">Additional Details</h4>
+                                    <h4 class="s-property-title"><?php echo CustomizationManager::$strings->EVENT_DETAILS_PAGE_ADDITIONAL ?></h4>
 
                                     <ul class="additional-details-list clearfix">
                                         <li>
-                                            <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Location</span>
+                                            <span class="col-xs-6 col-sm-4 col-md-4 add-d-title"><?php echo CustomizationManager::$strings->EVENT_DETAILS_PAGE_LOCATION ?></span>
 
                                             <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry"><?php echo $e->event_venue.', '.$locate->location_name.', '.$locate->region_code; ?></span>
                                         </li>
 
                                         <li>
-                                            <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Date Start</span>
+                                            <span class="col-xs-6 col-sm-4 col-md-4 add-d-title"><?php echo CustomizationManager::$strings->EVENT_DETAILS_PAGE_DATE_START ?></span>
                                             <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry"><?php echo date('m/d/Y h:i:s a', strtotime("$e->event_date_start")); ?></span>
                                         </li>
                                         <li>
-                                            <span class="col-xs-6 col-sm-4 col-md-4 add-d-title">Date End</span>
+                                            <span class="col-xs-6 col-sm-4 col-md-4 add-d-title"><?php echo CustomizationManager::$strings->EVENT_DETAILS_PAGE_DATE_END ?></span>
                                             <span class="col-xs-6 col-sm-8 col-md-8 add-d-entry"><?php echo date('m/d/Y h:i:s a', strtotime("$e->event_date_start"));  ?></span>
                                         </li>
 
@@ -261,7 +261,7 @@ div.desc {
                                 <!-- End additional-details area  -->
 
                                 <div class="section">
-                                    <h4 class="s-property-title">Description</h4>
+                                    <h4 class="s-property-title"><?php echo CustomizationManager::$strings->EVENT_DETAILS_PAGE_DESC ?></h4>
                                     <div class="s-property-content">
                                         <p><?php echo $e->event_details; ?></p>
                                     </div>
@@ -271,7 +271,7 @@ div.desc {
 
                             <div class="property-meta entry-meta clearfix ">
                                 <span class="property-info-entry">
-                                    <span class="property-info-label">Ticket Sale Status</span>
+                                    <span class="property-info-label"><?php echo CustomizationManager::$strings->EVENT_DETAILS_PAGE_SALE_STATUS ?></span>
                                     <span class="property-info-value"><?php echo $e->event_status; ?></span>
                                 </span>
 
@@ -281,7 +281,7 @@ div.desc {
 
                         <?php if($this->session->userdata['userSession']->userID == $e->user_id){?>
                             <div class="section property-share">
-                                <h4 class="s-property-title">Users who are going:</h4>
+                                <h4 class="s-property-title"><?php echo CustomizationManager::$strings->EVENT_DETAILS_PAGE_GOING ?>:</h4>
                                 <div class="roperty-social">
                                     <ul>
                                     <?php foreach($going as $g){?>
@@ -306,16 +306,16 @@ div.desc {
                                 if($x->event_status == "Approved"){
                                     echo'
                                     <div class="button navbar-right">
-                                        <button class="navbar-btn nav-button login"> <a href ="'.site_url("/event/cEvent/editEvent/$e->event_id").'">Edit Event </a></button>
+                                        <button class="navbar-btn nav-button login"> <a href ="'.site_url("/event/cEvent/editEvent/$e->event_id").'"> '.CustomizationManager::$strings->EVENT_DETAILS_PAGE_EDIT.' </a></button>
                                     </div>';
                                 }else if($x->event_status == "Pending"){
                                     echo'
                                     <div class="button navbar-right">
-                                        <button class="navbar-btn nav-button login" style="background-color:gray;" id="confirmdelete"><a>Delete Event</a></button>
+                                        <button class="navbar-btn nav-button login" style="background-color:gray;" id="confirmdelete"><a> '.CustomizationManager::$strings->EVENT_DETAILS_PAGE_DELETE.' </a></button>
                                     </div>
 
                                     <div class="button navbar-right">
-                                        <button class="navbar-btn nav-button login"> <a href ="'.site_url("/event/cEvent/editEvent/$e->event_id").'">Edit Event </a></button>
+                                        <button class="navbar-btn nav-button login"> <a href ="'.site_url("/event/cEvent/editEvent/$e->event_id").'"> '.CustomizationManager::$strings->EVENT_DETAILS_PAGE_EDIT.' </a></button>
                                     </div>';
                                 }
                             }} ?>
@@ -325,14 +325,14 @@ div.desc {
                       <div class="modal-dialog">
                         <div class="modal-content">
                           <div class="modal-header" style="background-color: #cb6d53;">
-                            <h2 style="color: white;">CONFIRM DELETE!</h2>
+                            <h2 style="color: white;"><?php echo CustomizationManager::$strings->EVENT_DETAILS_PAGE_DELETE_CONFIRM ?></h2>
                           </div>
                           <div class="modal-body">
-                            <h2>Are you sure you want to delete this event?</h2>
+                            <h2><?php echo CustomizationManager::$strings->EVENT_DETAILS_PAGE_DELETE_MESSG ?></h2>
                           </div>
                           <div class="modal-footer">
-                            <button type="button" class="btn btn-primary" data-dismiss="modal">Cancel</button>
-                            <button type="button" class="btn btn-primary" style="background-color: gray;"><a href ="<?php echo site_url('event/cEvent/deleteEvent/'.$e->event_id);?>">Delete</a></button>
+                            <button type="button" class="btn btn-primary" data-dismiss="modal"><?php echo CustomizationManager::$strings->EVENT_DETAILS_PAGE_CANCEL ?></button>
+                            <button type="button" class="btn btn-primary" style="background-color: gray;"><a href ="<?php echo site_url('event/cEvent/deleteEvent/'.$e->event_id);?>"><?php echo CustomizationManager::$strings->EVENT_DETAILS_PAGE_DEL ?></a></button>
                           </div>
                         </div>
                       </div>
@@ -360,7 +360,7 @@ div.desc {
                                                       <a href=""><?php echo $o->first_name." ".$o->middle_initial." ".$o->last_name;?></a>
                                                   </h3>
                                                   <h4 class="dealer-name">
-                                                      <span>Organizers</span>
+                                                      <span><?php echo CustomizationManager::$strings->EVENT_DETAILS_ORGANIZERS ?></span>
                                                   </h4>
                                                     <ul class="dealer-contacts">
                                                         <li><i class="pe-7s-map-marker strong"> </i> University of San Carlos</li>
@@ -388,7 +388,7 @@ div.desc {
 
                             <div class="panel panel-default sidebar-menu similar-property-wdg wow fadeInRight animated" >
                                 <div class="panel-heading" >
-                                    <h3 class="panel-title">Ticket Prices</h3>
+                                    <h3 class="panel-title"><?php echo CustomizationManager::$strings->EVENT_DETAILS_TICKET_PRICE ?></h3>
                                 </div>
                                 <div class="panel-body recent-property-widget" >
                                     <ul>
@@ -396,7 +396,7 @@ div.desc {
                                         <?php foreach ($types as $t) { ?>
                                         <li>
                                             <div class="col-md-8 col-sm-8 col-xs-8 blg-entry" >
-                                                <h4> <?php echo  $t->ticket_name." ".$t->ticket_count." left";?><button class="myBtn" data-id='<?php echo  $t->ticket_type_id;?>'>Buy More Tickets</button></h4>
+                                                <h4> <?php echo  $t->ticket_name.": ".$t->ticket_count." ".CustomizationManager::$strings->EVENT_DETAILS_TICKET_LEFT ;?><button class="myBtn" data-id='<?php echo  $t->ticket_type_id;?>'> <?php echo CustomizationManager::$strings->EVENT_DETAILS_TICKET_BUY_MORE ?> </button></h4>
 
                                                 <span class="property-price"><?php echo "P"." ".$t->price.".00";?></span>
                                                  <?php if($e->event_status == "Approved"){?>
@@ -413,7 +413,7 @@ div.desc {
 
                                                  if(!$bought && $now <= $end){?>
                                                    <a href="<?php echo site_url();?>/event/cEvent/buyTicket/<?php echo $t->ticket_type_id;?>/<?php echo $e->event_id;?>"><input hidden class="val" value="<?php echo $t->price;?>">
-                                                <button   class="buy navbar-btn nav-button wow bounceInRight login animated" >Buy</button></a>
+                                                <button   class="buy navbar-btn nav-button wow bounceInRight login animated" ><?php echo CustomizationManager::$strings->EVENT_DETAILS_TICKET_BUY ?></button></a>
                                                 <?php }?>
 
                                                 </span>                                            <?php }?>
@@ -433,7 +433,7 @@ div.desc {
                                         <?php } ?>
                                     </ul>
                                 </div>
-                                <h1>Card Load: <span><?php echo $u->load_amt; ?></span></h1>
+                                <h1><?php echo CustomizationManager::$strings->LOAD_BALANCE ?>: <span><?php echo $u->load_amt; ?></span></h1>
                             </div>
                           </div>
                             

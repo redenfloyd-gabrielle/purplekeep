@@ -146,5 +146,25 @@
     public $ANNOUNCEMENT_PAGE_NOHEADING = "Ang post na ito ay walang pamagat.";
 
     public $INTERESTED_PAGE_TITLE = "Mga Nagustuhang Pangyayari";
+
+    public $EVENT_DETAILS_PAGE_TITLE = "Mga Detalye ng Pangyayari";
+    public $EVENT_DETAILS_PAGE_ADDITIONAL = "Karagdagang Detalye";
+    public $EVENT_DETAILS_PAGE_LOCATION = "Lugar";
+    public $EVENT_DETAILS_PAGE_DATE_START = "Simula sa"; 
+    public $EVENT_DETAILS_PAGE_DATE_END = "Hanggang sa";
+    public $EVENT_DETAILS_PAGE_DESC = "Deskripsyon";
+    public $EVENT_DETAILS_PAGE_SALE_STATUS = "Status ng Pagtinda ng Tiket";
+    public $EVENT_DETAILS_PAGE_GOING = "Mga Dadalo";
+    public $EVENT_DETAILS_PAGE_EDIT = "Baguhin ang Pangyayari";
+    public $EVENT_DETAILS_PAGE_DELETE = "Tapusin ang Pangyayari";
+    public $EVENT_DETAILS_PAGE_DELETE_CONFIRM = "Kumpirmahin ang Pagtapos!";
+    public $EVENT_DETAILS_PAGE_DELETE_MESSG = "Sigurado ka bang gusto mong tapusin itong pangyayari?";
+    public $EVENT_DETAILS_PAGE_CANCEL = "Kanselahin";
+    public $EVENT_DETAILS_PAGE_DEL = "Tapusin";
+    public $EVENT_DETAILS_ORGANIZERS = "Pasimuno ng Pangyayari";
+    public $EVENT_DETAILS_TICKET_PRICE = "Presyo ng Tiket";
+    public $EVENT_DETAILS_TICKET_LEFT = "natitira";
+    public $EVENT_DETAILS_TICKET_BUY = "Bumili";
+    public $EVENT_DETAILS_TICKET_BUY_MORE = "Bumili pa ng tiket";
     }
 ?>
