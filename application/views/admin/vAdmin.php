@@ -50,51 +50,51 @@
                                                 <button name='button' data-toggle='modal' data-target='#updateAccount".$object->event_id."' type='button' class='btn btn-info' data-backdrop='static' data-keyboard='false'>VIEW ATTENDEES </button>
                                                 <input type = 'hidden' value = '".$object->event_id." id = 'pass' name = 'pass'>
                                                 </td>
-                                            </tr>";  
+                                                </tr>";  
                                               }                                             
                                             }
-                                            echo " <div id='updateAccount".$object->event_id."' class='modal' tabindex'-1' data-width='500'>
-                                            <div class='modal-header bg-inverse bd-inverse-darken'>
-                                                    <button type='button' class='close' data-dismiss='modal' aria-hidden='true'><i class='fa fa-times'></i></button>
-                                                    <h1 class='modal-title' align='center'>Event: ". $object->event_name."</h1>
-                                            </div>
+                                            ?>
+                                              <div id='updateAccount<?php echo $object->event_id?>' class='modal' tabindex'-1' data-width='500'>
+                                                <div class='modal-header bg-inverse bd-inverse-darken'>
+                                                        <button type='button' class='close' data-dismiss='modal' aria-hidden='true'><i class='fa fa-times'></i></button>
+                                                        <h1 class='modal-title' align='center'>Event: <?php echo $object->event_name?></h1>
+                                                </div>
                                    
-                                            <div class='modal-body'>
-                                                <div class='panel-body'>
-                                                ";
-                                              
-                                              $result = $this->MReports->nameAttendees( $object->event_id);
-                                              foreach($result as $obj){
-                                                  echo"
-                                                      <tr>
-                                                      
-                                                      <td>".$obj['user_name']."</td>
-                                                      <tr>
-                                                  ";
-                                              }
-                                              $num = $this->MReports->countAttendees( $object->event_id);
-                                              echo"
-		                 <hr><h4 class='modal-title' align='left'>TOTAL : ".$num."</h4>
-		              <!-- Modal content-->
-		              </div>
-		          </div>
+                                                <div class='modal-body'>
+                                                  <div class="panel-body">
+                                                    <ul class="list-group list-group-flush">
+                                                      <li class="list-group-item bg-inverse bd-inverse-darken active">Attendees</li>
+                                                            <?php 
+                                                              $result = $this->MReports->nameAttendees( $object->event_id);
+                                                              $cnt=0;
+                                                              foreach($result as $obj){
+                                                            ?>
+                                                                    <li class="list-group-item"><span class="badge badge-primary badge-pill pull-left" style="margin-right: 10px;"><?php echo ++$cnt; ?></span><?php echo  $obj['user_name']; ?></li>
+                                                            <?php
+                                                              }
+                                                              $num = $this->MReports->countAttendees($object->event_id); 
+                                                            ?>
+                                                    </ul>
+                                                       <h4 class='modal-title' align='left'>TOTAL : <?php echo $num;?></h4>
+                                                  </div>
+                                                </div>
 
-		          <div class='modal-footer'>
-		              <button id='closeEditAccount' type='button' class='btn btn-danger' data-dismiss='modal' >Close</button>
-		          </div>
-		        </div>
-		";
+                                                <div class='modal-footer'>
+                                                    <button id='closeEditAccount' type='button' class='btn btn-danger' data-dismiss='modal' >Close</button>
+                                                </div>
+                                              </div>
+                                            <?php
+                                            
                                         }
                                     }
-                                echo"
-                            </tbody>
-                        </table>
+                                  ?>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </section>
+                                    </div>
+                                </div>
                     </div>
-                </section>
-            </div>
-        </div>";
-		 ?>
-    </div>
 
 </div>
 

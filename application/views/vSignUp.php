@@ -72,7 +72,7 @@
                                     <?php echo $this->session->flashdata('error_msg'); ?>
                                 </div>
                             <?php endif ?>
-                            <form id="signup" onsubmit="return validate()" action="<?php echo site_url();?>/user/cUser/signup" method="post" >
+                            <form id="signup" action="<?php echo site_url();?>/user/cUser/signup" method="post" >
                                 <div class="form-group">
                                     <!-- <label for="name">First Name</label> -->
                                     <label for="name"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_REQUIRED_FIELD; echo CustomizationManager::$strings->SIGNUP_PAGE_FIRST_NAME; ?></label>
@@ -132,7 +132,7 @@
                                     <input type="password" class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="cpassword" id="cpassword"><h4 id="message"></h4>
                                 </div>
                                 <div class="text-center">
-                                    <button type="submit" onclick="validate()" class="btn btn-default"><!-- <a href="<?php echo site_url();?>/cLogin/viewEvents"> --><?php echo CustomizationManager::$strings->SIGNUP_PAGE_SIGNUP_BUTTON ?></button>
+                                    <button type="submit" class="btn btn-default"><!-- <a href="<?php echo site_url();?>/cLogin/viewEvents"> --><?php echo CustomizationManager::$strings->SIGNUP_PAGE_SIGNUP_BUTTON ?></button>
                                 </div>
                             </form>
                         </div>
@@ -245,9 +245,6 @@
         }
         
     }
-</script>
-
-<script type="text/javascript">
        var today = new Date();
 var dd = today.getDate();
 var mm = today.getMonth()+1; //January is 0!

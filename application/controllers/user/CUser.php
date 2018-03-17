@@ -269,10 +269,11 @@ class cUser extends CI_Controller {
 
 			$user = new MUser();
 
-			$now = NEW DateTime(NULL, new DateTimeZone('UTC'));
-
+			$date = strtotime($data['birthdate']);
+			$valiDate = strtotime('+ 18 year',$date);
+			$curDate = strtotime("now");
 			
-
+			if($valiDate < $curDate){
 				$res = $this->MUser->read_where(array('user_name' => $data['user_name']));
 				$res1 = $this->MUser->read_where(array('email' => $data['email']));
 
@@ -305,6 +306,11 @@ class cUser extends CI_Controller {
 					}	
 
 				}
+			}else{
+				$this->session->set_flashdata('error_msg','You are below 18');
+				$this->data = $data;
+				$this->viewSignUp();
+			}
 
 		}else{
 			$this->session->set_flashdata('error_msg',validation_errors());

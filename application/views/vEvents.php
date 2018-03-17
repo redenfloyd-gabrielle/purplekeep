@@ -600,7 +600,7 @@
 
         <h2>Edit Profile</h2>
         <?php foreach($info as $in){ ?>
-            <form  method="POST" onsubmit="return validate()" action="<?php echo site_url()?>/event/CEvent/updateProfile">
+            <form  method="POST" action="<?php echo site_url()?>/event/CEvent/updateProfile">
             <div class="col-md-8">
                 <div class="form-group">
                     <label for="first name">First Name</label>
@@ -639,7 +639,6 @@
                 <div class="form-group">
                     <label for="contact no">Contact Number (09XX-XXX-XXXX) </label>
                     <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{2}-\d{3}-\d{4}$|^\d{3}-\d{4}$" class="form-control" name="contact" id="contact" required="">
-
                 </div>
                 <div class="form-group">
                     <label for="username">Username</label>
@@ -677,7 +676,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="submit" onclick="validate()" class="btn btn-default">Submit</button>
+                            <button type="submit" class="btn btn-default">Submit</button>
                             <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
                         </div>
                   </div>
@@ -857,9 +856,7 @@
             }
         }
     }
-</script>
 
-<script type="text/javascript">
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!

@@ -930,10 +930,11 @@ class CEvent extends CI_Controller {
 						);
 		if ($this->form_validation->run() != FALSE )
 		{
-			$now = NEW DateTime(NULL, new DateTimeZone('UTC'));
-
-
-
+			$date = strtotime($data['birthdate']);
+			$valiDate = strtotime('+ 18 year',$date);
+			$curDate = strtotime("now");
+			
+			if($valiDate < $curDate){
 				$res = $this->MUser->read_where(array('user_name' => $data['user_name']));
 				$res1 = $this->MUser->read_where(array('email' => $data['email']));
 
@@ -975,6 +976,11 @@ class CEvent extends CI_Controller {
 					}
 
 				}
+			}else{
+				$this->session->set_flashdata('userDetails',json_encode($data));
+				$this->session->set_flashdata('error_msg','You must be at least 18 years old.');
+				redirect("event/CEvent/viewEvents/1");
+			}
 
 		}else{
 			$this->session->set_flashdata('error_msg',validation_errors());
