@@ -122,7 +122,7 @@ class CAdmin extends CI_Controller {
 	}
 
 	public function Ban($id,$frm){
-		if(!isset($id) || $isset($frm)){
+		if(!isset($id) || !isset($frm)){
 			redirect('admin/CAdmin/viewUserAccountMgt');
 		}
 
@@ -146,7 +146,7 @@ class CAdmin extends CI_Controller {
 	}
 
 	public function Unban($id,$frm){
-		if(!isset($id) || $isset($frm)){
+		if(!isset($id) || !isset($frm)){
 			redirect('admin/CAdmin/viewUserAccountMgt');
 		}
 
@@ -468,19 +468,29 @@ class CAdmin extends CI_Controller {
 
 		if($this->form_validation->run() != FALSE){
 
-			$result = $user->update($this->session->userdata['adminSession']->userID, $data);
+			$date = strtotime($data['birthdate']);
+			$valiDate = strtotime('+ 18 year',$date);
+			$curDate = strtotime("now");
+			
+			if($valiDate < $curDate){
 
-			if($result){
-// 				$message = "Succesful update";
-// 				echo "<script type='text/javascript'>alert('$message');</script>";
-// 				header('refresh:1;viewAdminAccountMgt');
-				$this->session->set_flashdata('succes_msg',"Update succesful");
-				redirect('admin/CAdmin/viewAdminAccountMgt');
+				$result = $user->update($this->session->userdata['adminSession']->userID, $data);
+
+				if($result){
+	// 				$message = "Succesful update";
+	// 				echo "<script type='text/javascript'>alert('$message');</script>";
+	// 				header('refresh:1;viewAdminAccountMgt');
+					$this->session->set_flashdata('succes_msg',"Update succesful");
+					redirect('admin/CAdmin/viewAdminAccountMgt');
+				}else{
+	// 				$message = "Update fail";
+	// 				echo "<script type='text/javascript'>alert('$message');</script>";
+	// 				header('refresh:;viewAdminAccountMgt');
+					$this->session->set_flashdata('error_msg',"Update failed");
+					redirect('admin/CAdmin/viewAdminAccountMgt');
+				}
 			}else{
-// 				$message = "Update fail";
-// 				echo "<script type='text/javascript'>alert('$message');</script>";
-// 				header('refresh:;viewAdminAccountMgt');
-				$this->session->set_flashdata('error_msg',"Update failed");
+				$this->session->set_flashdata('error_msg','You are below 18');
 				redirect('admin/CAdmin/viewAdminAccountMgt');
 			}
 		}else{

@@ -600,6 +600,7 @@
 
         <h2>Edit Profile</h2>
         <?php foreach($info as $in){ ?>
+
             <form  method="POST" onsubmit="return validate()" action="<?php echo site_url()?>/event/CEvent/updateProfile">
                 <div class="col-md-8">
                     <div class ="form group">
@@ -611,6 +612,21 @@
                         <label for="first name">First Name</label>
                         <input type="text" <?php  echo 'value="'.$in->first_name.'"';?> class="form-control" pattern="[a-zA-Z\s]+" name="fname" id="fname" required="">
                     </div>
+                <div class="form-group">
+                    <label for="middle initial">Middle Initial</label>
+                    <input type="text"  <?php  echo 'value="'.$in->middle_initial.'"';?> class="form-control" pattern="[a-zA-Z]+" name="midname" id="midname" required="">
+                </div>
+
+                <div class="form-group">
+                    <label for="last name">Last Name</label>
+                    <input type="text"  <?php  echo 'value="'.$in->last_name.'"';?> class="form-control" pattern="[a-zA-Z\s]+" name="lname" id="lname" required="">
+                </div>
+
+            <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email"  <?php  echo 'value="'.$in->email.'"';?> class="form-control" name="email" id="email" pattern="[^ @]*@[^ @]*" required="">
+                </div>
+
 
                     <div class="form-group">
                         <label for="middle initial">Middle Initial</label>
@@ -627,6 +643,10 @@
                         <input type="email"  <?php  echo 'value="'.$in->email.'"';?> class="form-control" name="email" id="email" pattern="[^ @]*@[^ @]*" required="">
                     </div>
 
+                 <div class="form-group">
+                    <label for="contact no">Contact Number (09XX-XXX-XXXX) </label>
+                    <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{2}-\d{3}-\d{4}$|^\d{3}-\d{4}$" class="form-control" name="contact" id="contact" required="">
+                </div>
                 <div class="form-group">
                         <label for="birthdate">Birthdate</label>
                         <input type="date"  <?php  echo 'value="'.$in->birthdate.'"';?> name="bdate" required="" id="bdayt">
@@ -899,9 +919,7 @@
             }
         }
     }
-</script>
 
-<script type="text/javascript">
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!

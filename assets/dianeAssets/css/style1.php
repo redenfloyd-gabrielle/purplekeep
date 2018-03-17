@@ -191,13 +191,12 @@ footer {
 /*module content*/
 .container-content {
     background: linear-gradient(#cb6c52,#363636);
-    /*height: 2500px;
+    min-height: 100%;
     width: 102.5%;
     visibility: visible;
     position: absolute;
     top: 0px;
     left: 0px;
-    margin-left: -15px;
     margin-top: 660px;
     display: inline-block;
     overflow: hidden;*/
@@ -206,7 +205,7 @@ footer {
     background-repeat: no-repeat;
     width: 100%;
     height: 0;
-    padding-top: 66.64%;
+    padding-top: 40%;
 
 
 }
@@ -230,9 +229,13 @@ footer {
     -webkit-column-count: 3; /* Chrome, Safari, Opera */
     -moz-column-count: 3; /* Firefox */
     column-count: 3;
+    padding-top:10%;
 }
 
-.list-of-events  img{ width: 100%; padding: 7px 0;}
+.list-of-events  img {
+  width: 100%;
+  height:100%; 
+  padding: 7px 0;}
 @media (max-width: 500px) {
     .list-of-events  {
         -webkit-column-count: 1; /* Chrome, Safari, Opera */
@@ -254,9 +257,9 @@ footer {
    background: rgb(0, 0, 0); /* fallback color */
    background: rgba(0, 0, 0, 0.7);
    padding: 5px;
-   margin-top: -107px;
+   margin-top: -140px;
    width: 100%;
-   height: 100px;
+   height: 100% ;
 }
 
 .event-date-category {
