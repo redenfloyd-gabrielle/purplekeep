@@ -777,7 +777,7 @@ label small{
 }
 .navbar-default {
     background-image: none;
-    background-color: #fff;
+    background-color: #000000;
     background-repeat: repeat-x;
     border-radius: 4px;
     box-shadow: none;

@@ -313,10 +313,10 @@ input[type="search"]::-webkit-search-decoration {
     font-weight: 600;
 }
 .search-form {
-    background-color: #fff;
+    background-color: #191919;
     border-radius: 5px;
     padding: 20px 0;
-    border: 1px solid #E6E6E6;
+    border: 1px solid #191919;
     box-sizing: border-box;
     box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.1);
     position: relative;
@@ -441,10 +441,10 @@ input[type="search"]::-webkit-search-decoration {
     border-left: 0 none;
 }
 .search-btn ,.toggle-btn{
-    background-color: #CB6C52;
+    background-color: #7f7f7f;
     color: #333;
     font-size: 16px;
-    border: 1px solid #CB6C52;
+    border: 1px solid #7f7f7f;
     width: 40px;
     height: 40px;
     color: #FFF;
@@ -710,7 +710,7 @@ label small{
 
 .navbar-default .navbar-nav > li > a.active:after{
 
-    background-color: #CB6C52;
+    background-color: #fff;
     bottom: -24px;
     content: "";
     height: 5px;
@@ -758,7 +758,7 @@ label small{
     transition: all 0.4s ease;
 }
 .nav-button.login{
-    background-color: #CB6C52;
+    background-color: #7f7f7f;
     margin-right: 5px;
 }
 .nav-button:hover{
@@ -781,7 +781,7 @@ label small{
 }
 .navbar-default {
     background-image: none;
-    background-color: #FFF;
+    background-color: #191919;
     background-repeat: repeat-x;
     border-radius: 0px;
     box-shadow: none;
@@ -1109,7 +1109,7 @@ page-header
     letter-spacing: 2px;
 }
 .content-area{
-    background-color: #FCFCFC; padding-bottom: 55px;
+    background-color: #fff; padding-bottom: 55px;
 }
 .layout-switcher a{
     font-size: 25px;
@@ -1729,7 +1729,7 @@ proerty-th
 .proerty-th .proerty-item  .item-entry h5{
     text-transform: uppercase;
     font-weight: 600;
-    color: #9B9B9B;
+    color: #4c4c4c;
     letter-spacing: 2px;
     position: relative;
 }
@@ -2476,7 +2476,7 @@ count-area
     color: #000;
 }
 .item-entry a:hover ,.item-entry a:focus {
-    color: #999696;
+    color: #4c4c4c;
 }
 .search-form .search-toggle {
     margin-top: 20px;
@@ -2801,13 +2801,13 @@ padding-bottom: 15px;
 
 /*FOOOTER*/
 .footer-area{
-border-top: 1px solid #D1D1D1;
+border-top: 1px solid #191919;
 background: #555 url("../../assets/img/bg-footer.jpg") repeat scroll 0% 0%;
-color: #535353;
+color: #ffffff;
 }
 .footer{
 padding: 0px 0px 60px;
-background: rgba(255, 255, 255, 0.89) none repeat scroll 0% 0%;
+background: #191919 none repeat scroll 0% 0%;
 }
 .footer ul li i { 
     padding-right: 10px;
@@ -2832,7 +2832,7 @@ padding-top: 7px;
     padding-bottom: 20px;
 }
 .footer h4{
-    color: #717171;
+    color: #ffffff;
     font-weight: 400;
     margin-top: 0px;
     font-size: 20px;
@@ -3045,4 +3045,8 @@ padding: 10px;
 }
 #map {
     height: 300px;
+}
+.grey{
+    background-color: #7f7f7f;
+    border-color: #7f7f7f;
 }

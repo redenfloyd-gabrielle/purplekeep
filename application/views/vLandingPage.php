@@ -7,7 +7,7 @@
 
 <body>
     <div id="preloader">
-        <div id="status">&nbsp;</div>
+        <div id="status">&nbsp</div>
     </div>
 
     <nav class="navbar navbar-default ">
@@ -67,7 +67,7 @@
                         <div class="search-form wow pulse" data-wow-delay="0.8s" style="height: 125px;">
                                 <div class="row">
                                     <div class="col-md-12 col-lg-12 pull-left" style="padding-left: 50px;" >
-                                      <span class="h6 pull-left" style="color: gray;"><?php echo CustomizationManager::$strings->LANDING_PAGE_SEARCH_BOX_LABEL ?></span>
+                                      <span class="h6 pull-left"><?php echo CustomizationManager::$strings->LANDING_PAGE_SEARCH_BOX_LABEL ?></span>
                                     </div>
                                 </div>
                                 <div class="row">
@@ -149,7 +149,7 @@
         </div> <!-END OF SLIDER-->
 
      <!-- CONTENT AREA -->
-      <div class="content-area recent-property" style="padding-bottom: 60px; background-color: rgb(252, 252, 252);">
+      <div class="content-area recent-property" style="padding-bottom: 60px;">
          <div class="container">
              <div class="row">
                 <div class="col-md-12  padding-top-40 properties-page">
@@ -308,7 +308,7 @@
                                <img src= "<?php echo base_url(CustomizationManager::$images->LOGO_DARK)?>" alt="" class="wow pulse" data-wow-delay="1s" >
                                 <p><?php echo CustomizationManager::$strings->ABOUT_MESSAGE ?></p>
 
-                                <img src="assets/img/footer-logo.png" alt="" class="wow pulse" data-wow-delay="1s">
+                               <!--  <img src="assets/img/footer-logo.png" alt="" class="wow pulse" data-wow-delay="1s"> -->
                             </div>
                         </div>
 

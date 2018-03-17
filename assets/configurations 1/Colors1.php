@@ -11,7 +11,7 @@
     public $INDEX_PAGE_INNER_HEADER_COLOR = "#cccccc";
 
     //INDEX PAGE - NAVBAR
-    public $NAVBAR_BASE_COLOR = "#675682";
+    public $NAVBAR_BASE_COLOR = "#000000";
     public $NAVBAR_SHADOW_COLOR = "#d98cd9";
     public $NAVBAR_FONT_COLOR = "#ffffff";
     public $NAVBAR_BUTTON_COLOR = "#e52a6f";
@@ -24,7 +24,7 @@
 
     //LOGIN PAGE
     public $LOGIN_BACKGROUND_COLOR = "#675682";
-  	public $LOGIN_BUTTON_COLOR = "#e52a6f";
+  	public $LOGIN_BUTTON_COLOR = "#8a3ed9";
   	public $LOGIN_BUTTON_FONT_COLOR = "#ffffff";
   	public $LOGIN_BUTTON_BACKGROUND_COLOR = "#000000";
   	public $LOGIN_FONT_COLOR = "#000000";

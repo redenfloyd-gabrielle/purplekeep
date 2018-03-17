@@ -212,10 +212,6 @@ h2
 	text-align: left;
 }
 
-.orange
-{
-	color: #e2624b;
-}
 
 .eventLogo {
     max-height: 100px;
@@ -421,7 +417,7 @@ h2
 
 .orange
 {
-	color: #e2624b;
+	color: #ff66ff;
 }
 
 .eventLogo {

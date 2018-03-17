@@ -445,6 +445,13 @@ class CEvent extends CI_Controller {
 				}else{
 					$data['interested']	= FALSE;
 				}
+				
+				$data['announcements'] = $this->MAnnouncement->getUnviewedOfUser($this->session->userdata['userSession']->userID);
+
+				$data['announcementCount'] = count($data['announcements']);
+				if(count($data['announcements']) == 0){
+					$data['announcements'] = NULL;
+				}
 				$this->load->view('imports/vHeaderLandingPage');
 				$this->load->view('vEventDetails',$data);
 				$this->load->view('imports/vFooterLandingPage');
