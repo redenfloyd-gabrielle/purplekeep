@@ -92,10 +92,10 @@
     public $CALENDAR_PAGE_TITLE = "Kalendaryo";
     public $CART_PAGE_VIEW_CART = "Iyong Cart";
     public $CART_PAGE_EVENT_NAME = "Pangyayari";
-    public $CART_PAGE_TICKET_NAME = "Uri ng Ticket"; 
+    public $CART_PAGE_TICKET_NAME = "Uri ng Ticket";
     public $CART_PAGE_PRICE = "Halaga";
-    public $CART_PAGE_TOTAL_PRICE= "Kabuuang Halaga"; 
-    public $CART_PAGE_EMPTY = "Walang laman ang iyong cart! Bumili na ng ticket ngayon!"; 
+    public $CART_PAGE_TOTAL_PRICE= "Kabuuang Halaga";
+    public $CART_PAGE_EMPTY = "Walang laman ang iyong cart! Bumili na ng ticket ngayon!";
     public $LOAD_BALANCE = "Natitirang Load";
     public $CREATE_EVENT_BUTTON = "Gumawa ng pangyayari";
     public $LOGOUT_BUTTON = "Maglog-out";
@@ -127,7 +127,7 @@
     public $MODAL_CLOSE = "Isarado";
     public $TRANS_DATE_PAID = "Petsa ng Pagbayad";
     public $TRANS_AMOUNT =  "Halaga";
-    
+
     public $EDIT_PROFILE_FIRST_NAME = "Unang Pangalan";
     public $EDIT_PROFILE_MIDDLE_INITIAL = "Gitnang Letra";
     public $EDIT_PROFILE_LAST_NAME = "Huling Pangalan";
@@ -150,7 +150,7 @@
     public $EVENT_DETAILS_PAGE_TITLE = "Mga Detalye ng Pangyayari";
     public $EVENT_DETAILS_PAGE_ADDITIONAL = "Karagdagang Detalye";
     public $EVENT_DETAILS_PAGE_LOCATION = "Lugar";
-    public $EVENT_DETAILS_PAGE_DATE_START = "Simula sa"; 
+    public $EVENT_DETAILS_PAGE_DATE_START = "Simula sa";
     public $EVENT_DETAILS_PAGE_DATE_END = "Hanggang sa";
     public $EVENT_DETAILS_PAGE_DESC = "Deskripsyon";
     public $EVENT_DETAILS_PAGE_SALE_STATUS = "Status ng Pagtinda ng Tiket";
@@ -166,5 +166,7 @@
     public $EVENT_DETAILS_TICKET_LEFT = "natitira";
     public $EVENT_DETAILS_TICKET_BUY = "Bumili";
     public $EVENT_DETAILS_TICKET_BUY_MORE = "Bumili pa ng tiket";
+    public $ABOUT_US_TITLE = "Tungkol sa Amin";
+    public $ABOUT_US = "Ang Daily Events ay isang proyekto ng mga mag-aaral ng Unibersidad ng San Carlos. Itong proyekto ay isang pangangailangan sa kursong Software Engineering. Itong website ay nagkokonekta nga mga tao sa mga organizers ng events. Itong proyekto na ito ay siniguradong wasto sa pangangailangan ng aming stakeholders. Ang proyekto na ito ay hindi maging posible kung hindi dahil sa pagsisikap ng mga mag-aaral at pamamatnubay ng guro.";
     }
 ?>

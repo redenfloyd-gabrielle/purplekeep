@@ -28,7 +28,7 @@
 			// 	die();
 
 			return $query->result();
-			
+
 		}
 		// public function fetchCardModel()
 		// {
@@ -115,5 +115,5 @@
 
 		// 	return $this->db->count_all_results();
 		// }
-    }
+    } 
 ?>
