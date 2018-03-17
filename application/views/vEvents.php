@@ -126,7 +126,7 @@
                                 </div>
                             </div>
 
-                            <div class="panel-body search-widget">
+                            <div class="panel-body search-widget" style="margin-top: 0px;">
                                 <fieldset >
                                     <div class="row">
                                         <div class="col-md-12">
@@ -384,7 +384,7 @@
                                                                 <!-- <a href="<?php echo site_url();?>/reports/cReports/generateRevenue/<?php echo $e->event_id;?>"><button class="button btn largesearch-btn " id="<?php echo $e->event_id;?>">Generate Revenue</button></a> -->
 
 <!-- Button HTML (to Trigger Modal) -->
-<a href="#myModal<?php echo $e->event_id;?>" role="button" class="button btn largesearch-btn" data-toggle="modal">Generate Revenue</a>
+<a href="#myModal<?php echo $e->event_id;?>" role="button" class="button btn largesearch-btn" style="margin-top: 0px;" data-toggle="modal">Generate Revenue</a>
 
 <!-- Modal HTML -->
 <div id="myModal<?php echo $e->event_id;?>" class="modal fade">
@@ -595,7 +595,7 @@
          $info[] = json_decode($this->session->flashdata('userDetails'));
 
 }else{ ?>
-            <div role="tabpanel" class="tab-pane" id="editprofile">
+            <div role="tabpanel" class="tab-pane" id="editprofile" style="margin-bottom: 25px;">
     <?php } ?>
 
         <h2>Edit Profile</h2>
