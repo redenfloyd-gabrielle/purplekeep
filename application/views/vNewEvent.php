@@ -5,6 +5,7 @@
     <body>
 
         <div id="preloader">
+            <span id="baseUrl" hidden><?php echo site_url()?></span>
             <div id="status">&nbsp;</div>
         </div>
         <!-- Body content -->
@@ -69,7 +70,7 @@
                 <!-- MultiStep Form -->
                 <div class="row">
                     <div class="col-lg-8 col-md-offset-2">
-                        <form id="msform" class="ui fluid form" action="<?php echo site_url();?>/event/CEvent/createEvent " method="post" accept-charset="utf-8" enctype="multipart/form-data" novalidate>
+                        <form id="msform" class="ui fluid form" accept-charset="utf-8" enctype="multipart/form-data">
                             <div id="formsteps" class="ui three steps">
                               <div class="active step">
                                 <i class="ticket alternate icon"></i>   
@@ -243,7 +244,7 @@
                                     <div style="text-align:center"><br><br><h3><i class="meh outline icon"></i>Ticket list is empty.</h3></div>
                                 </ul>
                                 </div>
-                                <input type="submit" class="submit action-button" value="<?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_SUBMIT_BUTTON ?>">
+                                <button id="submitEvent" type="button" class="ui button action-button" value=""><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_SUBMIT_BUTTON ?></button>
                             </fieldset>
                         </form>
 

@@ -1,16 +1,6 @@
 $('document').ready(function(){
-var formData = {
-					userfile:"",
-					event_name:"",
-					event_category:"",
-					dateStart:"",
-					dateEnd:"",
-					event_details:"",
-					event_venue:"",
-					venue_capacity:"",
-					region_code:"",
-					municipal_name:""
-				};
+var formData = {};
+var maxTicket;
 $.fn.form.settings.rules.validStart = function(value, dateEnd){
 	var ret = true;
 	var dateTime = moment().format('MM/DD/Y hh:mm A');
@@ -183,6 +173,10 @@ function validateDetails(){
 	  ret = false;
 	}
 
+	if(ret){
+		Object.assign(formData, $('#msform').form('get values', ['event_name','event_category','dateStart','dateEnd','event_details']));
+	}
+
 	return ret;
 }
 function validateVenue(){
@@ -199,6 +193,11 @@ function validateVenue(){
 	}
 	if( !$('.ui.form').form('validate field', 'eventMunicipal')) {
 	  ret = false;
+	}
+
+	if(ret){
+		Object.assign(formData, $('#msform').form('get values', ['event_venue','venue_capacity','region_code','municipal-name']));
+		maxTicket = formData.venue_capacity;
 	}
 
 	return ret;
@@ -274,11 +273,22 @@ $(".next").click(function(){
 //Dynamic ticket list and form submission script
 var listLength = 0;
 var ticketsArray = [];
-
-$("#msform").submit(function(e){
+$("#submitEvent").click(function(e){
 	e.preventDefault(e);
-	allFields = $('#msform').form('get values');
-	console.log(allFields);
+
+	Object.assign(formData, {tickets:ticketsArray});
+	var base_url = $('#baseUrl').html();
+	$.ajax({
+		url: base_url + '/event/CEvent/createEvent',
+		type: 'post',
+		data: formData,
+		success: function(data){
+			window.location.href = base_url + "/event/CEvent/viewEvents";	
+		}
+	})
+	.done(function(){
+		$('#submitEvent').removeClass('loading');
+	});
 });
 
 $('#addTix').click(function(){
@@ -294,20 +304,38 @@ $('#addTix').click(function(){
 		}
 
 		++listLength;
-		$('#ticketList').append('<li class="list-group-item justify-content-between">' +
-	  							 	'<b>'+ ticket.tType +'</b>' +
-	                                '<span style="background-color:#dc3545;"class="badge badge-danger badge-pill"><a id="removeTix">X</a></span>' +
-	                                '<br><small><b>Quantity: </b>'+ ticket.tQuantity +'</small>' +
-	                                '<br><small><b>Price: </b>Php '+ ticket.tPrice +'</small>' +
-	                             '</li>');
+		populateList();
+
+		$('input[name=no_tickets_total]').attr('max', (maxTicket));
 	}
 });
 
 $('#ticketList').on('click', '#removeTix', function(){
+	var elem = $(this).data('value');
+	
+	
+	ticketsArray.splice(elem, 1);
 	var temp = $(this).closest('li').remove();
+
 	--listLength;
+	populateList();
+
+});
+
+function populateList(){
 	if(listLength == 0){
 		$('#ticketList').html('<div style="text-align:center"><br><br><h3><i class="meh outline icon"></i>Ticket list is empty.</h3></div>');
+	}else{
+		$('#ticketList').html('');
+		for(var x = 0; x < listLength; x++){
+			ticket = ticketsArray[x];
+			$('#ticketList').append('<li class="list-group-item justify-content-between">' +
+		  							 	'<b>'+ ticket.tType +'</b>' +
+		                                '<span style="background-color:#dc3545;"class="badge badge-danger badge-pill"><a id="removeTix" data-value="'+ x +'">X</a></span>' +
+		                                '<br><small><b>Quantity: </b>'+ ticket.tQuantity +'</small>' +
+		                                '<br><small><b>Price: </b>Php '+ ticket.tPrice +'</small>' +
+		                             '</li>');
+		}
 	}
-});
+}
 });
