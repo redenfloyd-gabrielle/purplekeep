@@ -1,4 +1,16 @@
 $('document').ready(function(){
+var formData = {
+					userfile:"",
+					event_name:"",
+					event_category:"",
+					dateStart:"",
+					dateEnd:"",
+					event_details:"",
+					event_venue:"",
+					venue_capacity:"",
+					region_code:"",
+					municipal_name:""
+				};
 $.fn.form.settings.rules.validStart = function(value, dateEnd){
 	var ret = true;
 	var dateTime = moment().format('MM/DD/Y hh:mm A');
@@ -119,7 +131,7 @@ $('.ui.form')
     		]
     	},
     	ticketType: {
-    		identifier: 'ticketType1',
+    		identifier: 'ticketType',
     		rules: [
     			{
     				type: 'empty',
@@ -128,7 +140,7 @@ $('.ui.form')
     		]
     	},
     	ticketQty: {
-    		identifier: 'no_tickets_total1',
+    		identifier: 'no_tickets_total',
     		rules: [
     			{
     				type: 'empty',
@@ -137,7 +149,7 @@ $('.ui.form')
     		]
     	},
     	ticketPrice: {
-    		identifier: 'price_tickets_total1',
+    		identifier: 'price_tickets_total',
     		rules: [
     			{
     				type: 'empty',
@@ -259,11 +271,43 @@ $(".next").click(function(){
 	}
 });
 
+//Dynamic ticket list and form submission script
+var listLength = 0;
+var ticketsArray = [];
+
 $("#msform").submit(function(e){
+	e.preventDefault(e);
+	allFields = $('#msform').form('get values');
+	console.log(allFields);
+});
+
+$('#addTix').click(function(){
 	var flag = validateTicket();
 
-	if(!flag){
-		e.preventDefault(e);
+	if(flag){
+		var ticket = {tType:$("input[name=ticketType]").val(),tQuantity:$("input[name=price_tickets_total]").val(),tPrice:$("input[name=no_tickets_total]").val()};
+		ticketsArray.push(ticket);
+		
+		$('#msform').form('reset');
+		if(listLength == 0){
+			$('#ticketList').html('');
+		}
+
+		++listLength;
+		$('#ticketList').append('<li class="list-group-item justify-content-between">' +
+	  							 	'<b>'+ ticket.tType +'</b>' +
+	                                '<span style="background-color:#dc3545;"class="badge badge-danger badge-pill"><a id="removeTix">X</a></span>' +
+	                                '<br><small><b>Quantity: </b>'+ ticket.tQuantity +'</small>' +
+	                                '<br><small><b>Price: </b>Php '+ ticket.tPrice +'</small>' +
+	                             '</li>');
 	}
-})
+});
+
+$('#ticketList').on('click', '#removeTix', function(){
+	var temp = $(this).closest('li').remove();
+	--listLength;
+	if(listLength == 0){
+		$('#ticketList').html('<div style="text-align:center"><br><br><h3><i class="meh outline icon"></i>Ticket list is empty.</h3></div>');
+	}
+});
 });

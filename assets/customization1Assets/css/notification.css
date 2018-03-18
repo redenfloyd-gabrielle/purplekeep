@@ -1,6 +1,10 @@
 /*custom font*/
 @import url(https://fonts.googleapis.com/css?family=Montserrat);
 
+#removeTix:hover{
+    cursor: pointer;
+    color: #fff;
+}
 /*form styles*/
 #msform {
     text-align: center;

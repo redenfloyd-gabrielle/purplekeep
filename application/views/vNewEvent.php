@@ -69,7 +69,7 @@
                 <!-- MultiStep Form -->
                 <div class="row">
                     <div class="col-lg-8 col-md-offset-2">
-                        <form id="msform" class="ui fluid form" action="<?php echo site_url();?>/event/CEvent/createEvent " method="post" accept-charset="utf-8" enctype="multipart/form-data">
+                        <form id="msform" class="ui fluid form" action="<?php echo site_url();?>/event/CEvent/createEvent " method="post" accept-charset="utf-8" enctype="multipart/form-data" novalidate>
                             <div id="formsteps" class="ui three steps">
                               <div class="active step">
                                 <i class="ticket alternate icon"></i>   
@@ -89,7 +89,6 @@
                                 <i class="ticket alternate icon"></i>
                                 <div class="content">
                                   <div class="title">Tickets</div>
-                                  <div class="description">Add tickets for your event</div>
                                   <div class="description">Add tickets to your event</div>
                                 </div>
                               </div>
@@ -215,77 +214,36 @@
                             </fieldset>
                             <fieldset data-value="3">
                                 <h2 class="fs-title">Tickets</h2>
-                                <h3 class="fs-subtitle">Add tickets for your event</h3>
+                                <h3 class="fs-subtitle">Add tickets to your event</h3>
                                 <div class="form-group field"  style="text-align:left">
                                     <!-- <span>TICKET TYPE </span> <br> -->
                                     <label><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_TYPE ?></label> <br>     
-                                    <input type="text" class="form-control" name="ticketType1" placeholder="Ticket type">
+                                    <input type="text" class="form-control" name="ticketType" placeholder="Ticket type">
                                 </div>
                                 <div class="form-group field"  style="text-align:left">
                                     <label><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_QUANTITY ?></label>
-                                    <input type="number" class="form-control" min="1" name="no_tickets_total1" placeholder="Ticket count">
+                                    <input type="number" class="form-control" min="1" name="no_tickets_total" placeholder="Ticket count">
                                 </div>
                                 <div class="form-group field"  style="text-align:left">
                                     <label><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_PRICE ?></label>
-                                    <input type="number" class="form-control" min="0" name="price_tickets_total1" placeholder="Ticket price">
+                                    <input type="number" class="form-control" min="0" name="price_tickets_total" placeholder="Ticket price">
                                 </div>
-
-
-                                <br><br>
-
-                                <div class="ticketContainer" style="text-align:left">
-                                    <!-- <span>TICKET TYPE </span> <br> -->
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_TYPE ?></span> <br>
-                                    <div class="select-field">
-                                         <input type="text" class="form-control" name="ticketType2" placeholder="Ticket type">
-                                       <!--  <select name="ticketType">
-                                            <option value="">Free</option>
-                                            <option value="">VIP</option>
-                                        </select> -->
-                                    </div>
+                                <div class="right aligned column">
+                                    <button type="button" id="addTix" class="ui orange labeled icon button">
+                                      <i class="plus icon"></i>
+                                      Add
+                                    </button>
+                                  </div>
+                                <h4 class="ui horizontal divider header">
+                                  <i class="ticket icon"></i>
+                                  Tickets
+                                </h4>
+                                <div style="max-width:540px;height:140px;overflow-y:auto;border:1px solid #b3b3b3;border-radius:5px">
+                                <ul id="ticketList" class="list-group" style="margin:0;text-align:left">
+                                    <div style="text-align:center"><br><br><h3><i class="meh outline icon"></i>Ticket list is empty.</h3></div>
+                                </ul>
                                 </div>
-                                <div class="ticketContainer" style="text-align:left">
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_QUANTITY ?></span>
-                                    <div class="select-field">
-                                        <input type="number" min="1" class="form-control" name="no_tickets_total2" placeholder="Ticket count">
-                                    </div>
-                                </div>
-                                <div class="ticketContainer" style="text-align:left">
-                                    <!-- <span>PRICE OF TICKET</span> -->
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_PRICE ?></span>
-                                    <div class="select-field">
-                                        <input type="number" min="1" class="form-control" name="price_tickets_total2" placeholder="Ticket price">
-                                    </div>
-                                </div>
-
-
-                                <br><br>
-
-                                <div class="ticketContainer" style="text-align:left">
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_TYPE ?></span> <br>
-                                    <div class="select-field">
-                                         <input type="text" class="form-control" name="ticketType3" placeholder="Ticket type">
-                                       <!--  <select name="ticketType">
-                                            <option value="">Free</option>
-                                            <option value="">VIP</option>
-                                        </select> -->
-                                    </div>
-                                </div>
-                                <div class="ticketContainer" style="text-align:left">
-
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_QUANTITY ?></span>
-                                    <div class="select-field">
-                                        <input type="number" min="1" class="form-control" name="no_tickets_total3" placeholder="Ticket count">
-                                    </div>
-                                </div>
-                                <div class="ticketContainer" style="text-align:left">
-                                    <!-- <span>PRICE OF TICKET</span> -->
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_PRICE ?></span>
-                                    <div class="select-field" style="text-align:left">
-                                        <input type="number" min="1" class="form-control" name="price_tickets_total3" placeholder="Ticket price">
-                                    </div>
-                                </div>
-                                <button type="submit" class="btn btn-default" value="Create Event"><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_SUBMIT_BUTTON ?></button>
+                                <input type="submit" class="submit action-button" value="<?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_SUBMIT_BUTTON ?>">
                             </fieldset>
                         </form>
 
@@ -332,45 +290,6 @@
                      </div>
                  </div>
              </div>
-             <!-- Modal -->
-              <div class="modal fade" id="ticketModal" role="dialog">
-                <div class="modal-dialog modal-lg">
-                  <div class="modal-content">
-                    <div class="modal-header" style="border-bottom:1px solid #e5e5e5;background-color:#CB6C52;color:#ffff;border-top-left-radius:6px;border-top-right-radius:6px">
-                      <button type="button" class="close" data-dismiss="modal">&times;</button>
-                      <h4 class="modal-title">Add Ticket</h4>
-                    </div>
-                    <div id="ticketForm" class="modal-body">
-                      <div class="ticketContainer">
-                                    <!-- <span>TICKET TYPE </span> <br> -->
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_TYPE ?></span> <br>
-                                    <div class="select-field">
-                                         <input type="text" class="form-control" required="" name="ticketType" placeholder="Ticket type">
-                                       <!--  <select name="ticketType">
-                                            <option value="">Free</option>
-                                            <option value="">VIP</option>
-                                        </select> -->
-                                    </div>
-                                </div>
-                                <div class="ticketContainer">
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_QUANTITY ?></span>
-                                    <div class="select-field">
-                                        <input type="number" class="form-control" min="1" required="" name="no_tickets_total" placeholder="Ticket count">
-                                    </div>
-                                </div>
-                                <div class="ticketContainer">
-                                    <span><?php echo CustomizationManager::$strings->NEW_EVENT_PAGE_TICKET_PRICE ?></span>
-                                    <div class="select-field">
-                                        <input type="number" class="form-control" min="0" required="" name="price_tickets_total" placeholder="Ticket price">
-                                    </div>
-                                </div>
-                    </div>
-                    <div class="modal-footer">
-                      <button id="addTicket" type="button" class="btn btn-default">Add</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
             <div class="footer-copy text-center">
                 <div class="container">
                     <div class="row">
