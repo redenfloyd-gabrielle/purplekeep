@@ -2,6 +2,7 @@
   class Images1{
     public $LOGO_LIGHT = "assets/customization1Assets/img/DailyEvents.png";
     public $LOGO_DARK = "assets/customization1Assets/img/DailyEventsDark.png";
+    public $LOGO_SMALL = "assets/customization1Assets/img/DailyEventsSmall.png";
     public $WELCOME_PAGE_LOGO_LIGHT = "../../customization1Assets/img/DailyEvents.png"; 
     public $WELCOME_PAGE_BACKGROUND = "../../customization1Assets/img/homebg.png";
     public $LOGIN_PAGE_BACKGROUND = "../../customization1Assets/img/LoginBg.jpg";

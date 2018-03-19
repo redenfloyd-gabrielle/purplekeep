@@ -1,3 +1,9 @@
+<!-- Add these lines below to pages with customizable elements -->
+<?php
+  require('assets/CustomizationManager.php');
+  CustomizationManager::SetTheme("configurations 1");
+?>
+<!-- Up to here -->
 <?php if ($this->session->userdata('userSession')) { ?>
 <html>
     <head>
@@ -23,7 +29,7 @@
         <nav class="navbar navbar-inverse">
             <div class="container container-fluid">
                 <div class="navbar-header">
-                    <a href="#" class="navbar-brand"><img src="<?php echo base_url('assets/dianeAssets/img/dailyEvents.png" class="eventLogo')?>"></a>
+                    <a href="#" class="navbar-brand"><img src="<?php echo base_url(CustomizationManager::$images->LOGO_SMALL)?>"></a>
                 </div>
                 
                 <div class="container">

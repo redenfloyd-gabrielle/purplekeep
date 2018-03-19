@@ -706,7 +706,7 @@ label small{
 
 }
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
-    color: #929292;
+    color: #000000;
     background-color: transparent;
 }
 .navbar-nav > li > a {
