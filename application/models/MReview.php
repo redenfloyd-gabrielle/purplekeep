@@ -7,16 +7,14 @@
         private $review_id;
         private $rating;
         private $description;
-        private $ticket_id;
+        private $user_id;
 
         public function loadEventReviews($eventId)
 		{
 			$this->db->select('*');
             $this->db->from("review as r");
-            $this->db->join("ticket as t","r.ticket_id = t.ticket_id");
-            $this->db->join("user_account as u","t.user_id = u.account_id");
-	        $this->db->join("ticket_type AS tt","t.ticket_type_id = tt.ticket_type_id");
-	        $this->db->join("event_info AS e","tt.event_id = e.event_id");
+            $this->db->join("user_account as u","r.user_id = u.account_id");
+	        $this->db->join("event_info AS e","r.event_id = e.event_id");
             $this->db->where("e.event_id = '$eventId'");
             $this->db->group_by("r.review_id");
 
@@ -29,10 +27,8 @@
 	public function loadEventReviewAverageRating($eventId){
 		$this->db->select("ROUND(SUM(`r`.`rating`)/COUNT(*),2) AS 'avg_rating'");
 		$this->db->from("review as r");
-		$this->db->join("ticket as t","r.ticket_id = t.ticket_id");
-		$this->db->join("ticket_type AS tt","t.ticket_type_id = tt.ticket_type_id");
-	    $this->db->join("event_info AS e","tt.event_id = e.event_id");
-		$this->db->where("tt.event_id = '$eventId'");
+	    $this->db->join("event_info AS e","r.event_id = e.event_id");
+		$this->db->where("e.event_id = '$eventId'");
 	
 		$query = $this->db->get();
 		return $query->result();
@@ -84,12 +80,12 @@
             $this->rating = $description;
         }
 
-        public function getTicket_Id(){
-            return $this->ticket_id;
+        public function getUser_Id(){
+            return $this->user_id;
         }
 
-        public function setTicket_Id($rating){
-            $this->ticket_id = $ticket_id;
+        public function setUser_Id($user_id){
+            $this->user_id = $user_id;
         }
 
 

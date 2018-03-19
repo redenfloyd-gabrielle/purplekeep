@@ -1249,7 +1249,6 @@ class CEvent extends CI_Controller {
 					$arrObj->review_id = $value->review_id;
 					$arrObj->rating = $value->rating;
 					$arrObj->description = $value->description;
-					$arrObj->ticket_id = $value->ticket_id;
 					$array2[] = $arrObj;
 			}
 		}
