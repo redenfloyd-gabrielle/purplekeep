@@ -591,7 +591,7 @@
     <?php if ($this->session->flashdata('userDetails')){ ?>
         <div role="tabpanel" class="tab-pane active" id="editprofile">
     <?php
-            $info = array();
+         $info = array();
          $info[] = json_decode($this->session->flashdata('userDetails'));
 
 }else{ ?>
@@ -600,13 +600,18 @@
 
         <h2>Edit Profile</h2>
         <?php foreach($info as $in){ ?>
-            <form  method="POST" onsubmit="return validate()" action="<?php echo site_url()?>/event/CEvent/updateProfile">
-            <div class="col-md-8">
-                <div class="form-group">
-                    <label for="first name">First Name</label>
-                    <input type="text" <?php  echo 'value="'.$in->first_name.'"';?> class="form-control" pattern="[a-zA-Z\s]+" name="fname" id="fname" required="">
-                </div>
 
+            <form  method="POST" onsubmit="return validate()" action="<?php echo site_url()?>/event/CEvent/updateProfile">
+                <div class="col-md-8">
+                    <div class ="form group">
+                        <label for="password">Password: </label>
+                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal"><!-- <a href="<?php echo site_url();?>/CEvent/updateProfile"> -->Change Password</button>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="first name">First Name</label>
+                        <input type="text" <?php  echo 'value="'.$in->first_name.'"';?> class="form-control" pattern="[a-zA-Z\s]+" name="fname" id="fname" required="">
+                    </div>
                 <div class="form-group">
                     <label for="middle initial">Middle Initial</label>
                     <input type="text"  <?php  echo 'value="'.$in->middle_initial.'"';?> class="form-control" pattern="[a-zA-Z]+" name="midname" id="midname" required="">
@@ -622,39 +627,55 @@
                     <input type="email"  <?php  echo 'value="'.$in->email.'"';?> class="form-control" name="email" id="email" pattern="[^ @]*@[^ @]*" required="">
                 </div>
 
-            <div class="form-group">
-                    <label for="birthdate">Birthdate</label>
-                    <input type="date"  <?php  echo 'value="'.$in->birthdate.'"';?> name="bdate" required="" id="bdayt">
-            </div>
+
+                    <div class="form-group">
+                        <label for="middle initial">Middle Initial</label>
+                        <input type="text"  <?php  echo 'value="'.$in->middle_initial.'"';?> class="form-control" pattern="[a-zA-Z]+" name="midname" id="midname" required="">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="last name">Last Name</label>
+                        <input type="text"  <?php  echo 'value="'.$in->last_name.'"';?> class="form-control" pattern="[a-zA-Z\s]+" name="lname" id="lname" required="">
+                    </div>
 
                 <div class="form-group">
-                    <label for="gender">Gender</label>
-                    <select class="form-control" name="gender">
-                        <option value="Male" <?php  if(isset($in->gender) && $in->gender=="Male"){echo 'selected';}?>>Male</option>
-                        <option value="Female" <?php  if(isset($in->gender) && $in->gender=="Female"){echo 'selected';}?>>Female</option>
-                        <option value="Other" <?php  if(isset($in->gender) && $in->gender=="Other"){echo 'selected';}?>>Other</option>
-                    </select>
-                </div>
+                        <label for="email">Email</label>
+                        <input type="email"  <?php  echo 'value="'.$in->email.'"';?> class="form-control" name="email" id="email" pattern="[^ @]*@[^ @]*" required="">
+                    </div>
 
-                <div class="form-group">
+                 <div class="form-group">
                     <label for="contact no">Contact Number (09XX-XXX-XXXX) </label>
                     <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{2}-\d{3}-\d{4}$|^\d{3}-\d{4}$" class="form-control" name="contact" id="contact" required="">
-
                 </div>
                 <div class="form-group">
-                    <label for="username">Username</label>
-                    <input type="text" minlength="6"<?php  echo 'value="'.$in->user_name.'"';?> required="" class="form-control" pattern="[a-zA-Z0-9]+" name="uname" id="uname">
-                </div>
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="OldPassword" id="OldPassword">
-                </div>
-                <div class="text-center">
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal"><!-- <a href="<?php echo site_url();?>/CEvent/updateProfile"> -->Edit Profile</button>
+                        <label for="birthdate">Birthdate</label>
+                        <input type="date"  <?php  echo 'value="'.$in->birthdate.'"';?> name="bdate" required="" id="bdayt">
                 </div>
 
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select class="form-control" name="gender">
+                            <option value="Male" <?php  if(isset($in->gender) && $in->gender=="Male"){echo 'selected';}?>>Male</option>
+                            <option value="Female" <?php  if(isset($in->gender) && $in->gender=="Female"){echo 'selected';}?>>Female</option>
+                            <option value="Other" <?php  if(isset($in->gender) && $in->gender=="Other"){echo 'selected';}?>>Other</option>
+                        </select>
+                    </div>
 
+                    <div class="form-group">
+                        <label for="contact no">Contact Number (09XX-XXX-XXXX) </label>
+                        <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{2}-\d{3}-\d{4}$|^\d{3}-\d{4}$" class="form-control" name="contact" id="contact" required="">
+
+                    </div>
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="text" minlength="6"<?php  echo 'value="'.$in->user_name.'"';?> required="" class="form-control" pattern="[a-zA-Z0-9]+" name="uname" id="uname">
+                    </div>
+                    <div class="text-center">
+                        <button type="submit" onclick="validate()" class="btn btn-default"><!-- <a href="<?php echo site_url();?>/CEvent/updateProfile"> -->Edit Profile</button>
+                    </div>
+                <br>
             </div>
+            </form>
             <div class="container">
                 <!-- Modal -->
                 <div class="modal fade" id="myModal" role="dialog">
@@ -666,20 +687,61 @@
                             <button type="button" class="close" data-dismiss="modal">&times;</button>
                             <h2 class="modal-title">Edit Profile Confirmation</h2>
                         </div>
-                        <div class="modal-body">
+                        <form method="POST" action="<?php echo site_url()?>/event/CEvent/updatePassword">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <input type="hidden" <?php  echo 'value="'.$in->first_name.'"';?> class="form-control" pattern="[a-zA-Z\s]+" name="fnameb" id="fnameb" required="">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="hidden"  <?php  echo 'value="'.$in->middle_initial.'"';?> class="form-control" pattern="[a-zA-Z]+" name="midnameb" id="midnameb" required="">
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="hidden"  <?php  echo 'value="'.$in->last_name.'"';?> class="form-control" pattern="[a-zA-Z\s]+" name="lnameb" id="lnameb" required="">
+                                </div>
+
                             <div class="form-group">
-                                <label for="password">Password</label>
-                                <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="password" id="password">
-                            </div>
+                                    <input type="hidden"  <?php  echo 'value="'.$in->email.'"';?> class="form-control" name="emailb" id="emailb" pattern="[^ @]*@[^ @]*" required="">
+                                </div>
+
                             <div class="form-group">
-                                <label for="password">Confirm Password</label>
-                                <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="cpassword" id="cpassword">
+                                    <input type="hidden"  <?php  echo 'value="'.$in->birthdate.'"';?> name="bdateb" required="" id="bdaytb">
                             </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="submit" onclick="validate()" class="btn btn-default">Submit</button>
-                            <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                        </div>
+
+                                <div class="form-group">
+                                    <select class="form-control" name="genderb" hidden>
+                                        <option value="Male" <?php  if(isset($in->gender) && $in->gender=="Male"){echo 'selected';}?>>Male</option>
+                                        <option value="Female" <?php  if(isset($in->gender) && $in->gender=="Female"){echo 'selected';}?>>Female</option>
+                                        <option value="Other" <?php  if(isset($in->gender) && $in->gender=="Other"){echo 'selected';}?>>Other</option>
+                                    </select>
+                                </div>
+
+                                <div class="form-group">
+                                    <input type="hidden" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{2}-\d{3}-\d{4}$|^\d{3}-\d{4}$" class="form-control" name="contactb" id="contactb" required="">
+
+                                </div>
+                                <div class="form-group">
+                                    <input type="hidden" minlength="6"<?php  echo 'value="'.$in->user_name.'"';?> required="" class="form-control" pattern="[a-zA-Z0-9]+" name="unameb" id="unameb">
+                                </div>
+                                 <div class="form-group">
+                                    <label for="password">Old Password</label>
+                                    <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="OldPassword" id="OldPassword">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="password" id="password">
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Confirm Password</label>
+                                    <input type="password"  class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="cpassword" id="cpassword">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" onclick="validate()" class="btn btn-default">Submit</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                            </div>
+                        </form>
                   </div>
                 </div>
               </div> 
@@ -836,19 +898,28 @@
     function validate(){
         var bdate = document.getElementById("bdayt").value;
         var date = new Date(bdate);
-        var year = date.getFullYear() + 18;
-        var validateDate = new Date();
-        var validateYear = validateDate.getFullYear();
-        if(year < validateYear){
-          return true;
-        }else{
-          alert("You are below 18");
-          return false;
+        // var year = date.getFullYear() + 18;
+        // var validateDate = new Date();
+        // var validateYear = validateDate.getFullYear();
+        // if(year < validateYear){
+        //   return true;
+        // }else{
+        //   alert("You are below 18");
+        //   return false;
+        // }
+        var diffDuration = moment.duration(moment(new Date()).diff(moment(date)));
+        var results = diffDuration.years();
+
+        if(!isNaN(results)){
+            if(results > 17){
+                return true;
+            }else{   
+                alert("You are below 18!");
+                return false;
+            }
         }
     }
-</script>
 
-<script type="text/javascript">
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!

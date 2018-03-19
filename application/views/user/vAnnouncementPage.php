@@ -59,8 +59,7 @@
         <?php
             if($announcements!=FALSE){
                 foreach ($announcements as $announcement) {
-                    if($announcement->announcementStatus != "Finished") {
-                        $date = date("m-d-Y", strtotime($announcement->addedAt));
+                    if($announcement->announcementStatus != 'Finished') {
                     ?>
 
                         <div class='card'>
@@ -85,7 +84,7 @@
                                         </div>
 
                                         <div class='date'>
-                                         <span class='box-text'>".$date."</span>
+                                         <span class='box-text'>".$announcement->dateAdded."</span>
                                         </div>
 
                                      </div>
@@ -94,7 +93,6 @@
                             ?>
 
                             </div>
-                        </div>
 
                     <?php
                         ;

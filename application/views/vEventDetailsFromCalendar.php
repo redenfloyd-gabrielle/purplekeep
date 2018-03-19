@@ -89,7 +89,8 @@ div.desc {
 }
 </style>
 </head>
-    <body>
+
+    <body> 
 
         <!-- Body content -->
 
@@ -263,7 +264,19 @@ div.desc {
                                 </span>
 
                             </div>
+                            <!-- .property-meta -->
 
+                            <div class="section">
+                                <h4 class="s-property-title">Description</h4>
+                                <div class="s-property-content">
+                                    <p><?php echo $e->event_details; ?></p>
+                                </div>
+                            </div>
+                            <!-- End description area  -->
+
+                            <div class="section additional-details">
+
+                                <h4 class="s-property-title">Additional Details</h4>
                             <!-- .property-meta -->
 
                         <?php if($this->session->userdata['userSession']->userID == $e->user_id){?>
@@ -289,6 +302,7 @@ div.desc {
                         <?php }?>
                             <!-- End video area  -->
                             <?php foreach($events as $x){ if($id == $x->user_id && $color != "#808080"){
+
 
                                 if($x->event_status == "Approved"){
                                     echo'

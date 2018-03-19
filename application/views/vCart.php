@@ -224,12 +224,13 @@
                                                       </form>
                                                     </td>
                                                     <td>
-                                                      <form  method="POST" action="<?php echo site_url(); ?>/finance/CCart/deleteCartItem">
-                                                        <input name="id" class="hidden" value="<?php echo $cart->cart_id;?>">
-                                                        <button type="submit" class="button btn btn-default pull-right" data-toggle="modal" data-target="#myModal">
+                                                      <!--<form method="POST" action="<?php echo site_url(); ?>/finance/CCart/deleteCartItem">-->
+                                                        <input id="cart-delete-item" name="id" class="hidden" value="<?php echo $cart->cart_id;?>">
+                                                        <button id="deleteCartBtn" type="button" class="button btn btn-default pull-right" data-toggle="modal" data-target="#myModal">
                                                           <i class="glyphicon glyphicon-trash delete"></i>
                                                         </button>
-                                                      </form>
+                                                      <!--</form>-->
+                                                      <div id="get-me" hidden data-action="<?php echo site_url(); ?>/finance/CCart/deleteCartItem">
                                                     </td>
                                                   </tr>
                                                 </tbody>
@@ -251,7 +252,7 @@
                             <h1 align="center">
                                 <br>Nothing in your cart.<br> 
                                  <div class="button" style="margin:10px;">
-                                    <a href="<?php echo site_url();?>/CLogin/viewDashBoard" class="navbar-btn nav-button login"><span>Shop for tickets now!</span></a>
+                                    <a href="<?php echo site_url();?>/CLogin/viewDashBoard"><button type="button" class="navbar-btn nav-button login">Shop for tickets now!</button></a>
                                   </div>   
                             </h1>
                          <?php }?>
@@ -264,25 +265,25 @@
              </div><!-- END OF ROW-->
 
          </div>
-      <div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+      <div id="myModal" class="modal fade" data-backdrop="static" role="dialog">
+        <div class="modal-dialog">
 
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          <h4 class="modal-title">Modal Header</h4>
-        </div>
-        <div class="modal-body">
-          <center><p>Successfully Deleted the item!</p></center>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">&times;</button>
+              <h4 class="modal-title">SUCCESSr</h4>
+            </div>
+            <div class="modal-body">
+              <center><p>Item successfully deleted!</p></center>
+            </div>
+            <div class="modal-footer">
+              <button id="close-modal" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+
         </div>
       </div>
-
-    </div>
-  </div>
      <!--- END OF CONTENT AREA-->
 
         <!-- Footer area-->
@@ -352,6 +353,23 @@
 
 <script>
   var panel;
+  $("#deleteCartBtn").click(function(){
+    $.ajax({
+      url: $("#get-me").attr("data-action"),
+      method: "POST",
+      data: {
+        id: $("#cart-delete-item").val()
+      },
+      error: function(error){
+        alert("Error");
+      }
+    });
+  });
+
+  $("#close-modal").click(function(){
+    location.reload()
+  });
+  
   $("#chkout").click(function(){
         var data=$("#myform").serialize();
 
