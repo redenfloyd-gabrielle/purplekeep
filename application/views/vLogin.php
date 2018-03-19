@@ -67,8 +67,9 @@ if (!isset($this->session->userdata['userSession']) && !isset($this->session->us
         <h4 class="modal-title"><?php echo $errorTitle ?></h4>
       </div>
   <!--//form-ends-here-->
-      <div class="left-form-w3-agile">
-        <div class="loginBox">
+      <div class="modal-body">
+        <div class="left-form-w3-agile">
+          <div class="loginBox"> 
             <center>
               <span class="eventSystem">
                 <img src="<?php echo base_url(CustomizationManager::$images->LOGO_LIGHT) ?>" class="eventLogo">
@@ -87,9 +88,10 @@ if (!isset($this->session->userdata['userSession']) && !isset($this->session->us
                   <a href="<?php echo base_url('index.php/CLogin/forgotPassword'); ?>"><?php echo CustomizationManager::$strings->LOGIN_PAGE_FORGOT_PASSWORD ?></a>
                     <br><?php echo CustomizationManager::$strings->LOGIN_PAGE_DONT_HAVE_AN_ACCOUNT ?> <a href="<?php echo site_url();?>/user/cUser/viewSignUp"><?php echo CustomizationManager::$strings->LOGIN_PAGE_SIGNUP_HERE ?></a>
               </form>
-            </center>
+              </center>
+            </div>
           </div>
-      </div>
+        </div>
     </div>
   
   <!-- Added by Ted -->
