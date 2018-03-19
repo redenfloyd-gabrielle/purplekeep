@@ -1318,9 +1318,9 @@ class CEvent extends CI_Controller {
 		}else{
 			$data['interested']	= FALSE;
 		}
-		$this->load->view('imports/vHeader');
+		$this->load->view('imports/vHeaderLandingPage');
 		$this->load->view('vEventReview',$data);
-		$this->load->view('imports/vFooter');
+		$this->load->view('imports/vFooterLandingPage');
 
 	}
 
