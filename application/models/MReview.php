@@ -37,7 +37,7 @@
     
     public function createEventReview($data){
         $this->db->insert('review', $data);
-		$this->db->query("INSERT INTO table (`rating`, `description`, `ticket_id`) VALUES('".$data['rating']."', '".$data['description']."', '".$data['ticket_id']."')");
+		$this->db->query("INSERT INTO table (`rating`, `description`, `user_id`, `event_id`) VALUES('".$data['rating']."', '".$data['description']."', '".$data['user_id']."', '".$data['event_id']."')");
 		
 		return $query->result();
 			# code...

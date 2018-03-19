@@ -1329,12 +1329,12 @@ class CEvent extends CI_Controller {
     {
 		$this->load->model('events/mEvent','event');
         $eventId = $_POST['event_id'];
-		$ticketId = $this->MReview->getTicketIdFromEventId($eventId, $this->session->userdata['userSession']->userID);
 		$event = new mReview();
 		$data = array(
 			'rating' => $this->input->post('rating'),
 			'description' => $this->input->post('desc'),
-			'ticket_id' => $ticketId[0]->ticket_id
+			'event_id' => $eventId,
+            'user_id' => $this->session->userdata['userSession']->userID
 		);
 		
 		$res = $this->MReview->createEventReview($data);

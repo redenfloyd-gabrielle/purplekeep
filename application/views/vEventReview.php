@@ -305,7 +305,7 @@ foreach($going as $g){
                     success: function(data){
                     }
                 });
-                //window.location.reload();
+                window.location.reload();
              }
         </script>
 </html>
