@@ -140,9 +140,9 @@ class CEvent extends CI_Controller {
 			$data['start_time'] = $_POST['startTime'];
 			$data['end_date'] = $_POST['endDate'];
 			$data['end_time'] = $_POST['endTime'];
-			$this->load->view('imports/vHeaderSignUpPage');
+			$this->load->view('imports/vHeaderLandingPage');
 			$result = $this->load->view('vEventForCalendar',$data,TRUE);
-			$this->load->view('imports/vHeaderSignUpPage');
+			$this->load->view('imports/vFooterLandingPage');
 			//$this->viewCreateEvent();
 			echo $result;
 		}
