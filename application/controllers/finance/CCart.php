@@ -318,7 +318,7 @@ class CCart extends CI_Controller {
 				$this->MUser->update($this->session->userdata['userSession']->userID, array("load_amt" => $newload));
 
 			}
-			$this->session->set_flashdata('success_msg',"Successfully Checkedout!");
+			$this->session->set_flashdata('success_msg',"Successfully Checked Out!");
 				redirect("finance/CCart/viewCart");
 		}else{
 			$this->session->set_flashdata('error_msg',"Insufficient balance!");
