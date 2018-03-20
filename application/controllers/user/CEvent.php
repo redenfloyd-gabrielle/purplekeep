@@ -47,11 +47,14 @@ class CEvent extends CI_Controller {
 	public function searchEvent()
 	{
 		$data['users'] = $this->MUser->getAllUsers();
-		$result_data = $this->MEvent->getSearchEvents($_POST['searchWord']);
+		$result_data = $this->MEvent->getSearchEvents($_POST['searchWord'], $_POST['searchDateMonth'], $_POST['searchDateYear'],$_POST['region_code'],$_POST['municipal_name']);
+		$pref = new MPreference();
+		$uid = $this->session->userdata['userSession']->userID;
 		//////////////////////////////////////////////////////////////////////////////
 		//================INTERFACE MODULE - DATA-LAYOUT FILTERING CODE============//
 		/////////////////////////////////////////////////////////////////////////////
 		$array = array();
+		$msg = "";
 		if($result_data){
 			foreach ($result_data as $value) {
 					$arrObj = new stdClass;
@@ -61,21 +64,28 @@ class CEvent extends CI_Controller {
 					$arrObj->dateStart = $value->dateStart;
 					$arrObj->dateEnd = $value->event_date_end;
 					$arrObj->event_category = $value->event_category;
-<<<<<<< HEAD
 					$arrObj->event_picture = $value->event_picture;
-
-=======
 					$arrObj->event_venue = $value->event_venue;
 					//Location
 					$arrObj->location_name =$value->location_name;
 					$arrObj->region_code = $value->region_code;
-					
 					$arrObj->tix = $this->MEvent->getTicketsOfEvent($value->event_id);
->>>>>>> cd8d6c60aa8667c5e01f16ff161ee9b172c3c20c
+
+					$res = $pref->checkIfInterestedAlready($this->session->userdata['userSession']->userID,$arrObj->event_id);
+
+					if($res){
+						$arrObj->interested= TRUE;
+						$arrObj->prefId = $res[0]->user_event_preference_id;
+					}else{
+						$arrObj->interested	= FALSE;
+					}
+
 					$array[] = $arrObj;
 			}
+		}else{
+			$msg = "<h2> No events found.</h2>";
 		}
-		////////////STOPS HERE///////////////////////////////////////////////////
+        $data['msg'] = $msg;
 		$data['events'] = $array;
 		$data['announcements'] = $this->MAnnouncement->getUnviewedOfUser($this->session->userdata['userSession']->userID);
 		$data['announcementCount'] = count($data['announcements']);
@@ -118,6 +128,8 @@ class CEvent extends CI_Controller {
                               });
 
                         </script>';
+
+		
 
 		$this->load->view('imports/vHeaderLandingPage');
 

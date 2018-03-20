@@ -29,9 +29,9 @@
                 </div>
 
                 <div class="collapse navbar-collapse yamm" id="navigation">
-                    <ul class="main-nav nav navbar-nav navbar-right">
+                    <ul class="main-nav nav navbar-nav navbar-right ">
                       <!-- <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cInitialize">Home</a></li> -->
-                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cInitialize"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_NAV_HOME ?></a></li>
+                        <li class="wow fadeInDown" data-wow-delay="0.1s"><a href="<?php echo site_url();?>/cInitialize"><span class="fas fa-home fa-lg" title="HOME"></span></a></li>
                     </ul>
                 </div><!-- /.navbar-collapse -->
             </div><!-- /.container-fluid -->
@@ -59,7 +59,13 @@
                     <div class="box-for overflow">
                         <div class="col-md-12 col-xs-12 register-blocks">
                             <h2><?php echo CustomizationManager::$strings->SIGNUP_PAGE_NEW_ACCOUNT ?></h2>
-
+                            <h4><?php echo CustomizationManager::$strings->SIGNUP_PAGE_REQUIRED?></h4>
+                            <?php if ($this->session->flashdata('success_msg')): ?>
+                                <div class="alert alert-success" style="margin-top: 15px;">
+                                    <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
+                                    <?php echo $this->session->flashdata('success_msg'); ?>
+                                </div>
+                            <?php endif ?>
                             <?php if ($this->session->flashdata('error_msg')): ?>
                                 <div class="alert alert-danger" style="margin-top: 15px;">
                                     <button class="close" aria-hidden="true" data-dismiss="alert" type="button">×</button>
@@ -69,35 +75,35 @@
                             <form id="signup" action="<?php echo site_url();?>/user/cUser/signup" method="post" >
                                 <div class="form-group">
                                     <!-- <label for="name">First Name</label> -->
-                                    <label for="name"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_FIRST_NAME ?></label>
+                                    <label for="name"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_REQUIRED_FIELD; echo CustomizationManager::$strings->SIGNUP_PAGE_FIRST_NAME; ?></label>
                                     <input type="text" <?php  if(isset($first_name)){echo 'value="'.$first_name.'"';}?> class="form-control" pattern="[a-zA-Z]+" name="fname" id="name" required="">
                                 </div>
                                 <div class="form-group">
                                     <!-- <label for="name">Middle Initial</label> -->
-                                    <label for="name"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_MIDDLE_INITIAL ?></label>
+                                    <label for="name"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_REQUIRED_FIELD; echo CustomizationManager::$strings->SIGNUP_PAGE_MIDDLE_INITIAL ?></label>
                                     <input type="text" minlength="1" maxlength="1" style="width: 40px" <?php  if(isset($middle_initial)){echo 'value="'.$middle_initial.'"';}?> class="form-control" pattern="[a-zA-Z]+" name="miname" id="name" required="">
                                 </div>
                                 <div class="form-group">
                                     <!-- <label for="name">Last Name</label> -->
-                                    <label for="name"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_LAST_NAME ?></label>
+                                    <label for="name"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_REQUIRED_FIELD; echo CustomizationManager::$strings->SIGNUP_PAGE_LAST_NAME ?></label>
                                     <input type="text"  <?php  if(isset($last_name)){echo 'value="'.$last_name.'"';}?> class="form-control" pattern="[a-zA-Z]+" name="lname" id="name" required="">
                                 </div>
                                 <div class="form-group">
                                     <!-- <label for="email">Email</label> -->
-                                    <label for="email"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_EMAIL ?></label>
+                                    <label for="email"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_REQUIRED_FIELD; echo CustomizationManager::$strings->SIGNUP_PAGE_EMAIL ?></label>
                                     <input type="email"  <?php  if(isset($email)){echo 'value="'.$email.'"';}?> class="form-control" name="email" id="email" required="">
                                 </div>
                                 <div class="form-group">
                                     <!-- <label for="email">Birthdate</label> -->
-                                    <label for="email"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_BIRTHDATE ?></label>
+                                    <label for="email"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_REQUIRED_FIELD; echo CustomizationManager::$strings->SIGNUP_PAGE_BIRTHDATE ?></label>
 
-                                    <input type="date"  <?php  if(isset($birthdate)){echo 'value="'.$birthdate.'"';}?> name="bdate" required="">
+                                    <input type="date"  <?php  if(isset($birthdate)){echo 'value="'.$birthdate.'"';}?> name="bdate" required="" id="bdayt">
 
 
 
                                 </div>
                                 <div class="form-group">
-                                    <label for="email"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_GENDER ?></label>
+                                    <label for="email"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_REQUIRED_FIELD; echo CustomizationManager::$strings->SIGNUP_PAGE_GENDER ?></label>
                                     <select class="form-control" name="gender">
                                         <!-- <option value="Male" <?php  if(isset($gender) && $gender=="Male"){echo 'selected';}?>>Male</option>
                                         <option value="Female" <?php  if(isset($gender) && $gender=="Female"){echo 'selected';}?>>Female</option>
@@ -108,21 +114,21 @@
                                     </select>
                                 </div>
                                 <div class="form-group">
-                                    <label for="email"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_CONTACT_NUMBER ?> eg. (09XX-XXX-XXXX) | (XXX-XXXX)</label>
+                                    <label for="email"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_REQUIRED_FIELD; echo CustomizationManager::$strings->SIGNUP_PAGE_CONTACT_NUMBER ?> eg. (09XX-XXX-XXXX) | (XXX-XXXX)</label>
                                     <input type="text" <?php  if(isset($contact_no)){echo 'value="'.$contact_no.'"';}?>  pattern="^(09)\d{2}-\d{3}-\d{4}$|^\d{3}-\d{4}$" class="form-control" name="contact" id="email" required="">
                                 </div>
                                 <div class="form-group">
                                     <!-- <label for="email">Username</label> -->
-                                    <label for="email"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_USERNAME ?></label>
+                                    <label for="email"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_REQUIRED_FIELD; echo CustomizationManager::$strings->SIGNUP_PAGE_USERNAME ?></label>
                                     <input type="text" minlength="6" <?php  if(isset($user_name)){echo 'value="'.$user_name.'"';}?> required="" class="form-control" pattern="[a-zA-Z0-9]+" name="uname" id="email">
                                 </div>
                                 <div class="form-group">
                                     <!-- <label for="password">Password</label> -->
-                                    <label for="password"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_PASSWORD ?></label>
+                                    <label for="password"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_REQUIRED_FIELD; echo CustomizationManager::$strings->SIGNUP_PAGE_PASSWORD ?></label>
                                     <input type="password" <?php  if(isset($password)){echo 'value="'.$password.'"';}?> class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="password" id="password">
                                 </div>
                                 <div class="form-group">
-                                    <label for="cpass">Confirm Password</label>
+                                    <label for="cpass"><?php echo CustomizationManager::$strings->SIGNUP_PAGE_REQUIRED_FIELD;?>Confirm Password</label>
                                     <input type="password" class="form-control" required="" minlength="8" pattern="[a-zA-Z0-9]+" name="cpassword" id="cpassword"><h4 id="message"></h4>
                                 </div>
                                 <div class="text-center">
@@ -190,17 +196,17 @@
         $('#cpassword').on('keyup', function () {
             if ($(this).val() == $('#password').val()) {
                 $('#message').html('password matched').css('color', 'green');
-                $("#sub").removeAttr("disabled");      
+                $("#sub").removeAttr("disabled");
             } else {
                $('#message').html('password mismatch').css('color', 'red');
-               $('#sub').prop('disabled',true); 
-            } 
+               $('#sub').prop('disabled',true);
+            }
         });
 
-       
+
 
         $('#uname').on('keyup', function () {
-            
+
             $.ajax({
             url: "<?php echo site_url()?>/user/cUser/checkAllUsername",
             data:'username='+$("#uname").val(),
@@ -214,5 +220,42 @@
            });
         });
     });
-            
+
+</script>
+
+<script type="text/javascript">
+    function validate(){
+        var bdate = document.getElementById("bdayt").value;
+        var date = new Date(bdate);
+
+        // var year = date.getFullYear() + 18;
+        // var validateDate = new Date();
+        // var validateYear = validateDate.getFullYear();
+        
+        var diffDuration = moment.duration(moment(new Date()).diff(moment(date)));
+        var results = diffDuration.years();
+
+        if(!isNaN(results)){
+            if(results > 17){
+                return true;
+            }else{   
+                alert("You are below 18!");
+                return false;
+            }
+        }
+        
+    }
+       var today = new Date();
+var dd = today.getDate();
+var mm = today.getMonth()+1; //January is 0!
+var yyyy = today.getFullYear();
+ if(dd<10){
+        dd='0'+dd
+    }
+    if(mm<10){
+        mm='0'+mm
+    }
+
+today = yyyy+'-'+mm+'-'+dd;
+document.getElementById("bdate").setAttribute("max", today);
 </script>

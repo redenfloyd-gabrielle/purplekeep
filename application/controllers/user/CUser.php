@@ -11,14 +11,20 @@ class cUser extends CI_Controller {
       $this->load->model('MCardLoad');
 	  $this->load->model('MAnnouncement'); //admin module functionality
 	  $this->load->model('MNotificationItem');
+	  $this->load->model('MLoadhistory');
 	  $this->load->model('location/MLocation');
+	  $this->load->model('user/MPreference');
       $this->load->library('session');
+      $this->load->library('form_validation');
+	  $this->load->helper('security');
       $this->data = null;
   	}
   	public function index()
 	{
 		$data['users'] = $this->MUser->getAllUsers();
 		$result_data = $this->MEvent->getAllApprovedEvents();
+		$pref = new MPreference();
+		$uid = $this->session->userdata['userSession']->userID;
 		//////////////////////////////////////////////////////////////////////////////
 		//================INTERFACE MODULE - DATA-LAYOUT FILTERING CODE============//
 		/////////////////////////////////////////////////////////////////////////////
@@ -38,11 +44,23 @@ class cUser extends CI_Controller {
 					$arrObj->region_code = $value->region_code;
 					
 					$arrObj->tix = $this->MEvent->getTicketsOfEvent($value->event_id);
+					
+					$res = $pref->checkIfInterestedAlready($this->session->userdata['userSession']->userID,$arrObj->event_id);
+
+					if($res){
+						$arrObj->interested= TRUE;
+						$arrObj->prefId = $res[0]->user_event_preference_id;
+					}else{
+						$arrObj->interested	= FALSE;
+					}
 					$array[] = $arrObj;
 			}
 		}
 		////////////STOPS HERE///////////////////////////////////////////////////
-		$data['events'] = $array;
+		if( $array !=null){
+			$data['events'] = $array;
+		}
+		
 		$data['announcements'] = $this->MAnnouncement->getUnviewedOfUser($this->session->userdata['userSession']->userID);
 		$data['announcementCount'] = count($data['announcements']);
 		if(count($data['announcements']) == 0){
@@ -74,6 +92,7 @@ class cUser extends CI_Controller {
 				}
 			}
 			$data['announcements'] = $array1;
+			$data['msg'] = "<h2> No approved events as of the moment.</h2>";
 			
 		$this->data['custom_js']= '<script type="text/javascript">
 
@@ -107,14 +126,111 @@ class cUser extends CI_Controller {
 
 				if($res){
 					$code = $card[0]->cardId;
-					$res1 = $this->MCardLoad->update($code, array('cardStatus'=>0));
-				}
-			}
-		}
+					$res1 = $this->MCardLoad->update($code, array('cardStatus'=>0,"updatedBy"=>$this->session->userdata["userSession"]->userID));
 
-		redirect("event/cEvent/viewEvents");
+					// //add to loadhistory
+					// $lh = array (
+					// 	"account_id" => $this->session->userdata["userSession"]->userID,
+					// 	"cardId" => $code
+					// );
+					// $this->MLoadhistory->insert($lh);
+
+					
+					$this->session->set_flashdata('success_msg',"Your wallet has been added P".$card[0]->cardAmount." ammount of load!");
+
+					redirect("event/cEvent/viewEvents/1");
+				}
+			} else {
+				$this->session->set_flashdata('error_msg','Code already taken.');
+				redirect("event/cEvent/viewEvents/1");
+			}
+		} else {
+			$this->session->set_flashdata('error_msg','Code invalid.');
+			redirect("event/cEvent/viewEvents/1");
+
+		}
+	}
+
+	public function redeemCodeCalendar(){
+
+		$code = $this->input->post('ccode');
+		echo "Code ID: ".$code;
+		$card = $this->MCardLoad->read_where(array('cardCode'=> $code));
+
+		if($card){
+			$card = json_decode(json_encode($card));
+			$u =  $this->MUser->read($this->session->userdata['userSession']->userID);
+			if($card[0]->cardStatus==1){
+				$cardNew = $u[0]->load_amt + $card[0]->cardAmount;
+				$res = $this->MUser->update($this->session->userdata["userSession"]->userID,array('load_amt'=>$cardNew));
+
+				if($res){
+					$code = $card[0]->cardId;
+					$res1 = $this->MCardLoad->update($code, array('cardStatus'=>0,"updatedBy"=>$this->session->userdata["userSession"]->userID));
+
+					// //add to loadhistory
+					// $lh = array (
+					// 	"account_id" => $this->session->userdata["userSession"]->userID,
+					// 	"cardId" => $code
+					// );
+					// $this->MLoadhistory->insert($lh);
+
+					
+					$this->session->set_flashdata('success_msg',"Your wallet has been added P".$card[0]->cardAmount." ammount of load!");
+
+					redirect("calendar/cCalendar");
+				}
+			} else {
+				$this->session->set_flashdata('error_msg','Code already taken.');
+				redirect("calendar/cCalendar");
+			}
+		} else {
+			$this->session->set_flashdata('error_msg','Code invalid.');
+			redirect("calendar/cCalendar");
+		}
 	}
 	
+	public function redeemCodeInCart(){
+
+		$code = $this->input->post('ccode');
+		echo "Code ID: ".$code;
+		$card = $this->MCardLoad->read_where(array('cardCode'=> $code));
+
+		if($card){
+			$card = json_decode(json_encode($card));
+			$u =  $this->MUser->read($this->session->userdata['userSession']->userID);
+			if($card[0]->cardStatus==1){
+				$cardNew = $u[0]->load_amt + $card[0]->cardAmount;
+				$res = $this->MUser->update($this->session->userdata["userSession"]->userID,array('load_amt'=>$cardNew));
+
+				if($res){
+					$code = $card[0]->cardId;
+					$res1 = $this->MCardLoad->update($code, array('cardStatus'=>0,"updatedBy"=>$this->session->userdata["userSession"]->userID));
+
+					// //add to loadhistory
+					// $lh = array (
+					// 	"account_id" => $this->session->userdata["userSession"]->userID,
+					// 	"cardId" => $code
+					// );
+					// $this->MLoadhistory->insert($lh);
+
+					
+					$this->session->set_flashdata('success_msg',"Your wallet has been added P".$card[0]->cardAmount." ammount of load!");
+
+					redirect("finance/cCart/viewCart");
+				}
+			} else {
+				$this->session->set_flashdata('error_msg','Code already taken.');
+				redirect("finance/cCart/viewCart");
+			}
+		} else {
+			$this->session->set_flashdata('error_msg','Code invalid.');
+			redirect("finance/cCart/viewCart");
+		}
+
+		//$this->load->view('vLogin', $data);
+		//
+	}
 
 	public function signuppage()
 	{
@@ -126,63 +242,82 @@ class cUser extends CI_Controller {
 
 	public function signup()
 	{
-		$user = new MUser();
-
-		$now = NEW DateTime(NULL, new DateTimeZone('UTC'));
-
+		$rules = "strip_tags|trim|xss_clean";
+		$this->form_validation->set_rules('uname','first name',$rules.'|required|min_length[6]|max_length[50]');
+		$this->form_validation->set_rules('password','Password','required|min_length[8]');
+		$this->form_validation->set_rules('cpassword','Confirm password','required|matches[password]');
+		
+		$this->form_validation->set_rules('fname','First Name',$rules.'|required|max_length[50]');
+		$this->form_validation->set_rules('lname','Last Name',$rules.'|required|min_length[2]|max_length[50]');
+		$this->form_validation->set_rules('miname','Middle initial',$rules.'|required|min_length[1]');
+		$this->form_validation->set_rules('email','email',$rules.'|required|min_length[2]|max_length[50]|valid_email');
+		$this->form_validation->set_rules('bdate','birthday',$rules.'|required');
 		$data = array('user_name' => $this->input->post('uname'),
-					  'password' => $this->input->post('password'),
-					  'cpassword' => $this->input->post('cpassword'),
-					  'first_name' => $this->input->post('fname'),
-					  'last_name' => $this->input->post('lname'),
-					  'middle_initial' => $this->input->post('miname'),
-					  'email' => $this->input->post('email'),
-					  'birthdate' => $this->input->post('bdate'),
-					  'gender' => $this->input->post('gender'),
-					  'contact_no' => $this->input->post('contact'),
-					  'user_type' => 'Regular'
-					);
+						  'password' => $this->input->post('password'),
+						  'cpassword' => $this->input->post('cpassword'),
+						  'first_name' => $this->input->post('fname'),
+						  'last_name' => $this->input->post('lname'),
+						  'middle_initial' => $this->input->post('miname'),
+						  'email' => $this->input->post('email'),
+						  'birthdate' => $this->input->post('bdate'),
+						  'gender' => $this->input->post('gender'),
+						  'contact_no' => $this->input->post('contact'),
+						  'user_type' => 'Regular'
+						);
+		if ($this->form_validation->run() != FALSE )
+		{
 
-		if($this->checkIfEmptyFields($data)){
+			$user = new MUser();
 
-			$res = $this->MUser->read_where(array('user_name' => $data['user_name']));
-			$res1 = $this->MUser->read_where(array('email' => $data['email']));
+			$date = strtotime($data['birthdate']);
+			$valiDate = strtotime('+ 18 year',$date);
+			$curDate = strtotime("now");
+			
+			if($valiDate < $curDate){
+				$res = $this->MUser->read_where(array('user_name' => $data['user_name']));
+				$res1 = $this->MUser->read_where(array('email' => $data['email']));
 
-			if($res){
-					$this->session->set_flashdata('error_msg','Username taken');
+				if($res){
+						$this->session->set_flashdata('error_msg','Username taken');
+						$this->data = $data;
+						$this->viewSignUp();
+						// redirect('user/cUser/viewSignUp',"refresh");
+						//echo "INVALID, EXISTING USERNAME, PLS TRY AGAIN";
+
+				}else if($res1){
+					$this->session->set_flashdata('error_msg','Email taken');
+					$this->data = $data;
+						$this->viewSignUp();
+						//echo "INVALID, EXISTING EMAIL, PLS TRY AGAIN";
+
+				}else if($this->input->post('password') != $this->input->post('cpassword')){
+					$this->session->set_flashdata('error_msg','Password does not match');
 					$this->data = $data;
 					$this->viewSignUp();
-					// redirect('user/cUser/viewSignUp',"refresh");
-					//echo "INVALID, EXISTING USERNAME, PLS TRY AGAIN";
+				}else{
+					
+					$data['password'] = hash('sha512',$data['password']);
+					unset($data['cpassword']);
+					$result = $user->insert($data);
 
-			}else if($res1){
-				$this->session->set_flashdata('error_msg','Email taken');
-				$this->data = $data;
-					$this->viewSignUp();
-					//echo "INVALID, EXISTING EMAIL, PLS TRY AGAIN";
+					if($result){
+						//$this->index();
+						redirect('user/cUser/viewRegistrationConfirmation');
+					}	
 
-			}else if($this->input->post('password') != $this->input->post('cpassword')){
-				$this->session->set_flashdata('error_msg','Password does not match');
+				}
+			}else{
+				$this->session->set_flashdata('error_msg','You are below 18');
 				$this->data = $data;
 				$this->viewSignUp();
-			}else{
-				
-				$data['password'] = hash('sha512',$data['password']);
-				unset($data['cpassword']);
-				$result = $user->insert($data);
-
-				if($result){
-					//$this->index();
-					redirect('user/cUser/viewRegistrationConfirmation');
-				}	
-
 			}
+
 		}else{
-			$this->session->set_flashdata('error_msg','Do not leave the fields to be empty.');
+			$this->session->set_flashdata('error_msg',validation_errors());
+			// redirect("user/cUser/viewSignUp");
 			$this->data = $data;
-			$this->viewSignUp();
+				$this->viewSignUp();
 		}
-		
 		
 
 		# code...
@@ -253,30 +388,24 @@ class cUser extends CI_Controller {
 	
 	public function viewSignUp()
 	{
-		if(!$this->data){
-		$this->load->view('imports/vHeaderSignUpPage');
-		$this->load->view('vSignUp');
-		$this->load->view('imports/vFooterLandingPage');
+		if (isset($this->session->userdata['adminSession']) || isset($this->session->userdata['userSession'])) {
+			redirect('cLogin/viewDashBoard');
 		}else{
-			$this->load->view('imports/vHeaderSignUpPage');
-		$this->load->view('vSignUp',$this->data);
-		$this->load->view('imports/vFooterLandingPage');
-		}
+			$data['page_title'] = "Registration Page";
 
-	}
-
-	private function checkIfEmptyFields($data){
-
-		if(count($data) > 0){
-			foreach($data as $key => $value){
-				if(empty(trim($value))){
-					return false;
-				}
+			if(!$this->data){
+				$this->load->view('imports/vHeaderSignUpPage',$data);
+				$this->load->view('vSignUp');
+				$this->load->view('imports/vFooterLandingPage');
+			}else{
+				$this->load->view('imports/vHeaderSignUpPage',$data);
+				$this->load->view('vSignUp',$this->data);
+				$this->load->view('imports/vFooterLandingPage');
 			}
 		}
 
-		return true;
 	}
+
 
 	public function viewClickedAnnouncement($announcementID)
 	{
@@ -292,7 +421,8 @@ class cUser extends CI_Controller {
 	public function viewAnnouncements()
 	{
 		$data['announcements'] = $this->MAnnouncement->loadAllAnnouncementDetails();
-		$this->load->view('imports/vHeaderSignUpPage');
+		$data['page_title'] = "Announcement Page";
+		$this->load->view('imports/vHeaderSignUpPage', $data);
 		$this->load->view('user/vAnnouncementPage.php', $data);
 		$this->load->view('imports/vFooterLandingPage');
 
@@ -310,16 +440,17 @@ class cUser extends CI_Controller {
 		
 		echo $key->notifID;
   }
-  public function updateAnnounce1($id)
-	{	
+
+  	public function updateAnnounce1($id){	
 		$where = array('isViewed' => 1);
 		$query = $this->MNotificationItem->update1(array("announcement"=>$id,"user"=>$this->session->userdata['userSession']->userID), $where);
 		// echo  $this->MNotificationItem->db->last_query();
 		// die();
-  }
-  public function viewRegistrationConfirmation() {
-		  $this->load->view('imports/vHeaderSignUpPage');
+  	}
+
+  	public function viewRegistrationConfirmation() {
+		$this->load->view('imports/vHeaderSignUpPage');
 	  	$this->load->view('vRegistrationConfirmation.php');
   		$this->load->view('imports/vFooterLandingPage');
-	 }
+	}
 }

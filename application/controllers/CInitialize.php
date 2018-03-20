@@ -11,7 +11,7 @@ class CInitialize extends CI_Controller {
 
 	public function index()
 	{
-		if ($this->session->userdata('userSession')) {
+		if ($this->session->userdata('userSession') || $this->session->userdata('adminSession')) {
 			redirect('cLogin/viewDashBoard');
 		} else {
 			//////////////////////////////////////////////////////////////////////////////

@@ -50,12 +50,13 @@
 		}
 
 		//$where is an array of where, affectedFields is an array that represents updated fields
-		public function update ($id, $affectedFields) {
+		public function update($id, $affectedFields) {
+			$this->db->set($affectedFields);
 			return $this->db->update($this::DB_TABLE, $affectedFields, array ($this::DB_TABLE_PK=>$id));
 		}
 
 		//$where is an array of where, affectedFields is an array that represents updated fields
-		public function update1 ($where, $affectedFields) {
+		public function update1($where, $affectedFields) {
 			return $this->db->update($this::DB_TABLE, $affectedFields, $where);
 		}
 

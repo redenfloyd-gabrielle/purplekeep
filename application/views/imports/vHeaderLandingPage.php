@@ -4,7 +4,9 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Event System | Home page</title>
+
+    <title>DailyEvents | <?php echo isset($page_title) ? $page_title : 'Home Page' ; ?></title>
+    <link rel="icon" href="<?php echo base_url('assets/dianeAssets/img/DE Icon.png')?>">
 
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
@@ -45,6 +47,9 @@
     <link href="<?php echo base_url('assets/customization1Assets/css/notification.css')?>" rel="stylesheet" />
     <script src="<?php echo base_url('assets/customization1Assets/js/notification.js')?>"></script>
 
+    <!--Fontawesome icons for Nav Tab Icons-->
+    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    
     <style>
         .calendar-legend{ margin-top:5%; max-width: 50%; border-radius: 15px; border: 1px solid #ccc; padding: 5px;}
         .legend { list-style: none; margin-left:-35px;}
@@ -76,6 +81,13 @@
             -moz-box-shadow:    1px 1px 3px 3px #ccc;
             -webkit-box-shadow: 1px 1px 3px 3px #ccc;
             box-shadow:         1px 1px 3px 3px #ccc;
+        }
+
+        .badge-notify {
+           background: red;
+           position: relative;
+           top: -15px;
+           left: -5px;
         }        
 
       .checkoutContainer {
@@ -147,7 +159,10 @@
                 .corner-ribbon.orange{background: #e82;}
                 .corner-ribbon.yellow{background: #ec0;}
 
-            
+            li.active{
+              border-bottom: 100px;
+              border-color: #CB6C52;
+            }
     </style>
 </head>
 
