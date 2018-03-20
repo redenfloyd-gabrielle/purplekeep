@@ -907,18 +907,12 @@ class CEvent extends CI_Controller {
 
 		$rules = "strip_tags|trim|xss_clean";
 		$this->form_validation->set_rules('uname','first name',$rules.'|required|min_length[6]|max_length[50]');
-		$this->form_validation->set_rules('password','Password','required|min_length[8]');
-		$this->form_validation->set_rules('cpassword','Confirm password','required|matches[password]');
-
 		$this->form_validation->set_rules('fname','First Name',$rules.'|required|max_length[50]');
 		$this->form_validation->set_rules('lname','Last Name',$rules.'|required|min_length[2]|max_length[50]');
 		$this->form_validation->set_rules('midname','Middle initial',$rules.'|required|min_length[1]');
 		$this->form_validation->set_rules('email','email',$rules.'|required|min_length[2]|max_length[50]|valid_email');
 		$this->form_validation->set_rules('bdate','birthday',$rules.'|required');
 		$data = array('user_name' => $this->input->post('uname'),
-						  'password' => $this->input->post('password'),
-						  'OldPassword' => $this->input->post('OldPassword'),
-						  'cpassword' => $this->input->post('cpassword'),
 						  'first_name' => $this->input->post('fname'),
 						  'last_name' => $this->input->post('lname'),
 						  'middle_initial' => $this->input->post('midname'),
@@ -930,26 +924,19 @@ class CEvent extends CI_Controller {
 						);
 		if ($this->form_validation->run() != FALSE )
 		{
-			$now = NEW DateTime(NULL, new DateTimeZone('UTC'));
-
-
-
+			$date = strtotime($data['birthdate']);
+			$valiDate = strtotime('+ 18 year',$date);
+			$curDate = strtotime("now");
+			
+			if($valiDate < $curDate){
 				$res = $this->MUser->read_where(array('user_name' => $data['user_name']));
 				$res1 = $this->MUser->read_where(array('email' => $data['email']));
 
-				$data['OldPassword'] = hash('sha512',$data['OldPassword']);
-
-				$res2 = $this->MUser->read_where(array('account_id' => $this->session->userdata['userSession']->userID,
-														"password"=>$data['OldPassword']));
 				// echo "<pre>";
 				// var_dump($res1);
 				// die();
-				if(!$res2){
-					$this->session->set_flashdata('error_msg','Password does not match the current password.');
-					$this->data = $data;
-					$this->session->set_flashdata('userDetails',json_encode($data));
-					redirect("event/CEvent/viewEvents/1");
-				}else if($res && $res[0]->account_id != $this->session->userdata['userSession']->userID){
+				
+				if($res && $res[0]->account_id != $this->session->userdata['userSession']->userID){
 						$this->session->set_flashdata('error_msg','Username taken');
 						$this->data = $data;
 						$this->session->set_flashdata('userDetails',json_encode($data));
@@ -960,22 +947,20 @@ class CEvent extends CI_Controller {
 						$this->session->set_flashdata('userDetails',json_encode($data));
 						redirect("event/CEvent/viewEvents/1");
 
-
-				}else{
-
-					$data['password'] = hash('sha512',$data['password']);
-					unset($data['cpassword']);
-					unset($data['OldPassword']);
-
-					$result = $user->update($this->session->userdata['userSession']->userID,$data);
-
-					if($result){
-						$this->session->set_flashdata('success_msg',"User Profile updated!");
-						redirect("event/CEvent/viewEvents/1");
-					}
-
-				}
-
+                }else{
+                        $this->data = $data;
+                        $result = $user->update($this->session->userdata['userSession']->userID,$data);
+						if($result){
+						  $this->session->set_flashdata('success_msg',"User Profile updated!");
+						  redirect("event/CEvent/viewEvents/1");
+					    }
+                }
+			}else{
+				$this->session->set_flashdata('userDetails',json_encode($data));
+				$this->session->set_flashdata('error_msg','You must be at least 18 years old.');
+				redirect("event/CEvent/viewEvents/1");
+			}
+			
 		}else{
 			$this->session->set_flashdata('error_msg',validation_errors());
 			// redirect("user/cUser/viewSignUp");
@@ -986,7 +971,57 @@ class CEvent extends CI_Controller {
 
 	}
 
+        public function updatePassword(){
+            $user = new MUser();
 
+            $rules = "strip_tags|trim|xss_clean";
+            $this->form_validation->set_rules('password','Password','required|min_length[8]');
+            $this->form_validation->set_rules('cpassword','Confirm password','required|matches[password]');
+             $data = array('user_name' => $this->input->post('unameb'),
+						  'password' => $this->input->post('password'),
+						  'OldPassword' => $this->input->post('OldPassword'),
+						  'cpassword' => $this->input->post('cpassword'),
+						  'first_name' => $this->input->post('fnameb'),
+						  'last_name' => $this->input->post('lnameb'),
+						  'middle_initial' => $this->input->post('midnameb'),
+						  'email' => $this->input->post('emailb'),
+						  'birthdate' => $this->input->post('bdateb'),
+						  'gender' => $this->input->post('genderb'),
+						  'contact_no' => $this->input->post('contactb'),
+						  'user_type' => 'Regular'
+						);
+            if ($this->form_validation->run() != FALSE ){
+
+				$res2 = $this->MUser->read_where(array('account_id' => $this->session->userdata['userSession']->userID,
+														"password" => hash('sha512', $data['OldPassword'])));
+                if(!$res2){
+					$this->session->set_flashdata('error_msg','Password does not match the current password.');
+					$this->data = $data;
+					$this->session->set_flashdata('userDetails',json_encode($data));
+                    echo $data['password'];
+                    echo $data['OldPassword'];
+                    echo $data['cpassword'];
+					redirect("event/CEvent/viewEvents/1");
+                }else{
+					$data['password'] = hash('sha512',$data['password']);
+					unset($data['cpassword']);
+					unset($data['OldPassword']);
+
+					$result = $user->update($this->session->userdata['userSession']->userID,$data);
+
+					if($result){
+						$this->session->set_flashdata('success_msg',"User Password changed!");
+						redirect("event/CEvent/viewEvents/1");
+					}
+                }
+            }else{
+                $this->session->set_flashdata('error_msg',validation_errors());
+                // redirect("user/cUser/viewSignUp");
+                $this->data = $data;
+                        $this->session->set_flashdata('userDetails',json_encode($data));
+                        redirect("event/CEvent/viewEvents/1");
+		    }
+        }
 
 
 		public function upcomingEvents(){

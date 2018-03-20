@@ -64,6 +64,7 @@
 
 		public function loadAllAnnouncementDetails(){
 			$this->db->select('*');
+            $this->db->select('DATE_FORMAT(announcement.addedAt, "%b %d %Y") AS "dateAdded"');
 			$this->db->from($this::DB_TABLE);
 			$this->db->join('user_account', $this::DB_TABLE . '.addedBy = user_account.account_id');
 			$this->db->order_by($this::DB_TABLE.'.announcementID', 'DESC');
@@ -71,6 +72,7 @@
 
 			return $query->result();
 		}
+        
 		
 		public function getUnviewedOfUser($user){
 			$this->db->select('*,a.addedAt,IF(TIMESTAMPDIFF(SECOND,a.addedAt,NOW()) < 60 ,TIMESTAMPDIFF(SECOND,a.addedAt,NOW()), NULL) as sec,IF(TIMESTAMPDIFF(Minute,a.addedAt,NOW()) < 60 ,TIMESTAMPDIFF(Minute,a.addedAt,NOW()), NULL) as min,IF(TIMESTAMPDIFF(Hour,a.addedAt,NOW()) < 60 ,TIMESTAMPDIFF(Hour,a.addedAt,NOW()), NULL) as hr,
