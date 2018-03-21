@@ -191,6 +191,7 @@
                                     <!-- <input type="text"  name="totalshit" value="<?php //echo $x; ?>"> -->
 
                                     <div class="text-center">
+                                        <input type="text" value=<?php echo $x; ?> name="numTickets" hidden>
                                         <button type="submit" class="btn btn-default" value="Create Event"><!-- <a href="<?php echo site_url();?>/CLogin/viewEvents"> -->Edit</button>
                                     </div>
 

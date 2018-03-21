@@ -18,14 +18,17 @@
 
 		}
 
-		public function updateTicketInfo($id,$info)
+		public function updateTicketInfo($ticketID, $id,$info)
 		{
 			/*$data = array(
 				'ticket_name' => $info['ticket_name'],
 				'price' => $info['price']
 			);*/
 
-			$this->db->where('event_id', $id);
+			$array = array('ticket_type_id' => $ticketID, 'event_id' => $id);
+
+			$this->db->where($array);
+			//$this->db->where('event_id', $id);
 			$this->db->update('ticket_type', $info);
 		}
 
