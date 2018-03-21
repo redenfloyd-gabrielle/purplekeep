@@ -83,10 +83,10 @@
 
                                     <div class="form-group">
                                         <label for="name">STARTS</label>
-                                        <input  class="form-control" type="text"  value="<?php echo $ev->event_date_start;?>" name="event_date_start" id="datetimepicker1" required="">
+                                        <input  class="form-control" type="text"  value="<?php echo date("m/d/Y H:i", strtotime($ev->event_date_start));?>" name="event_date_start" id="datetimepicker1" required="">
 
                                         <script>
-                                            $("#datetimepicker1").datetimepicker();
+                                          $("#datetimepicker1").datetimepicker();
                                         </script>
 
                                         <!-- <div class="timeContainer">
@@ -99,7 +99,7 @@
 
                                     <div class="form-group">
                                         <label for="name">ENDS</label>
-                                        <input  class="form-control" type="text" value="<?php echo $ev->event_date_end;?>" name="event_date_end" id="datetimepicker2" required="">
+                                        <input  class="form-control" type="text" value="<?php echo date("m/d/Y H:i", strtotime($ev->event_date_end));?>" name="event_date_end" id="datetimepicker2" required="">
 
                                         <script>
                                             $("#datetimepicker2").datetimepicker();

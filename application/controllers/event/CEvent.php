@@ -854,11 +854,11 @@ class CEvent extends CI_Controller {
 					  'event_category'=>$event_category,
 					  'event_venue'=>$event_venue);
 
-			$date3 = new DateTime('now');
-
+			$date_example = new DateTime('now');
+			$date3 = $date_example->format('m/d/Y H:i');
 			$date2=explode(" ", $date3);
 			$d = explode ("/", $date2[0]);
-			$ts = strtotime($d[2]."-".$d[0]."-".$d[1]." ".$date2[1].":00 ".$date2[2]);
+			$ts = strtotime($d[2]."-".$d[0]."-".$d[1]." ".$date2[0].":00 ".$date2[1]);
 			$date3 = mdate("%Y-%m-%d %H:%i:%s", $ts);
 
 			$date2=explode(" ", $data['event_date_start']);
@@ -893,7 +893,7 @@ class CEvent extends CI_Controller {
 				//die();
 			}
 			$this->MTicketType->updateTicketInfo($event_id,$data);
-			redirect('cLogin', 'refresh');
+				redirect('cLogin', 'refresh');
 		}else{
 			echo "Error...";
 		}
@@ -927,7 +927,7 @@ class CEvent extends CI_Controller {
 			$date = strtotime($data['birthdate']);
 			$valiDate = strtotime('+ 18 year',$date);
 			$curDate = strtotime("now");
-			
+
 			if($valiDate < $curDate){
 				$res = $this->MUser->read_where(array('user_name' => $data['user_name']));
 				$res1 = $this->MUser->read_where(array('email' => $data['email']));
@@ -935,7 +935,7 @@ class CEvent extends CI_Controller {
 				// echo "<pre>";
 				// var_dump($res1);
 				// die();
-				
+
 				if($res && $res[0]->account_id != $this->session->userdata['userSession']->userID){
 						$this->session->set_flashdata('error_msg','Username taken');
 						$this->data = $data;
@@ -960,7 +960,7 @@ class CEvent extends CI_Controller {
 				$this->session->set_flashdata('error_msg','You must be at least 18 years old.');
 				redirect("event/CEvent/viewEvents/1");
 			}
-			
+
 		}else{
 			$this->session->set_flashdata('error_msg',validation_errors());
 			// redirect("user/cUser/viewSignUp");
@@ -1076,7 +1076,7 @@ class CEvent extends CI_Controller {
 			$data['page_title'] = "Edit Event Page";
 			$this->load->view('imports/vHeaderSignUpPage',$data);
 			$this->load->view('imports/vHeaderSignUpPage');
-			$this->load->view('user/vEditEvent', $data);
+			$this->load->view('user/vEditEvent', $data['ev']);
 
 			$this->load->view('imports/vFooterLandingPage');
 		}
