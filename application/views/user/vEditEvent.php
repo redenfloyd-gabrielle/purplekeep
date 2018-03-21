@@ -83,6 +83,7 @@
 
                                     <div class="form-group">
                                         <label for="name">STARTS</label>
+                                        <h1><?php echo $ev->event_date_start; ?></h1>
                                         <input  class="form-control" type="text"  value="<?php echo $ev->event_date_start;?>" name="event_date_start" id="datetimepicker1" required="">
 
                                         <script>
