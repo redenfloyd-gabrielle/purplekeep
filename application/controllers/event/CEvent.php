@@ -881,18 +881,20 @@ class CEvent extends CI_Controller {
 
 		if($v){
 			$count = $this->MTicketType->select_certain_where_isDistinct_hasOrderBy_hasGroupBy_isArray('count(ticket_type_id) as cnt',array("event_id"=>$event_id));
+			$numTickets = $this->input->post('numTickets');
 
 		//	var_dump($count->cnt);
 			//die();
-			for($temp = 0; $temp < intval($count); $temp++){
-				$data = array(
+			for($temp = 0; $temp < $numTickets; $temp++){
+				$ticketID = $this->input->post('ticketID'.$temp);
+				$ticketData = array(
 					'ticket_name' => $this->input->post('ticketType'.$temp),
 					'price' => $this->input->post('price_tickets_total'.$temp),
 					'ticket_count' => $this->input->post('no_tickets_total'.$temp)
 				);
 				//die();
+				$this->MTicketType->updateTicketInfo($ticketID, $event_id, $ticketData);
 			}
-			$this->MTicketType->updateTicketInfo($event_id,$data);
 			redirect('cLogin', 'refresh');
 		}else{
 			echo "Error...";
