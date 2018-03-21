@@ -140,9 +140,9 @@ class CEvent extends CI_Controller {
 			$data['start_time'] = $_POST['startTime'];
 			$data['end_date'] = $_POST['endDate'];
 			$data['end_time'] = $_POST['endTime'];
-			$this->load->view('imports/vHeaderSignUpPage');
+			$this->load->view('imports/vHeaderLandingPage');
 			$result = $this->load->view('vEventForCalendar',$data,TRUE);
-			$this->load->view('imports/vHeaderSignUpPage');
+			$this->load->view('imports/vFooterLandingPage');
 			//$this->viewCreateEvent();
 			echo $result;
 		}
@@ -215,7 +215,7 @@ class CEvent extends CI_Controller {
                               	$("#user").addClass("active");
                         </script>';
         $data['page_title'] = "Create Event Page";
-  		$this->load->view('imports/vHeaderSignUpPage',$data);
+  		$this->load->view('imports/vHeaderLandingPage',$data);
 		$this->load->view('vNewEvent',$data);
 		$this->load->view('imports/vFooterLandingPage');
 
@@ -1039,6 +1039,10 @@ class CEvent extends CI_Controller {
 		public function editEvent($id){
 			$data['ev'] = $this->MUser->getEventDetails($id)->row();
 			$data['ti'] = $this->MUser->getTicketDetails($id)->result();
+			//Gaius
+			// $start = $data['ev']->["event_date_start"];
+			// $end = $data['ev']->["event_date_end"];
+			
 
 
 			$data['announcements'] = $this->MAnnouncement->getUnviewedOfUser($this->session->userdata['userSession']->userID);

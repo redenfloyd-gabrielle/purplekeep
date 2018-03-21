@@ -83,10 +83,15 @@
 
                                     <div class="form-group">
                                         <label for="name">STARTS</label>
-                                        <input  class="form-control" type="text"  value="<?php echo $ev->event_date_start;?>" name="event_date_start" id="datetimepicker1" required="">
+                                        <input  class="form-control" type="text"   
+                                        name="event_date_start" id="datetimepicker1" 
+                                        value = "<?php echo $ev->event_date_start ?>" required="">
 
                                         <script>
-                                            $("#datetimepicker1").datetimepicker();
+                                            var dateStart = new Date(document.getElementById("datetimepicker1").value);
+                                            $("#datetimepicker1").datetimepicker({
+                                                date: dateStart
+                                            });
                                         </script>
 
                                         <!-- <div class="timeContainer">
@@ -99,10 +104,15 @@
 
                                     <div class="form-group">
                                         <label for="name">ENDS</label>
-                                        <input  class="form-control" type="text" value="<?php echo $ev->event_date_end;?>" name="event_date_end" id="datetimepicker2" required="">
+                                        <input  class="form-control" type="text" 
+                                        name="event_date_end" id="datetimepicker2" 
+                                        value = "<?php echo $ev->event_date_end ?>" required="">
 
                                         <script>
-                                            $("#datetimepicker2").datetimepicker();
+                                            var dateEnd = new Date(document.getElementById("datetimepicker2").value);
+                                            $("#datetimepicker2").datetimepicker({
+                                                date: dateEnd
+                                            });
                                         </script>
                                     </div>
 
@@ -246,7 +256,7 @@
 
 
 
-            <script type="text/javascript">
+            <!-- <script type="text/javascript">
                 $("#datetime").datepicker();
             </script>
 
@@ -267,4 +277,4 @@
                 $(function () {
                     $('#datetimepicker1').datetimepicker();
                 });
-            </script>
+            </script> -->

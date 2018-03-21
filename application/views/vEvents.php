@@ -126,7 +126,7 @@
                                 </div>
                             </div>
 
-                            <div class="panel-body search-widget">
+                            <div class="panel-body search-widget" style="margin-top: 0px;">
                                 <fieldset >
                                     <div class="row">
                                         <div class="col-md-12">
@@ -384,7 +384,7 @@
                                                                 <!-- <a href="<?php echo site_url();?>/reports/cReports/generateRevenue/<?php echo $e->event_id;?>"><button class="button btn largesearch-btn " id="<?php echo $e->event_id;?>">Generate Revenue</button></a> -->
 
 <!-- Button HTML (to Trigger Modal) -->
-<a href="#myModal<?php echo $e->event_id;?>" role="button" class="button btn largesearch-btn" data-toggle="modal">Generate Revenue</a>
+<a href="#myModal<?php echo $e->event_id;?>" role="button" class="button btn largesearch-btn" style="margin-top: 0px;" data-toggle="modal">Generate Revenue</a>
 
 <!-- Modal HTML -->
 <div id="myModal<?php echo $e->event_id;?>" class="modal fade">
@@ -595,7 +595,7 @@
          $info[] = json_decode($this->session->flashdata('userDetails'));
 
 }else{ ?>
-            <div role="tabpanel" class="tab-pane" id="editprofile">
+            <div role="tabpanel" class="tab-pane" id="editprofile" style="margin-bottom: 25px;">
     <?php } ?>
 
         <h2>Edit Profile</h2>
@@ -643,10 +643,7 @@
                         <input type="email"  <?php  echo 'value="'.$in->email.'"';?> class="form-control" name="email" id="email" pattern="[^ @]*@[^ @]*" required="">
                     </div>
 
-                 <div class="form-group">
-                    <label for="contact no">Contact Number (09XX-XXX-XXXX) </label>
-                    <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{2}-\d{3}-\d{4}$|^\d{3}-\d{4}$" class="form-control" name="contact" id="contact" required="">
-                </div>
+                
                 <div class="form-group">
                         <label for="birthdate">Birthdate</label>
                         <input type="date"  <?php  echo 'value="'.$in->birthdate.'"';?> name="bdate" required="" id="bdayt">
@@ -661,7 +658,12 @@
                         </select>
                     </div>
 
-                    </div>
+
+                <div class="form-group">
+                    <label for="contact no">Contact Number eg. (09XX-XXX-XXXX) | (XXX-XXXX)</label>
+                    <input type="text" <?php  echo 'value="'.$in->contact_no.'"';?>  pattern="^(09)\d{2}-\d{3}-\d{4}$|^\d{3}-\d{4}$" class="form-control" name="contact" id="contact" required="">
+                </div>
+
                     <div class="form-group">
                         <label for="username">Username</label>
                         <input type="text" minlength="6"<?php  echo 'value="'.$in->user_name.'"';?> required="" class="form-control" pattern="[a-zA-Z0-9]+" name="uname" id="uname">
